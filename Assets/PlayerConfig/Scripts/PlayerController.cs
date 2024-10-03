@@ -75,7 +75,9 @@ namespace PlayerConfig
         {
             UpdateCameraRotation();
         }
-
+        /// <summary>
+        /// This method Rotates Both the Camera and Player According to the Look Input Direction provided from the user.
+        /// </summary>
         private void UpdateCameraRotation()
         {
             _cameraRotation.x += lookSensitivityH * _playerLocomotionInput.LookInput.x;
