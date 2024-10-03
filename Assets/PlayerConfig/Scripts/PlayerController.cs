@@ -53,7 +53,7 @@ namespace PlayerConfig
             Vector3 cameraRightXZ = new Vector3(_playerCamera.transform.right.x, 0f, _playerCamera.transform.right.z).normalized;
 
 
-            //Set players new velocity ensuring the Players Movement is in the direction of the camera
+            //Set players new velocity ensuring Players Movement is in the direction of the camera
             Vector3 movementDirection = cameraRightXZ * _playerLocomotionInput.MovementInput.x + cameraForwardXZ * _playerLocomotionInput.MovementInput.y;
             Vector3 movementDelta = movementDirection * lateralacceleration * Time.deltaTime;
             Vector3 newPlayerVelocity = _characterController.velocity + movementDelta;
