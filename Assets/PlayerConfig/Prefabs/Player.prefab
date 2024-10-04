@@ -223,7 +223,7 @@ MonoBehaviour:
   CameraCollisionFilter:
     serializedVersion: 2
     m_Bits: 1
-  IgnoreTag: Untagged
+  IgnoreTag: Player
   CameraRadius: 0.2
   DampingIntoCollision: 0
   DampingFromCollision: 2
@@ -257,7 +257,7 @@ GameObject:
   - component: {fileID: 8724007558396437539}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
