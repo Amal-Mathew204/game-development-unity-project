@@ -14,8 +14,12 @@ namespace PlayerConfig
         [SerializeField] private Camera _playerCamera;
 
         [Header("Player Movement Settings")]
-        public float runspeed;
-        public float runacceleration;
+        public float walkSpeed;
+        public float walkAcceleration;
+        public float runSpeed;
+        public float runAcceleration;
+        public float sprintSpeed;
+        public float sprintAcceleration;
         public float drag;
 
         [Header("Camera Settings")]
@@ -64,8 +68,8 @@ namespace PlayerConfig
         private void UpdatePlayerLateralMovement()
         {
             //Set movement speeds and acceleration
-            float movementspeedMagnitude = runspeed;
-            float lateralacceleration = runacceleration;
+            float movementspeedMagnitude = runSpeed;
+            float lateralacceleration = runAcceleration;
 
             //Get Normalised (Direction) Vectors of the forward (blue axis) and right (red axis) of the camera
             Vector3 cameraForwardXZ = new Vector3(_playerCamera.transform.forward.x, 0f, _playerCamera.transform.forward.z).normalized;
