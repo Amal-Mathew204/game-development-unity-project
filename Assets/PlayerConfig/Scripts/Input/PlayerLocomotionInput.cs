@@ -7,17 +7,33 @@ namespace PlayerConfig
 {
     public class PlayerLocomotionInput : MonoBehaviour
     {
+        #region Class Variables
+        public bool holdToSprint = false;
+        public bool holdToWalk = false;
         public Vector2 MovementInput { get; private set; }
         public Vector2 LookInput { get; private set; }
+        public bool isSprinting = false;
+        public bool isWalking = false;
+        #endregion
 
-        public void OnMove(InputValue value)
+        #region Action Methods
+        public void OnMove(InputAction.CallbackContext context)
         {
-            MovementInput = value.Get<Vector2>();
+            MovementInput = context.ReadValue<Vector2>();
         }
 
-        public void OnLook(InputValue value)
+        public void OnLook(InputAction.CallbackContext context)
         {
-            LookInput = value.Get<Vector2>();
+            LookInput = context.ReadValue<Vector2>();
         }
+        public void OnSprint(InputAction.CallbackContext context)
+        {
+            
+        }
+        public void OnWalk(InputAction.CallbackContext context)
+        {
+
+        }
+        #endregion
     }
 }
