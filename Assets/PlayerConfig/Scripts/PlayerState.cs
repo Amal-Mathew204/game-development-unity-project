@@ -15,8 +15,8 @@ namespace PlayerConfig
         Idling = 1,
         Walking = 2,
         Running = 3,
-        Sprinting = 3,
-        Jumping = 4,
-        Falling = 5
+        Sprinting = 4,
+        Jumping = 5,
+        Falling = 6
     }
 }
