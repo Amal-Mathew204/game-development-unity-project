@@ -368,7 +368,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Actions: {fileID: -944628639613478452, guid: 41b68ce6214cf4998bcc7ff4c04351f2, type: 3}
-  m_NotificationBehavior: 0
+  m_NotificationBehavior: 2
   m_UIInputModule: {fileID: 0}
   m_DeviceLostEvent:
     m_PersistentCalls:
@@ -379,7 +379,115 @@ MonoBehaviour:
   m_ControlsChangedEvent:
     m_PersistentCalls:
       m_Calls: []
-  m_ActionEvents: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2657510535826777234}
+        m_TargetAssemblyTypeName: PlayerConfig.PlayerLocomotionInput, Assembly-CSharp
+        m_MethodName: OnMove
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
+    m_ActionId: 426b763c-d996-4dce-b436-59d8b307da42
+    m_ActionName: 'Player/Move[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2657510535826777234}
+        m_TargetAssemblyTypeName: PlayerConfig.PlayerLocomotionInput, Assembly-CSharp
+        m_MethodName: OnLook
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
+    m_ActionId: e97d60cd-7d9b-4ace-aa79-956d9f85f6ee
+    m_ActionName: 'Player/Look[/Mouse/delta,/Pen/delta]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 9913384f-98f1-42db-98fd-8da54ee72ebb
+    m_ActionName: 'Player/Fire[/Mouse/leftButton]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2657510535826777234}
+        m_TargetAssemblyTypeName: PlayerConfig.PlayerLocomotionInput, Assembly-CSharp
+        m_MethodName: OnSprint
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
+    m_ActionId: 335f52e2-4ffa-4864-8bb8-1053059ab055
+    m_ActionName: 'Player/Sprint[/Keyboard/leftShift]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2657510535826777234}
+        m_TargetAssemblyTypeName: PlayerConfig.PlayerLocomotionInput, Assembly-CSharp
+        m_MethodName: OnWalk
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
+    m_ActionId: 750dd4a0-a979-427a-958e-5103f77ae3e8
+    m_ActionName: 'Player/Walk[/Keyboard/leftCtrl]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 99ef306e-1547-4700-8611-fd91e8c9e67e
+    m_ActionName: 'UI/Navigate[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: d4c304e2-c4e9-42a6-86ca-e4fe62380d98
+    m_ActionName: 'UI/Submit[/Keyboard/enter]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: dcf777dd-5e79-4d56-a3fc-e60d4f117612
+    m_ActionName: 'UI/Cancel[/Keyboard/escape]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 8edecb66-7257-48cb-9789-64da70820de1
+    m_ActionName: 'UI/Point[/Mouse/position,/Pen/position]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 0b71a2c9-d927-4853-9f56-77b4aab36a7a
+    m_ActionName: 'UI/Click[/Mouse/leftButton,/Pen/tip]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 855a0808-26e9-4440-b4ee-b642f15e3d90
+    m_ActionName: 'UI/ScrollWheel[/Mouse/scroll]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 00dbd311-4ae5-4f35-b944-2a5fe884f126
+    m_ActionName: 'UI/MiddleClick[/Mouse/middleButton]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: f83d1470-6532-420c-a8f5-d551574ea0d6
+    m_ActionName: 'UI/RightClick[/Mouse/rightButton]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: f398fe5c-e301-4f2f-a409-80dba5451aad
+    m_ActionName: UI/TrackedDevicePosition
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: b889f1a8-3252-4474-b4fa-04b9bf5824f1
+    m_ActionName: UI/TrackedDeviceOrientation
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -397,6 +505,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52786bb3d79ab48e5b6e988aa89a3d62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  holdToSprint: 1
+  holdToWalk: 1
+  isSprinting: 0
+  isWalking: 0
 --- !u!114 &5263807600829307157
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -424,8 +536,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _characterController: {fileID: 2046477478398412854}
   _playerCamera: {fileID: 5143943193060594043}
-  runspeed: 4
-  runacceleration: 35
+  walkSpeed: 2
+  walkAcceleration: 25
+  runSpeed: 4
+  runAcceleration: 35
+  sprintSpeed: 7
+  sprintAcceleration: 50
   drag: 20
   lookSensitivityH: 0.5
   lookSensitivityV: 0.5
