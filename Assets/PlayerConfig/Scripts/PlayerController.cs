@@ -80,9 +80,13 @@ namespace PlayerConfig
         /// </summary>
         private void UpdatePlayerLateralMovement()
         {
+
+            bool isSprinting = _playerState.CurrentLocomotionState == PlayerLocomotionState.Sprinting;
+            bool isWalking = _playerState.CurrentLocomotionState == PlayerLocomotionState.Walking;
+
             //Set movement speeds and acceleration
-            float movementspeedMagnitude = runSpeed;
-            float lateralacceleration = runAcceleration;
+            float movementspeedMagnitude = isSprinting ? sprintSpeed : isWalking ? walkSpeed : runSpeed;
+            float lateralacceleration = isSprinting ? sprintAcceleration : isWalking ? walkAcceleration : runAcceleration;
 
             //Get Normalised (Direction) Vectors of the forward (blue axis) and right (red axis) of the camera
             Vector3 cameraForwardXZ = new Vector3(_playerCamera.transform.forward.x, 0f, _playerCamera.transform.forward.z).normalized;
