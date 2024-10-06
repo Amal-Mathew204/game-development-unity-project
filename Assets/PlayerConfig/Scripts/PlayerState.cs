@@ -6,7 +6,7 @@ namespace PlayerConfig
 {
     public class PlayerState : MonoBehaviour
     {
-        public PlayerLocomotionState CurrentLocomotionState { get; set; }
+        [field: SerializeField] public PlayerLocomotionState CurrentLocomotionState { get; set; } = PlayerLocomotionState.Idling;
     }
 
 
