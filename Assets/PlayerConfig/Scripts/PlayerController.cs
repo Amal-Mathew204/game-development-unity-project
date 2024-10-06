@@ -59,13 +59,14 @@ namespace PlayerConfig
                 return;
             }
 
-            if (_playerLocomotionInput.isSprinting == true)
-            {
-                _playerState.CurrentLocomotionState = PlayerLocomotionState.Sprinting;
-            }
-            else if (_playerLocomotionInput.isWalking == true || CanRun() == false)
+            if(_playerLocomotionInput.isWalking == true || CanRun() == false)
             {
                 _playerState.CurrentLocomotionState = PlayerLocomotionState.Walking;
+
+            }
+            else if (_playerLocomotionInput.isSprinting == true)
+            {
+                _playerState.CurrentLocomotionState = PlayerLocomotionState.Sprinting;
             }
             else
             {
