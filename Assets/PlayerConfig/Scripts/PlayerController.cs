@@ -63,7 +63,7 @@ namespace PlayerConfig
             {
                 _playerState.CurrentLocomotionState = PlayerLocomotionState.Sprinting;
             }
-            else if (_playerLocomotionInput.isWalking == true)
+            else if (_playerLocomotionInput.isWalking == true || CanRun() == false)
             {
                 _playerState.CurrentLocomotionState = PlayerLocomotionState.Walking;
             }
@@ -134,6 +134,17 @@ namespace PlayerConfig
             // To move the camera in the y direction u rotate on the horizontal axis X hence why _cameraRotation.y is in the float x parameter position
             _playerCamera.transform.rotation = Quaternion.Euler(_cameraRotation.y, _cameraRotation.x, 0f);
 
+        }
+        #endregion
+        #region State Check Methods
+        /// <summary>
+        /// Method Checks if the player is moving at a 45 degree forward direction.
+        /// The player should not be able to run if the movement direction is not within this angle.
+        /// </summary>
+        /// <returns>Boolean Value</returns>
+        public bool CanRun()
+        {
+            return _playerLocomotionInput.MovementInput.y >= Mathf.Abs(_playerLocomotionInput.MovementInput.x);
         }
         #endregion
     }
