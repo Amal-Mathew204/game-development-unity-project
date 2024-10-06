@@ -58,7 +58,20 @@ namespace PlayerConfig
                 _playerState.CurrentLocomotionState = PlayerLocomotionState.Idling;
                 return;
             }
-            _playerState.CurrentLocomotionState = PlayerLocomotionState.Walking;
+
+            if (_playerLocomotionInput.isSprinting == true)
+            {
+                _playerState.CurrentLocomotionState = PlayerLocomotionState.Sprinting;
+            }
+            else if (_playerLocomotionInput.isWalking == true)
+            {
+                _playerState.CurrentLocomotionState = PlayerLocomotionState.Walking;
+            }
+            else
+            {
+                _playerState.CurrentLocomotionState = PlayerLocomotionState.Running;
+            }
+
         }
 
         /// <summary>
