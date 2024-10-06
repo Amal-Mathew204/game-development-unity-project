@@ -8,8 +8,8 @@ namespace PlayerConfig
     public class PlayerLocomotionInput : MonoBehaviour
     {
         #region Class Variables
-        public bool holdToSprint = false;
-        public bool holdToWalk = false;
+        public bool holdToSprint = true;
+        public bool holdToWalk = true;
         public Vector2 MovementInput { get; private set; }
         public Vector2 LookInput { get; private set; }
         public bool isSprinting = false;
