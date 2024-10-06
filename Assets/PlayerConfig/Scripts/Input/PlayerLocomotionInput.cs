@@ -16,7 +16,7 @@ namespace PlayerConfig
         public bool isWalking = false;
         #endregion
 
-        #region Action Methods
+        #region Action CallBack Methods
         public void OnMove(InputAction.CallbackContext context)
         {
             MovementInput = context.ReadValue<Vector2>();
@@ -28,11 +28,27 @@ namespace PlayerConfig
         }
         public void OnSprint(InputAction.CallbackContext context)
         {
-            
+            //when button is pressed
+            if (context.performed)
+            {
+                isSprinting = holdToSprint || !isSprinting;
+            }
+            //when button is released from being pressed
+            else if (context.canceled)
+            {
+                isSprinting = !holdToSprint && isSprinting;
+            }
         }
         public void OnWalk(InputAction.CallbackContext context)
         {
-
+            if (context.performed)
+            {
+                isWalking = holdToWalk || !isWalking;
+            }
+            else if (context.canceled)
+            {
+                isWalking = !holdToWalk && isWalking;
+            }
         }
         #endregion
     }
