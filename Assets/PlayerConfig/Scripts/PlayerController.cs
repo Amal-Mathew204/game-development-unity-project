@@ -10,6 +10,7 @@ namespace PlayerConfig
         [Header("PlayerController Components")]
         [SerializeField] private CharacterController _characterController;
         private PlayerLocomotionInput _playerLocomotionInput;
+        private PlayerState _playerState;
         [SerializeField] private Camera _playerCamera;
 
         [Header("Player Movement Settings")]
@@ -29,13 +30,31 @@ namespace PlayerConfig
         void Start()
         {
             _playerLocomotionInput = GetComponent<PlayerLocomotionInput>();
+            _playerState = GetComponent<PlayerState>();
+
         }
         #endregion
 
         #region Update Methods
         void Update()
         {
+            //Note the order of these method calls matter
+            UpdatePlayerLocomotionState();
             UpdatePlayerLateralMovement();
+        }
+
+        /// <summary>
+        /// This method is to be called by the Update Unity Method.
+        /// This method will update the Locomotion Movement State of the player.
+        /// </summary>
+        private void UpdatePlayerLocomotionState()
+        {
+            if(_playerLocomotionInput.MovementInput == Vector2.zero)
+            {
+                _playerState.CurrentLocomotionState = PlayerLocomotionState.Idling;
+                return;
+            }
+            _playerState.CurrentLocomotionState = PlayerLocomotionState.Walking;
         }
 
         /// <summary>
@@ -75,6 +94,7 @@ namespace PlayerConfig
         {
             UpdateCameraRotation();
         }
+
         /// <summary>
         /// This method Rotates Both the Camera and Player According to the Look Input Direction provided from the user.
         /// </summary>
