@@ -296,11 +296,33 @@
                 },
                 {
                     "name": "",
+                    "id": "224c3e2e-7a66-4439-b691-87654be4a36a",
+                    "path": "<Gamepad>/rightTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "Sprint",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "84b968c2-14ca-453f-a2e3-eb4bdc6f8407",
                     "path": "<Keyboard>/leftCtrl",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
+                    "action": "Walk",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "54475490-f6e3-41fb-92b0-85ea82d04311",
+                    "path": "<Gamepad>/leftStickPress",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
                     "action": "Walk",
                     "isComposite": false,
                     "isPartOfComposite": false
