@@ -320,6 +320,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2057872362 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2657510535826777234, guid: ffeb9bb02e026448a866b1178c4ad059, type: 3}
+  m_PrefabInstance: {fileID: 1610805150713930262}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52786bb3d79ab48e5b6e988aa89a3d62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1610805150713930262
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -368,9 +379,65 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1855010896641570777, guid: ffeb9bb02e026448a866b1178c4ad059, type: 3}
+      propertyPath: m_ActionEvents.Array.size
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 1855010896641570777, guid: ffeb9bb02e026448a866b1178c4ad059, type: 3}
+      propertyPath: m_ActionEvents.Array.data[15].m_ActionId
+      value: 55d2119a-b29a-4211-8321-a776bdf88a36
+      objectReference: {fileID: 0}
+    - target: {fileID: 1855010896641570777, guid: ffeb9bb02e026448a866b1178c4ad059, type: 3}
+      propertyPath: m_ActionEvents.Array.data[15].m_ActionName
+      value: 'Player/Jump[/Keyboard/space]'
+      objectReference: {fileID: 0}
+    - target: {fileID: 1855010896641570777, guid: ffeb9bb02e026448a866b1178c4ad059, type: 3}
+      propertyPath: m_ActionEvents.Array.data[15].m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1855010896641570777, guid: ffeb9bb02e026448a866b1178c4ad059, type: 3}
+      propertyPath: m_ActionEvents.Array.data[15].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1855010896641570777, guid: ffeb9bb02e026448a866b1178c4ad059, type: 3}
+      propertyPath: m_ActionEvents.Array.data[15].m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2057872362}
+    - target: {fileID: 1855010896641570777, guid: ffeb9bb02e026448a866b1178c4ad059, type: 3}
+      propertyPath: m_ActionEvents.Array.data[15].m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1855010896641570777, guid: ffeb9bb02e026448a866b1178c4ad059, type: 3}
+      propertyPath: m_ActionEvents.Array.data[15].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnJump
+      objectReference: {fileID: 0}
+    - target: {fileID: 1855010896641570777, guid: ffeb9bb02e026448a866b1178c4ad059, type: 3}
+      propertyPath: m_ActionEvents.Array.data[15].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: PlayerConfig.PlayerLocomotionInput, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1855010896641570777, guid: ffeb9bb02e026448a866b1178c4ad059, type: 3}
+      propertyPath: m_ActionEvents.Array.data[15].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 7691830747402106239, guid: ffeb9bb02e026448a866b1178c4ad059, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 8724007558396437539, guid: ffeb9bb02e026448a866b1178c4ad059, type: 3}
+      propertyPath: gravity
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 8724007558396437539, guid: ffeb9bb02e026448a866b1178c4ad059, type: 3}
+      propertyPath: jumpSpeed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8724007558396437539, guid: ffeb9bb02e026448a866b1178c4ad059, type: 3}
+      propertyPath: terminalVelocity
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 8724007558396437539, guid: ffeb9bb02e026448a866b1178c4ad059, type: 3}
+      propertyPath: inAirAcceleration
+      value: 25
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

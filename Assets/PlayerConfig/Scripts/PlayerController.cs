@@ -21,6 +21,14 @@ namespace PlayerConfig
         public float sprintSpeed;
         public float sprintAcceleration;
         public float drag;
+        private PlayerLocomotionState _lastLocomotionState;
+        private float _verticalVelocity = 0f;
+        public float gravity;
+        public float jumpSpeed;
+        public float inAirAcceleration;
+        public float terminalVelocity;
+        private bool _jumpedLastFrame = false;
+
 
         [Header("Camera Settings")]
         public float lookSensitivityH = 0.1f;
@@ -28,6 +36,10 @@ namespace PlayerConfig
         public float lookLimitV = 89f;
         private Vector2 _playerTargetRotation = Vector2.zero;
         private Vector2 _cameraRotation = Vector2.zero;
+
+        //Cache Values
+        private float _stepOffset;
+
         #endregion
 
         #region StartUp Methods
@@ -35,7 +47,7 @@ namespace PlayerConfig
         {
             _playerLocomotionInput = GetComponent<PlayerLocomotionInput>();
             _playerState = GetComponent<PlayerState>();
-
+            _stepOffset = _characterController.stepOffset;
         }
         #endregion
 
@@ -44,6 +56,7 @@ namespace PlayerConfig
         {
             //Note the order of these method calls matter
             UpdatePlayerLocomotionState();
+            UpdatePlayerVerticalMovement();
             UpdatePlayerLateralMovement();
         }
 
@@ -53,13 +66,14 @@ namespace PlayerConfig
         /// </summary>
         private void UpdatePlayerLocomotionState()
         {
-            if(_playerLocomotionInput.MovementInput == Vector2.zero)
+            bool isPlayerGrounded =_characterController.isGrounded;
+
+            //Lateral State Checks
+            if (_playerLocomotionInput.MovementInput == Vector2.zero)
             {
                 _playerState.CurrentLocomotionState = PlayerLocomotionState.Idling;
-                return;
             }
-
-            if(_playerLocomotionInput.isWalking == true || CanRun() == false)
+            else if(_playerLocomotionInput.isWalking == true || CanRun() == false)
             {
                 _playerState.CurrentLocomotionState = PlayerLocomotionState.Walking;
 
@@ -73,6 +87,40 @@ namespace PlayerConfig
                 _playerState.CurrentLocomotionState = PlayerLocomotionState.Running;
             }
 
+            // Airborne State Checks
+            if (!isPlayerGrounded)
+            {
+                if (_characterController.velocity.y > 0f)
+                {
+                    _playerState.CurrentLocomotionState = PlayerLocomotionState.Jumping;
+                }
+                else if (_characterController.velocity.y < 0f)
+                {
+                    _playerState.CurrentLocomotionState = PlayerLocomotionState.Falling;
+                }
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        private void UpdatePlayerVerticalMovement()
+        {
+            bool isPlayerGrounded = _playerState.isPlayerGrounded();
+            if(isPlayerGrounded && _verticalVelocity < 0)
+            {
+                _verticalVelocity = 0f;
+            }
+
+            _verticalVelocity -= gravity * Time.deltaTime;
+
+            if (_playerLocomotionInput.JumpPressed && isPlayerGrounded) 
+            {
+                // from unity docs to handle jump
+                _verticalVelocity += Mathf.Sqrt(jumpSpeed * 3f * gravity);
+            }
+
+
         }
 
         /// <summary>
@@ -84,10 +132,11 @@ namespace PlayerConfig
 
             bool isSprinting = _playerState.CurrentLocomotionState == PlayerLocomotionState.Sprinting;
             bool isWalking = _playerState.CurrentLocomotionState == PlayerLocomotionState.Walking;
+            bool isGrounded = _playerState.isPlayerGrounded();
 
             //Set movement speeds and acceleration
-            float movementspeedMagnitude = isSprinting ? sprintSpeed : isWalking ? walkSpeed : runSpeed;
-            float lateralacceleration = isSprinting ? sprintAcceleration : isWalking ? walkAcceleration : runAcceleration;
+            float movementspeedMagnitude = (!isGrounded || isSprinting) ? sprintSpeed : isWalking ? walkSpeed : runSpeed;
+            float lateralacceleration = !isGrounded ? inAirAcceleration : isSprinting ? sprintAcceleration : isWalking ? walkAcceleration : runAcceleration;
 
             //Get Normalised (Direction) Vectors of the forward (blue axis) and right (red axis) of the camera
             Vector3 cameraForwardXZ = new Vector3(_playerCamera.transform.forward.x, 0f, _playerCamera.transform.forward.z).normalized;
@@ -106,6 +155,9 @@ namespace PlayerConfig
 
             //Clamp new Velocity to corresponding max value
             newPlayerVelocity = Vector3.ClampMagnitude(new Vector3(newPlayerVelocity.x, 0f, newPlayerVelocity.z), movementspeedMagnitude);
+
+            //add vertical movement of the player
+            newPlayerVelocity.y += _verticalVelocity;
 
             _characterController.Move(newPlayerVelocity * Time.deltaTime);
         }
