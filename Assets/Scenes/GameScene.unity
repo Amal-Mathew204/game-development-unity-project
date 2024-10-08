@@ -1041,6 +1041,10 @@ PrefabInstance:
       propertyPath: inAirAcceleration
       value: 25
       objectReference: {fileID: 0}
+    - target: {fileID: 8724007558396437539, guid: ffeb9bb02e026448a866b1178c4ad059, type: 3}
+      propertyPath: _groundLayers.m_Bits
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

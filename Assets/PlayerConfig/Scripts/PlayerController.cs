@@ -13,7 +13,7 @@ namespace PlayerConfig
         private PlayerState _playerState;
         [SerializeField] private Camera _playerCamera;
 
-        [Header("Player Movement Settings")]
+        [Header("Player Lateral Movement Settings")]
         public float walkSpeed;
         public float walkAcceleration;
         public float runSpeed;
@@ -21,13 +21,16 @@ namespace PlayerConfig
         public float sprintSpeed;
         public float sprintAcceleration;
         public float drag;
+
         private PlayerLocomotionState _lastLocomotionState;
+
+        [Header("Player Vertical Movement Settings")]
         private float _verticalVelocity = 0f;
         public float gravity;
         public float jumpSpeed;
         public float inAirAcceleration;
         public float terminalVelocity;
-        private bool _jumpedLastFrame = false;
+        private float _antiBump;
 
 
         [Header("Camera Settings")]
@@ -37,8 +40,13 @@ namespace PlayerConfig
         private Vector2 _playerTargetRotation = Vector2.zero;
         private Vector2 _cameraRotation = Vector2.zero;
 
+        [Header("Enviroment Settings")]
+        [SerializeField] private LayerMask _groundLayers;
+
         //Cache Values
         private float _stepOffset;
+        //avoid double jumping
+        private bool _jumpedLastFrame;
 
         #endregion
 
@@ -48,6 +56,8 @@ namespace PlayerConfig
             _playerLocomotionInput = GetComponent<PlayerLocomotionInput>();
             _playerState = GetComponent<PlayerState>();
             _stepOffset = _characterController.stepOffset;
+            //set anitBump to fasted possible speed
+            _antiBump = sprintSpeed;
         }
         #endregion
 
@@ -66,7 +76,7 @@ namespace PlayerConfig
         /// </summary>
         private void UpdatePlayerLocomotionState()
         {
-            bool isPlayerGrounded =_characterController.isGrounded;
+            bool isPlayerGrounded = IsPlayerGrounded();
 
             //Lateral State Checks
             if (_playerLocomotionInput.MovementInput == Vector2.zero)
@@ -88,7 +98,7 @@ namespace PlayerConfig
             }
 
             // Airborne State Checks
-            if (!isPlayerGrounded)
+            if (!isPlayerGrounded || _jumpedLastFrame)
             {
                 if (_characterController.velocity.y > 0f)
                 {
@@ -98,6 +108,7 @@ namespace PlayerConfig
                 {
                     _playerState.CurrentLocomotionState = PlayerLocomotionState.Falling;
                 }
+                _jumpedLastFrame = false;
             }
         }
 
@@ -106,18 +117,25 @@ namespace PlayerConfig
         /// </summary>
         private void UpdatePlayerVerticalMovement()
         {
-            bool isPlayerGrounded = _playerState.isPlayerGrounded();
-            if(isPlayerGrounded && _verticalVelocity < 0)
-            {
-                _verticalVelocity = 0f;
-            }
+            bool isPlayerGrounded = _playerState.IsPlayerGrounded();
 
             _verticalVelocity -= gravity * Time.deltaTime;
+
+            if (isPlayerGrounded && _verticalVelocity < 0)
+            {
+                //avoid Player to be skipping Up and Down on slops
+                _verticalVelocity = - _antiBump;
+            }
+
+
 
             if (_playerLocomotionInput.JumpPressed && isPlayerGrounded) 
             {
                 // from unity docs to handle jump
                 _verticalVelocity += Mathf.Sqrt(jumpSpeed * 3f * gravity);
+                //remove antiBump while airborne
+                _verticalVelocity += _antiBump;
+                _jumpedLastFrame = true;
             }
 
 
@@ -132,7 +150,7 @@ namespace PlayerConfig
 
             bool isSprinting = _playerState.CurrentLocomotionState == PlayerLocomotionState.Sprinting;
             bool isWalking = _playerState.CurrentLocomotionState == PlayerLocomotionState.Walking;
-            bool isGrounded = _playerState.isPlayerGrounded();
+            bool isGrounded = _playerState.IsPlayerGrounded();
 
             //Set movement speeds and acceleration
             float movementspeedMagnitude = (!isGrounded || isSprinting) ? sprintSpeed : isWalking ? walkSpeed : runSpeed;
@@ -198,6 +216,34 @@ namespace PlayerConfig
         public bool CanRun()
         {
             return _playerLocomotionInput.MovementInput.y >= Mathf.Abs(_playerLocomotionInput.MovementInput.x);
+        }
+
+        /// <summary>
+        /// Method uses two checks (Checking is the player is grounded while in the ground state, or while the player is grounded while in an airborne state).
+        /// </summary>
+        /// <returns>Boolean Value</returns>
+        public bool IsPlayerGrounded()
+        {
+            return _playerState.IsPlayerGrounded() ? IsGroundedWhileInGroundedState() : IsGroundedWhileInAirborneState();
+        }
+        /// <summary>
+        /// Mathod used for checking the player is grounded when moving onto slopes. It uses a sphere collider to check the players position.
+        /// </summary>
+        /// <returns>Boolean Value</returns>
+        public bool IsGroundedWhileInGroundedState()
+        {
+            // y position lower than GameObject Position to allow for a buffer between the GameObject and the ground
+            Vector3 sphereColliderPosition = new Vector3(transform.position.x, transform.position.y - _characterController.radius, transform.position.z);
+            return Physics.CheckSphere(sphereColliderPosition, _characterController.radius, _groundLayers, QueryTriggerInteraction.Ignore);
+        }
+
+        /// <summary>
+        /// Method uses the character controller to see if the player has returned to the ground from being airborne.
+        /// </summary>
+        /// <returns>Boolean Value</returns>
+        public bool IsGroundedWhileInAirborneState()
+        {
+            return _characterController.isGrounded;
         }
         #endregion
     }
