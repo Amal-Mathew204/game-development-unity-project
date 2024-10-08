@@ -45,8 +45,8 @@ namespace PlayerConfig
 
         //Cache Values
         private float _stepOffset;
-        //avoid double jumping
-        private bool _jumpedLastFrame;
+        private bool _jumpedLastFrame; //avoid double jumping
+
 
         #endregion
 
@@ -109,6 +109,12 @@ namespace PlayerConfig
                     _playerState.CurrentLocomotionState = PlayerLocomotionState.Falling;
                 }
                 _jumpedLastFrame = false;
+                //avoid hitching on an edge while jumping / falling
+                _characterController.stepOffset = 0f;
+            }
+            else
+            {
+                _characterController.stepOffset = _stepOffset;
             }
         }
 
