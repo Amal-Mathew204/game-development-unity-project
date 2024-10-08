@@ -8,12 +8,12 @@ namespace PlayerConfig
     {
         [field: SerializeField] public PlayerLocomotionState CurrentLocomotionState { get; set; } = PlayerLocomotionState.Idling;
 
-        public bool isPlayerGrounded()
+        public bool IsPlayerGrounded()
         {
-            return isStateGroundedState(CurrentLocomotionState);
+            return IsStateGroundedState(CurrentLocomotionState);
         }
 
-        public bool isStateGroundedState(PlayerLocomotionState state)
+        public bool IsStateGroundedState(PlayerLocomotionState state)
         {
             return state != PlayerLocomotionState.Jumping && state != PlayerLocomotionState.Falling;
         }
