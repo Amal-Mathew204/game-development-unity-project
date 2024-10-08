@@ -22,16 +22,13 @@ namespace PlayerConfig
         public float sprintAcceleration;
         public float drag;
 
-        private PlayerLocomotionState _lastLocomotionState;
-
         [Header("Player Vertical Movement Settings")]
-        private float _verticalVelocity = 0f;
         public float gravity;
         public float jumpSpeed;
         public float inAirAcceleration;
         public float terminalVelocity;
         private float _antiBump;
-
+        private float _verticalVelocity;
 
         [Header("Camera Settings")]
         public float lookSensitivityH = 0.1f;
@@ -45,8 +42,8 @@ namespace PlayerConfig
 
         //Cache Values
         private float _stepOffset;
-        private bool _jumpedLastFrame; //avoid double jumping
-
+        private bool _jumpedLastFrame = false; //avoid double jumping
+        private PlayerLocomotionState _lastLocomotionState = PlayerLocomotionState.Idling;
 
         #endregion
 
@@ -76,6 +73,7 @@ namespace PlayerConfig
         /// </summary>
         private void UpdatePlayerLocomotionState()
         {
+            _lastLocomotionState = _playerState.CurrentLocomotionState;
             bool isPlayerGrounded = IsPlayerGrounded();
 
             //Lateral State Checks
@@ -114,12 +112,14 @@ namespace PlayerConfig
             }
             else
             {
+                //reset step offset
                 _characterController.stepOffset = _stepOffset;
             }
         }
 
         /// <summary>
-        /// 
+        /// This method is to be called by the Update Unity Method.
+        /// The method will update the Player Game Object Vertical velocity in response to JumpPressed by the user or by falling.
         /// </summary>
         private void UpdatePlayerVerticalMovement()
         {
@@ -139,17 +139,26 @@ namespace PlayerConfig
             {
                 // from unity docs to handle jump
                 _verticalVelocity += Mathf.Sqrt(jumpSpeed * 3f * gravity);
-                //remove antiBump while airborne
-                _verticalVelocity += _antiBump;
                 _jumpedLastFrame = true;
             }
 
+            if(_playerState.IsStateGroundedState(_lastLocomotionState) && !isPlayerGrounded)
+            {
+                //remove antiBump while airborne
+                _verticalVelocity += _antiBump;
+            }
+
+            //Cap the vertical velocity when falling
+            if (Mathf.Abs(_verticalVelocity) > Mathf.Abs(terminalVelocity))
+            {
+                _verticalVelocity = -1f * Mathf.Abs(terminalVelocity);
+            }
 
         }
 
         /// <summary>
         /// This method is to be called by the Update Unity Method.
-        /// The method will update the Player Game Object velocity in response to Movement Input by the user or by drag
+        /// The method will update the Player Game Object Lateral velocity in response to Movement Input by the user or by drag.
         /// </summary>
         private void UpdatePlayerLateralMovement()
         {
@@ -183,9 +192,32 @@ namespace PlayerConfig
             //add vertical movement of the player
             newPlayerVelocity.y += _verticalVelocity;
 
+            newPlayerVelocity = !isGrounded ? HandleSteepWalls(newPlayerVelocity) : newPlayerVelocity;
+
             _characterController.Move(newPlayerVelocity * Time.deltaTime);
         }
+        /// <summary>
+        /// Method Checks if the angle of the slope is invalid (greater than the slope limit) and the player is falling.
+        /// If true a new velocity is returned.
+        /// The velocity is onto the slope plane,to cause the player to slide down the slope.
+        /// This new velocity will stop the player from hitching onto steep walls/slopes.
+        /// </summary>
+        /// <param name="velocity"></param>
+        /// <returns>Vector3 velocity</returns>
+        private Vector3 HandleSteepWalls(Vector3 velocity)
+        {
+            Vector3 normal = GetNormalWithSphereCast(_characterController, _groundLayers);
+            float angle = Vector3.Angle(normal, Vector3.up);
+            bool validAngle = angle <= _characterController.slopeLimit;
+            if (!validAngle && _verticalVelocity < 0f)
+            {
+                //new velocity to get player to slide down the steep slope
+                velocity = Vector3.ProjectOnPlane(velocity, normal);
+            }
+            return velocity;
+        }
         #endregion
+
 
         #region Late Update Methods
         private void LateUpdate()
@@ -213,6 +245,7 @@ namespace PlayerConfig
 
         }
         #endregion
+
         #region State Check Methods
         /// <summary>
         /// Method Checks if the player is moving at a 45 degree forward direction.
@@ -230,7 +263,7 @@ namespace PlayerConfig
         /// <returns>Boolean Value</returns>
         public bool IsPlayerGrounded()
         {
-            return _playerState.IsPlayerGrounded() ? IsGroundedWhileInGroundedState() : IsGroundedWhileInAirborneState();
+            return _characterController.isGrounded ? IsGroundedWhileInGroundedState() : IsGroundedWhileInAirborneState();
         }
         /// <summary>
         /// Mathod used for checking the player is grounded when moving onto slopes. It uses a sphere collider to check the players position.
@@ -249,8 +282,37 @@ namespace PlayerConfig
         /// <returns>Boolean Value</returns>
         public bool IsGroundedWhileInAirborneState()
         {
-            return _characterController.isGrounded;
+            Vector3 normal = GetNormalWithSphereCast(_characterController, _groundLayers);
+            //the angle between the normal off the ground and Vector3.Up will be the angle of the slope.
+            float angle = Vector3.Angle(normal, Vector3.up);
+            bool validAngle = angle <= _characterController.slopeLimit;
+
+            return _characterController.isGrounded && validAngle;
         }
+        #endregion
+
+        #region Utility Method
+        /// <summary>
+        /// By doing a sphereCast downwards the method determines the normal vector of the ground beneath the player.
+        /// </summary>
+        /// <param name="characterController"></param>
+        /// <param name="layerMask"></param>
+        /// <returns>Vector3 normal</returns>
+        public static Vector3 GetNormalWithSphereCast(CharacterController characterController, LayerMask layerMask = default)
+        {
+            Vector3 normal = Vector3.up;
+            Vector3 sphereCentre = characterController.transform.position + characterController.center;
+            float distance = characterController.height / 2f + characterController.stepOffset + 0.01f;
+
+            RaycastHit hit;
+            if (Physics.SphereCast(sphereCentre, characterController.radius, Vector3.down, out hit, distance, layerMask))
+            {
+                normal = hit.normal;
+            }
+            return normal;
+
+        }
+
         #endregion
     }
 }
