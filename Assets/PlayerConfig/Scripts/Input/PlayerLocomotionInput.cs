@@ -14,6 +14,7 @@ namespace PlayerConfig
         public Vector2 LookInput { get; private set; }
         public bool isSprinting = false;
         public bool isWalking = false;
+        public bool JumpPressed { get; private set; }
         #endregion
 
         #region Action CallBack Methods
@@ -49,6 +50,21 @@ namespace PlayerConfig
             {
                 isWalking = !holdToWalk && isWalking;
             }
+        }
+        public void OnJump(InputAction.CallbackContext context)
+        {
+            if (!context.performed)
+            {
+                return;
+            }
+            JumpPressed = true;
+        }
+        #endregion
+
+        #region Late Update Methods
+        private void LateUpdate()
+        {
+            JumpPressed = false;
         }
         #endregion
     }
