@@ -61,12 +61,11 @@ namespace Scripts.Audio
         /// </summary>
         private void PlaySoundClip(AudioSource source, AudioClip clip)
         {
+            /// <param name="source">The AudioSource responsible for playing the sound (music or SFX).</param>
+            /// <param name="clip">The AudioClip to assign to the AudioSource for playback.</param>
             source.clip = clip;
             source.Play();
         }
-
-        /// <param name="source">The AudioSource responsible for playing the sound (music or SFX).</param>
-        /// <param name="clip">The AudioClip to assign to the AudioSource for playback.</param>
     }
 
 }
