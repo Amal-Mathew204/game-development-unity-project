@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace PlayerConfig
+namespace Scripts.Player
 {
     public class PlayerState : MonoBehaviour
     {
