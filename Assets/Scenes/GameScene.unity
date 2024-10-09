@@ -1710,7 +1710,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9da479f47fcc1284aa284be29167296d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _triggerSound: {fileID: 8300000, guid: 62f099ff24211d045abd9f6c75f39dd8, type: 3}
+  _triggerSound: {fileID: 8300000, guid: 485d769097c4ec44986ebf117315c745, type: 3}
 --- !u!1 &1835010417
 GameObject:
   m_ObjectHideFlags: 0
