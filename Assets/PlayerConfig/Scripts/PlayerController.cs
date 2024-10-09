@@ -263,7 +263,7 @@ namespace PlayerConfig
         /// <returns>Boolean Value</returns>
         public bool IsPlayerGrounded()
         {
-            return _characterController.isGrounded ? IsGroundedWhileInGroundedState() : IsGroundedWhileInAirborneState();
+            return (_characterController.isGrounded && _playerState.IsPlayerGrounded()) ? IsGroundedWhileInGroundedState() : IsGroundedWhileInAirborneState();
         }
         /// <summary>
         /// Mathod used for checking the player is grounded when moving onto slopes. It uses a sphere collider to check the players position.
