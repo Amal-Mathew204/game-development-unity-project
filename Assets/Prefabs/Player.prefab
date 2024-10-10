@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8995538327304377564}
   - component: {fileID: 5143943193060594043}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: PlayerCamera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -95,7 +95,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5598448107900241463}
   - component: {fileID: 5457259532507182014}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Third Person Virtual Camera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -169,7 +169,7 @@ GameObject:
   - component: {fileID: 3416576295392301735}
   - component: {fileID: 3227184281500731996}
   - component: {fileID: 2560819135054735340}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: cm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -256,7 +256,7 @@ GameObject:
   - component: {fileID: 2657510535826777234}
   - component: {fileID: 5263807600829307157}
   - component: {fileID: 8724007558396437539}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -349,12 +349,12 @@ CharacterController:
   m_Enabled: 1
   serializedVersion: 3
   m_Height: 2
-  m_Radius: 0.41
+  m_Radius: 0.5
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.01
   m_MinMoveDistance: 0.00001
-  m_Center: {x: 0, y: 0.09, z: 0}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &1855010896641570777
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -581,7 +581,7 @@ GameObject:
   - component: {fileID: 3390739582583173196}
   - component: {fileID: 952239606429479082}
   - component: {fileID: 1810999774738025246}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
