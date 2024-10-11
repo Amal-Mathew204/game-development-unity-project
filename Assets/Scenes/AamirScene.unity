@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028292, g: 0.22571306, b: 0.30692118, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571328, b: 0.3069217, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -302,47 +302,47 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2625255409261704607, guid: 9b9e6f3e8559e414b8af55393dcca21c, type: 3}
+    - target: {fileID: 2625255409261704607, guid: eece90d6260bd394db2e78278362f695, type: 3}
       propertyPath: m_Name
       value: NPCTrigger
       objectReference: {fileID: 0}
-    - target: {fileID: 5405581869858007934, guid: 9b9e6f3e8559e414b8af55393dcca21c, type: 3}
+    - target: {fileID: 5405581869858007934, guid: eece90d6260bd394db2e78278362f695, type: 3}
       propertyPath: m_LocalPosition.x
       value: -6
       objectReference: {fileID: 0}
-    - target: {fileID: 5405581869858007934, guid: 9b9e6f3e8559e414b8af55393dcca21c, type: 3}
+    - target: {fileID: 5405581869858007934, guid: eece90d6260bd394db2e78278362f695, type: 3}
       propertyPath: m_LocalPosition.y
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 5405581869858007934, guid: 9b9e6f3e8559e414b8af55393dcca21c, type: 3}
+    - target: {fileID: 5405581869858007934, guid: eece90d6260bd394db2e78278362f695, type: 3}
       propertyPath: m_LocalPosition.z
       value: -2
       objectReference: {fileID: 0}
-    - target: {fileID: 5405581869858007934, guid: 9b9e6f3e8559e414b8af55393dcca21c, type: 3}
+    - target: {fileID: 5405581869858007934, guid: eece90d6260bd394db2e78278362f695, type: 3}
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 5405581869858007934, guid: 9b9e6f3e8559e414b8af55393dcca21c, type: 3}
+    - target: {fileID: 5405581869858007934, guid: eece90d6260bd394db2e78278362f695, type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5405581869858007934, guid: 9b9e6f3e8559e414b8af55393dcca21c, type: 3}
+    - target: {fileID: 5405581869858007934, guid: eece90d6260bd394db2e78278362f695, type: 3}
       propertyPath: m_LocalRotation.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5405581869858007934, guid: 9b9e6f3e8559e414b8af55393dcca21c, type: 3}
+    - target: {fileID: 5405581869858007934, guid: eece90d6260bd394db2e78278362f695, type: 3}
       propertyPath: m_LocalRotation.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5405581869858007934, guid: 9b9e6f3e8559e414b8af55393dcca21c, type: 3}
+    - target: {fileID: 5405581869858007934, guid: eece90d6260bd394db2e78278362f695, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5405581869858007934, guid: 9b9e6f3e8559e414b8af55393dcca21c, type: 3}
+    - target: {fileID: 5405581869858007934, guid: eece90d6260bd394db2e78278362f695, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5405581869858007934, guid: 9b9e6f3e8559e414b8af55393dcca21c, type: 3}
+    - target: {fileID: 5405581869858007934, guid: eece90d6260bd394db2e78278362f695, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
@@ -350,10 +350,10 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 7735667750137057246, guid: 9b9e6f3e8559e414b8af55393dcca21c, type: 3}
+    - targetCorrespondingSourceObject: {fileID: 7735667750137057246, guid: eece90d6260bd394db2e78278362f695, type: 3}
       insertIndex: -1
       addedObject: {fileID: 0}
-  m_SourcePrefab: {fileID: 100100000, guid: 9b9e6f3e8559e414b8af55393dcca21c, type: 3}
+  m_SourcePrefab: {fileID: 100100000, guid: eece90d6260bd394db2e78278362f695, type: 3}
 --- !u!1 &901954032
 GameObject:
   m_ObjectHideFlags: 0
