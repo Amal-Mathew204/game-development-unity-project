@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -123,6 +124,15 @@ namespace Scripts.Player
         /// </summary>
         private void UpdatePlayerVerticalMovement()
         {
+            //handle Player Hitting Ceiling (by making _verticalVelocity = 0
+            if(_playerState.CurrentLocomotionState == PlayerLocomotionState.Jumping)
+            {
+                if (HasPlayerHitCeiling(_characterController, _groundLayers))
+                {
+                    _verticalVelocity = 0f;
+                }
+            }
+
             bool isPlayerGrounded = _playerState.IsPlayerGrounded();
 
             _verticalVelocity -= gravity * Time.deltaTime;
@@ -132,8 +142,6 @@ namespace Scripts.Player
                 //avoid Player to be skipping Up and Down on slops
                 _verticalVelocity = - _antiBump;
             }
-
-
 
             if (_playerLocomotionInput.JumpPressed && isPlayerGrounded) 
             {
@@ -263,7 +271,7 @@ namespace Scripts.Player
         /// <returns>Boolean Value</returns>
         public bool IsPlayerGrounded()
         {
-            return (_characterController.isGrounded && _playerState.IsPlayerGrounded()) ? IsGroundedWhileInGroundedState() : IsGroundedWhileInAirborneState();
+            return _playerState.IsPlayerGrounded() ? IsGroundedWhileInGroundedState() : IsGroundedWhileInAirborneState();
         }
         /// <summary>
         /// Mathod used for checking the player is grounded when moving onto slopes. It uses a sphere collider to check the players position.
@@ -272,7 +280,7 @@ namespace Scripts.Player
         public bool IsGroundedWhileInGroundedState()
         {
             // y position lower than GameObject Position to allow for a buffer between the GameObject and the ground
-            Vector3 sphereColliderPosition = new Vector3(transform.position.x, transform.position.y - _characterController.radius, transform.position.z);
+            Vector3 sphereColliderPosition = new Vector3(transform.position.x, transform.position.y - (_characterController.height / 2f) - _characterController.radius, transform.position.z);
             return Physics.CheckSphere(sphereColliderPosition, _characterController.radius, _groundLayers, QueryTriggerInteraction.Ignore);
         }
 
@@ -286,17 +294,40 @@ namespace Scripts.Player
             //the angle between the normal off the ground and Vector3.Up will be the angle of the slope.
             float angle = Vector3.Angle(normal, Vector3.up);
             bool validAngle = angle <= _characterController.slopeLimit;
-
             return _characterController.isGrounded && validAngle;
+        }
+
+        /// <summary>
+        /// The method performs a sphereCast upwards above the GameObject. If a hit is made, the distance of the hit is measured to see if
+        /// the GameObject is colliding with the ceiling.
+        /// </summary>
+        /// <param name="characterController">The character controller of the GameObject</param>
+        /// <param name="layerMask">Layer of the GameObject the Raycast will hit</param>
+        /// <returns>Returns if the Player has hit a ceiling.</returns>
+        public bool HasPlayerHitCeiling(CharacterController characterController, LayerMask layerMask = default)
+        {
+            Vector3 sphereCentre = characterController.transform.position + characterController.center;
+            float distance = characterController.height / 2f + characterController.stepOffset + 0.01f;
+            RaycastHit hit;
+            //raycast above the Player
+            if (Physics.SphereCast(sphereCentre, characterController.radius, Vector3.up, out hit, distance, layerMask))
+            {
+                if (Math.Round(Double.Parse(hit.distance.ToString()), 2) <= Double.Parse((_characterController.skinWidth + characterController.radius).ToString()))
+                {
+                    return true;
+                }
+            }
+            return false;
+            
         }
         #endregion
 
         #region Utility Method
         /// <summary>
-        /// By doing a sphereCast downwards the method determines the normal vector of the ground beneath the player.
+        /// By doing a sphereCast downwards bellow the GameObject. The method determines the normal vector of the ground beneath the GameObject.
         /// </summary>
-        /// <param name="characterController"></param>
-        /// <param name="layerMask"></param>
+        /// <param name="characterController">The character controller of the GameObject</param>
+        /// <param name="layerMask">Layer of the GameObject the Raycast will hit</param>
         /// <returns>Vector3 normal</returns>
         public static Vector3 GetNormalWithSphereCast(CharacterController characterController, LayerMask layerMask = default)
         {
