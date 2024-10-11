@@ -1,0 +1,27 @@
+.MenuButton {
+    width: 450px;
+    height: 120px;
+    margin-top: 30px;
+    margin-right: 30px;
+    margin-bottom: 30px;
+    margin-left: 30px;
+    font-size: 45px;
+    -unity-font-style: bold;
+    border-top-width: 10px;
+    border-right-width: 10px;
+    border-bottom-width: 10px;
+    border-left-width: 10px;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px;
+    border-bottom-left-radius: 30px;
+    background-color: rgb(207, 186, 186);
+}
+
+.playButton {
+    background-color: rgb(255, 78, 78);
+}
+
+.playButton:hover {
+    background-color: rgb(229, 148, 107);
+}
