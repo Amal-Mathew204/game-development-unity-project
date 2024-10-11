@@ -1,10 +1,14 @@
 using UnityEngine;
-using TMPro; 
+using TMPro;
+using System.Collections;
 
 public class NPCTrigger : MonoBehaviour
 {
     public GameObject bubbleText; 
     private TextMeshPro textComponent;
+    public float typeWritingSpeed;
+    public string message;
+    
 
     /// <summary>
     /// Ensure the text is hidden initially
@@ -32,6 +36,7 @@ public class NPCTrigger : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             bubbleText.SetActive(true);
+            StartCoroutine(TypeText());
         }
     }
 
@@ -47,6 +52,7 @@ public class NPCTrigger : MonoBehaviour
         {
             bubbleText.SetActive(false);
         }
+        textComponent.text = "";
     }
 
     /// <summary>
@@ -61,11 +67,33 @@ public class NPCTrigger : MonoBehaviour
      
         if (textComponent != null)
         {
-            textComponent.text = newText;
+            message = newText;
         }
         else
         {
             Debug.LogError("TextMeshPro component not found on bubbleText GameObject.");
+        }
+    }
+
+    /// <summary>
+    /// This is an iterative method which when the bubbleText GameObject is active, the method adds a single character to the text component
+    /// every time specified interval.
+    /// </summary>
+    IEnumerator TypeText()
+    {
+        foreach(char character in message)
+        {
+            textComponent.text += character;
+
+            if (bubbleText.activeSelf)
+            {
+                yield return new WaitForSeconds(typeWritingSpeed);
+            }
+            else
+            {
+                textComponent.text = "";
+                break;
+            }
         }
     }
 }
