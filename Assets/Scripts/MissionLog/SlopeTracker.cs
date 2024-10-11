@@ -31,6 +31,12 @@ public class SlopeTracker : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="player"></param>
+    /// <param name="initialHeight"></param>
+    /// <returns></returns>
     private IEnumerator CheckSlopeMovement(Collider player, float initialHeight)
     {
         while (true)
