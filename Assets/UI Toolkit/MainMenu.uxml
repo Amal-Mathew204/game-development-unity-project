@@ -1,9 +1,13 @@
-<?xml version="1.0" encoding="utf-8"?>
-<engine:UXML
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:engine="UnityEngine.UIElements"
-    xmlns:editor="UnityEditor.UIElements"
-    xsi:noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd"
->
-    
-</engine:UXML>
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI%20Toolkit/MenuStyleSheet.uss?fileID=7433441132597879392&amp;guid=baf22d6d989b04acb89f133a5c2cf2a3&amp;type=3#MenuStyleSheet" />
+    <ui:VisualElement name="GameMenuScreen" style="flex-grow: 1; background-color: rgb(89, 100, 180); -unity-background-image-tint-color: rgb(255, 249, 249); justify-content: center; align-items: center;">
+        <ui:VisualElement name="MenuOptions" style="flex-grow: 0; width: 800px; height: 800px; background-color: rgba(0, 0, 0, 0); border-top-width: 10px; border-right-width: 10px; border-bottom-width: 10px; border-left-width: 10px; border-left-color: rgba(255, 0, 53, 0); border-right-color: rgba(255, 0, 53, 0); border-top-color: rgba(255, 0, 53, 0); border-bottom-color: rgba(255, 0, 53, 0);">
+            <ui:Label tabindex="-1" text="Main Menu" display-tooltip-when-elided="true" style="font-size: 75px; -unity-font-style: bold; -unity-text-align: upper-center;" />
+            <ui:VisualElement name="ButtonContainer" style="flex-grow: 1; align-items: center; justify-content: center;">
+                <ui:Button text="Play" display-tooltip-when-elided="true" name="PlayButton" class="MenuButton playButton" />
+                <ui:Button text="Settings" display-tooltip-when-elided="true" name="SettingButton" class="MenuButton playButton" />
+                <ui:Button text="Quit" display-tooltip-when-elided="true" name="QuitButton" class="MenuButton playButton" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
