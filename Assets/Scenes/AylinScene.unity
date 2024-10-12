@@ -435,7 +435,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _triggerSound: {fileID: 8300000, guid: 485d769097c4ec44986ebf117315c745, type: 3}
-  dropdown: {fileID: 1703449598}
+  dropdown: {fileID: 1741243205}
 --- !u!4 &453759851
 Transform:
   m_ObjectHideFlags: 0
@@ -550,7 +550,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f4147b7e6701479eb94f0f43f3ab9d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dropdown: {fileID: 1703449598}
+  dropdown: {fileID: 1741243205}
   hillTopYPosition: 6
   threshold: 0.5
 --- !u!65 &1121498767
@@ -845,9 +845,9 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
---- !u!114 &1703449598 stripped
+--- !u!114 &1741243205 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3749586789338510345, guid: a7dc663c5999f412cab874ee16315d84, type: 3}
+  m_CorrespondingSourceObject: {fileID: 854973415250048533, guid: a7dc663c5999f412cab874ee16315d84, type: 3}
   m_PrefabInstance: {fileID: 3532742929097103388}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
