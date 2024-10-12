@@ -746,10 +746,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: MissionUI
       objectReference: {fileID: 0}
-    - target: {fileID: 2735655437802052165, guid: a7dc663c5999f412cab874ee16315d84, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: WhenButtonClicked
-      objectReference: {fileID: 0}
     - target: {fileID: 5524773318980949075, guid: a7dc663c5999f412cab874ee16315d84, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
