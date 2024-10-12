@@ -9,6 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2323668532035318740}
+  - component: {fileID: 3794100405118298458}
+  - component: {fileID: 854973415250048533}
+  - component: {fileID: 1916616222022598012}
   m_Layer: 0
   m_Name: MissionUI
   m_TagString: Untagged
@@ -33,6 +36,50 @@ Transform:
   - {fileID: 8115427005925443050}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3794100405118298458
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 451016599477535546}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b97a1dd5d611a4cebb9b67c652fd74c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  info: {fileID: 7478503614169830586}
+--- !u!114 &854973415250048533
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 451016599477535546}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00eeb2f5821654f41a3100eef3d6bd6f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  info: {fileID: 8521865311019813611}
+  dropdown: {fileID: 2161415221170248412}
+  completion: {fileID: 7788056977103215061}
+  header: {fileID: 8809426478491203711}
+  slopeQuestComplete: 0
+  triggerBoxQuestComplete: 0
+--- !u!114 &1916616222022598012
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 451016599477535546}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbc000ab0687947d4918a92d61fb81bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  info: {fileID: 7478503614169830586}
 --- !u!1 &2149624961706091124
 GameObject:
   m_ObjectHideFlags: 0
@@ -154,19 +201,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3149255946217993527}
-        m_TargetAssemblyTypeName: DisableObject, Assembly-CSharp
-        m_MethodName: WhenButtonClicked
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 3749586789338510345}
+      - m_Target: {fileID: 854973415250048533}
         m_TargetAssemblyTypeName: Dropdown, Assembly-CSharp
         m_MethodName: ResetDropdown
         m_Mode: 1
@@ -177,7 +212,19 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 2
+        m_CallState: 1
+      - m_Target: {fileID: 3794100405118298458}
+        m_TargetAssemblyTypeName: DisableObject, Assembly-CSharp
+        m_MethodName: WhenButtonClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
 --- !u!1 &2157450622986103615
 GameObject:
   m_ObjectHideFlags: 0
@@ -211,7 +258,7 @@ RectTransform:
   m_Father: {fileID: 6418754813252282456}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 0.2}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -398,7 +445,6 @@ GameObject:
   - component: {fileID: 1711369772172811972}
   - component: {fileID: 6891226402588821294}
   - component: {fileID: 8521865311019813611}
-  - component: {fileID: 3749586789338510345}
   m_Layer: 5
   m_Name: MInfo
   m_TagString: Untagged
@@ -522,24 +568,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &3749586789338510345
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2525722031218021544}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 00eeb2f5821654f41a3100eef3d6bd6f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  info: {fileID: 8521865311019813611}
-  dropdown: {fileID: 2161415221170248412}
-  completion: {fileID: 7788056977103215061}
-  header: {fileID: 8809426478491203711}
-  slopeQuestComplete: 0
-  triggerBoxQuestComplete: 0
 --- !u!1 &2698339964319972014
 GameObject:
   m_ObjectHideFlags: 0
@@ -709,9 +737,9 @@ RectTransform:
   m_Father: {fileID: 5551867841723449116}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -18, y: 0}
+  m_SizeDelta: {x: -17, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &8660808145550802682
 MonoBehaviour:
@@ -1046,7 +1074,6 @@ GameObject:
   - component: {fileID: 2159517964158971019}
   - component: {fileID: 2133243938126641987}
   - component: {fileID: 8313356295847883285}
-  - component: {fileID: 172376506482541992}
   m_Layer: 0
   m_Name: CanvasButton
   m_TagString: Untagged
@@ -1137,19 +1164,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &172376506482541992
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3782778249904841387}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fbc000ab0687947d4918a92d61fb81bf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  info: {fileID: 7478503614169830586}
 --- !u!1 &4462273156414652168
 GameObject:
   m_ObjectHideFlags: 0
@@ -2217,7 +2231,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 172376506482541992}
+      - m_Target: {fileID: 1916616222022598012}
         m_TargetAssemblyTypeName: NewBehaviourScript, Assembly-CSharp
         m_MethodName: whenButtonClicked
         m_Mode: 1
@@ -2228,7 +2242,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 2
+        m_CallState: 1
 --- !u!1 &8274846479534488996
 GameObject:
   m_ObjectHideFlags: 0
@@ -2501,7 +2515,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3749586789338510345}
+      - m_Target: {fileID: 854973415250048533}
         m_TargetAssemblyTypeName: Dropdown, Assembly-CSharp
         m_MethodName: HandleDropdownData
         m_Mode: 0
