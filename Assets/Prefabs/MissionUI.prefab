@@ -1473,7 +1473,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 5640184216678539373}
         m_TargetAssemblyTypeName: NewBehaviourScript, Assembly-CSharp
-        m_MethodName: whenButtonClicked
+        m_MethodName: WhenButtonClicked
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
