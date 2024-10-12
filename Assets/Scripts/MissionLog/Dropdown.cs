@@ -5,6 +5,7 @@ using TMPro;
 
 public class Dropdown : MonoBehaviour
 {
+    // Variables holding various texts for the mission log
     public TextMeshProUGUI info;
     public TMP_Dropdown dropdown;
     public TextMeshProUGUI completion;
@@ -20,9 +21,13 @@ public class Dropdown : MonoBehaviour
         ResetCompletionStatus(); // Initialize completion status
     }
 
-
-    //Displays information relevant to the dropdown option
-    public void HandleInputData(int val)
+    /// <summary>
+    /// Handles the display of information based on the selected dropdown value.
+    /// Updates the UI elements to show relevant quest information
+    /// and controls the visibility of headers based on the selected value.
+    /// </summary>
+    /// <param name="val"></param>
+    public void HandleDropdownData(int val)
     {
         if (val == 0)
         {
@@ -32,7 +37,7 @@ public class Dropdown : MonoBehaviour
         }
         else if (val == 1)
         {
-            info.text = "Explore the terrain and locate the slope. Go up and down the slope.";
+            info.text = "Explore the terrain and locate a short, smooth hill. Reach the top of the hill.";
             SetHeaderVisibility(true);
             UpdateCompletionStatus(slopeQuestComplete);
         }
@@ -49,39 +54,38 @@ public class Dropdown : MonoBehaviour
         }
     }
 
-    //Reset the dropdown mennu 
+    /// <summary>
+    /// Resets the mission log to its deafult state
+    /// and updates the UI to reflect this change.
+    /// </summary>
     public void ResetDropdown()
     {
         dropdown.value = 0;
-        HandleInputData(0);
+        HandleDropdownData(0);
         SetHeaderVisibility(false);
     }
 
-
-    //Controls visibility of header and completion status
+    /// <summary>
+    /// Controls visibility of header and completion status
+    /// </summary>
+    /// <param name="isVisible"></param>
     private void SetHeaderVisibility(bool isVisible)
     {
-        if (header == null)
-        {
-            Debug.LogError("Header is not assigned in the Inspector.");
-        }
-        else
+        if (header != null)
         {
             header.gameObject.SetActive(isVisible);
         }
 
-        if (completion == null)
-        {
-            Debug.LogError("Completion text is not assigned in the Inspector.");
-        }
-        else
+        if (completion != null)
         {
             completion.gameObject.SetActive(isVisible);
         }
     }
 
-
-    // Method to update completion status text based on the quest state
+    /// <summary>
+    /// Update completion status text based on the quest state
+    /// </summary>
+    /// <param name="questComplete"></param>
     public void UpdateCompletionStatus(bool questComplete)
     {
         if (questComplete)
@@ -94,19 +98,26 @@ public class Dropdown : MonoBehaviour
         }
     }
 
-    // Method to reset all quests, if needed
+    /// <summary>
+    /// Reset all quests
+    /// </summary>
     public void ResetCompletionStatus()
     {
         slopeQuestComplete = false;
         triggerBoxQuestComplete = false;
     }
 
-    // Example method to set a quest as complete (call these when conditions are met in the game)
+    /// <summary>
+    /// Set the slope quest as complete
+    /// </summary>
     public void CompleteSlopeQuest()
     {
         slopeQuestComplete = true;
     }
 
+    /// <summary>
+    /// Set the trigger box quest as complete
+    /// </summary>
     public void CompleteTriggerBoxQuest()
     {
         triggerBoxQuestComplete = true;

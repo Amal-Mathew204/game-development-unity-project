@@ -6,7 +6,7 @@ public class DisableObject : MonoBehaviour
 {
     public GameObject info;
 
-    public void whenButtonClicked()
+    public void WhenButtonClicked()
     {
         info.SetActive(false);
     }
