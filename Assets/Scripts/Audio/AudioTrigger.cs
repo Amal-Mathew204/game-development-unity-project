@@ -8,18 +8,7 @@ namespace Scripts.Audio
     public class AudioTrigger : MonoBehaviour
     {
         [SerializeField] private AudioClip _triggerSound; // Sound to play when the trigger is activated
-        private Dropdown _dropdownScript;
-
-        private void Start()
-        {
-            // Find the Dropdown script in the scene
-            _dropdownScript = FindObjectOfType<Dropdown>();
-
-            if (_dropdownScript == null)
-            {
-                Debug.LogError("Dropdown script not found in the scene.");
-            }
-        }
+        public Dropdown dropdown; // Reference to the Dropdown script
 
         private void OnTriggerEnter(Collider other)
         {
@@ -32,11 +21,14 @@ namespace Scripts.Audio
                     AudioManager._instance.PlaySFX(_triggerSound);
                 }
 
-                // Mark the quest as complete if the Dropdown script is found
-                if (_dropdownScript != null)
+                // Mark the trigger box quest as complete
+                if (!dropdown.triggerBoxQuestComplete)
                 {
-                    _dropdownScript.CompleteTriggerBoxQuest();
-                    _dropdownScript.UpdateCompletionStatus(_dropdownScript.triggerBoxQuestComplete);
+                    if (dropdown != null)
+                    {
+                        dropdown.CompleteTriggerBoxQuest();
+                        dropdown.UpdateCompletionStatus(dropdown.triggerBoxQuestComplete);
+                    }
                 }
             }
         }
