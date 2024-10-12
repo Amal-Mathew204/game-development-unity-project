@@ -11,7 +11,7 @@ public class NewBehaviourScript : MonoBehaviour
         info.SetActive(false);
     }
 
-    public void whenButtonClicked()
+    public void WhenButtonClicked()
     {
         info.SetActive(true);
     }
