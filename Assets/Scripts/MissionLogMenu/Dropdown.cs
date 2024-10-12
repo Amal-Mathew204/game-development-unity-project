@@ -26,7 +26,6 @@ public class Dropdown : MonoBehaviour
     /// Updates the UI elements to show relevant quest information
     /// and controls the visibility of headers based on the selected value.
     /// </summary>
-    /// <param name="option"></param>
     public void HandleDropdownData(int option)
     {
         if (option == 0)
@@ -68,7 +67,6 @@ public class Dropdown : MonoBehaviour
     /// <summary>
     /// Controls visibility of header and completion status
     /// </summary>
-    /// <param name="isVisible"></param>
     private void SetHeaderVisibility(bool isVisible)
     {
         if (header != null)
@@ -85,7 +83,6 @@ public class Dropdown : MonoBehaviour
     /// <summary>
     /// Update completion status text based on the quest state
     /// </summary>
-    /// <param name="questComplete"></param>
     public void UpdateCompletionStatus(bool questComplete)
     {
         if (questComplete)
