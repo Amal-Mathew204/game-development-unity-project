@@ -26,22 +26,22 @@ public class Dropdown : MonoBehaviour
     /// Updates the UI elements to show relevant quest information
     /// and controls the visibility of headers based on the selected value.
     /// </summary>
-    /// <param name="val"></param>
-    public void HandleDropdownData(int val)
+    /// <param name="option"></param>
+    public void HandleDropdownData(int option)
     {
-        if (val == 0)
+        if (option == 0)
         {
             info.text = "";
             SetHeaderVisibility(false);
             completion.text = "";
         }
-        else if (val == 1)
+        else if (option == 1)
         {
             info.text = "Explore the terrain and locate a short, smooth hill. Reach the top of the hill.";
             SetHeaderVisibility(true);
             UpdateCompletionStatus(slopeQuestComplete);
         }
-        else if (val == 2)
+        else if (option == 2)
         {
             info.text = "Explore the terrain and locate the trigger box. Pass under it and listen for the sound effect.";
             SetHeaderVisibility(true);
