@@ -78,8 +78,6 @@ namespace Scripts.Player
                 UpdatePlayerVerticalMovement();
                 UpdatePlayerLateralMovement();
             }
-
-
         }
 
         /// <summary>
@@ -109,7 +107,6 @@ namespace Scripts.Player
                     _playerState.CurrentActionState = PlayerActionState.Idling;
                 }
             }
-
         }
 
         /// <summary>
@@ -385,9 +382,7 @@ namespace Scripts.Player
                 normal = hit.normal;
             }
             return normal;
-
         }
-
         #endregion
     }
 }
