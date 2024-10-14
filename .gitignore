@@ -71,3 +71,7 @@ crashlytics-build.properties
 
 # (Desktop Service Store) Invisible File on MacOS
 .DS_Store
+
+# Development Folder
+/[Aa]ssets/[Dd]evelopment/*
+/[Aa]ssets/[Dd]evelopment.meta
