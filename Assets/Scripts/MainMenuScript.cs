@@ -12,7 +12,8 @@ public class MainMenuScript : MonoBehaviour
     private Button _quitButton;
     public GameObject MainMenu;
     public GameObject OptionsMenu;
-    private void Start()
+
+    private void OnEnable()
     {
         VisualElement root = _mainMenuDocument.rootVisualElement;
         _playButton = root.Q<Button>("PlayButton");
@@ -24,7 +25,10 @@ public class MainMenuScript : MonoBehaviour
         _playButton.clickable.clicked += playGame;
         _quitButton.clickable.clicked += quitGame;
         _settingButton.clickable.clicked += optionPress;
-
+        //set button clicked methods
+        _playButton.clickable.clicked += playGame;
+        _quitButton.clickable.clicked += quitGame;
+        _settingButton.clickable.clicked += optionPress;
     }
     /// <summary>
     /// 
