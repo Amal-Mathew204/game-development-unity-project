@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using PlayerLocomotionInput = Scripts.Player.Input.PlayerLocomotionInput;
+using PlayerActionInput = Scripts.Player.Input.PlayerActionInput;
 
 namespace Scripts.Player
 {
@@ -12,6 +13,7 @@ namespace Scripts.Player
         [Header("PlayerController Components")]
         [SerializeField] private CharacterController _characterController;
         private PlayerLocomotionInput _playerLocomotionInput;
+        private PlayerActionInput _playerActionInput;
         private PlayerState _playerState;
         [SerializeField] private Camera _playerCamera;
 
@@ -42,6 +44,10 @@ namespace Scripts.Player
         [Header("Enviroment Settings")]
         [SerializeField] private LayerMask _groundLayers;
 
+        [Header("Player Action Settings")]
+        public float gatheringTime = 2f;
+        private float _gatheringTimer = 0f;
+
         //Cache Values
         private float _stepOffset;
         private bool _jumpedLastFrame = false; //avoid double jumping
@@ -53,6 +59,7 @@ namespace Scripts.Player
         void Start()
         {
             _playerLocomotionInput = GetComponent<PlayerLocomotionInput>();
+            _playerActionInput = GetComponent<PlayerActionInput>();
             _playerState = GetComponent<PlayerState>();
             _stepOffset = _characterController.stepOffset;
             //set anitBump to fasted possible speed
@@ -63,10 +70,46 @@ namespace Scripts.Player
         #region Update Methods
         void Update()
         {
-            //Note the order of these method calls matter
-            UpdatePlayerLocomotionState();
-            UpdatePlayerVerticalMovement();
-            UpdatePlayerLateralMovement();
+            UpdatePlayerActionState();
+            if(_playerState.CurrentActionState == PlayerActionState.Idling)
+            {
+                //Note the order of these method calls matter
+                UpdatePlayerLocomotionState();
+                UpdatePlayerVerticalMovement();
+                UpdatePlayerLateralMovement();
+            }
+
+
+        }
+
+        /// <summary>
+        /// This method is to be called by the Update Unity Method.
+        /// This method will update the Action Performed State of the player.
+        /// </summary>
+        private void UpdatePlayerActionState()
+        {
+            if(_playerState.CurrentLocomotionState != PlayerLocomotionState.Idling)
+            {
+                _playerState.CurrentActionState = PlayerActionState.Idling;
+                return;
+            }
+
+            if (_playerState.CurrentActionState == PlayerActionState.Idling)
+            {
+                bool isGathering = _playerActionInput.IsGathering;
+                _playerState.CurrentActionState = isGathering ? PlayerActionState.Gathering : PlayerActionState.Idling;
+            }
+            //initiate / update timer while gathering
+            else if(_playerState.CurrentActionState == PlayerActionState.Gathering)
+            {
+                _gatheringTimer += Time.deltaTime;
+                if(_gatheringTimer >= gatheringTime)
+                {
+                    _gatheringTimer = 0;
+                    _playerState.CurrentActionState = PlayerActionState.Idling;
+                }
+            }
+
         }
 
         /// <summary>
