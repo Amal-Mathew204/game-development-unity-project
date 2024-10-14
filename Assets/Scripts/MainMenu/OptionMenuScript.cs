@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 using AudioManager = Scripts.Audio.AudioManager;
+using GameSettings = Scripts.Game.GameSettings;
 
 namespace Scripts.MainMenu
 {
@@ -82,6 +83,7 @@ namespace Scripts.MainMenu
         {
             _musicSlider.value = Mathf.RoundToInt((AudioManager.Instance.musicSource.volume)*100);
             _sfxSlider.value = Mathf.RoundToInt((AudioManager.Instance.sfxSource.volume) * 100);
+            _cameraSensitivitySlider.value = Mathf.RoundToInt((GameSettings.Instance.CameraSensitivity) * 100);
         }
         #endregion
 
@@ -116,7 +118,7 @@ namespace Scripts.MainMenu
         /// </summary>
         public void SetCameraSensitivity(float sensitivity)
         {
-
+            GameSettings.Instance.SetCameraSensitivity(sensitivity / 100);
         }
         #endregion
     }
