@@ -54,8 +54,8 @@ namespace Scripts.MainMenu
 
             //set slider methods
             _musicSlider.RegisterValueChangedCallback(value => HandleSliderChange(value.newValue, SetMusicValue));
-            _sfxSlider.RegisterValueChangedCallback(value => HandleSliderChange(value.newValue, SetMusicValue));
-            _cameraSensitivitySlider.RegisterValueChangedCallback(value => HandleSliderChange(value.newValue, SetMusicValue));
+            _sfxSlider.RegisterValueChangedCallback(value => HandleSliderChange(value.newValue, SetSFXValue));
+            _cameraSensitivitySlider.RegisterValueChangedCallback(value => HandleSliderChange(value.newValue, SetCameraSensitivity));
         }
 
         /// <summary>
@@ -100,7 +100,7 @@ namespace Scripts.MainMenu
         /// </summary>
         public void SetSFXValue(float volume)
         {
-            AudioManager.Instance.sfxSource.volume = volume / 100;
+            AudioManager.Instance.SetSFXVolume(volume / 100);
         }
 
         /// <summary>
@@ -108,7 +108,7 @@ namespace Scripts.MainMenu
         /// </summary>
         public void SetMusicValue(float volume)
         {
-            AudioManager.Instance.musicSource.volume = volume / 100;
+            AudioManager.Instance.SetMusicVolume(volume / 100);
         }
 
         /// <summary>
