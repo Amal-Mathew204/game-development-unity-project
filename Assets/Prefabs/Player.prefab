@@ -254,6 +254,7 @@ GameObject:
   - component: {fileID: 2046477478398412854}
   - component: {fileID: 1855010896641570777}
   - component: {fileID: 2657510535826777234}
+  - component: {fileID: 1205929460909096307}
   - component: {fileID: 5263807600829307157}
   - component: {fileID: 8724007558396437539}
   m_Layer: 6
@@ -504,6 +505,22 @@ MonoBehaviour:
         m_CallState: 1
     m_ActionId: 55d2119a-b29a-4211-8321-a776bdf88a36
     m_ActionName: 'Player/Jump[/Keyboard/space]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1205929460909096307}
+        m_TargetAssemblyTypeName: Scripts.Player.Input.PlayerActionInput, Assembly-CSharp
+        m_MethodName: OnGather
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
+    m_ActionId: 5af11d45-ce08-4ed4-8776-e398e4eaf54b
+    m_ActionName: New action map/New action
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -525,6 +542,19 @@ MonoBehaviour:
   holdToWalk: 1
   isSprinting: 0
   isWalking: 0
+--- !u!114 &1205929460909096307
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7691830747402106239}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 922cbaf1e5f03452ab9e2a2cbc71c97d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <IsGathering>k__BackingField: 0
 --- !u!114 &5263807600829307157
 MonoBehaviour:
   m_ObjectHideFlags: 0
