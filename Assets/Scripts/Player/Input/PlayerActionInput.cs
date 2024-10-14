@@ -21,6 +21,13 @@ namespace Scripts.Player.Input
             IsGathering = true;
         }
         #endregion
+
+        #region Late Update Methods
+        private void LateUpdate()
+        {
+            IsGathering = false;
+        }
+        #endregion
     }
 }
 
