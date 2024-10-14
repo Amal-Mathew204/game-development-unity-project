@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using PlayerLocomotionInput = Scripts.Player.Input.PlayerLocomotionInput;
 using PlayerActionInput = Scripts.Player.Input.PlayerActionInput;
+using GameSettings = Scripts.Game.GameSettings;
 
 namespace Scripts.Player
 {
@@ -64,6 +65,17 @@ namespace Scripts.Player
             _stepOffset = _characterController.stepOffset;
             //set anitBump to fasted possible speed
             _antiBump = sprintSpeed;
+
+            //set Camera Sensitvity
+            if(GameSettings.Instance != null)
+            {
+                lookSensitivityH = GameSettings.Instance.CameraSensitivity;
+                lookSensitivityV = GameSettings.Instance.CameraSensitivity;
+            }
+            else
+            {
+                Debug.LogError("GameSettings is null");
+            }
         }
         #endregion
 
