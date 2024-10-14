@@ -384,7 +384,7 @@
                     "path": "<Gamepad>/buttonWest",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Gamepad",
                     "action": "Gather",
                     "isComposite": false,
                     "isPartOfComposite": false
