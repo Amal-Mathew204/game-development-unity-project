@@ -7,6 +7,7 @@ namespace Scripts.Audio
 {
     public class AudioManager : MonoBehaviour
     {
+        #region Class Variables
         private static AudioManager _instance;
         public AudioSource musicSource, sfxSource;
 
@@ -22,8 +23,19 @@ namespace Scripts.Audio
                 return _instance;
             }
         }
+        #endregion
 
+        #region Awake Methods
         private void Awake()
+        {
+            SetInstance();
+            CheckPlayerPrefs();
+            LoadPlayerPrefs();
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        private void SetInstance()
         {
             if (_instance == null)
             {
@@ -36,7 +48,9 @@ namespace Scripts.Audio
             }
         }
 
+        #endregion
 
+        #region AudioManager Methods
         /// <summary>
         /// Plays music by assigning the provided AudioClip to the music AudioSource and starting playback.
         /// This method is used to handle continuous music, such as theme songs or background loops.
@@ -66,8 +80,60 @@ namespace Scripts.Audio
             source.clip = clip;
             source.Play();
         }
-    }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        public void SetMusicVolume(float volume)
+        {
+            if(volume < 0 || volume > 1)
+            {
+                throw new ArgumentOutOfRangeException("Volume value must be between 0 to 1");
+            }
+            _instance.musicSource.volume = volume;
+            PlayerPrefs.SetFloat("MusicVolume", volume);
+
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public void SetSFXVolume(float volume)
+        {
+            if (volume < 0 || volume > 1)
+            {
+                throw new ArgumentOutOfRangeException("Volume value must be between 0 to 1");
+            }
+            _instance.sfxSource.volume = volume;
+            PlayerPrefs.SetFloat("SFXVolume", volume);
+        }
+        #endregion
+
+        #region PlayerPrefs Method
+        /// <summary>
+        /// 
+        /// </summary>
+        public void CheckPlayerPrefs()
+        {
+            if (PlayerPrefs.HasKey("MusicVolume") == false)
+            {
+                PlayerPrefs.SetFloat("MusicVolume", 1f);
+            }
+            if (PlayerPrefs.HasKey("SFXVolume") == false)
+            {
+                PlayerPrefs.SetFloat("SFXVolume", 1f);
+            }
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        public void LoadPlayerPrefs()
+        {
+            _instance.sfxSource.volume = PlayerPrefs.GetFloat("SFXVolume");
+            _instance.musicSource.volume = PlayerPrefs.GetFloat("MusicVolume");
+        }
+        #endregion
+    }
 }
 
 
