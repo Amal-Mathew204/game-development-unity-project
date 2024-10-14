@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace Scripts.Player
+namespace Scripts.Player.Input
 {
     public class PlayerLocomotionInput : MonoBehaviour
     {
