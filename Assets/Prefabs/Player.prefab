@@ -519,10 +519,10 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 1
-    m_ActionId: 5af11d45-ce08-4ed4-8776-e398e4eaf54b
-    m_ActionName: New action map/New action
+    m_ActionId: 0444dea1-d8cf-4405-8caa-18cb10b3ed38
+    m_ActionName: 'Player/Gather[/Keyboard/e]'
   m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: 
+  m_DefaultControlScheme: Keyboard&Mouse
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
@@ -568,6 +568,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <CurrentLocomotionState>k__BackingField: 1
+  <CurrentActionState>k__BackingField: 0
 --- !u!114 &8724007558396437539
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -599,6 +600,7 @@ MonoBehaviour:
   _groundLayers:
     serializedVersion: 2
     m_Bits: 1
+  gatheringTime: 1.5
 --- !u!1 &8029776870597689301
 GameObject:
   m_ObjectHideFlags: 0
