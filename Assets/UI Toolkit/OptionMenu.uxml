@@ -1,0 +1,3 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:VisualElement name="OptionsScreen" style="flex-grow: 1; border-left-color: rgb(9, 9, 9); border-right-color: rgb(9, 9, 9); border-top-color: rgb(9, 9, 9); border-bottom-color: rgb(9, 9, 9); background-color: rgb(172, 234, 98);" />
+</ui:UXML>
