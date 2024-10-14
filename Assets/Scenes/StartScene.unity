@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571336, b: 0.3069219, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -184,6 +184,63 @@ MonoBehaviour:
   m_ParentUI: {fileID: 0}
   sourceAsset: {fileID: 9197481963319205126, guid: ad39181c1f9c6487d9cd631100730d7a, type: 3}
   m_SortingOrder: 0
+--- !u!1001 &971376801
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2785292113364763381, guid: 083e180eddb814cf184897fb272b45d8, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.37674332
+      objectReference: {fileID: 0}
+    - target: {fileID: 2785292113364763381, guid: 083e180eddb814cf184897fb272b45d8, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.209569
+      objectReference: {fileID: 0}
+    - target: {fileID: 2785292113364763381, guid: 083e180eddb814cf184897fb272b45d8, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1.6215448
+      objectReference: {fileID: 0}
+    - target: {fileID: 2785292113364763381, guid: 083e180eddb814cf184897fb272b45d8, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2785292113364763381, guid: 083e180eddb814cf184897fb272b45d8, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2785292113364763381, guid: 083e180eddb814cf184897fb272b45d8, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2785292113364763381, guid: 083e180eddb814cf184897fb272b45d8, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2785292113364763381, guid: 083e180eddb814cf184897fb272b45d8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2785292113364763381, guid: 083e180eddb814cf184897fb272b45d8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2785292113364763381, guid: 083e180eddb814cf184897fb272b45d8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5574038025942418154, guid: 083e180eddb814cf184897fb272b45d8, type: 3}
+      propertyPath: m_Name
+      value: AudioManager
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 083e180eddb814cf184897fb272b45d8, type: 3}
 --- !u!1 &1189064319
 GameObject:
   m_ObjectHideFlags: 0
@@ -254,3 +311,4 @@ SceneRoots:
   m_Roots:
   - {fileID: 651808069}
   - {fileID: 1189064322}
+  - {fileID: 971376801}
