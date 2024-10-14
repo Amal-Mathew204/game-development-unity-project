@@ -7,7 +7,7 @@ namespace Scripts.Audio
 {
     public class AudioManager : MonoBehaviour
     {
-        public static AudioManager _instance;
+        private static AudioManager _instance;
         public AudioSource musicSource, sfxSource;
 
 

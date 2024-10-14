@@ -16,9 +16,9 @@ namespace Scripts.Audio
             if (other.CompareTag("Player"))
             {
                 // Play the trigger sound using the AudioManager
-                if (AudioManager._instance != null)
+                if (AudioManager.Instance != null)
                 {
-                    AudioManager._instance.PlaySFX(_triggerSound);
+                    AudioManager.Instance.PlaySFX(_triggerSound);
                 }
 
                 // Mark the trigger box quest as complete
