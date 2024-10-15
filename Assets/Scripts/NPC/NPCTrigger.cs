@@ -1,6 +1,7 @@
 using UnityEngine;
 using TMPro;
 using System.Collections;
+using Scripts.Game;
 
 public class NPCTrigger : MonoBehaviour
 {
@@ -23,6 +24,15 @@ public class NPCTrigger : MonoBehaviour
         if (textComponent == null)
         {
             Debug.LogError("TextMeshPro component not found on bubbleText GameObject.");
+        }
+        //set NPC SubtitleSpeed
+        if (GameSettings.Instance != null)
+        {
+            typeWritingSpeed = GameSettings.Instance.NPCSubtitleSpeed;
+        }
+        else
+        {
+            Debug.LogError("GameSettings is null");
         }
     }
     /// <summary>
