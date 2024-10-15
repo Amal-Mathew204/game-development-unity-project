@@ -71,9 +71,9 @@ namespace Scripts.Game
         /// </summary>
         public void SetNPCSubtitleSpeed(float speed)
         {
-            if (speed < 1f || speed > 10f)
+            if (speed < 0.01f || speed > 0.1f)
             {
-                throw new ArgumentOutOfRangeException("Subtitle Speed value must be between 1 to 10");
+                throw new ArgumentOutOfRangeException("Subtitle Speed value must be between 0.01 to 0.1");
             }
             NPCSubtitleSpeed = speed;
             PlayerPrefs.SetFloat("NPCSubtitleSpeed", speed);
