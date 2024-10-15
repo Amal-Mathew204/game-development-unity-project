@@ -602,7 +602,7 @@ MonoBehaviour:
   _groundLayers:
     serializedVersion: 2
     m_Bits: 1
-  gatheringTime: 1.5
+  gatheringTime: 0.5
 --- !u!114 &5208090357230459903
 MonoBehaviour:
   m_ObjectHideFlags: 0
