@@ -12,15 +12,9 @@ public class ItemPickup : MonoBehaviour
 
     void Start()
     {
-        // Try to find PlayerState if it's not assigned in the Inspector
         if (_playerState == null)
         {
-            _playerState = GameObject.FindWithTag("Player").GetComponent<PlayerState>();
-
-            if (_playerState == null)
-            {
-                Debug.LogError("PlayerState script not found on player object!");
-            }
+            Debug.LogError("PlayerState script not found on player object!");
         }
     }
     /// <summary>
