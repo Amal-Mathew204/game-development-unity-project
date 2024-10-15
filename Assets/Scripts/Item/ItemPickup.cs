@@ -1,50 +1,64 @@
-using Scripts.Player;
 using UnityEngine;
 using UnityEngine.Playables;
+using Scripts.Player;
+using Scripts.Player.Input;
+using PlayerCharacter = Scripts.Player.Player;
 
-public class ItemPickup : MonoBehaviour
+
+namespace Scripts.Item
 {
-    public string itemName;  
-    private bool _isInRange = false;  // This will be true when the player is looking at the item
-
-    private PlayerState _playerState;
-
-
-    void Start()
+    public class ItemPickup : MonoBehaviour
     {
-        _playerState = Player.Instance.gameObject.GetComponent<PlayerState>();
-        if(_playerState == null)
+        public string itemName;  
+        private bool _isInRange = false;  // This will be true when the player is looking at the item
+
+        private PlayerState _playerState;
+        private PlayerActionInput _playerActionInput;
+
+
+        private void Start()
         {
-            Debug.LogError("Player State is null");
+            _playerState = PlayerCharacter.Instance.gameObject.GetComponent<PlayerState>();
+            _playerActionInput = PlayerCharacter.Instance.gameObject.GetComponent<PlayerActionInput>();
+            if (_playerState == null)
+            {
+                Debug.LogError("Player State is null");
+            }
+            if(_playerActionInput == null)
+            {
+                Debug.LogError("Player State is null");
+            }
+        }
+        /// <summary>
+        /// This method will be called when the raycast hits this object
+        /// </summary>
+        public void OnRaycastHit()
+        {
+            Debug.Log("Press E to pick up " + itemName);
+            _isInRange = true;  
+        }
+
+        /// <summary>
+        /// This method will be called when the raycast no longer hits this object
+        /// </summary>
+        public void OnRaycastExit()
+        {
+            Debug.Log("Out of range of " + itemName);
+            _isInRange = false;
+        }
+        /// <summary>
+        /// Method to try picking up the item if the player is in range and presses the interact button
+        /// </summary>
+        public void TryPickUp()
+        {
+            if (_isInRange && _playerActionInput.IsGathering && _playerState.CanGather())
+            {
+                _playerState.CurrentActionState = PlayerActionState.Gathering;
+                PlayerCharacter.Instance.AddItem(this);  
+                Debug.Log(itemName + " picked up!");
+                Destroy(gameObject); 
+            }
         }
     }
-    /// <summary>
-    /// This method will be called when the raycast hits this object
-    /// </summary>
-    public void OnRaycastHit()
-    {
-        Debug.Log("Press E to pick up " + itemName);
-        _isInRange = true;  
-    }
 
-    /// <summary>
-    /// This method will be called when the raycast no longer hits this object
-    /// </summary>
-    public void OnRaycastExit()
-    {
-        Debug.Log("Out of range of " + itemName);
-        _isInRange = false;
-    }
-    /// <summary>
-    /// Method to try picking up the item if the player is in range and presses the interact button
-    /// </summary>
-    public void TryPickUp()
-    {
-        if (_isInRange && _playerState.CurrentActionState == PlayerActionState.Gathering)
-        {
-            Player.Instance.AddItem(this);  
-            Debug.Log(itemName + " picked up!");
-            Destroy(gameObject); 
-        }
-    }
 }
