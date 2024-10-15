@@ -27,9 +27,9 @@
                     <ui:VisualElement style="flex-grow: 1; flex-direction: row;">
                         <ui:Label tabindex="-1" text="NPC Subtitle Speed" display-tooltip-when-elided="true" style="align-self: auto; font-size: 23px; -unity-font-style: bold; margin-left: 30px; margin-top: 23px;" />
                         <ui:VisualElement style="flex-grow: 1; flex-direction: row;">
-                            <ui:Button text="Button" display-tooltip-when-elided="true" name="DecreaseNPCSubtitleSpeed" style="width: 400px; margin-left: 25px; font-size: 25px; border-top-left-radius: 32px; border-top-right-radius: 32px; border-bottom-right-radius: 32px; border-bottom-left-radius: 32px; background-color: rgb(217, 117, 117); -unity-font-style: bold; height: 90px;" />
+                            <ui:Button text="-" display-tooltip-when-elided="true" name="DecreaseNPCSubtitleSpeed" style="width: 400px; margin-left: 25px; font-size: 50px; border-top-left-radius: 32px; border-top-right-radius: 32px; border-bottom-right-radius: 32px; border-bottom-left-radius: 32px; background-color: rgb(217, 117, 117); -unity-font-style: bold; height: 90px;" />
                             <ui:Label tabindex="-1" text="Label" display-tooltip-when-elided="true" name="NPCSubtitleSpeedLabel" style="width: 500px; -unity-text-align: upper-center; font-size: 23px; -unity-font-style: bold;" />
-                            <ui:Button text="Button" display-tooltip-when-elided="true" name="IncreaseNPCSubtitleSpeed" style="width: 400px; font-size: 25px; border-top-left-radius: 32px; border-top-right-radius: 32px; border-bottom-right-radius: 32px; border-bottom-left-radius: 32px; background-color: rgb(217, 117, 117); -unity-font-style: bold; height: 90px;" />
+                            <ui:Button text="+" display-tooltip-when-elided="true" name="IncreaseNPCSubtitleSpeed" style="width: 400px; font-size: 50px; border-top-left-radius: 32px; border-top-right-radius: 32px; border-bottom-right-radius: 32px; border-bottom-left-radius: 32px; background-color: rgb(217, 117, 117); -unity-font-style: bold; height: 90px;" />
                         </ui:VisualElement>
                     </ui:VisualElement>
                 </ui:VisualElement>
