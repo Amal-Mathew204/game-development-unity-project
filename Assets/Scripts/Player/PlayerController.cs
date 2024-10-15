@@ -92,13 +92,13 @@ namespace Scripts.Player
                 return;
             }
 
-            if (_playerState.CurrentActionState == PlayerActionState.Idling)
-            {
-                bool isGathering = _playerActionInput.IsGathering;
-                _playerState.CurrentActionState = isGathering ? PlayerActionState.Gathering : PlayerActionState.Idling;
-            }
+            //if (_playerState.CurrentActionState == PlayerActionState.Idling)
+            //{
+            //    bool isGathering = _playerActionInput.IsGathering;
+            //    _playerState.CurrentActionState = isGathering ? PlayerActionState.Gathering : PlayerActionState.Idling;
+            //}
             //initiate / update timer while gathering
-            else if(_playerState.CurrentActionState == PlayerActionState.Gathering)
+            if(_playerState.CurrentActionState == PlayerActionState.Gathering)
             {
                 _gatheringTimer += Time.deltaTime;
                 if(_gatheringTimer >= gatheringTime)
