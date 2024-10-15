@@ -19,9 +19,10 @@
                 <ui:VisualElement name="NPCSettings" style="flex-grow: 1;">
                     <ui:Label tabindex="-1" text="NPC Settings" display-tooltip-when-elided="true" name="Title" style="align-items: center; justify-content: center; font-size: 72px; -unity-font-style: bold;" />
                     <ui:VisualElement style="flex-grow: 1; flex-direction: row;">
-                        <ui:Button text="Button" display-tooltip-when-elided="true" name="Button" style="width: 500px;" />
-                        <ui:Label tabindex="-1" text="Label" display-tooltip-when-elided="true" style="width: 500px;" />
-                        <ui:Button text="Button" display-tooltip-when-elided="true" style="width: 500px;" />
+                        <ui:Label tabindex="-1" text="NPC Subtitle Speed" display-tooltip-when-elided="true" />
+                        <ui:Button text="Button" display-tooltip-when-elided="true" name="DecreaseNPCSubtitleSpeed" style="width: 500px;" />
+                        <ui:Label tabindex="-1" text="Label" display-tooltip-when-elided="true" name="NPCSubtitleSpeedLabel" style="width: 500px;" />
+                        <ui:Button text="Button" display-tooltip-when-elided="true" name="IncreaseNPCSubtitleSpeed" style="width: 500px;" />
                     </ui:VisualElement>
                 </ui:VisualElement>
                 <ui:Button text="Apply" display-tooltip-when-elided="true" name="ApplyChangesButton" focusable="true" />

@@ -71,7 +71,7 @@ namespace Scripts.Game
         /// </summary>
         public void SetNPCSubtitleSpeed(float speed)
         {
-            if (speed < 1 || speed > 10)
+            if (speed < 1f || speed > 10f)
             {
                 throw new ArgumentOutOfRangeException("Subtitle Speed value must be between 1 to 10");
             }

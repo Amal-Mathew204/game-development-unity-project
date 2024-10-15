@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,9 +15,9 @@ namespace Scripts.MainMenu
         [SerializeField] private UIDocument _optionMenuDocument;
         public GameObject MainMenu;
         public GameObject OptionsMenu;
-        private Button _backButton, _applyChangesButton, _revertChangesButton;
+        private Button _backButton, _applyChangesButton, _revertChangesButton, _increaseNPCSubtitleSpeed, _decreaseNPCSubtitleSpeed;
         private SliderInt _musicSlider, _sfxSlider, _cameraSensitivitySlider;
-        private Label _musicVolumeLabel, _sfxVolumeLabel, __cameraSensitivityLabel;
+        private Label _musicVolumeLabel, _sfxVolumeLabel, _cameraSensitivityLabel, _npcSubtitleSpeedLabel;
         #endregion
 
         #region Enable Methods
@@ -43,6 +44,9 @@ namespace Scripts.MainMenu
             _applyChangesButton = root.Q<Button>("ApplyChangesButton");
             _revertChangesButton = root.Q<Button>("RevertChangesButton");
 
+            _increaseNPCSubtitleSpeed = root.Q<Button>("IncreaseNPCSubtitleSpeed");
+            _decreaseNPCSubtitleSpeed = root.Q<Button>("DecreaseNPCSubtitleSpeed");
+
             //Set slider fields
             _musicSlider = root.Q<SliderInt>("MusicSlider");
             _sfxSlider = root.Q<SliderInt>("SFXSlider");
@@ -51,7 +55,8 @@ namespace Scripts.MainMenu
             //Set slider labels
             _musicVolumeLabel = root.Q<Label>("MusicVolumeLabel");
             _sfxVolumeLabel = root.Q<Label>("SFXVolumeLabel");
-            __cameraSensitivityLabel = root.Q<Label>("CameraSensitivityLabel");
+            _cameraSensitivityLabel = root.Q<Label>("CameraSensitivityLabel");
+            _npcSubtitleSpeedLabel = root.Q<Label>("NPCSubtitleSpeedLabel");
         }
 
         /// <summary>
@@ -63,10 +68,14 @@ namespace Scripts.MainMenu
             _backButton.clickable.clicked += GoBack;
             _applyChangesButton.clickable.clicked += UpdateSettings;
             _revertChangesButton.clickable.clicked += RevertSettingsChanges;
+
+            _increaseNPCSubtitleSpeed.clickable.clicked += IncreaseNPCSubtitleSpeed;
+            _decreaseNPCSubtitleSpeed.clickable.clicked += DecreaseNPCSubtitleSpeed;
+
             //set slider methods
             _musicSlider.RegisterValueChangedCallback(value => UpdateSliderValue(value.newValue, _musicVolumeLabel));
             _sfxSlider.RegisterValueChangedCallback(value => UpdateSliderValue(value.newValue, _sfxVolumeLabel));
-            _cameraSensitivitySlider.RegisterValueChangedCallback(value => UpdateSliderValue(value.newValue, __cameraSensitivityLabel));
+            _cameraSensitivitySlider.RegisterValueChangedCallback(value => UpdateSliderValue(value.newValue, _cameraSensitivityLabel));
         }
 
         /// <summary>
@@ -80,7 +89,25 @@ namespace Scripts.MainMenu
 
             _musicVolumeLabel.text = _musicSlider.value.ToString();
             _sfxVolumeLabel.text = _sfxSlider.value.ToString();
-            __cameraSensitivityLabel.text = _cameraSensitivitySlider.value.ToString();
+            _cameraSensitivityLabel.text = _cameraSensitivitySlider.value.ToString();
+            _npcSubtitleSpeedLabel.text = Math.Round(GameSettings.Instance.NPCSubtitleSpeed, 1).ToString();
+            CheckEnabledNPCSubtitleSpeedButtons();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        private void CheckEnabledNPCSubtitleSpeedButtons()
+        {
+            float speed = float.Parse(_npcSubtitleSpeedLabel.text);
+            if (speed == 1f)
+            {
+                _decreaseNPCSubtitleSpeed.SetEnabled(true);
+            }
+            if (speed == 10f)
+            {
+                _increaseNPCSubtitleSpeed.SetEnabled(true);
+            }
         }
         #endregion
 
@@ -109,11 +136,58 @@ namespace Scripts.MainMenu
         /// <summary>
         /// 
         /// </summary>
+        private void IncreaseNPCSubtitleSpeed()
+        {
+            float speed = float.Parse(_npcSubtitleSpeedLabel.text);
+            if(speed == 10f)
+            {
+                return;
+            }
+            if(speed == 1f)
+            {
+                _decreaseNPCSubtitleSpeed.SetEnabled(true);
+            }
+            speed += 0.5f;
+            _npcSubtitleSpeedLabel.text = Math.Round(speed, 1).ToString();
+            if(speed == 10f)
+            {
+                _increaseNPCSubtitleSpeed.SetEnabled(false);
+            }
+            EnableApplyRevertButtons();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        private void DecreaseNPCSubtitleSpeed()
+        {
+            float speed = float.Parse(_npcSubtitleSpeedLabel.text);
+            if (speed == 1f)
+            {
+                return;
+            }
+            if (speed == 10f)
+            {
+                _increaseNPCSubtitleSpeed.SetEnabled(true);
+            }
+            speed -= 0.5f;
+            _npcSubtitleSpeedLabel.text = Math.Round(speed, 1).ToString();
+            if (speed == 1f)
+            {
+                _decreaseNPCSubtitleSpeed.SetEnabled(false);
+            }
+            EnableApplyRevertButtons();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
         private void UpdateSettings()
         {
             SetMusicValue(_musicSlider.value);
             SetSFXValue(_sfxSlider.value);
             SetCameraSensitivity(_cameraSensitivitySlider.value);
+            SetNPCSubtitleSpeed(float.Parse(_npcSubtitleSpeedLabel.text));
             DisableApplyRevertButtons();
         }
 
@@ -168,6 +242,11 @@ namespace Scripts.MainMenu
         public void SetCameraSensitivity(float sensitivity)
         {
             GameSettings.Instance.SetCameraSensitivity(sensitivity / 100);
+        }
+
+        public void SetNPCSubtitleSpeed(float speed)
+        {
+            GameSettings.Instance.SetNPCSubtitleSpeed(speed);
         }
         #endregion
     }
