@@ -5,8 +5,8 @@
             <ui:Label tabindex="-1" text="Main Menu" display-tooltip-when-elided="true" style="font-size: 75px; -unity-font-style: bold; -unity-text-align: upper-center;" />
             <ui:VisualElement name="ButtonContainer" style="flex-grow: 1; align-items: center; justify-content: center;">
                 <ui:Button text="Play" display-tooltip-when-elided="true" name="PlayButton" class="MenuButton playButton" />
-                <ui:Button text="Settings" display-tooltip-when-elided="true" name="SettingButton" class="MenuButton playButton" />
-                <ui:Button text="Quit" display-tooltip-when-elided="true" name="QuitButton" class="MenuButton playButton" />
+                <ui:Button text="Options" display-tooltip-when-elided="true" name="SettingButton" class="MenuButton playButton" />
+                <ui:Button text="Tutorial" display-tooltip-when-elided="true" name="TutorialButton" class="MenuButton playButton" />
             </ui:VisualElement>
         </ui:VisualElement>
     </ui:VisualElement>
