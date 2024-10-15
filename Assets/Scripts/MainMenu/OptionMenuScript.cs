@@ -14,8 +14,9 @@ namespace Scripts.MainMenu
         [SerializeField] private UIDocument _optionMenuDocument;
         public GameObject MainMenu;
         public GameObject OptionsMenu;
-        private Button _backButton;
+        private Button _backButton, _applyChangesButton, _revertChangesButton;
         private SliderInt _musicSlider, _sfxSlider, _cameraSensitivitySlider;
+        private Label _musicVolumeLabel, _sfxVolumeLabel, __cameraSensitivityLabel;
         #endregion
 
         #region Enable Methods
@@ -25,8 +26,9 @@ namespace Scripts.MainMenu
         private void OnEnable()
         {
             GetMenuComponents();
+            SetInitialMenuComponentValues();
             SetMenuComponentEventMethods();
-            SetSliderValues();
+            DisableApplyRevertButtons();
         }
 
         /// <summary>
@@ -36,13 +38,20 @@ namespace Scripts.MainMenu
         {
             VisualElement root = _optionMenuDocument.rootVisualElement;
 
-            // set button fields
+            //Set button fields
             _backButton = root.Q<Button>("BackButton");
+            _applyChangesButton = root.Q<Button>("ApplyChangesButton");
+            _revertChangesButton = root.Q<Button>("RevertChangesButton");
 
-            //set slider fields
+            //Set slider fields
             _musicSlider = root.Q<SliderInt>("MusicSlider");
             _sfxSlider = root.Q<SliderInt>("SFXSlider");
             _cameraSensitivitySlider = root.Q<SliderInt>("CameraSensitivitySlider");
+
+            //Set slider labels
+            _musicVolumeLabel = root.Q<Label>("MusicVolumeLabel");
+            _sfxVolumeLabel = root.Q<Label>("SFXVolumeLabel");
+            __cameraSensitivityLabel = root.Q<Label>("CameraSensitivityLabel");
         }
 
         /// <summary>
@@ -52,38 +61,26 @@ namespace Scripts.MainMenu
         {
             //set button clicked methods
             _backButton.clickable.clicked += GoBack;
-
+            _applyChangesButton.clickable.clicked += UpdateSettings;
+            _revertChangesButton.clickable.clicked += RevertSettingsChanges;
             //set slider methods
-            _musicSlider.RegisterValueChangedCallback(value => HandleSliderChange(value.newValue, SetMusicValue));
-            _sfxSlider.RegisterValueChangedCallback(value => HandleSliderChange(value.newValue, SetSFXValue));
-            _cameraSensitivitySlider.RegisterValueChangedCallback(value => HandleSliderChange(value.newValue, SetCameraSensitivity));
-        }
-
-        /// <summary>
-        /// From Google AI Overview: In C#, a delegate is a type that acts as a reference to a method with a specific parameter list and return type.
-        /// </summary>
-        private delegate void SetSliderValueFunction(float value = -1);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        private void HandleSliderChange(float value, SetSliderValueFunction function)
-        {
-            if(value != -1 && function != null)
-            {
-                function(value);
-            }
-            
+            _musicSlider.RegisterValueChangedCallback(value => UpdateSliderValue(value.newValue, _musicVolumeLabel));
+            _sfxSlider.RegisterValueChangedCallback(value => UpdateSliderValue(value.newValue, _sfxVolumeLabel));
+            _cameraSensitivitySlider.RegisterValueChangedCallback(value => UpdateSliderValue(value.newValue, __cameraSensitivityLabel));
         }
 
         /// <summary>
         /// 
         /// </summary>
-        private void SetSliderValues()
+        private void SetInitialMenuComponentValues()
         {
             _musicSlider.value = Mathf.RoundToInt((AudioManager.Instance.musicSource.volume)*100);
             _sfxSlider.value = Mathf.RoundToInt((AudioManager.Instance.sfxSource.volume) * 100);
             _cameraSensitivitySlider.value = Mathf.RoundToInt((GameSettings.Instance.CameraSensitivity) * 100);
+
+            _musicVolumeLabel.text = _musicSlider.value.ToString();
+            _sfxVolumeLabel.text = _sfxSlider.value.ToString();
+            __cameraSensitivityLabel.text = _cameraSensitivitySlider.value.ToString();
         }
         #endregion
 
@@ -95,6 +92,58 @@ namespace Scripts.MainMenu
         {
             OptionsMenu.gameObject.SetActive(false);
             MainMenu.gameObject.SetActive(true);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        private void UpdateSliderValue(float value, Label label)
+        {
+            if (value != -1 && label != null)
+            {
+                label.text = value.ToString();
+                EnableApplyRevertButtons();
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        private void UpdateSettings()
+        {
+            SetMusicValue(_musicSlider.value);
+            SetSFXValue(_sfxSlider.value);
+            SetCameraSensitivity(_cameraSensitivitySlider.value);
+            DisableApplyRevertButtons();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        private void RevertSettingsChanges()
+        {
+            SetInitialMenuComponentValues();
+            DisableApplyRevertButtons();
+        }
+        #endregion
+
+        #region Apply/Revert Changes Methods
+        /// <summary>
+        /// 
+        /// </summary>
+        public void EnableApplyRevertButtons()
+        {
+            _applyChangesButton.SetEnabled(true);
+            _revertChangesButton.SetEnabled(true);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public void DisableApplyRevertButtons()
+        {
+            _applyChangesButton.SetEnabled(false);
+            _revertChangesButton.SetEnabled(false);
         }
 
         /// <summary>
