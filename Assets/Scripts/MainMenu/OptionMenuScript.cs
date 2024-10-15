@@ -100,13 +100,22 @@ namespace Scripts.MainMenu
         private void CheckEnabledNPCSubtitleSpeedButtons()
         {
             float speed = float.Parse(_npcSubtitleSpeedLabel.text);
-            if (speed == 1f)
+            if (speed > 1f)
             {
                 _decreaseNPCSubtitleSpeed.SetEnabled(true);
             }
-            if (speed == 10f)
+            else
+            {
+                _decreaseNPCSubtitleSpeed.SetEnabled(false);
+            }
+
+            if (speed < 10f)
             {
                 _increaseNPCSubtitleSpeed.SetEnabled(true);
+            }
+            else
+            {
+                _increaseNPCSubtitleSpeed.SetEnabled(false);
             }
         }
         #endregion
