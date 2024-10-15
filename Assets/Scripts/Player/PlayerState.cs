@@ -27,6 +27,15 @@ namespace Scripts.Player
         {
             return state != PlayerLocomotionState.Jumping && state != PlayerLocomotionState.Falling;
         }
+
+        /// <summary>
+        /// Method checks if the player can enter the Action State Gathering.
+        /// The Player can only gather if both the action state and locomotion state are idle
+        /// </summary>
+        public bool CanGather()
+        {
+            return (CurrentLocomotionState == PlayerLocomotionState.Idling && CurrentActionState == PlayerActionState.Idling);
+        }
     }
 
 
