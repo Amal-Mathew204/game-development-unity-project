@@ -255,7 +255,7 @@ namespace Scripts.MainMenu
 
         public void SetNPCSubtitleSpeed(float speed)
         {
-            GameSettings.Instance.SetNPCSubtitleSpeed(speed);
+            GameSettings.Instance.SetNPCSubtitleSpeed(speed/100);
         }
         #endregion
     }
