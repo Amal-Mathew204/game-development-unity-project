@@ -11,7 +11,7 @@ namespace Scripts.MainMenu
         [SerializeField] private UIDocument _mainMenuDocument;
         private Button _playButton;
         private Button _settingButton;
-        private Button _quitButton;
+        private Button _tutorialButton;
         public GameObject MainMenu;
         public GameObject OptionsMenu;
 
@@ -24,11 +24,11 @@ namespace Scripts.MainMenu
             VisualElement root = _mainMenuDocument.rootVisualElement;
             _playButton = root.Q<Button>("PlayButton");
             _settingButton = root.Q<Button>("SettingButton");
-            _quitButton = root.Q<Button>("QuitButton");
+            _tutorialButton = root.Q<Button>("TutorialButton");
 
             //set button clicked methods
             _playButton.clickable.clicked += PlayGame;
-            _quitButton.clickable.clicked += QuitGame;
+            _tutorialButton.clickable.clicked += TutorialScreen;
             _settingButton.clickable.clicked += OptionPress;
         }
 
@@ -43,10 +43,9 @@ namespace Scripts.MainMenu
         /// <summary>
         /// Quits the Game
         /// </summary>
-        private void QuitGame()
+        private void TutorialScreen()
         {
-            Debug.Log("QUIT");
-            Application.Quit();
+            Debug.Log("Tutorial");
         }
 
         /// <summary>
