@@ -6,23 +6,31 @@
             <ui:ScrollView mode="Vertical">
                 <ui:VisualElement name="SoundSettings" style="flex-grow: 1;">
                     <ui:Label tabindex="-1" text="Sound Settings" display-tooltip-when-elided="true" name="Title" style="align-items: center; justify-content: center; font-size: 72px; -unity-font-style: bold;" />
-                    <ui:SliderInt label="Music" value="42" high-value="100" name="MusicSlider" style="width: 900px;" />
-                    <ui:Label tabindex="-1" text="Label" display-tooltip-when-elided="true" name="MusicVolumeLabel" />
-                    <ui:SliderInt label="SFX" value="42" high-value="100" name="SFXSlider" style="width: 900px;" />
-                    <ui:Label tabindex="-1" text="Label" display-tooltip-when-elided="true" name="SFXVolumeLabel" />
+                    <ui:VisualElement style="flex-grow: 1; flex-direction: row;">
+                        <ui:SliderInt label="Music" value="42" high-value="100" name="MusicSlider" style="width: 900px;" />
+                        <ui:Label tabindex="-1" text="Label" display-tooltip-when-elided="true" name="MusicVolumeLabel" />
+                    </ui:VisualElement>
+                    <ui:VisualElement style="flex-grow: 1; flex-direction: row;">
+                        <ui:SliderInt label="SFX" value="42" high-value="100" name="SFXSlider" style="width: 900px;" />
+                        <ui:Label tabindex="-1" text="Label" display-tooltip-when-elided="true" name="SFXVolumeLabel" />
+                    </ui:VisualElement>
                 </ui:VisualElement>
                 <ui:VisualElement name="CameraSettings" style="flex-grow: 1;">
                     <ui:Label tabindex="-1" text="Camera Settings" display-tooltip-when-elided="true" name="Title" style="align-items: center; justify-content: center; font-size: 72px; -unity-font-style: bold;" />
-                    <ui:SliderInt label="SliderInt" value="42" high-value="100" name="CameraSensitivitySlider" style="width: 900px;" />
-                    <ui:Label tabindex="-1" text="Label" display-tooltip-when-elided="true" name="CameraSensitivityLabel" />
+                    <ui:VisualElement name="VisualElement" style="flex-grow: 1; flex-direction: row;">
+                        <ui:SliderInt label="SliderInt" value="42" high-value="100" name="CameraSensitivitySlider" style="width: 900px;" />
+                        <ui:Label tabindex="-1" text="Label" display-tooltip-when-elided="true" name="CameraSensitivityLabel" />
+                    </ui:VisualElement>
                 </ui:VisualElement>
                 <ui:VisualElement name="NPCSettings" style="flex-grow: 1;">
                     <ui:Label tabindex="-1" text="NPC Settings" display-tooltip-when-elided="true" name="Title" style="align-items: center; justify-content: center; font-size: 72px; -unity-font-style: bold;" />
                     <ui:VisualElement style="flex-grow: 1; flex-direction: row;">
-                        <ui:Label tabindex="-1" text="NPC Subtitle Speed" display-tooltip-when-elided="true" />
-                        <ui:Button text="Button" display-tooltip-when-elided="true" name="DecreaseNPCSubtitleSpeed" style="width: 500px;" />
-                        <ui:Label tabindex="-1" text="Label" display-tooltip-when-elided="true" name="NPCSubtitleSpeedLabel" style="width: 500px;" />
-                        <ui:Button text="Button" display-tooltip-when-elided="true" name="IncreaseNPCSubtitleSpeed" style="width: 500px;" />
+                        <ui:Label tabindex="-1" text="NPC Subtitle Speed" display-tooltip-when-elided="true" style="align-self: auto;" />
+                        <ui:VisualElement style="flex-grow: 1; flex-direction: row;">
+                            <ui:Button text="Button" display-tooltip-when-elided="true" name="DecreaseNPCSubtitleSpeed" style="width: 500px;" />
+                            <ui:Label tabindex="-1" text="Label" display-tooltip-when-elided="true" name="NPCSubtitleSpeedLabel" style="width: 500px; -unity-text-align: upper-center; font-size: 29px;" />
+                            <ui:Button text="Button" display-tooltip-when-elided="true" name="IncreaseNPCSubtitleSpeed" style="width: 500px;" />
+                        </ui:VisualElement>
                     </ui:VisualElement>
                 </ui:VisualElement>
                 <ui:Button text="Apply" display-tooltip-when-elided="true" name="ApplyChangesButton" focusable="true" />
