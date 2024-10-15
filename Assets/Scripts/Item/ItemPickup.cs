@@ -7,14 +7,15 @@ public class ItemPickup : MonoBehaviour
     public string itemName;  
     private bool _isInRange = false;  // This will be true when the player is looking at the item
 
-    [SerializeField] private PlayerState _playerState;
+    private PlayerState _playerState;
 
 
     void Start()
     {
-        if (_playerState == null)
+        _playerState = Player.Instance.gameObject.GetComponent<PlayerState>();
+        if(_playerState == null)
         {
-            Debug.LogError("PlayerState script not found on player object!");
+            Debug.LogError("Player State is null");
         }
     }
     /// <summary>
@@ -41,7 +42,7 @@ public class ItemPickup : MonoBehaviour
     {
         if (_isInRange && _playerState.CurrentActionState == PlayerActionState.Gathering)
         {
-            PlayerInventory.Instance.AddItem(this);  
+            Player.Instance.AddItem(this);  
             Debug.Log(itemName + " picked up!");
             Destroy(gameObject); 
         }
