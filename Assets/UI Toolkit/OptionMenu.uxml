@@ -3,23 +3,30 @@
         <ui:VisualElement name="OptionsContainer" style="flex-grow: 1; width: 1920px; height: 1080px; align-self: flex-start;">
             <ui:Button text="Back" display-tooltip-when-elided="true" name="BackButton" style="align-items: auto; width: 450px; height: 120px; font-size: 32px; -unity-font-style: bold;" />
             <ui:Label tabindex="-1" text="Option Menu" display-tooltip-when-elided="true" name="Title" style="align-items: center; justify-content: center; font-size: 72px; -unity-font-style: bold;" />
-            <ui:VisualElement name="SoundSettings" style="flex-grow: 1;">
-                <ui:Label tabindex="-1" text="Sound Settings" display-tooltip-when-elided="true" name="Title" style="align-items: center; justify-content: center; font-size: 72px; -unity-font-style: bold;" />
-                <ui:SliderInt label="Music" value="42" high-value="100" name="MusicSlider" style="width: 900px;" />
-                <ui:SliderInt label="SFX" value="42" high-value="100" name="SFXSlider" style="width: 900px;" />
-            </ui:VisualElement>
-            <ui:VisualElement name="CameraSettings" style="flex-grow: 1;">
-                <ui:Label tabindex="-1" text="Camera Settings" display-tooltip-when-elided="true" name="Title" style="align-items: center; justify-content: center; font-size: 72px; -unity-font-style: bold;" />
-                <ui:SliderInt label="SliderInt" value="42" high-value="100" name="CameraSensitivitySlider" style="width: 900px;" />
-            </ui:VisualElement>
-            <ui:VisualElement name="NPCSettings" style="flex-grow: 1;">
-                <ui:Label tabindex="-1" text="NPC Settings" display-tooltip-when-elided="true" name="Title" style="align-items: center; justify-content: center; font-size: 72px; -unity-font-style: bold;" />
-                <ui:VisualElement style="flex-grow: 1; flex-direction: row;">
-                    <ui:Button text="Button" display-tooltip-when-elided="true" name="Button" style="width: 500px;" />
-                    <ui:Label tabindex="-1" text="Label" display-tooltip-when-elided="true" style="width: 500px;" />
-                    <ui:Button text="Button" display-tooltip-when-elided="true" style="width: 500px;" />
+            <ui:ScrollView mode="Vertical">
+                <ui:VisualElement name="SoundSettings" style="flex-grow: 1;">
+                    <ui:Label tabindex="-1" text="Sound Settings" display-tooltip-when-elided="true" name="Title" style="align-items: center; justify-content: center; font-size: 72px; -unity-font-style: bold;" />
+                    <ui:SliderInt label="Music" value="42" high-value="100" name="MusicSlider" style="width: 900px;" />
+                    <ui:Label tabindex="-1" text="Label" display-tooltip-when-elided="true" name="MusicVolumeLabel" />
+                    <ui:SliderInt label="SFX" value="42" high-value="100" name="SFXSlider" style="width: 900px;" />
+                    <ui:Label tabindex="-1" text="Label" display-tooltip-when-elided="true" name="SFXVolumeLabel" />
                 </ui:VisualElement>
-            </ui:VisualElement>
+                <ui:VisualElement name="CameraSettings" style="flex-grow: 1;">
+                    <ui:Label tabindex="-1" text="Camera Settings" display-tooltip-when-elided="true" name="Title" style="align-items: center; justify-content: center; font-size: 72px; -unity-font-style: bold;" />
+                    <ui:SliderInt label="SliderInt" value="42" high-value="100" name="CameraSensitivitySlider" style="width: 900px;" />
+                    <ui:Label tabindex="-1" text="Label" display-tooltip-when-elided="true" name="CameraSensitivityLabel" />
+                </ui:VisualElement>
+                <ui:VisualElement name="NPCSettings" style="flex-grow: 1;">
+                    <ui:Label tabindex="-1" text="NPC Settings" display-tooltip-when-elided="true" name="Title" style="align-items: center; justify-content: center; font-size: 72px; -unity-font-style: bold;" />
+                    <ui:VisualElement style="flex-grow: 1; flex-direction: row;">
+                        <ui:Button text="Button" display-tooltip-when-elided="true" name="Button" style="width: 500px;" />
+                        <ui:Label tabindex="-1" text="Label" display-tooltip-when-elided="true" style="width: 500px;" />
+                        <ui:Button text="Button" display-tooltip-when-elided="true" style="width: 500px;" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:Button text="Applu" display-tooltip-when-elided="true" name="ApplyChangesButton" />
+                <ui:Button text="Revert" display-tooltip-when-elided="true" name="RevertChangesButton" />
+            </ui:ScrollView>
         </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>
