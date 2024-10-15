@@ -172,6 +172,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 8724007558396437539, guid: ffeb9bb02e026448a866b1178c4ad059, type: 3}
+      propertyPath: runSpeed
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 8724007558396437539, guid: ffeb9bb02e026448a866b1178c4ad059, type: 3}
+      propertyPath: walkSpeed
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 8724007558396437539, guid: ffeb9bb02e026448a866b1178c4ad059, type: 3}
+      propertyPath: runAcceleration
+      value: 35
+      objectReference: {fileID: 0}
+    - target: {fileID: 8724007558396437539, guid: ffeb9bb02e026448a866b1178c4ad059, type: 3}
+      propertyPath: walkAcceleration
+      value: 25
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -915,6 +931,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemName: item2
+  _playerstate: {fileID: 0}
 --- !u!1 &1505079225
 GameObject:
   m_ObjectHideFlags: 0
@@ -1034,6 +1051,7 @@ GameObject:
   - component: {fileID: 1550587667}
   - component: {fileID: 1550587666}
   - component: {fileID: 1550587671}
+  - component: {fileID: 1550587672}
   m_Layer: 0
   m_Name: Item3
   m_TagString: Untagged
@@ -1163,6 +1181,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemName: item3
+  _playerstate: {fileID: 0}
+--- !u!114 &1550587672
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1550587665}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32f39341674454c65883caba485b47c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <CurrentLocomotionState>k__BackingField: 1
+  <CurrentActionState>k__BackingField: 0
 --- !u!1 &1556292623
 GameObject:
   m_ObjectHideFlags: 0
@@ -1177,6 +1210,7 @@ GameObject:
   - component: {fileID: 1556292625}
   - component: {fileID: 1556292624}
   - component: {fileID: 1556292629}
+  - component: {fileID: 1556292630}
   m_Layer: 0
   m_Name: Item1
   m_TagString: Untagged
@@ -1304,6 +1338,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemName: item1
+  _playerstate: {fileID: 0}
+--- !u!114 &1556292630
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1556292623}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32f39341674454c65883caba485b47c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <CurrentLocomotionState>k__BackingField: 1
+  <CurrentActionState>k__BackingField: 0
 --- !u!1 &1899781003
 GameObject:
   m_ObjectHideFlags: 0

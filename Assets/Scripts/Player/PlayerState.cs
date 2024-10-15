@@ -29,6 +29,7 @@ namespace Scripts.Player
         }
     }
 
+
     /// <summary>
     /// Enum for the Locomotion States of the Player
     /// </summary>
