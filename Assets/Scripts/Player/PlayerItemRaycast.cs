@@ -1,15 +1,21 @@
 using UnityEngine;
 
-public class PlayerRaycast : MonoBehaviour
+public class PlayerItemRaycast : MonoBehaviour
 {
     public float raycastDistance = 3f;  
-    private ItemPickup currentItem = null;  
+    private ItemPickup _currentItem = null;
+
+
+    /// <summary>
+    /// Create a Ray object starting from the player's position and going forward
+    /// Define RaycastHit to store information about the object the raycast hits
+    /// </summary>
 
     void Update()
     {
-        // Create a Ray object starting from the player's position and going forward
+        
         Ray ray = new Ray(transform.position, transform.forward);
-        RaycastHit hit;  // Define RaycastHit to store information about the object the raycast hits
+        RaycastHit hit;  
 
         // Perform the raycast and check if it hits something within the specified distance
         if (Physics.Raycast(ray, out hit, raycastDistance))
@@ -20,28 +26,28 @@ public class PlayerRaycast : MonoBehaviour
             if (item != null)  // If we hit an item
             {
                 // If this is a new item or still the same item, handle it
-                if (item != currentItem)
+                if (item != _currentItem)
                 {
-                    if (currentItem != null)
+                    if (_currentItem != null)
                     {
                         // If there was a previous item, call OnRaycastExit for it
-                        currentItem.OnRaycastExit();
+                        _currentItem.OnRaycastExit();
                     }
 
                     // Now assign the current item to the one we're pointing at
-                    currentItem = item;
-                    currentItem.OnRaycastHit();  
+                    _currentItem = item;
+                    _currentItem.OnRaycastHit();  
                 }
 
                 // Allow the player to try picking up the item if the key is pressed
-                currentItem.TryPickUp();
+                _currentItem.TryPickUp();
             }
         }
-        else if (currentItem != null)
+        else if (_currentItem != null)
         {
-            // If the raycast no longer hits an item, clear the currentItem and call OnRaycastExit
-            currentItem.OnRaycastExit();
-            currentItem = null;
+            // If the raycast no longer hits an item, clear the _currentItem and call OnRaycastExit
+            _currentItem.OnRaycastExit();
+            _currentItem = null;
         }
     }
 }

@@ -1,17 +1,35 @@
+using Scripts.Player;
 using UnityEngine;
+using UnityEngine.Playables;
 
 public class ItemPickup : MonoBehaviour
 {
     public string itemName;  
-    private bool isInRange = false;  // This will be true when the player is looking at the item
+    private bool _isInRange = false;  // This will be true when the player is looking at the item
 
+    [SerializeField] private PlayerState _playerState;
+
+
+    void Start()
+    {
+        // Try to find PlayerState if it's not assigned in the Inspector
+        if (_playerState == null)
+        {
+            _playerState = GameObject.FindWithTag("Player").GetComponent<PlayerState>();
+
+            if (_playerState == null)
+            {
+                Debug.LogError("PlayerState script not found on player object!");
+            }
+        }
+    }
     /// <summary>
     /// This method will be called when the raycast hits this object
     /// </summary>
     public void OnRaycastHit()
     {
         Debug.Log("Press E to pick up " + itemName);
-        isInRange = true;  
+        _isInRange = true;  
     }
 
     /// <summary>
@@ -20,14 +38,14 @@ public class ItemPickup : MonoBehaviour
     public void OnRaycastExit()
     {
         Debug.Log("Out of range of " + itemName);
-        isInRange = false;
+        _isInRange = false;
     }
     /// <summary>
     /// Method to try picking up the item if the player is in range and presses the interact button
     /// </summary>
     public void TryPickUp()
     {
-        if (isInRange && Input.GetKeyDown(KeyCode.E))
+        if (_isInRange && _playerState.CurrentActionState == PlayerActionState.Gathering)
         {
             PlayerInventory.Instance.AddItem(this);  
             Debug.Log(itemName + " picked up!");
