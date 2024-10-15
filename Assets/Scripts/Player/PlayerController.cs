@@ -92,11 +92,6 @@ namespace Scripts.Player
                 return;
             }
 
-            //if (_playerState.CurrentActionState == PlayerActionState.Idling)
-            //{
-            //    bool isGathering = _playerActionInput.IsGathering;
-            //    _playerState.CurrentActionState = isGathering ? PlayerActionState.Gathering : PlayerActionState.Idling;
-            //}
             //initiate / update timer while gathering
             if(_playerState.CurrentActionState == PlayerActionState.Gathering)
             {
