@@ -26,8 +26,8 @@ namespace Scripts.MainMenu
         private void OnEnable()
         {
             GetMenuComponents();
-            SetInitialMenuComponentValues();
             SetMenuComponentEventMethods();
+            SetInitialMenuComponentValues();
             DisableApplyRevertButtons();
         }
 
@@ -74,9 +74,9 @@ namespace Scripts.MainMenu
         /// </summary>
         private void SetInitialMenuComponentValues()
         {
-            _musicSlider.value = Mathf.RoundToInt((AudioManager.Instance.musicSource.volume)*100);
-            _sfxSlider.value = Mathf.RoundToInt((AudioManager.Instance.sfxSource.volume) * 100);
-            _cameraSensitivitySlider.value = Mathf.RoundToInt((GameSettings.Instance.CameraSensitivity) * 100);
+            _musicSlider.SetValueWithoutNotify(Mathf.RoundToInt((AudioManager.Instance.musicSource.volume)*100));
+            _sfxSlider.SetValueWithoutNotify(Mathf.RoundToInt((AudioManager.Instance.sfxSource.volume) * 100));
+            _cameraSensitivitySlider.SetValueWithoutNotify(Mathf.RoundToInt((GameSettings.Instance.CameraSensitivity) * 100));
 
             _musicVolumeLabel.text = _musicSlider.value.ToString();
             _sfxVolumeLabel.text = _sfxSlider.value.ToString();

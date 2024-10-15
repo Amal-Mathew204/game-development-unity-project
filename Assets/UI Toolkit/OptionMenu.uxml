@@ -24,8 +24,8 @@
                         <ui:Button text="Button" display-tooltip-when-elided="true" style="width: 500px;" />
                     </ui:VisualElement>
                 </ui:VisualElement>
-                <ui:Button text="Applu" display-tooltip-when-elided="true" name="ApplyChangesButton" />
-                <ui:Button text="Revert" display-tooltip-when-elided="true" name="RevertChangesButton" />
+                <ui:Button text="Apply" display-tooltip-when-elided="true" name="ApplyChangesButton" focusable="true" />
+                <ui:Button text="Revert" display-tooltip-when-elided="true" name="RevertChangesButton" focusable="true" />
             </ui:ScrollView>
         </ui:VisualElement>
     </ui:VisualElement>
