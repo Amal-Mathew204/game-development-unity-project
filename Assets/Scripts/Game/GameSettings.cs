@@ -33,7 +33,7 @@ namespace Scripts.Game
             LoadPlayerPrefs();
         }
         /// <summary>
-        /// 
+        /// Checks duplication
         /// </summary>
         private void SetInstance()
         {
@@ -53,7 +53,7 @@ namespace Scripts.Game
         #region GameSettings Methods
 
         /// <summary>
-        /// 
+        /// Sets camera sentivity ensuring user does not go above or below limit
         /// </summary>
         public void SetCameraSensitivity(float sensitivity)
         {
@@ -67,7 +67,7 @@ namespace Scripts.Game
         }
 
         /// <summary>
-        /// 
+        /// Sets NPC subtittle ensuring user does not go above or below limit
         /// </summary>
         public void SetNPCSubtitleSpeed(float speed)
         {
@@ -82,7 +82,7 @@ namespace Scripts.Game
 
         #region PlayerPrefs Method
         /// <summary>
-        /// 
+        /// Checks player preferences
         /// </summary>
         public void CheckPlayerPrefs()
         {
@@ -96,7 +96,7 @@ namespace Scripts.Game
             }
         }
         /// <summary>
-        /// 
+        /// Loads player preferences
         /// </summary>
         public void LoadPlayerPrefs()
         {
