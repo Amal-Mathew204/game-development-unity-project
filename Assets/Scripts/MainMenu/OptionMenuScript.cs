@@ -90,7 +90,7 @@ namespace Scripts.MainMenu
             _musicVolumeLabel.text = _musicSlider.value.ToString();
             _sfxVolumeLabel.text = _sfxSlider.value.ToString();
             _cameraSensitivityLabel.text = _cameraSensitivitySlider.value.ToString();
-            _npcSubtitleSpeedLabel.text = Math.Round(GameSettings.Instance.NPCSubtitleSpeed, 1).ToString();
+            _npcSubtitleSpeedLabel.text = Math.Round((GameSettings.Instance.NPCSubtitleSpeed * 100), 1).ToString();
             CheckEnabledNPCSubtitleSpeedButtons();
         }
 
