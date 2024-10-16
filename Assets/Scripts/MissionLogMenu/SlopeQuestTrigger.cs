@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SlopeQuestTrigger : MonoBehaviour
 {
-    public Dropdown dropdown; // Reference to the Dropdown script 
+    [SerializeField] private Dropdown _dropdown;
     public float hillTopYPosition;
     public float threshold;
     private Transform _playerTransform; 
@@ -22,11 +22,11 @@ public class SlopeQuestTrigger : MonoBehaviour
     {
         if (_playerTransform.position.y >= hillTopYPosition - threshold)
         {
-            if (!dropdown.slopeQuestComplete) // Prevent repeating the completion
+            Mission mission = GameManager.Instance.MissionList.Find(mission => mission.MissionTitle == "Slippery Slope");
+            if (mission != null && !mission.IsMissionCompleted()) // Prevent repeating the completion
             {
-                // Complete the slope quest
-                dropdown.CompleteSlopeQuest();
-                dropdown.UpdateCompletionStatus(dropdown.slopeQuestComplete);
+                mission.SetMissionCompleted();
+                _dropdown.UpdateCompletionStatus(mission.IsMissionCompleted());
             }
         }
     }

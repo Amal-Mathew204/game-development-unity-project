@@ -10,6 +10,7 @@ public class Dropdown : MonoBehaviour
     public TMP_Dropdown dropdown;
     public TextMeshProUGUI completion;
     public TextMeshProUGUI header;
+    public List<Mission> MissionList { get; private set;}
 
     // Boolean variables to track completion of each quest
     public bool slopeQuestComplete = false;
@@ -18,7 +19,21 @@ public class Dropdown : MonoBehaviour
     private void Start()
     {
         SetHeaderVisibility(false);
-        ResetCompletionStatus(); // Initialize completion status
+        MissionList = GameManager.Instance.MissionList;
+        SetMissionsInDropDown();
+    }
+
+    /// <summary>
+    /// This sets the Missions in MissionsList in dropDown;
+    /// </summary>
+    public void SetMissionsInDropDown()
+    {
+        List<string> missionTitles = new List<string>();
+        foreach(Mission mission in MissionList)
+        {
+            missionTitles.Add(mission.MissionTitle);
+        }
+        dropdown.AddOptions(missionTitles);
     }
 
     /// <summary>
@@ -34,22 +49,12 @@ public class Dropdown : MonoBehaviour
             SetHeaderVisibility(false);
             completion.text = "";
         }
-        else if (option == 1)
-        {
-            info.text = "Explore the terrain and locate a short, smooth hill. Reach the top of the hill.";
-            SetHeaderVisibility(true);
-            UpdateCompletionStatus(slopeQuestComplete);
-        }
-        else if (option == 2)
-        {
-            info.text = "Explore the terrain and locate the trigger box. Pass under it and listen for the sound effect.";
-            SetHeaderVisibility(true);
-            UpdateCompletionStatus(triggerBoxQuestComplete);
-        }
         else
         {
-            info.text = "";
-            completion.text = "";
+            Mission mission = MissionList[option - 1];
+            info.text = mission.MissionInfo;
+            SetHeaderVisibility(true);
+            UpdateCompletionStatus(mission.IsMissionCompleted());
         }
     }
 
@@ -93,30 +98,5 @@ public class Dropdown : MonoBehaviour
         {
             completion.text = "Incomplete";
         }
-    }
-
-    /// <summary>
-    /// Reset all quests
-    /// </summary>
-    public void ResetCompletionStatus()
-    {
-        slopeQuestComplete = false;
-        triggerBoxQuestComplete = false;
-    }
-
-    /// <summary>
-    /// Set the slope quest as complete
-    /// </summary>
-    public void CompleteSlopeQuest()
-    {
-        slopeQuestComplete = true;
-    }
-
-    /// <summary>
-    /// Set the trigger box quest as complete
-    /// </summary>
-    public void CompleteTriggerBoxQuest()
-    {
-        triggerBoxQuestComplete = true;
     }
 }
