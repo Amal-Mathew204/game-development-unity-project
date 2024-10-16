@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Scripts.Player;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -20,7 +23,7 @@ public class GameManager : MonoBehaviour
     public List<Mission> MissionList { get; private set; } = new List<Mission>();
     //TODO: Change/Check how GameState Object is referenced from scene
     //      (so its unaffected when scenes are changed ingame)
-    [SerializeField] private GameObject _gameStateCanvas;
+    public GameObject GameStateCanvas { get; set; }
     #endregion
 
     #region Awake Methods
@@ -85,9 +88,10 @@ public class GameManager : MonoBehaviour
     private void SetPlayerHasWon()
     {
         //TODO: Enable the WinPannel
-        GameObject winPannel = _gameStateCanvas.transform.Find("WinPannel").gameObject;
+        GameObject winPannel = GameStateCanvas.transform.Find("WinPannel").gameObject;
         winPannel.gameObject.SetActive(true);
-
+        Button returnToStartMenuButton = winPannel.transform.Find("ReturnToStartMenuButton").gameObject.GetComponent<Button>();
+        returnToStartMenuButton.onClick.AddListener(ReturnToStartMenu);
 
 
         //TODO: Change Current Action Map of Player Input to UI
@@ -103,6 +107,19 @@ public class GameManager : MonoBehaviour
         //TODO: Change Current Action Map of Player Input to UI
         //Note: reference the game object by Player.Instance.gameObject.GetComponent<PlayerInput>();
         //TODO: Enable the LosePannel
+    }
+    #endregion
+
+    #region Change Scene Methods
+
+    /// <summary>
+    /// 
+    /// </summary>
+    public void ReturnToStartMenu()
+    {
+        CreateMissions(); //reset missions
+        Player.DestroyGameObject();
+        SceneManager.LoadScene("StartScene");
     }
     #endregion
 }
