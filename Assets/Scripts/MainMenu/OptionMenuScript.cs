@@ -22,7 +22,7 @@ namespace Scripts.MainMenu
 
         #region Enable Methods
         /// <summary>
-        /// 
+        /// Calls all method when script is called upon
         /// </summary>
         private void OnEnable()
         {
@@ -33,7 +33,7 @@ namespace Scripts.MainMenu
         }
 
         /// <summary>
-        /// 
+        /// Sets buttons and sliders from the option menu to a variable
         /// </summary>
         private void GetMenuComponents()
         {
@@ -60,7 +60,7 @@ namespace Scripts.MainMenu
         }
 
         /// <summary>
-        /// 
+        /// Sets each button and slider to the appropiate method
         /// </summary>
         private void SetMenuComponentEventMethods()
         {
@@ -79,7 +79,7 @@ namespace Scripts.MainMenu
         }
 
         /// <summary>
-        /// 
+        /// Method for resetting settings
         /// </summary>
         private void SetInitialMenuComponentValues()
         {
@@ -95,7 +95,7 @@ namespace Scripts.MainMenu
         }
 
         /// <summary>
-        /// 
+        /// Method for checking if npc subtitle is enabled
         /// </summary>
         private void CheckEnabledNPCSubtitleSpeedButtons()
         {
@@ -131,7 +131,7 @@ namespace Scripts.MainMenu
         }
 
         /// <summary>
-        /// 
+        /// Method for updating slider values
         /// </summary>
         private void UpdateSliderValue(float value, Label label)
         {
@@ -143,7 +143,7 @@ namespace Scripts.MainMenu
         }
 
         /// <summary>
-        /// 
+        /// Method for increasing subtitle speed
         /// </summary>
         private void IncreaseNPCSubtitleSpeed()
         {
@@ -166,7 +166,7 @@ namespace Scripts.MainMenu
         }
 
         /// <summary>
-        /// 
+        /// Method for decreasing subtitle speed
         /// </summary>
         private void DecreaseNPCSubtitleSpeed()
         {
@@ -189,7 +189,7 @@ namespace Scripts.MainMenu
         }
 
         /// <summary>
-        /// 
+        /// Method for saving setting
         /// </summary>
         private void UpdateSettings()
         {
@@ -201,7 +201,7 @@ namespace Scripts.MainMenu
         }
 
         /// <summary>
-        /// 
+        /// Method for revert button
         /// </summary>
         private void RevertSettingsChanges()
         {
@@ -212,7 +212,7 @@ namespace Scripts.MainMenu
 
         #region Apply/Revert Changes Methods
         /// <summary>
-        /// 
+        /// Method for enabling refund button
         /// </summary>
         public void EnableApplyRevertButtons()
         {
@@ -221,7 +221,7 @@ namespace Scripts.MainMenu
         }
 
         /// <summary>
-        /// 
+        /// Method for disableing revert button
         /// </summary>
         public void DisableApplyRevertButtons()
         {
@@ -230,7 +230,7 @@ namespace Scripts.MainMenu
         }
 
         /// <summary>
-        /// 
+        /// Method for setting SFX volume
         /// </summary>
         public void SetSFXValue(float volume)
         {
@@ -238,7 +238,7 @@ namespace Scripts.MainMenu
         }
 
         /// <summary>
-        /// 
+        /// Method for setting music volume
         /// </summary>
         public void SetMusicValue(float volume)
         {
@@ -246,7 +246,7 @@ namespace Scripts.MainMenu
         }
 
         /// <summary>
-        /// 
+        /// Method for setting camera sensetivity
         /// </summary>
         public void SetCameraSensitivity(float sensitivity)
         {
