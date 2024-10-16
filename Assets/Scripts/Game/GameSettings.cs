@@ -92,7 +92,7 @@ namespace Scripts.Game
             }
             if (PlayerPrefs.HasKey("NPCSubtitleSpeed") == false)
             {
-                PlayerPrefs.SetFloat("NPCSubtitleSpeed", 1.5f);
+                PlayerPrefs.SetFloat("NPCSubtitleSpeed", 0.05f);
             }
         }
         /// <summary>
