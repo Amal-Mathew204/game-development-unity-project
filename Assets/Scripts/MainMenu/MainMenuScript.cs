@@ -45,16 +45,15 @@ namespace Scripts.MainMenu
         /// </summary>
         private void TutorialScreen()
         {
-            Debug.Log("Tutorial");
+            Debug.Log("Tutorial Menu");
         }
 
         /// <summary>
-        ///Disabled main menu canvas but enables option menu canvas
+        ///Loads Settings Menu
         /// </summary>
         private void OptionPress()
         {
-            MainMenu.gameObject.SetActive(false);
-            OptionsMenu.gameObject.SetActive(true);
+            Debug.Log("Options Menu");
         }
 
     }
