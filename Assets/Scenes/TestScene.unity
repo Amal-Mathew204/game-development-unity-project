@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.18028292, g: 0.22571306, b: 0.30692118, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571336, b: 0.3069219, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -616,7 +616,7 @@ GameObject:
   m_Component:
   - component: {fileID: 519086240}
   m_Layer: 0
-  m_Name: GameStateCanvas
+  m_Name: GameState
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1425,6 +1425,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c46d35bcbaf94980994b188b28bc888, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _gameStateCanvas: {fileID: 516904493}
 --- !u!4 &1152289954
 Transform:
   m_ObjectHideFlags: 0
