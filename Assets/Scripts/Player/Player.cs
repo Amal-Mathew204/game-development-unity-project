@@ -32,5 +32,17 @@ namespace Scripts.Player
             _inventory.Add(item);
             Debug.Log(item.itemName + " added to inventory.");
         }
+
+        /// <summary>
+        /// Destroys Player GameObject
+        /// </summary>
+        public static void DestroyGameObject()
+        {
+            if (Instance == null){
+                return;
+            }
+            Destroy(Instance.gameObject);
+            Instance = null;
+        }
     }
 }
