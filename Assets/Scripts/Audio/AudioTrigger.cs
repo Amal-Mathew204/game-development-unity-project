@@ -8,8 +8,7 @@ namespace Scripts.Audio
     public class AudioTrigger : MonoBehaviour
     {
         [SerializeField] private AudioClip _triggerSound; // Sound to play when the trigger is activated
-        public Dropdown dropdown; // Reference to the Dropdown script
-
+        [SerializeField] private Dropdown _dropdown;
         private void OnTriggerEnter(Collider other)
         {
             // Check if the object entering the trigger is the player
@@ -21,14 +20,12 @@ namespace Scripts.Audio
                     AudioManager.Instance.PlaySFX(_triggerSound);
                 }
 
+                Mission mission = GameManager.Instance.MissionList.Find(mission => mission.MissionTitle == "Find Trigger Box");
                 // Mark the trigger box quest as complete
-                if (!dropdown.triggerBoxQuestComplete)
+                if (mission != null && !mission.IsMissionCompleted())
                 {
-                    if (dropdown != null)
-                    {
-                        dropdown.CompleteTriggerBoxQuest();
-                        dropdown.UpdateCompletionStatus(dropdown.triggerBoxQuestComplete);
-                    }
+                    mission.SetMissionCompleted();
+                    _dropdown.UpdateCompletionStatus(mission.IsMissionCompleted());
                 }
             }
         }
