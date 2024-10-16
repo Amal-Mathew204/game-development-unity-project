@@ -33,7 +33,7 @@ namespace Scripts.Audio
             LoadPlayerPrefs();
         }
         /// <summary>
-        /// 
+        /// Destoys any duplication
         /// </summary>
         private void SetInstance()
         {
@@ -82,7 +82,7 @@ namespace Scripts.Audio
         }
 
         /// <summary>
-        /// 
+        /// Sets music volume but also checks user dont go above or below limit
         /// </summary>
         public void SetMusicVolume(float volume)
         {
@@ -96,7 +96,7 @@ namespace Scripts.Audio
         }
 
         /// <summary>
-        /// 
+        /// Sets sfx volume but also checks user dont go above or below limit
         /// </summary>
         public void SetSFXVolume(float volume)
         {
@@ -111,7 +111,7 @@ namespace Scripts.Audio
 
         #region PlayerPrefs Method
         /// <summary>
-        /// 
+        /// Cheks player preferences
         /// </summary>
         public void CheckPlayerPrefs()
         {
@@ -125,7 +125,7 @@ namespace Scripts.Audio
             }
         }
         /// <summary>
-        /// 
+        /// Load player prefernces
         /// </summary>
         public void LoadPlayerPrefs()
         {
