@@ -1697,7 +1697,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GameTimeElapsed: 0
-  <GameTime>k__BackingField: 10
+  <GameTime>k__BackingField: 60
 --- !u!4 &1152289954
 Transform:
   m_ObjectHideFlags: 0

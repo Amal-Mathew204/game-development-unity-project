@@ -22,6 +22,7 @@ public class GameManager : MonoBehaviour
     }
     public List<Mission> MissionList { get; private set; } = new List<Mission>();
     public GameObject GameStateCanvas { get; set; }
+    public bool HasPlayerWonGame {get; private set;}
 
     [Header("Game Time Settings")]
     public float GameTimeElapsed;
@@ -55,6 +56,7 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public void CreateMissions()
     {
+        HasPlayerWonGame = false; //reset condition
         MissionList = new List<Mission>() {new Mission("Slippery Slope", "Explore the terrain and locate a short, smooth hill. Reach the top of the hill."),
                                             new Mission("Find Trigger Box", "Explore the terrain and locate the trigger box. Pass under it and listen for the sound effect.")};
     }
@@ -90,6 +92,7 @@ public class GameManager : MonoBehaviour
     private void SetPlayerHasWon()
     {
         EnablePannel("WinPannel");
+        HasPlayerWonGame = true;
         //TODO: Change Current Action Map of Player Input to UI
         //Note: reference the game object by Player.Instance.gameObject.GetComponent<PlayerInput>();
     }
