@@ -1002,8 +1002,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _dropdown: {fileID: 710254189}
-  hillTopYPosition: 8
-  threshold: 0.5
 --- !u!65 &1121498767
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1023,8 +1021,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1.47, z: 2}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 3.6515293, y: 1.3645233, z: 4.59084}
+  m_Center: {x: 0.8026743, y: -0.05273837, z: -0.8078506}
 --- !u!4 &1121498768
 Transform:
   m_ObjectHideFlags: 0

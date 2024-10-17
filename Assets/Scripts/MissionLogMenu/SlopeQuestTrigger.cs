@@ -5,28 +5,23 @@ using UnityEngine;
 public class SlopeQuestTrigger : MonoBehaviour
 {
     [SerializeField] private Dropdown _dropdown;
-    public float hillTopYPosition;
-    public float threshold;
-    private Transform _playerTransform; 
-
-    private void Start()
-    {
-        // Find the player object in the scene 
-        _playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
-    }
 
     /// <summary>
     /// Check if player has reached the top of the hill and updates the quest status
     /// </summary>
-    private void Update()
+    private void OnTriggerEnter(Collider other)
     {
-        if (_playerTransform.position.y >= hillTopYPosition - threshold)
+        // Check if the object entering the trigger is the player
+        if (other.CompareTag("Player"))
         {
             Mission mission = GameManager.Instance.MissionList.Find(mission => mission.MissionTitle == "Slippery Slope");
             if (mission != null && !mission.IsMissionCompleted()) // Prevent repeating the completion
             {
                 mission.SetMissionCompleted();
-                _dropdown.UpdateCompletionStatus(mission.IsMissionCompleted());
+                if (GameManager.Instance.MissionList.IndexOf(mission) + 1 == _dropdown.dropdown.value)
+                {
+                    _dropdown.UpdateCompletionStatus(mission.IsMissionCompleted());
+                }
             }
         }
     }

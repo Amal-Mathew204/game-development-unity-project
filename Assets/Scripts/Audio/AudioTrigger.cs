@@ -25,7 +25,10 @@ namespace Scripts.Audio
                 if (mission != null && !mission.IsMissionCompleted())
                 {
                     mission.SetMissionCompleted();
-                    _dropdown.UpdateCompletionStatus(mission.IsMissionCompleted());
+                    if (GameManager.Instance.MissionList.IndexOf(mission) + 1 == _dropdown.dropdown.value)
+                    {
+                        _dropdown.UpdateCompletionStatus(mission.IsMissionCompleted());
+                    }
                 }
             }
         }
