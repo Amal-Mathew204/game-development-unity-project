@@ -2008,10 +2008,6 @@ MonoBehaviour:
     m_Options:
     - m_Text: Select Mission
       m_Image: {fileID: 0}
-    - m_Text: Slippery Slope
-      m_Image: {fileID: 0}
-    - m_Text: Find Trigger Box
-      m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
