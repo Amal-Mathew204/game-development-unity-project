@@ -56,7 +56,8 @@ namespace Scripts.Item
                 _playerState.CurrentActionState = PlayerActionState.Gathering;
                 PlayerCharacter.Instance.AddItem(this);  
                 Debug.Log(itemName + " picked up!");
-                Destroy(gameObject); 
+                //TODO: Confirm if we can save a copy of the game object in inventory so ItemPickUp class component remains in game
+                gameObject.SetActive(false);
             }
         }
     }

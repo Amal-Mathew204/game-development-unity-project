@@ -63,6 +63,14 @@ namespace Scripts.Player
             ToggleInventoryUI();
         }
 
+        private void ToggleInventoryUI()
+        {
+            if (_inventoryPanel != null)
+            {
+                _inventoryPanel.SetActive(_playerInventoryInput.toggleInventory);
+            }
+        }
+
         public void AddItem(ItemPickup item)
         {
             if (_inventory.Count >= _maximumInventorySize)
@@ -101,27 +109,21 @@ namespace Scripts.Player
                 return;
             }
 
-            inventoryText.text = "Inventory:\n";
-
-            foreach (ItemPickup item in _inventory)
-            {
-                inventoryText.text += item.name + "\n";
-            }
-
             if (_inventory.Count == 0)
             {
                 inventoryText.text = "Inventory is empty";
+                return;
             }
+
+            string itemList = "Inventory: \n";
+            foreach (ItemPickup item in _inventory)
+            {
+                itemList += "\t" + item.name + "\n";
+            }
+
+            inventoryText.text = itemList;
         }
 
-        private void ToggleInventoryUI()
-        {
-            if (_inventoryPanel != null)
-            {
-                _inventoryPanel.SetActive(_playerInventoryInput.toggleInventory);
-                Debug.Log(_playerInventoryInput.toggleInventory);
-            }
-        }
 
         /// <summary>
         /// Method Checks if the Item Collected is involved in an active mission. If true the item is registered in the mission as collected.
