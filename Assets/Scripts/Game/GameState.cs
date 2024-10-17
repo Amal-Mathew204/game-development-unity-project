@@ -2,57 +2,60 @@
 using System.Collections;
 using TMPro;
 
-public class GameState : MonoBehaviour
+namespace Scripts.Game
 {
-    private float _gameElapsedTime = 0f;
-    private float _totalGameTime;
-    [SerializeField] private TMP_Text _batteryLevelTextField;
-    private int _batteryLevel = 100;
-
-    /// <summary>
-    /// Method will set Canvas Game Object in the GameStateCanvas field inside GameManager
-    /// Method will also store the total /elapsed GameTimeFrom the Game Manager
-    /// </summary>
-    private void Start()
+    public class GameState : MonoBehaviour
     {
-        GameManager.Instance.GameStateCanvas = this.gameObject.transform.Find("Canvas").gameObject;
-        _totalGameTime = GameManager.Instance.GameTime;
-        _gameElapsedTime = GameManager.Instance.GameTimeElapsed;
+        private float _gameElapsedTime = 0f;
+        private float _totalGameTime;
+        [SerializeField] private TMP_Text _batteryLevelTextField;
+        private int _batteryLevel = 100;
 
-    }
-
-    /// <summary>
-    /// Update Method Adjusts the Battery Level of the Player on the condition that
-    /// Battery is not equal to zero and the Player has not won.
-    /// </summary>
-    private void Update()
-    {
-        if(_batteryLevel > 0 && GameManager.Instance.HasPlayerWonGame == false)
+        /// <summary>
+        /// Method will set Canvas Game Object in the GameStateCanvas field inside GameManager
+        /// Method will also store the total /elapsed GameTimeFrom the Game Manager
+        /// </summary>
+        private void Start()
         {
-            AdjustBatteryLevel();
-            if (_batteryLevel <= 0)
+            GameManager.Instance.GameStateCanvas = this.gameObject.transform.Find("Canvas").gameObject;
+            _totalGameTime = GameManager.Instance.GameTime;
+            _gameElapsedTime = GameManager.Instance.GameTimeElapsed;
+
+        }
+
+        /// <summary>
+        /// Update Method Adjusts the Battery Level of the Player on the condition that
+        /// Battery is not equal to zero and the Player has not won.
+        /// </summary>
+        private void Update()
+        {
+            if (_batteryLevel > 0 && GameManager.Instance.HasPlayerWonGame == false)
             {
-                GameManager.Instance.SetPlayerHasLost();
-                SetBatteryLevel(0);
+                AdjustBatteryLevel();
+                if (_batteryLevel <= 0)
+                {
+                    GameManager.Instance.SetPlayerHasLost();
+                    SetBatteryLevel(0);
+                }
             }
         }
-    }
 
-    /// <summary>
-    /// Method reduces the battery Percentage level
-    /// </summary>
-    private void AdjustBatteryLevel()
-    {
-        _gameElapsedTime += Time.deltaTime;
-        SetBatteryLevel(Mathf.RoundToInt(((_totalGameTime - _gameElapsedTime) / _totalGameTime) * 100));
-    }
+        /// <summary>
+        /// Method reduces the battery Percentage level
+        /// </summary>
+        private void AdjustBatteryLevel()
+        {
+            _gameElapsedTime += Time.deltaTime;
+            SetBatteryLevel(Mathf.RoundToInt(((_totalGameTime - _gameElapsedTime) / _totalGameTime) * 100));
+        }
 
-    /// <summary>
-    /// Method sets the battery level by setting the class field and TMP Text Field
-    /// </summary>
-    private void SetBatteryLevel(int level)
-    {
-        _batteryLevel = level;
-        _batteryLevelTextField.text = $"Battery Level: {_batteryLevel}%";
+        /// <summary>
+        /// Method sets the battery level by setting the class field and TMP Text Field
+        /// </summary>
+        private void SetBatteryLevel(int level)
+        {
+            _batteryLevel = level;
+            _batteryLevelTextField.text = $"Battery Level: {_batteryLevel}%";
+        }
     }
 }

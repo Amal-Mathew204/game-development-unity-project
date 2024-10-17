@@ -2,19 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NewBehaviourScript : MonoBehaviour
+namespace Scripts.MissonLogMenu
 {
-    public GameObject info;
-
-    private void Start()
+    public class NewBehaviourScript : MonoBehaviour
     {
-        info.SetActive(false);
+        public GameObject info;
+
+        private void Start()
+        {
+            info.SetActive(false);
+        }
+
+        public void WhenButtonClicked()
+        {
+            info.SetActive(true);
+        }
+
+
     }
-
-    public void WhenButtonClicked()
-    {
-        info.SetActive(true);
-    }
-
-
 }
