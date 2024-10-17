@@ -1,11 +1,14 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
-using Scripts.MissonLogMenu;
-using Scripts.Game;
 using UnityEngine;
-using System;
+using Scripts.Audio;
+using Scripts.Game;
+using Scripts.MissonLogMenu;
 
-namespace Scripts.Audio
+
+
+namespace Scripts.Quests
 {
     public class AudioTrigger : MonoBehaviour
     {

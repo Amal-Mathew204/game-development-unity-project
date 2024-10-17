@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 
 
-namespace Scripts.MissonLogMenu
+namespace Scripts.Quests
 {
     public class Mission
     {

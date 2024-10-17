@@ -1,12 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using PlayerManager = Scripts.Player.Player;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
 using Scripts.MissonLogMenu;
-
+using Scripts.Quests;
+using PlayerManager = Scripts.Player.Player;
 namespace Scripts.Game
 {
     public class GameManager : MonoBehaviour
