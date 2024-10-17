@@ -15,6 +15,7 @@ namespace Scripts.Item
         private PlayerState _playerState;
         private PlayerActionInput _playerActionInput;
 
+        public Dropdown dropdown; // Reference to the Dropdown script
 
         private void Start()
         {
@@ -56,6 +57,7 @@ namespace Scripts.Item
                 _playerState.CurrentActionState = PlayerActionState.Gathering;
                 PlayerCharacter.Instance.AddItem(this);  
                 Debug.Log(itemName + " picked up!");
+                dropdown.CollectItem(); // Notify the Dropdown script to update the item count
                 Destroy(gameObject); 
             }
         }

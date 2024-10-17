@@ -14,6 +14,11 @@ public class Dropdown : MonoBehaviour
     // Boolean variables to track completion of each quest
     public bool slopeQuestComplete = false;
     public bool triggerBoxQuestComplete = false;
+    public bool itemsQuestComplete = false;
+
+    // Varaible to track items
+    private int _itemsCollected = 0;  
+    private int _totalItemsNeeded = 3;
 
     private void Start()
     {
@@ -36,7 +41,7 @@ public class Dropdown : MonoBehaviour
         }
         else if (option == 1)
         {
-            info.text = "Explore the terrain and locate a short, smooth hill. Reach the top of the hill.";
+            info.text = "Explore the terrain and locate a short hill. Reach the top of the hill.";
             SetHeaderVisibility(true);
             UpdateCompletionStatus(slopeQuestComplete);
         }
@@ -45,6 +50,12 @@ public class Dropdown : MonoBehaviour
             info.text = "Explore the terrain and locate the trigger box. Pass under it and listen for the sound effect.";
             SetHeaderVisibility(true);
             UpdateCompletionStatus(triggerBoxQuestComplete);
+        }
+        else if (option == 3)
+        {
+            info.text = "Explore the terrain. There are three items you need to collect";
+            SetHeaderVisibility(true);
+            UpdateCompletionStatus(itemsQuestComplete);
         }
         else
         {
@@ -102,6 +113,7 @@ public class Dropdown : MonoBehaviour
     {
         slopeQuestComplete = false;
         triggerBoxQuestComplete = false;
+        itemsQuestComplete = false;
     }
 
     /// <summary>
@@ -118,5 +130,26 @@ public class Dropdown : MonoBehaviour
     public void CompleteTriggerBoxQuest()
     {
         triggerBoxQuestComplete = true;
+    }
+
+    /// <summary>
+    /// Set the items quest as complete
+    /// </summary>
+    public void CompleteItemsCollectionQuest()
+    {
+        itemsQuestComplete = true;
+    }
+
+    /// <summary>
+    /// Marks items quest as complete and updates quest status
+    /// </summary>
+    public void CollectItem()
+    {
+        _itemsCollected++;
+        if (_itemsCollected >= _totalItemsNeeded)
+        {
+            CompleteItemsCollectionQuest();
+            UpdateCompletionStatus(itemsQuestComplete);
+        }
     }
 }
