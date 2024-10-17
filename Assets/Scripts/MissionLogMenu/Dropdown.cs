@@ -1,8 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Scripts.Game;
 using TMPro;
+using Scripts.Game;
+using Scripts.Quests;
+
 
 namespace Scripts.MissonLogMenu
 {
