@@ -62,7 +62,8 @@ namespace Scripts.Game
         {
             HasPlayerWonGame = false; //reset condition
             MissionList = new List<Mission>() {new Mission("Slippery Slope", "Explore the terrain and locate a short, smooth hill. Reach the top of the hill."),
-                                                new Mission("Find Trigger Box", "Explore the terrain and locate the trigger box. Pass under it and listen for the sound effect.")};
+                                               new Mission("Find Trigger Box", "Explore the terrain and locate the trigger box. Pass under it and listen for the sound effect."),
+                                               new CollectMission("Collect Items", "Explore the terrain. There are three items you need to collect", 3)};
         }
         #endregion
 
