@@ -5,7 +5,10 @@ using UnityEngine.SceneManagement;
 using Scripts.Game;
 using Scripts.Item;
 using Scripts.MissonLogMenu;
+using Scripts.Player.Input;
 using Scripts.Quests;
+using TMPro;
+
 
 namespace Scripts.Player
 {
@@ -13,6 +16,10 @@ namespace Scripts.Player
     {
         public static Player Instance;  // Singleton instance
         private List<ItemPickup> _inventory = new List<ItemPickup>();
+        private const int _maximumInventorySize = 10;
+        [SerializeField] private TextMeshProUGUI inventoryText;
+        [SerializeField] private GameObject _inventoryPanel;
+        private PlayerInventoryInput _playerInventoryInput;
 
         #region Awake Methods
         private void Awake()
@@ -38,15 +45,82 @@ namespace Scripts.Player
         }
         #endregion
 
+        #region Start Methods
+        private void Start()
+        {
+            _playerInventoryInput = GetComponent<PlayerInventoryInput>();
+        }
+        #end region
+
         #region Player Item System Methods
         /// <summary>
         /// Add the current item to the player's inventory
         /// </summary>
+        /// 
+
+        private void Update()
+        {
+            ToggleInventoryUI();
+        }
+
         public void AddItem(ItemPickup item)
         {
+            if (_inventory.Count >= _maximumInventorySize)
+            {
+                Debug.Log("Cannot add" + item.itemName + "to inventory. Inventory is full.");
+                return;
+                
+            }
+
+
             _inventory.Add(item);
             Debug.Log(item.itemName + " added to inventory.");
             HandleItemInMission(item.itemName);
+            UpdateInventoryUI();
+        }
+
+        public void RemoveItem(ItemPickup item)
+        {
+            if (_inventory.Contains(item)) {
+
+                _inventory.Remove(item);
+                Debug.Log(item.itemName + " removed from inventory.");
+                UpdateInventoryUI();
+            }
+            else {
+
+                Debug.Log("Item not found in inventory.");
+            }
+        }
+
+        private void UpdateInventoryUI()
+        {
+            if (inventoryText == null)
+            {
+                Debug.LogWarning("InventoryText is not assigned in the Inspector");
+                return;
+            }
+
+            inventoryText.text = "Inventory:\n";
+
+            foreach (ItemPickup item in _inventory)
+            {
+                inventoryText.text += item.name + "\n";
+            }
+
+            if (_inventory.Count == 0)
+            {
+                inventoryText.text = "Inventory is empty";
+            }
+        }
+
+        private void ToggleInventoryUI()
+        {
+            if (_inventoryPanel != null)
+            {
+                _inventoryPanel.SetActive(_playerInventoryInput.toggleInventory);
+                Debug.Log(_playerInventoryInput.toggleInventory);
+            }
         }
 
         /// <summary>
