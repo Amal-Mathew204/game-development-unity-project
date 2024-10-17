@@ -70,7 +70,7 @@ public class GameManager : MonoBehaviour
     }
 
     /// <summary>
-    /// 
+    /// Method Checks that Player has completed all assigned missions
     /// </summary>
     private bool CheckIfPlayerHasWon()
     {
@@ -85,46 +85,41 @@ public class GameManager : MonoBehaviour
     }
 
     /// <summary>
-    /// 
+    /// Method Sets Game State to Player has won and displays a Won Game Message
     /// </summary>
     private void SetPlayerHasWon()
     {
-        //TODO: Enable the WinPannel
-        GameObject winPannel = GameStateCanvas.transform.Find("WinPannel").gameObject;
-        winPannel.gameObject.SetActive(true);
-        Button returnToStartMenuButton = winPannel.transform.Find("ReturnToStartMenuButton").gameObject.GetComponent<Button>();
-        returnToStartMenuButton.onClick.AddListener(ReturnToStartMenu);
-
-
+        EnablePannel("WinPannel");
         //TODO: Change Current Action Map of Player Input to UI
         //Note: reference the game object by Player.Instance.gameObject.GetComponent<PlayerInput>();
-
-        //TODO: (NOT IN THIS METHOD) Add a button to the pannel for WinPannel and Lose Pannel
-        //      create a new script for the button that destorys the player gameobject and loads start menu.
-        //      Remeber to load this new script onto the GameStateObject
     }
 
     /// <summary>
-    /// 
+    /// Method Sets Game State to Player has lost and displays a Lost Game Message
     /// </summary>
     public void SetPlayerHasLost()
     {
         //TODO: Change Current Action Map of Player Input to UI
-        //Note: reference the game object by Player.Instance.gameObject.GetComponent<PlayerInput>();
-        //TODO: Enable the LosePannel
+        EnablePannel("LosePannel");
 
-        GameObject losePannel = GameStateCanvas.transform.Find("LosePannel").gameObject;
-        losePannel.gameObject.SetActive(true);
-        Button returnToStartMenuButton = losePannel.transform.Find("ReturnToStartMenuButton").gameObject.GetComponent<Button>();
+    }
+
+    /// <summary>
+    /// This Method Enables either the Win or Lose Pannel in the Game and Sets the Onclick Button Method to return to Main Menu
+    /// </summary>
+    public void EnablePannel(string pannelName)
+    {
+        GameObject pannel = GameStateCanvas.transform.Find(pannelName).gameObject;
+        pannel.gameObject.SetActive(true);
+        Button returnToStartMenuButton = pannel.transform.Find("ReturnToStartMenuButton").gameObject.GetComponent<Button>();
         returnToStartMenuButton.onClick.AddListener(ReturnToStartMenu);
-
     }
     #endregion
 
     #region Change Scene Methods
 
     /// <summary>
-    /// 
+    /// A Button OnClick Method that Destorys the Player Game Object, Resets Missions and Returns to Main Menu.
     /// </summary>
     public void ReturnToStartMenu()
     {
