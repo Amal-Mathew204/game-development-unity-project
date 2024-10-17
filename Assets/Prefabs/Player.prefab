@@ -259,6 +259,7 @@ GameObject:
   - component: {fileID: 8724007558396437539}
   - component: {fileID: 5208090357230459903}
   - component: {fileID: 8192696516508717447}
+  - component: {fileID: 1977178981504767673}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -523,6 +524,22 @@ MonoBehaviour:
         m_CallState: 1
     m_ActionId: 0444dea1-d8cf-4405-8caa-18cb10b3ed38
     m_ActionName: 'Player/Gather[/Keyboard/e]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1977178981504767673}
+        m_TargetAssemblyTypeName: Scripts.Player.Input.PlayerInventoryInput, Assembly-CSharp
+        m_MethodName: OnToggleInventory
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
+    m_ActionId: 6ff804e4-0aec-4bba-981f-2d61da590753
+    m_ActionName: 'Player/Inventory[/Keyboard/tab]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Keyboard&Mouse
   m_DefaultActionMap: Player
@@ -628,6 +645,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97c54b74f999549e6beddc207e5aff55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inventoryText: {fileID: 0}
+  inventoryPanel: {fileID: 0}
+--- !u!114 &1977178981504767673
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7691830747402106239}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c89313b5dc653484b92c0d98ad62a673, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  toggleInventory: 0
 --- !u!1 &8029776870597689301
 GameObject:
   m_ObjectHideFlags: 0
