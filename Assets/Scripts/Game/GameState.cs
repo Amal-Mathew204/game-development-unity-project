@@ -21,9 +21,13 @@ public class GameState : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// Update Method Adjusts the Battery Level of the Player on the condition that
+    /// Battery is not equal to zero and the Player has not won.
+    /// </summary>
     private void Update()
     {
-        if(_batteryLevel > 0)
+        if(_batteryLevel > 0 && GameManager.Instance.HasPlayerWonGame == false)
         {
             AdjustBatteryLevel();
             if (_batteryLevel <= 0)
@@ -35,7 +39,7 @@ public class GameState : MonoBehaviour
     }
 
     /// <summary>
-    /// 
+    /// Method reduces the battery Percentage level
     /// </summary>
     private void AdjustBatteryLevel()
     {
@@ -44,7 +48,7 @@ public class GameState : MonoBehaviour
     }
 
     /// <summary>
-    /// 
+    /// Method sets the battery level by setting the class field and TMP Text Field
     /// </summary>
     private void SetBatteryLevel(int level)
     {
