@@ -21,9 +21,11 @@ public class GameManager : MonoBehaviour
         }
     }
     public List<Mission> MissionList { get; private set; } = new List<Mission>();
-    //TODO: Change/Check how GameState Object is referenced from scene
-    //      (so its unaffected when scenes are changed ingame)
     public GameObject GameStateCanvas { get; set; }
+
+    [Header("Game Time Settings")]
+    public float GameTimeElapsed;
+    [field: SerializeField] public float GameTime { get; private set; } = 60f;
     #endregion
 
     #region Awake Methods
@@ -102,11 +104,20 @@ public class GameManager : MonoBehaviour
         //      Remeber to load this new script onto the GameStateObject
     }
 
-    private void SetPlayerHasLost()
+    /// <summary>
+    /// 
+    /// </summary>
+    public void SetPlayerHasLost()
     {
         //TODO: Change Current Action Map of Player Input to UI
         //Note: reference the game object by Player.Instance.gameObject.GetComponent<PlayerInput>();
         //TODO: Enable the LosePannel
+
+        GameObject losePannel = GameStateCanvas.transform.Find("LosePannel").gameObject;
+        losePannel.gameObject.SetActive(true);
+        Button returnToStartMenuButton = losePannel.transform.Find("ReturnToStartMenuButton").gameObject.GetComponent<Button>();
+        returnToStartMenuButton.onClick.AddListener(ReturnToStartMenu);
+
     }
     #endregion
 
