@@ -4,6 +4,7 @@ using UnityEngine;
 using Scripts.Player;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.InputSystem;
 
 public class GameManager : MonoBehaviour
 {
@@ -116,6 +117,8 @@ public class GameManager : MonoBehaviour
         pannel.gameObject.SetActive(true);
         Button returnToStartMenuButton = pannel.transform.Find("ReturnToStartMenuButton").gameObject.GetComponent<Button>();
         returnToStartMenuButton.onClick.AddListener(ReturnToStartMenu);
+        PlayerInput playerInput = Player.Instance.gameObject.GetComponent<PlayerInput>();
+        playerInput.SwitchCurrentActionMap("UI");
     }
     #endregion
 
