@@ -2,13 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DisableObject : MonoBehaviour
+namespace Scripts.MissonLogMenu
 {
-    public GameObject info;
-
-    public void WhenButtonClicked()
+    public class DisableObject : MonoBehaviour
     {
-        info.SetActive(false);
-    }
+        public GameObject info;
 
+        public void WhenButtonClicked()
+        {
+            info.SetActive(false);
+        }
+
+    }
 }
