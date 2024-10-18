@@ -105,7 +105,6 @@ namespace Scripts.Player
                 return;
             }
 
-            // Clear previous UI elements
             inventoryText.text = "";
             foreach (GameObject button in activeButtons)
             {
@@ -119,39 +118,20 @@ namespace Scripts.Player
                 return;
             }
 
-            // Create UI elements for each inventory item
+            string itemList = "Inventory: \n";
             foreach (ItemPickup item in _inventory)
             {
-                // Create a parent GameObject for each item
-                GameObject itemSlot = new GameObject("ItemSlot");
-                itemSlot.transform.SetParent(_inventoryUIParent);
+                itemList += "\t" + item.itemName + "\n";
 
-                // Add RectTransform to position the elements
-                RectTransform itemSlotRect = itemSlot.AddComponent<RectTransform>();
-                itemSlotRect.sizeDelta = new Vector2(200, 200);  // Adjust size to fit both the item name and button
+                //inventoryText.text += item.itemName + "\n";
 
-                // Create and position the item name text
-                GameObject itemTextObj = new GameObject("ItemName");
-                itemTextObj.transform.SetParent(itemSlot.transform);
-                TextMeshProUGUI itemText = itemTextObj.AddComponent<TextMeshProUGUI>();
-                itemText.text = item.itemName;
-
-                RectTransform itemTextRect = itemText.GetComponent<RectTransform>();
-                itemTextRect.sizeDelta = new Vector2(500, 30);  // Set a size for the text area
-                itemTextRect.anchoredPosition = new Vector2(0, 0);  // Position the text
-
-                // Instantiate the drop button and position it manually next to the item name
-                GameObject dropButton = Instantiate(_dropButtonPrefab, itemSlot.transform);
-                dropButton.GetComponentInChildren<TextMeshProUGUI>().text = "Drop";
+                GameObject dropButton = Instantiate(_dropButtonPrefab, _inventoryUIParent);
+                dropButton.GetComponentInChildren<TextMeshProUGUI>().text = "Drop" + item.itemName + " \n";
                 dropButton.GetComponent<UnityEngine.UI.Button>().onClick.AddListener(() => DropItem(item));
-
-                RectTransform dropButtonRect = dropButton.GetComponent<RectTransform>();
-                dropButtonRect.sizeDelta = new Vector2(50, 30);  // Set the size for the button
-                dropButtonRect.anchoredPosition = new Vector2(160, 0);  // Adjust position to appear next to the text
-
-                // Add the button to the list of active buttons for cleanup later
                 activeButtons.Add(dropButton);
             }
+
+            inventoryText.text = itemList;
         }
         #endregion
 
