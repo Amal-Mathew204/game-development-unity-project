@@ -135,8 +135,6 @@ namespace Scripts.Player
                 TextMeshProUGUI buttonName = itemSlot.gameObject.transform.GetChild(1).gameObject.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>();
                 Button itemDropButton = itemSlot.gameObject.transform.GetChild(1).gameObject.GetComponent<Button>();
 
-                Debug.Log(itemSlotName == null);
-
                 buttonName.text = $"Drop {item.itemName}";
                 itemSlotName.text = item.itemName;
                 itemDropButton.onClick.AddListener(() => DropItem(item));
@@ -152,22 +150,13 @@ namespace Scripts.Player
         /// Add the current item to the player's inventory
         /// </summary>
         public bool AddItem(ItemPickup item)
-        {
-            
+        {   
             if (_inventory.Count >= _maximumInventorySize)
             {
-                Debug.Log(_inventory.Count);
-                Debug.Log("Cannot add " + item.itemName + " to inventory. Inventory is full.");
-                return false;
-                
-            }
-            else
-            {
-                _inventory.Add(item);
-                Debug.Log(item.itemName + " added to inventory.");
+                return false;   
             }
 
-            Debug.Log(_inventory.Count);
+            _inventory.Add(item);
             HandleItemInMission(item.itemName);
             UpdateInventoryUI();
             return true;
@@ -182,12 +171,7 @@ namespace Scripts.Player
             if (_inventory.Contains(item)) {
 
                 _inventory.Remove(item);
-                Debug.Log(item.itemName + " removed from inventory.");
                 UpdateInventoryUI();
-            }
-            else {
-
-                Debug.Log("Item not found in inventory.");
             }
         }
 
@@ -203,8 +187,6 @@ namespace Scripts.Player
             droppedItem.SetActive(true);
 
             Destroy(item);
-
-            Debug.Log(item.itemName + " dropped into the world.");  
         }
         #endregion
 
