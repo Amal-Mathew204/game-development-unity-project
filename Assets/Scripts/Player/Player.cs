@@ -121,7 +121,7 @@ namespace Scripts.Player
             string itemList = "Inventory: \n";
             foreach (ItemPickup item in _inventory)
             {
-                itemList += "\t" + item.name + "\n";
+                itemList += "\t" + item.itemName + "\n";
 
                 //inventoryText.text += item.itemName + "\n";
 
