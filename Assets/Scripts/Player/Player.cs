@@ -17,6 +17,7 @@ using MissionLogDropdown = Scripts.MissonLogMenu.Dropdown;
 
 namespace Scripts.Player
 {
+    [DefaultExecutionOrder(-1)]
     public class Player : MonoBehaviour
     {
         #region Class Variables
