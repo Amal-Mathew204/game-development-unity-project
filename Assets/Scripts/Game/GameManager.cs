@@ -7,6 +7,8 @@ using UnityEngine.InputSystem;
 using Scripts.MissonLogMenu;
 using Scripts.Quests;
 using PlayerManager = Scripts.Player.Player;
+
+
 namespace Scripts.Game
 {
     public class GameManager : MonoBehaviour
@@ -98,8 +100,6 @@ namespace Scripts.Game
         {
             EnablePannel("WinPannel");
             HasPlayerWonGame = true;
-            //TODO: Change Current Action Map of Player Input to UI
-            //Note: reference the game object by Player.Instance.gameObject.GetComponent<PlayerInput>();
         }
 
         /// <summary>
@@ -107,9 +107,7 @@ namespace Scripts.Game
         /// </summary>
         public void SetPlayerHasLost()
         {
-            //TODO: Change Current Action Map of Player Input to UI
             EnablePannel("LosePannel");
-
         }
 
         /// <summary>
