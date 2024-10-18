@@ -8,6 +8,7 @@ using Scripts.MissonLogMenu;
 using Scripts.Player.Input;
 using Scripts.Quests;
 using TMPro;
+using UnityEngine.InputSystem;
 
 
 namespace Scripts.Player
@@ -16,7 +17,9 @@ namespace Scripts.Player
     {
         public static Player Instance;  // Singleton instance
         private List<ItemPickup> _inventory = new List<ItemPickup>();
+
         private const int _maximumInventorySize = 10;
+
         [SerializeField] private TextMeshProUGUI inventoryText;
         [SerializeField] private GameObject _inventoryPanel;
         [SerializeField] private GameObject _dropButtonPrefab;
@@ -53,7 +56,7 @@ namespace Scripts.Player
         {
             _playerInventoryInput = GetComponent<PlayerInventoryInput>();
         }
-        #end region
+        #endregion
 
         #region Player Item System Methods
         /// <summary>
@@ -63,22 +66,46 @@ namespace Scripts.Player
 
         private void Update()
         {
-            ToggleInventoryUI();
+            
+
         }
 
         private void ToggleInventoryUI()
         {
             if (_inventoryPanel != null)
+
             {
-                _inventoryPanel.SetActive(_playerInventoryInput.toggleInventory);
+                bool activateInventory = _playerInventoryInput.toggleInventory;
+                _inventoryPanel.SetActive(activateInventory);
+                PlayerInput playerInput = GetComponent<PlayerInput>();
+                if (activateInventory)
+                {
+
+                    playerInput.currentActionMap.Disable();
+                    playerInput.SwitchCurrentActionMap("UI");
+                    playerInput.currentActionMap.Enable();
+                    playerInput.actions.Enable();
+                }
+                else
+                {
+
+                    playerInput.currentActionMap.Disable();
+                    playerInput.SwitchCurrentActionMap("Player");
+                    playerInput.currentActionMap.Enable();
+                    playerInput.actions.Enable();
+                }
+
+                Debug.Log(playerInput.currentActionMap.name);
+
             }
         }
 
         public void AddItem(ItemPickup item)
         {
-            Debug.Log(_inventory.Count);
+            
             if (_inventory.Count >= _maximumInventorySize)
             {
+                Debug.Log(_inventory.Count);
                 Debug.Log("Cannot add" + item.itemName + "to inventory. Inventory is full.");
                 return;
                 
@@ -89,13 +116,12 @@ namespace Scripts.Player
                 Debug.Log(item.itemName + " added to inventory.");
             }
 
+            Debug.Log(_inventory.Count);
 
-            _inventory.Add(item);
-            Debug.Log(item.itemName + " added to inventory.");
             HandleItemInMission(item.itemName);
-            
 
             UpdateInventoryUI();
+
         }
 
         public void RemoveItem(ItemPickup item)
