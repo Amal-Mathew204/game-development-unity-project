@@ -54,10 +54,11 @@ namespace Scripts.Item
             if (_isInRange && _playerActionInput.IsGathering && _playerState.CanGather())
             {
                 _playerState.CurrentActionState = PlayerActionState.Gathering;
-                PlayerCharacter.Instance.AddItem(this);  
-                Debug.Log(itemName + " picked up!");
-                //TODO: Confirm if we can save a copy of the game object in inventory so ItemPickUp class component remains in game
-                gameObject.SetActive(false);
+                if (PlayerCharacter.Instance.AddItem(this))
+                {
+                    //TODO: Confirm if we can save a copy of the game object in inventory so ItemPickUp class component remains in game
+                    gameObject.SetActive(false);
+                }
             }
         }
     }
