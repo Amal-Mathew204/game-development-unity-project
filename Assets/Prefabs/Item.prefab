@@ -48,6 +48,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemName: Item
+  _itemLabel: {fileID: 5608905403088363622}
 --- !u!65 &2241995366927492609
 BoxCollider:
   m_ObjectHideFlags: 0
