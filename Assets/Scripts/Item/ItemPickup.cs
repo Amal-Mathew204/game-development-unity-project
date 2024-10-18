@@ -34,7 +34,7 @@ namespace Scripts.Item
         /// </summary>
         public void OnRaycastHit()
         {
-            Debug.Log("Press E to pick up " + itemName);
+            //Debug.Log("Press E to pick up " + itemName);
             _isInRange = true;  
         }
 
@@ -43,7 +43,7 @@ namespace Scripts.Item
         /// </summary>
         public void OnRaycastExit()
         {
-            Debug.Log("Out of range of " + itemName);
+            //Debug.Log("Out of range of " + itemName);
             _isInRange = false;
         }
         /// <summary>
@@ -51,7 +51,7 @@ namespace Scripts.Item
         /// </summary>
         public void TryPickUp()
         {
-            if (_isInRange && _playerActionInput.IsGathering && _playerState.CanGather())         // issue!
+            if (_isInRange && _playerActionInput.IsGathering && _playerState.CanGather())
             {
                 _playerState.CurrentActionState = PlayerActionState.Gathering;
                 PlayerCharacter.Instance.AddItem(this);  
