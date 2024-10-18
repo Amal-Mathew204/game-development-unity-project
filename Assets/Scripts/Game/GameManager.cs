@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Data;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -7,6 +9,7 @@ using UnityEngine.InputSystem;
 using Scripts.MissonLogMenu;
 using Scripts.Quests;
 using PlayerManager = Scripts.Player.Player;
+using DropdownComponent = Scripts.MissonLogMenu.Dropdown;
 
 
 namespace Scripts.Game
@@ -63,9 +66,11 @@ namespace Scripts.Game
         public void CreateMissions()
         {
             HasPlayerWonGame = false; //reset condition
-            MissionList = new List<Mission>() {new Mission("Slippery Slope", "Explore the terrain and locate a short, smooth hill. Reach the top of the hill."),
+            MissionList = new List<Mission>() {new Mission("Mini Everest", "Explore the terrain and locate a short hill. Reach the top of the hill."),
                                                new Mission("Find Trigger Box", "Explore the terrain and locate the trigger box. Pass under it and listen for the sound effect."),
-                                               new CollectMission("Collect Items", "Explore the terrain. There are three items you need to collect", 3)};
+                                               new CollectMission("Collect Items", "Explore the terrain. There are three items you need to collect", 3),
+                                               new Mission("Fallen Hero", "Explore the terrain. There is a robot who failed its mission. Talk to it."),
+                                               new Mission("Stairway", "Explore the terrain. There are some steps. Reach the top.")};
         }
         #endregion
 
@@ -134,6 +139,21 @@ namespace Scripts.Game
             CreateMissions(); //reset missions
             PlayerManager.DestroyGameObject();
             SceneManager.LoadScene("StartScene");
+        }
+        #endregion
+
+        #region Access Game Objects Methods
+        public DropdownComponent GetMissionLogDropdownComponent()
+        {
+            DropdownComponent dropdown = GameObject.FindGameObjectWithTag("MissionUI").GetComponent<DropdownComponent>();
+            if (dropdown == null)
+            {
+                throw new Exception("Dropdown component not found");
+            }
+            else
+            {
+                return dropdown;
+            }
         }
         #endregion
     }

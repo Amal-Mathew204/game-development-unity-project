@@ -323,6 +323,7 @@ GameObject:
   - component: {fileID: 6655934011633503763}
   - component: {fileID: 3135687001345424380}
   - component: {fileID: 8931441136888375455}
+  - component: {fileID: 5326498695092432376}
   m_Layer: 0
   m_Name: NPCTriggerZone
   m_TagString: Untagged
@@ -380,4 +381,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bubbleText: {fileID: 2731616956858951517}
   typeWritingSpeed: 0.05
-  message: Hi I am an NPC. Nice to meet you.
+  message: 'Last Recorded Message: Reach...trigger box...on my left'
+--- !u!114 &5326498695092432376
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9037495870130612619}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 561be3f1d1b1e420f9c93ab3468af0a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _dropdown: {fileID: 0}
