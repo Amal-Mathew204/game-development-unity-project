@@ -128,8 +128,8 @@ namespace Scripts.Player
             foreach (ItemPickup item in _inventory)
             {
 
-                Object itemSlotPrefab = AssetDatabase.LoadAssetAtPath("Assets/Prefabs/ItemSlot.prefab", typeof(GameObject));
-                GameObject itemSlot = Instantiate(itemSlotPrefab, Vector3.zero, Quaternion.identity) as GameObject;
+                GameObject itemSlotPrefab = Resources.Load("Prefabs/ItemSlot") as GameObject;
+                GameObject itemSlot = Instantiate(itemSlotPrefab, Vector3.zero, Quaternion.identity);
                 itemSlot.transform.SetParent(_inventoryUIParent);
 
                 TextMeshProUGUI itemSlotName = itemSlot.gameObject.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>();
