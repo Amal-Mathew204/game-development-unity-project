@@ -1,14 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using UnityEditor;
+using TMPro;
 using Scripts.Game;
 using Scripts.Item;
 using Scripts.MissonLogMenu;
 using Scripts.Player.Input;
 using Scripts.Quests;
-using TMPro;
-using UnityEngine.InputSystem;
+using MissionLogDropdown = Scripts.MissonLogMenu.Dropdown;
+
 
 
 namespace Scripts.Player
@@ -18,13 +22,12 @@ namespace Scripts.Player
         #region Class Variables
         public static Player Instance;  // Singleton instance
         private List<ItemPickup> _inventory = new List<ItemPickup>();
-        private const int _maximumInventorySize = 10;
+        [SerializeField] private int _maximumInventorySize = 10;
         [SerializeField] private TextMeshProUGUI inventoryText;
         [SerializeField] private GameObject _inventoryPanel;
-        [SerializeField] private GameObject _dropButtonPrefab;
         [SerializeField] private Transform _inventoryUIParent;  // Parent UI object to hold inventory items
         private PlayerInventoryInput _playerInventoryInput;
-        private List<GameObject> activeButtons = new List<GameObject>();
+        private List<GameObject> storedItems = new List<GameObject>();
 
         //cache values
         private bool _isInventoryOpen = false;
@@ -107,11 +110,11 @@ namespace Scripts.Player
 
             // Clear previous UI elements
             inventoryText.text = "";
-            foreach (GameObject button in activeButtons)
+            foreach (GameObject item in storedItems)
             {
-                Destroy(button);
+                Destroy(item);
             }
-            activeButtons.Clear();
+            storedItems.Clear();
 
             if (_inventory.Count == 0)
             {
@@ -119,38 +122,26 @@ namespace Scripts.Player
                 return;
             }
 
+            inventoryText.text = "Inventory";
             // Create UI elements for each inventory item
             foreach (ItemPickup item in _inventory)
             {
-                // Create a parent GameObject for each item
-                GameObject itemSlot = new GameObject("ItemSlot");
+
+                Object itemSlotPrefab = AssetDatabase.LoadAssetAtPath("Assets/Prefabs/ItemSlot.prefab", typeof(GameObject));
+                GameObject itemSlot = Instantiate(itemSlotPrefab, Vector3.zero, Quaternion.identity) as GameObject;
                 itemSlot.transform.SetParent(_inventoryUIParent);
 
-                // Add RectTransform to position the elements
-                RectTransform itemSlotRect = itemSlot.AddComponent<RectTransform>();
-                itemSlotRect.sizeDelta = new Vector2(200, 3);  // Adjust size to fit both the item name and button
+                TextMeshProUGUI itemSlotName = itemSlot.gameObject.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>();
+                TextMeshProUGUI buttonName = itemSlot.gameObject.transform.GetChild(1).gameObject.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>();
+                Button itemDropButton = itemSlot.gameObject.transform.GetChild(1).gameObject.GetComponent<Button>();
 
-                // Create and position the item name text
-                GameObject itemTextObj = new GameObject("ItemName");
-                itemTextObj.transform.SetParent(itemSlot.transform);
-                TextMeshProUGUI itemText = itemTextObj.AddComponent<TextMeshProUGUI>();
-                itemText.text = item.itemName;
+                Debug.Log(itemSlotName == null);
 
-                RectTransform itemTextRect = itemText.GetComponent<RectTransform>();
-                itemTextRect.sizeDelta = new Vector2(150, 30);  // Set a size for the text area
-                itemTextRect.anchoredPosition = new Vector2(0, 0);  // Position the text
+                buttonName.text = $"Drop {item.itemName}";
+                itemSlotName.text = item.itemName;
+                itemDropButton.onClick.AddListener(() => DropItem(item));
 
-                // Instantiate the drop button and position it manually next to the item name
-                GameObject dropButton = Instantiate(_dropButtonPrefab, itemSlot.transform);
-                dropButton.GetComponentInChildren<TextMeshProUGUI>().text = "Drop";
-                dropButton.GetComponent<UnityEngine.UI.Button>().onClick.AddListener(() => DropItem(item));
-
-                RectTransform dropButtonRect = dropButton.GetComponent<RectTransform>();
-                dropButtonRect.sizeDelta = new Vector2(50, 30);  // Set the size for the button
-                dropButtonRect.anchoredPosition = new Vector2(160, 0);  // Adjust position to appear next to the text
-
-                // Add the button to the list of active buttons for cleanup later
-                activeButtons.Add(dropButton);
+                storedItems.Add(itemSlot);
             }
         }
         #endregion
@@ -243,7 +234,7 @@ namespace Scripts.Player
         /// </summary>
         private void UpdateDropDownMissionStatus(CollectMission collectMission)
         {
-            Dropdown dropdown = GameObject.FindGameObjectWithTag("MissionUI").GetComponent<Dropdown>();
+            MissionLogDropdown dropdown = GameObject.FindGameObjectWithTag("MissionUI").GetComponent<MissionLogDropdown>();
             if (GameManager.Instance.MissionList.IndexOf(collectMission) + 1 == dropdown.dropdown.value)
             {
                 dropdown.UpdateCompletionStatus(true);
