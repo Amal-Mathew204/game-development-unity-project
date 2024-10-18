@@ -19,7 +19,10 @@ namespace Scripts.Player
         private const int _maximumInventorySize = 10;
         [SerializeField] private TextMeshProUGUI inventoryText;
         [SerializeField] private GameObject _inventoryPanel;
+        [SerializeField] private GameObject _dropButtonPrefab;
+        [SerializeField] private Transform _inventoryUIParent;  // Parent UI object to hold inventory items
         private PlayerInventoryInput _playerInventoryInput;
+        private List<GameObject> activeButtons = new List<GameObject>();
 
         #region Awake Methods
         private void Awake()
@@ -73,17 +76,25 @@ namespace Scripts.Player
 
         public void AddItem(ItemPickup item)
         {
+            Debug.Log(_inventory.Count);
             if (_inventory.Count >= _maximumInventorySize)
             {
                 Debug.Log("Cannot add" + item.itemName + "to inventory. Inventory is full.");
                 return;
                 
             }
+            else
+            {
+                _inventory.Add(item);
+                Debug.Log(item.itemName + " added to inventory.");
+            }
 
 
             _inventory.Add(item);
             Debug.Log(item.itemName + " added to inventory.");
             HandleItemInMission(item.itemName);
+            
+
             UpdateInventoryUI();
         }
 
@@ -101,6 +112,19 @@ namespace Scripts.Player
             }
         }
 
+        public void DropItem(ItemPickup item)
+        {
+            RemoveItem(item);
+
+            Vector3 dropPosition = transform.position + transform.forward * 2f;
+            GameObject droppedItem = Instantiate(item.gameObject, dropPosition, Quaternion.identity);
+            droppedItem.SetActive(true);
+
+            Destroy(item);
+
+            Debug.Log(item.itemName + " dropped into the world.");  
+        }
+
         private void UpdateInventoryUI()
         {
             if (inventoryText == null)
@@ -108,6 +132,13 @@ namespace Scripts.Player
                 Debug.LogWarning("InventoryText is not assigned in the Inspector");
                 return;
             }
+
+            inventoryText.text = "";
+            foreach (GameObject button in activeButtons)
+            {
+                Destroy(button);
+            }
+            activeButtons.Clear();
 
             if (_inventory.Count == 0)
             {
@@ -119,6 +150,13 @@ namespace Scripts.Player
             foreach (ItemPickup item in _inventory)
             {
                 itemList += "\t" + item.name + "\n";
+
+                //inventoryText.text += item.itemName + "\n";
+
+                GameObject dropButton = Instantiate(_dropButtonPrefab, _inventoryUIParent);
+                dropButton.GetComponentInChildren<TextMeshProUGUI>().text = "Drop" + item.itemName +" \n";
+                dropButton.GetComponent<UnityEngine.UI.Button>().onClick.AddListener(() => DropItem(item));
+                activeButtons.Add(dropButton);
             }
 
             inventoryText.text = itemList;
