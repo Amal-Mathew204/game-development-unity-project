@@ -3,7 +3,7 @@ using UnityEngine.Playables;
 using Scripts.Player;
 using Scripts.Player.Input;
 using PlayerCharacter = Scripts.Player.Player;
-
+using TMPro;
 
 namespace Scripts.Item
 {
@@ -11,12 +11,12 @@ namespace Scripts.Item
     {
         public string itemName;  
         private bool _isInRange = false;  // This will be true when the player is looking at the item
-
+        [SerializeField] private TMP_Text _itemLabel;
         private PlayerState _playerState;
         private PlayerActionInput _playerActionInput;
 
 
-        private void Start()
+        private void OnEnable()
         {
             _playerState = PlayerCharacter.Instance.gameObject.GetComponent<PlayerState>();
             _playerActionInput = PlayerCharacter.Instance.gameObject.GetComponent<PlayerActionInput>();
@@ -28,13 +28,24 @@ namespace Scripts.Item
             {
                 Debug.LogError("Player State is null");
             }
+
+            SetItemLabel();
         }
+
+        /// <summary>
+        /// Method Sets Item Label to the Name of the Item
+        /// </summary>
+        private void SetItemLabel()
+        {
+            _itemLabel.text = itemName;
+        }
+
         /// <summary>
         /// This method will be called when the raycast hits this object
         /// </summary>
         public void OnRaycastHit()
         {
-            Debug.Log("Press E to pick up " + itemName);
+            //Debug.Log("Press E to pick up " + itemName);
             _isInRange = true;  
         }
 
@@ -43,7 +54,7 @@ namespace Scripts.Item
         /// </summary>
         public void OnRaycastExit()
         {
-            Debug.Log("Out of range of " + itemName);
+            //Debug.Log("Out of range of " + itemName);
             _isInRange = false;
         }
         /// <summary>
@@ -54,9 +65,11 @@ namespace Scripts.Item
             if (_isInRange && _playerActionInput.IsGathering && _playerState.CanGather())
             {
                 _playerState.CurrentActionState = PlayerActionState.Gathering;
-                PlayerCharacter.Instance.AddItem(this);  
-                Debug.Log(itemName + " picked up!");
-                Destroy(gameObject); 
+                if (PlayerCharacter.Instance.AddItem(this))
+                {
+                    //TODO: Confirm if we can save a copy of the game object in inventory so ItemPickUp class component remains in game
+                    gameObject.SetActive(false);
+                }
             }
         }
     }
