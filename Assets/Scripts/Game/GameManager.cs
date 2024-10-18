@@ -143,6 +143,9 @@ namespace Scripts.Game
         #endregion
 
         #region Access Game Objects Methods
+        /// <summary>
+        /// Throws exception if game object is not found
+        /// </summary>
         public DropdownComponent GetMissionLogDropdownComponent()
         {
             DropdownComponent dropdown = GameObject.FindGameObjectWithTag("MissionUI").GetComponent<DropdownComponent>();
