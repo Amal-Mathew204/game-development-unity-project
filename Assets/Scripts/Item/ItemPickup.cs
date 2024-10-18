@@ -51,7 +51,7 @@ namespace Scripts.Item
         /// </summary>
         public void TryPickUp()
         {
-            if (_isInRange && _playerActionInput.IsGathering && _playerState.CanGather())
+            if (_isInRange && _playerActionInput.IsGathering && _playerState.CanGather())         // issue!
             {
                 _playerState.CurrentActionState = PlayerActionState.Gathering;
                 PlayerCharacter.Instance.AddItem(this);  
