@@ -24,11 +24,11 @@ namespace Scripts.Player
         public static Player Instance;  // Singleton instance
         private List<ItemPickup> _inventory = new List<ItemPickup>();
         [SerializeField] private int _maximumInventorySize = 10;
-        [SerializeField] private TextMeshProUGUI inventoryText;
+        [SerializeField] private TextMeshProUGUI _inventoryText;
         [SerializeField] private GameObject _inventoryPanel;
         [SerializeField] private Transform _inventoryUIParent;  // Parent UI object to hold inventory items
         private PlayerInventoryInput _playerInventoryInput;
-        private List<GameObject> storedItems = new List<GameObject>();
+        private List<GameObject> _storedItems = new List<GameObject>();
 
         //cache values
         private bool _isInventoryOpen = false;
@@ -103,27 +103,27 @@ namespace Scripts.Player
         /// </summary>
         private void UpdateInventoryUI()
         {
-            if (inventoryText == null)
+            if (_inventoryText == null)
             {
                 Debug.LogWarning("InventoryText is not assigned in the Inspector");
                 return;
             }
 
             // Clear previous UI elements
-            inventoryText.text = "";
-            foreach (GameObject item in storedItems)
+            _inventoryText.text = "";
+            foreach (GameObject item in _storedItems)
             {
                 Destroy(item);
             }
-            storedItems.Clear();
+            _storedItems.Clear();
 
             if (_inventory.Count == 0)
             {
-                inventoryText.text = "Inventory is empty";
+                _inventoryText.text = "Inventory is empty";
                 return;
             }
 
-            inventoryText.text = "Inventory";
+            _inventoryText.text = "Inventory";
             // Create UI elements for each inventory item
             foreach (ItemPickup item in _inventory)
             {
@@ -140,7 +140,7 @@ namespace Scripts.Player
                 itemSlotName.text = item.itemName;
                 itemDropButton.onClick.AddListener(() => DropItem(item));
 
-                storedItems.Add(itemSlot);
+                _storedItems.Add(itemSlot);
             }
         }
         #endregion
