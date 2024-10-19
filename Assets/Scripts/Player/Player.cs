@@ -27,6 +27,10 @@ namespace Scripts.Player
         [SerializeField] private TextMeshProUGUI _inventoryText;
         [SerializeField] private GameObject _inventoryPanel;
         [SerializeField] private Transform _inventoryUIParent;  // Parent UI object to hold inventory items
+        [SerializeField] private GameObject _inventoryWarningText;
+        private bool _activateInventoryWarningMessage = false;
+        private float _inventoryWarningMessageTimeDisplayed = 0f;
+        private float _warningTextTimeDuration = 2f;
         private PlayerInventoryInput _playerInventoryInput;
         private List<GameObject> _storedItems = new List<GameObject>();
 
@@ -72,6 +76,33 @@ namespace Scripts.Player
         private void Update()
         {
             ToggleInventoryUI();
+            ToggleInventoryWarningMessage();
+        }
+
+        /// <summary>
+        /// This Method will turn on the Inventory Warning Message for three seconds if requested
+        /// </summary>
+        public void ToggleInventoryWarningMessage()
+        {
+            if (_activateInventoryWarningMessage == false)
+            {
+                return;
+            }
+            //activates field and returns
+            if(_inventoryWarningMessageTimeDisplayed == 0f)
+            {
+                _inventoryWarningText.SetActive(true);
+                _inventoryWarningMessageTimeDisplayed += Time.deltaTime;
+                return;
+            }
+            _inventoryWarningMessageTimeDisplayed += Time.deltaTime;
+            if(_inventoryWarningMessageTimeDisplayed >= _warningTextTimeDuration)
+            {
+                _inventoryWarningMessageTimeDisplayed = 0f;
+                _activateInventoryWarningMessage = false;
+                _inventoryWarningText.SetActive(false);
+            }
+
         }
         #endregion
 
@@ -91,10 +122,15 @@ namespace Scripts.Player
             if (_isInventoryOpen)
             {
                 playerInput.SwitchCurrentActionMap("UI");
+                _inventoryWarningText.SetActive(false);
             }
             else
             {
                 playerInput.SwitchCurrentActionMap("Player");
+                if (_activateInventoryWarningMessage)
+                {
+                    _inventoryWarningText.SetActive(true);
+                }
             }
         }
 
@@ -154,6 +190,7 @@ namespace Scripts.Player
         {   
             if (_inventory.Count >= _maximumInventorySize)
             {
+                _activateInventoryWarningMessage = true;
                 return false;   
             }
 
