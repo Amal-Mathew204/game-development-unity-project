@@ -45,7 +45,6 @@ namespace Scripts.Item
         /// </summary>
         public void OnRaycastHit()
         {
-            //Debug.Log("Press E to pick up " + itemName);
             _isInRange = true;  
         }
 
@@ -54,7 +53,6 @@ namespace Scripts.Item
         /// </summary>
         public void OnRaycastExit()
         {
-            //Debug.Log("Out of range of " + itemName);
             _isInRange = false;
         }
         /// <summary>
@@ -67,7 +65,6 @@ namespace Scripts.Item
                 _playerState.CurrentActionState = PlayerActionState.Gathering;
                 if (PlayerCharacter.Instance.AddItem(this))
                 {
-                    //TODO: Confirm if we can save a copy of the game object in inventory so ItemPickUp class component remains in game
                     gameObject.SetActive(false);
                 }
             }
