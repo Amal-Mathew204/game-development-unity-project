@@ -151,7 +151,7 @@ namespace Scripts.Player
                 {
                     _playerState.CurrentLocomotionState = PlayerLocomotionState.Jumping;
                 }
-                else if (_characterController.velocity.y < 0f)
+                else if (_characterController.velocity.y <= 0f)
                 {
                     _playerState.CurrentLocomotionState = PlayerLocomotionState.Falling;
                 }
@@ -319,7 +319,14 @@ namespace Scripts.Player
         /// <returns>Boolean Value</returns>
         public bool IsPlayerGrounded()
         {
-            return _playerState.IsPlayerGrounded() ? IsGroundedWhileInGroundedState() : IsGroundedWhileInAirborneState();
+            if (_playerState.IsPlayerGrounded())
+            {
+                return IsGroundedWhileInGroundedState();
+            }
+            else
+            {
+               return IsGroundedWhileInAirborneState();
+            }
         }
         /// <summary>
         /// Mathod used for checking the player is grounded when moving onto slopes. It uses a sphere collider to check the players position.
@@ -327,8 +334,7 @@ namespace Scripts.Player
         /// <returns>Boolean Value</returns>
         public bool IsGroundedWhileInGroundedState()
         {
-            // y position lower than GameObject Position to allow for a buffer between the GameObject and the ground
-            Vector3 sphereColliderPosition = new Vector3(transform.position.x, transform.position.y - (_characterController.height / 2f) - _characterController.radius, transform.position.z);
+            Vector3 sphereColliderPosition = new Vector3(transform.position.x, transform.position.y - _characterController.radius, transform.position.z);
             return Physics.CheckSphere(sphereColliderPosition, _characterController.radius, _groundLayers, QueryTriggerInteraction.Ignore);
         }
 
@@ -381,7 +387,7 @@ namespace Scripts.Player
         {
             Vector3 normal = Vector3.up;
             Vector3 sphereCentre = characterController.transform.position + characterController.center;
-            float distance = characterController.height / 2f + characterController.stepOffset + 0.01f;
+            float distance = 5f;
 
             RaycastHit hit;
             if (Physics.SphereCast(sphereCentre, characterController.radius, Vector3.down, out hit, distance, layerMask))
