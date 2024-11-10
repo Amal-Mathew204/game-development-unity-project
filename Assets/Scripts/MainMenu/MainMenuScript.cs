@@ -37,7 +37,7 @@ namespace Scripts.MainMenu
         /// </summary>
         private void PlayGame()
         {
-            SceneManager.LoadScene("GameScene");
+            SceneManager.LoadScene("TestScene");
         }
 
         /// <summary>
