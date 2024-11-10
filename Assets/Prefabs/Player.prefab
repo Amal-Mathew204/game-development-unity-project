@@ -3936,6 +3936,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2761707239921525765}
   - component: {fileID: 6499082832154951187}
+  - component: {fileID: 3593531006044646847}
   - component: {fileID: 4825075224428912013}
   - component: {fileID: 9184233174499628402}
   - component: {fileID: 1048848783509542336}
@@ -4004,10 +4005,10 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4925788476348707035}
-  m_Enabled: 0
-  m_Avatar: {fileID: 9000000, guid: f8af0573aab879f4c9cd410a4e0a39f9, type: 3}
-  m_Controller: {fileID: 9100000, guid: 535d24752e3d6444da644e79e90ec2ca, type: 2}
-  m_CullingMode: 1
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: 5796f18df371b41de963475424a11924, type: 2}
+  m_Controller: {fileID: 9100000, guid: ae87760d5fea746228361dc77d4f3afc, type: 2}
+  m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
@@ -4018,6 +4019,20 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &3593531006044646847
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4925788476348707035}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6a11c95aefca4af1bb04dddef6cf54f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _animator: {fileID: 6499082832154951187}
+  locomotionBlendSpeed: 4
 --- !u!143 &4825075224428912013
 CharacterController:
   m_ObjectHideFlags: 0
