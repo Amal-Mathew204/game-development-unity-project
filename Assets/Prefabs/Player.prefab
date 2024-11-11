@@ -3940,6 +3940,7 @@ GameObject:
   - component: {fileID: 4825075224428912013}
   - component: {fileID: 9184233174499628402}
   - component: {fileID: 1048848783509542336}
+  - component: {fileID: 3870960847939773920}
   - component: {fileID: 331166954769566835}
   - component: {fileID: 4612491534756057225}
   - component: {fileID: 2498779228058395274}
@@ -4279,11 +4280,56 @@ MonoBehaviour:
         m_CallState: 1
     m_ActionId: bcda0478-3f6e-4ab7-8ae8-337e570e2680
     m_ActionName: 'UI/Inventory[/Keyboard/tab]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3870960847939773920}
+        m_TargetAssemblyTypeName: Scripts.Player.Input.PlayerUIInput, Assembly-CSharp
+        m_MethodName: OnToggleMissionLogMenu
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
+    m_ActionId: 14e36beb-2f91-45ef-b8ab-77b3566d17d7
+    m_ActionName: Player/New action
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3870960847939773920}
+        m_TargetAssemblyTypeName: Scripts.Player.Input.PlayerUIInput, Assembly-CSharp
+        m_MethodName: OnToggleMissionLogMenu
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
+    m_ActionId: 5c448e7c-d57a-4044-949c-de318a4fc010
+    m_ActionName: 'UI/MissionLog[/Keyboard/m]'
   m_NeverAutoSwitchControlSchemes: 1
   m_DefaultControlScheme: Keyboard&Mouse
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &3870960847939773920
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4925788476348707035}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f40973aad73b24350ba9795e17f0a31d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  toggleMissionLogMenu: 0
 --- !u!114 &331166954769566835
 MonoBehaviour:
   m_ObjectHideFlags: 0
