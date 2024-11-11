@@ -15,11 +15,14 @@ __GitHub Pages Link:__ https://amal-mathew204.github.io/The-Wasteland-Gardener/b
 __Game Build Repo:__ https://github.com/Amal-Mathew204/The-Wasteland-Gardener
 
 ## Game Asset:
-Currently no third party assests have been used within our initial prototype. 
+Third Party Assests:
+* [Jammo Character | Mix and Jam 1.1](https://assetstore.unity.com/packages/3d/characters/jammo-character-mix-and-jam-158456?srsltid=AfmBOooTRYysbq1T2GOEt7QOrpRF8EXbNHmFyoquy1aLwUDVvBmj96DS)
+* [Mixamo (for importing animations)](https://www.mixamo.com/)
 
 Assets installed from the unity registry: 
 * Input System 1.7.0
 * Cinemachine 2.9.7
+* ProBuilder 5.0.7
 
 ## Tutorial
 ### Controls Overview
