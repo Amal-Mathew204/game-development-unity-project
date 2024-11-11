@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
+using GameManager = Scripts.Game.GameManager;
 
 namespace Scripts.MainMenu
 {
@@ -38,6 +39,7 @@ namespace Scripts.MainMenu
         private void PlayGame()
         {
             SceneManager.LoadScene("GameScene");
+            GameManager.Instance.DisableMouseCursor();
         }
 
         /// <summary>

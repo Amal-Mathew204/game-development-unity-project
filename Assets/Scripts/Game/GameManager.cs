@@ -105,6 +105,7 @@ namespace Scripts.Game
         {
             EnablePannel("WinPannel");
             HasPlayerWonGame = true;
+            EnableMouseCursor();
         }
 
         /// <summary>
@@ -113,6 +114,7 @@ namespace Scripts.Game
         public void SetPlayerHasLost()
         {
             EnablePannel("LosePannel");
+            EnableMouseCursor();
         }
 
         /// <summary>
@@ -157,6 +159,23 @@ namespace Scripts.Game
             {
                 return dropdown;
             }
+        }
+        #endregion
+
+        #region Disable Methods
+        /// <summary>
+        /// Method Disables visability of the mouse cursor
+        /// </summary>
+        public void DisableMouseCursor()
+        {
+            Cursor.visible = false;
+        }
+        /// <summary>
+        /// Method Enables visability of the mouse cursor
+        /// </summary>
+        public void EnableMouseCursor()
+        {
+            Cursor.visible = true;
         }
         #endregion
     }
