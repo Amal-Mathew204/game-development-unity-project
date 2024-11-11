@@ -34,7 +34,6 @@ namespace Scripts.Player
         {
             _playerLocomotionInput = GetComponent<PlayerLocomotionInput>();
             _playerState = GetComponent<PlayerState>();
-            _playerController = GetComponent<PlayerController>();
         }
 
         private void Update()
