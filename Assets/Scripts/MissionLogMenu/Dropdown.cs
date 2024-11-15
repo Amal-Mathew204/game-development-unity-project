@@ -36,6 +36,16 @@ namespace Scripts.MissonLogMenu
             List<string> missionTitles = new List<string>();
             foreach (Mission mission in MissionList)
             {
+                if (mission.hasSubMissions())
+                {
+                    foreach (Mission submission in mission.SubMissions)
+                    {
+                        Debug.Log("submission");
+                        missionTitles.Add(submission.MissionTitle);
+                    }
+                    continue;
+                }
+
                 missionTitles.Add(mission.MissionTitle);
             }
             dropdown.AddOptions(missionTitles);
