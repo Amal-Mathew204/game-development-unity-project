@@ -323,7 +323,6 @@ namespace Scripts.Player
                 }
             }
 
-            Debug.Log(collectMissions.Count);
             foreach (CollectMission collectMission in collectMissions)
             {
                 if (collectMission == null || collectMission.IsMissionCompleted())
@@ -385,7 +384,6 @@ namespace Scripts.Player
         public bool getTaskAccepted()
         {
             PlayerActionInput playerActionInput = GetComponent<PlayerActionInput>();
-            Debug.Log(playerActionInput.IsPressingAcceptKey);
             return playerActionInput.IsPressingAcceptKey;
         }
         #endregion
