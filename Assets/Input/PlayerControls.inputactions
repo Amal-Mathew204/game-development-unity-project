@@ -78,9 +78,9 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "MissionLog",
+                    "name": "AcceptTask",
                     "type": "Button",
-                    "id": "14e36beb-2f91-45ef-b8ab-77b3566d17d7",
+                    "id": "8270b829-8f1a-45a1-ad74-8f34a6b94332",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -344,7 +344,7 @@
                 {
                     "name": "",
                     "id": "84b968c2-14ca-453f-a2e3-eb4bdc6f8407",
-                    "path": "<Keyboard>/c",
+                    "path": "<Keyboard>/leftCtrl",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
@@ -420,12 +420,12 @@
                 },
                 {
                     "name": "",
-                    "id": "16df2e19-823b-43bd-8269-3aa6018dfcaa",
-                    "path": "<Keyboard>/m",
+                    "id": "bdbe1aa0-14db-432f-84ef-30e0dd186a06",
+                    "path": "<Keyboard>/f",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
-                    "action": "MissionLog",
+                    "action": "AcceptTask",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -529,24 +529,6 @@
                     "name": "Inventory",
                     "type": "Button",
                     "id": "bcda0478-3f6e-4ab7-8ae8-337e570e2680",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "MissionLog",
-                    "type": "Button",
-                    "id": "3674d9fc-ddbe-46ff-a676-9f502662158c",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "Enter",
-                    "type": "Button",
-                    "id": "2ce02335-89e6-4c92-b91c-6f1fb7f6cba7",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -980,28 +962,6 @@
                     "processors": "",
                     "groups": "Keyboard&Mouse",
                     "action": "Inventory",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "135ad804-e890-46cc-8214-21b9fa365ee9",
-                    "path": "<Keyboard>/m",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard&Mouse",
-                    "action": "MissionLog",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "9a6c331c-565d-4ce9-9344-02db07b35d3e",
-                    "path": "<Keyboard>/enter",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard&Mouse",
-                    "action": "Enter",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
