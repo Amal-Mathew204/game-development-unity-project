@@ -38,6 +38,15 @@ namespace Scripts.Quests
         }
 
         /// <summary>
+        /// This method checks if a mission has sub missions
+        /// </summary>
+        public bool hasSubMissions()
+        {
+            return this.SubMissions.Count != 0;
+        }
+
+
+        /// <summary>
         /// Method sets the status of the Mission object to completed
         /// </summary>
         public void SetMissionCompleted()
