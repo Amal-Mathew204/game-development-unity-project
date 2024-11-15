@@ -32,6 +32,7 @@ namespace Scripts.Player
         private float _inventoryWarningMessageTimeDisplayed = 0f;
         private float _warningTextTimeDuration = 2f;
         private PlayerInventoryInput _playerInventoryInput;
+        private PlayerUIInput _playerUIInput;
         private List<GameObject> _storedItems = new List<GameObject>();
 
         //cache values
@@ -69,6 +70,7 @@ namespace Scripts.Player
         private void Start()
         {
             _playerInventoryInput = GetComponent<PlayerInventoryInput>();
+            _playerUIInput = GetComponent<PlayerUIInput>();
         }
         #endregion
 
@@ -78,7 +80,9 @@ namespace Scripts.Player
             ToggleInventoryUI();
             ToggleInventoryWarningMessage();
         }
+        #endregion
 
+        #region Player Inventory Methods
         /// <summary>
         /// This Method will turn on the Inventory Warning Message for three seconds if requested
         /// </summary>
@@ -89,14 +93,14 @@ namespace Scripts.Player
                 return;
             }
             //activates field and returns
-            if(_inventoryWarningMessageTimeDisplayed == 0f)
+            if (_inventoryWarningMessageTimeDisplayed == 0f)
             {
                 _inventoryWarningText.SetActive(true);
                 _inventoryWarningMessageTimeDisplayed += Time.deltaTime;
                 return;
             }
             _inventoryWarningMessageTimeDisplayed += Time.deltaTime;
-            if(_inventoryWarningMessageTimeDisplayed >= _warningTextTimeDuration)
+            if (_inventoryWarningMessageTimeDisplayed >= _warningTextTimeDuration)
             {
                 _inventoryWarningMessageTimeDisplayed = 0f;
                 _activateInventoryWarningMessage = false;
@@ -104,9 +108,7 @@ namespace Scripts.Player
             }
 
         }
-        #endregion
 
-        #region Player Inventory Methods
         /// <summary>
         /// Method Toggles Inventory UI visability (dependant on the users input)
         /// </summary>
@@ -258,6 +260,36 @@ namespace Scripts.Player
             if (GameManager.Instance.MissionList.IndexOf(collectMission) + 1 == dropdown.dropdown.value)
             {
                 dropdown.UpdateCompletionStatus(true);
+            }
+        }
+        #endregion
+
+        #region MissionLog Methods
+        /// <summary>
+        /// Method Sets a boolean value for the class property ToggleMissionLogMenu
+        /// inside the activate instance of the PlayerUIInput Class
+        /// </summary>
+        public void SetMissionLogUIToggle(bool isMissionLogOpen)
+        {
+            _playerUIInput.ToggleMissionLogMenu = isMissionLogOpen;
+            SetCursorVisibility();
+        }
+        #endregion
+
+        #region Cursor Methods
+        /// <summary>
+        /// Method Sets a boolean value for the class property ToggleMissionLogMenu
+        /// inside the activate instance of the PlayerUIInput Class
+        /// </summary>
+        public void SetCursorVisibility()
+        {
+            if (_playerInventoryInput.toggleInventory || _playerUIInput.ToggleMissionLogMenu)
+            {
+                GameManager.Instance.EnableMouseCursor();
+            }
+            else
+            {
+                GameManager.Instance.DisableMouseCursor();
             }
         }
         #endregion
