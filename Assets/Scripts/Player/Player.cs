@@ -31,7 +31,7 @@ namespace Scripts.Player
 
 
         [Header("Inventory Components")]
-        private List<ItemPickup> _inventory = new List<ItemPickup>();
+        public List<ItemPickup> Inventory = new List<ItemPickup>();
         [SerializeField] private int _maximumInventorySize = 10;
         [SerializeField] private TextMeshProUGUI _inventoryText;
         [SerializeField] private GameObject _inventoryPanel;
