@@ -11,8 +11,10 @@ using Scripts.Item;
 using Scripts.MissonLogMenu;
 using Scripts.Player.Input;
 using Scripts.Quests;
+using Scripts.NPC;
 using MissionLogDropdown = Scripts.MissonLogMenu.Dropdown;
 using Unity.VisualScripting;
+
 
 
 
@@ -29,15 +31,16 @@ namespace Scripts.Player
         [SerializeField] private GameObject _inventoryPanel;
         [SerializeField] private Transform _inventoryUIParent;  // Parent UI object to hold inventory items
         [SerializeField] private GameObject _inventoryWarningText;
-        [SerializeField] private GameObject _startNPC; // Reference to the startNPC prefab
         private bool _activateInventoryWarningMessage = false;
         private float _inventoryWarningMessageTimeDisplayed = 0f;
         private float _warningTextTimeDuration = 2f;
         private PlayerInventoryInput _playerInventoryInput;
         private PlayerUIInput _playerUIInput;
         private List<GameObject> _storedItems = new List<GameObject>();
-        //private bool _isCyclingText= false;
-        private NPCTrigger _npcTrigger;
+
+
+        private GameObject _startNPC; // Reference to the startNPC prefab
+        private StartNPC _npcTrigger;
 
 
         //cache values
@@ -75,7 +78,8 @@ namespace Scripts.Player
         {
             _playerInventoryInput = GetComponent<PlayerInventoryInput>();
             _playerUIInput = GetComponent<PlayerUIInput>();
-            _npcTrigger = _startNPC.GetComponentInChildren<NPCTrigger>();
+            _startNPC = GameObject.FindGameObjectWithTag("StartNPC");
+            _npcTrigger = _startNPC.GetComponentInChildren<StartNPC>();
         }
         #endregion
 
@@ -188,13 +192,17 @@ namespace Scripts.Player
         }
         #endregion
 
-        #region
+        #region Start NPC
         /// <summary>
         /// This is called to update the inventories UI, to ensure we are displaying the present version of items in the inventory
         /// </summary>
 
-        public void ContinueGame()
+        public void ContinueGame(InputAction.CallbackContext context)
         {
+            if (!context.performed)
+            {
+                return;
+            }
             Debug.Log("Game Continued");
 
             if (_npcTrigger != null)
@@ -215,12 +223,6 @@ namespace Scripts.Player
                     }
                 }
             }
-            
-            
-            
-
-            
-            
         }
         #endregion
 

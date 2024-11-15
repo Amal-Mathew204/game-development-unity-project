@@ -54,6 +54,7 @@ namespace Scripts.Player
         private float _stepOffset;
         private bool _jumpedLastFrame = false; //avoid double jumping
         private PlayerLocomotionState _lastLocomotionState = PlayerLocomotionState.Idling;
+        public bool startOfGame = true;
 
         #endregion
 
@@ -280,7 +281,19 @@ namespace Scripts.Player
         #region Late Update Methods
         private void LateUpdate()
         {
-            UpdateCameraRotation();
+            Debug.Log(_playerLocomotionInput.LookInput);
+            if (startOfGame)
+            {
+                if(this.enabled)
+                {
+                    startOfGame = false;
+                
+                }
+            }
+            else
+            {
+                UpdateCameraRotation();
+            }
         }
 
         /// <summary>
