@@ -9,6 +9,7 @@ namespace Scripts.MissonLogMenu
     {
         public GameObject bubbleText;
         private TextMeshPro textComponent;
+        private TextMeshProUGUI[] textMeshArray = new TextMeshProUGUI[4];
         public float typeWritingSpeed;
         public string message;
 
