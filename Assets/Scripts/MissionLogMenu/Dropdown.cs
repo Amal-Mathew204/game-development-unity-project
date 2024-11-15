@@ -16,6 +16,7 @@ namespace Scripts.MissonLogMenu
         public TextMeshProUGUI completion;
         public TextMeshProUGUI header;
         public List<Mission> MissionList { get; private set; }
+        public List<string> MissionTitles { get; private set; }
 
         // Boolean variables to track completion of each quest
         public bool slopeQuestComplete = false;
@@ -45,10 +46,13 @@ namespace Scripts.MissonLogMenu
                     }
                     continue;
                 }
-
-                missionTitles.Add(mission.MissionTitle);
+                else
+                {
+                    missionTitles.Add(mission.MissionTitle);
+                }
             }
             dropdown.AddOptions(missionTitles);
+            MissionTitles = missionTitles;
         }
 
         /// <summary>
@@ -66,11 +70,38 @@ namespace Scripts.MissonLogMenu
             }
             else
             {
-                Mission mission = MissionList[option - 1];
+                string missionTitle = MissionTitles[option - 1];
+
+                Mission mission = GetMission(missionTitle);
                 info.text = mission.MissionInfo;
                 SetHeaderVisibility(true);
                 UpdateCompletionStatus(mission.IsMissionCompleted());
             }
+        }
+
+        public Mission GetMission(string MissionTitle)
+        {
+            foreach(Mission mission in MissionList)
+            {
+                if (mission.hasSubMissions())
+                {
+                    foreach(Mission subMission in mission.SubMissions)
+                    {
+                        if(subMission.MissionTitle == MissionTitle)
+                        {
+                            return subMission;
+                        }
+                    }
+                }
+                else
+                {
+                    if (mission.MissionTitle == MissionTitle)
+                    {
+                        return mission;
+                    }
+                }
+            }
+            return new Mission("","");
         }
 
         /// <summary>

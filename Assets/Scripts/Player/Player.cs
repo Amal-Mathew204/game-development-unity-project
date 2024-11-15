@@ -288,22 +288,54 @@ namespace Scripts.Player
 
         #region Mission Methods
         /// <summary>
+        /// 
+        /// </summary>
+        public List<CollectMission> GetCollectMissions(List<Mission> missionList)
+        {
+            List<CollectMission> collectMissions = new List<CollectMission>();
+            foreach (Mission mission in missionList)
+            {
+                if (mission.GetType().Name == "CollectMission")
+                {
+                    CollectMission collectMission = (CollectMission)mission;
+                    collectMissions.Add(collectMission);
+                }
+            }
+            return collectMissions;
+        }
+
+        /// <summary>
         /// Method Checks if the Item Collected is involved in an active mission. If true the item is registered in the mission as collected.
         /// </summary>
         private void HandleItemInMission(string itemName)
         {
-            Mission mission = GameManager.Instance.MissionList.Find(mission => mission.GetType().Name == "CollectMission");
-            if(mission == null || mission.IsMissionCompleted())
+            List <CollectMission> collectMissions = new List<CollectMission>();
+            foreach(Mission mission in GameManager.Instance.MissionList)
             {
-                return;
+                if (mission.hasSubMissions())
+                {
+                    collectMissions.AddRange(GetCollectMissions(mission.SubMissions));
+                }
+                else if(mission.GetType().Name == "CollectMission")
+                {
+                    CollectMission collectMission = (CollectMission)mission;
+                    collectMissions.Add(collectMission);
+                }
             }
-            //We can type cast since we are sure its a collect mission object
-            CollectMission collectMission = (CollectMission)mission;
-            collectMission.RegisterCollectedItem(itemName);
 
-            if (collectMission.IsMissionCompleted())
+            Debug.Log(collectMissions.Count);
+            foreach (CollectMission collectMission in collectMissions)
             {
-                UpdateDropDownMissionStatus(collectMission);
+                if (collectMission == null || collectMission.IsMissionCompleted())
+                {
+                    continue;
+                }
+                collectMission.RegisterCollectedItem(itemName);
+
+                if (collectMission.IsMissionCompleted())
+                {
+                    UpdateDropDownMissionStatus(collectMission);
+                }
             }
         }
 
@@ -313,7 +345,7 @@ namespace Scripts.Player
         private void UpdateDropDownMissionStatus(CollectMission collectMission)
         {
             MissionLogDropdown dropdown = GameObject.FindGameObjectWithTag("MissionUI").GetComponent<MissionLogDropdown>();
-            if (GameManager.Instance.MissionList.IndexOf(collectMission) + 1 == dropdown.dropdown.value)
+            if (dropdown.MissionTitles.FindIndex(title => title == collectMission.MissionTitle) + 1 == dropdown.dropdown.value)
             {
                 dropdown.UpdateCompletionStatus(true);
             }
