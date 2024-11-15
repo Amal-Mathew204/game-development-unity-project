@@ -7,7 +7,7 @@ namespace Scripts.Quests
     public class QuestPointer : MonoBehaviour
     {
         public Transform target; //target location
-        public float rotationSpeed; //rotation speed of arrow
+        [SerializeField] private float rotationSpeed; //rotation speed of arrow
 
         /// <summary>
         /// Rotates the arrow to face the target position using spherical interpolation.
