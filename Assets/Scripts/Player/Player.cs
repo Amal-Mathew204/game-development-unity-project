@@ -29,12 +29,16 @@ namespace Scripts.Player
         [SerializeField] private GameObject _inventoryPanel;
         [SerializeField] private Transform _inventoryUIParent;  // Parent UI object to hold inventory items
         [SerializeField] private GameObject _inventoryWarningText;
+        [SerializeField] private GameObject _startNPC; // Reference to the startNPC prefab
         private bool _activateInventoryWarningMessage = false;
         private float _inventoryWarningMessageTimeDisplayed = 0f;
         private float _warningTextTimeDuration = 2f;
         private PlayerInventoryInput _playerInventoryInput;
         private PlayerUIInput _playerUIInput;
         private List<GameObject> _storedItems = new List<GameObject>();
+        //private bool _isCyclingText= false;
+        private NPCTrigger _npcTrigger;
+
 
         //cache values
         private bool _isInventoryOpen = false;
@@ -71,6 +75,7 @@ namespace Scripts.Player
         {
             _playerInventoryInput = GetComponent<PlayerInventoryInput>();
             _playerUIInput = GetComponent<PlayerUIInput>();
+            _npcTrigger = _startNPC.GetComponentInChildren<NPCTrigger>();
         }
         #endregion
 
@@ -192,19 +197,30 @@ namespace Scripts.Player
         {
             Debug.Log("Game Continued");
 
-            // Check if PlayerController exists and activate it
-            PlayerController playerController = GetComponent<PlayerController>();
-            if (playerController != null)
+            if (_npcTrigger != null)
             {
-                playerController.enabled = true;  // Re-enable the PlayerController script
+                if(!_npcTrigger.CycleBubbleText())
+                {
+                    // Check if PlayerController exists and activate it
+                    PlayerController playerController = GetComponent<PlayerController>();
+                    PlayerInput playerInput = GetComponent<PlayerInput>();
+                    if (playerController != null)
+                    {
+                        playerController.enabled = true;  // Re-enable the PlayerController script
+                        playerInput.SwitchCurrentActionMap("Player");
+                    }
+                    else
+                    {
+                        Debug.LogError("PlayerController component not found on the player object."); 
+                    }
+                }
             }
-            else
-            {
-                Debug.LogError("PlayerController component not found on the player object.");
-            }
+            
+            
+            
 
-            // Optionally, you can disable the Player script to stop unnecessary updates after resuming
-            this.enabled = false;  // Disable the Player script (optional, based on your needs)
+            
+            
         }
         #endregion
 
