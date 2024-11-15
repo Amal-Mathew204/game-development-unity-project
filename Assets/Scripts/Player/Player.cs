@@ -175,7 +175,7 @@ namespace Scripts.Player
             }
             _storedItems.Clear();
 
-            if (_inventory.Count == 0)
+            if (Inventory.Count == 0)
             {
                 _inventoryText.text = "Inventory is empty";
                 return;
@@ -183,7 +183,7 @@ namespace Scripts.Player
 
             _inventoryText.text = "Inventory";
             // Create UI elements for each inventory item
-            foreach (ItemPickup item in _inventory)
+            foreach (ItemPickup item in Inventory)
             {
 
                 GameObject itemSlotPrefab = Resources.Load("Prefabs/ItemSlot") as GameObject;
@@ -246,13 +246,13 @@ namespace Scripts.Player
         /// </summary>
         public bool AddItem(ItemPickup item)
         {   
-            if (_inventory.Count >= _maximumInventorySize)
+            if (Inventory.Count >= _maximumInventorySize)
             {
                 _activateInventoryWarningMessage = true;
                 return false;   
             }
 
-            _inventory.Add(item);
+            Inventory.Add(item);
             HandleItemInMission(item.itemName);
             UpdateInventoryUI();
             return true;
@@ -264,9 +264,9 @@ namespace Scripts.Player
         /// </summary>
         public void RemoveItem(ItemPickup item)
         {
-            if (_inventory.Contains(item)) {
+            if (Inventory.Contains(item)) {
 
-                _inventory.Remove(item);
+                Inventory.Remove(item);
                 UpdateInventoryUI();
             }
         }
@@ -381,6 +381,16 @@ namespace Scripts.Player
             }
         }
         #endregion
+        #region Action Methods
+        public bool getTaskAccepted()
+        {
+            PlayerActionInput playerActionInput = GetComponent<PlayerActionInput>();
+            Debug.Log(playerActionInput.IsPressingAcceptKey);
+            return playerActionInput.IsPressingAcceptKey;
+        }
+        #endregion
+
+
 
         #region Utility Methods
         /// <summary>

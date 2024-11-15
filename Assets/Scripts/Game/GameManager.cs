@@ -77,11 +77,12 @@ namespace Scripts.Game
             CollectMission collectShovel = new CollectMission("Find Shovel", "Explore the terrian to salvage the seed bags", 1, new List<string>() { "Shovel" });
             CollectMission collectSeedBag = new CollectMission("Find SeedBags", "Explore the terrian to salvage the seed bags", 3, new List<string>() { "Seed Bag" });
             Mission findFarmLand = new Mission("Find Farm Land", "");
+            Mission buildFarm = new Mission("Build Farm", "Using the shovel build an area to plant some vegitation");
             farmMission.AddSubMission(collectShovel);
             farmMission.AddSubMission(collectSeedBag);
             farmMission.AddSubMission(findFarmLand);
 
-            MissionList = new List<Mission>() { farmMission, new CollectMission("Collect Item", "Explore the terrain. There are three items you need to collect", 3) };
+            MissionList = new List<Mission>() { buildFarm, farmMission, new CollectMission("Collect Item", "Explore the terrain. There are three items you need to collect", 3) };
     }
         #endregion
 

@@ -41,7 +41,6 @@ namespace Scripts.MissonLogMenu
                 {
                     foreach (Mission submission in mission.SubMissions)
                     {
-                        Debug.Log("submission");
                         missionTitles.Add(submission.MissionTitle);
                     }
                     continue;
@@ -101,7 +100,7 @@ namespace Scripts.MissonLogMenu
                     }
                 }
             }
-            return new Mission("","");
+            return null;
         }
 
         /// <summary>
