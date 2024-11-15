@@ -12,6 +12,7 @@ using Scripts.MissonLogMenu;
 using Scripts.Player.Input;
 using Scripts.Quests;
 using MissionLogDropdown = Scripts.MissonLogMenu.Dropdown;
+using Unity.VisualScripting;
 
 
 
@@ -44,7 +45,6 @@ namespace Scripts.Player
         {
             SetInstance();
         }
-
         /// <summary>
         /// Set Single Instance of Player
         /// </summary>
@@ -182,6 +182,33 @@ namespace Scripts.Player
             }
         }
         #endregion
+
+        #region
+        /// <summary>
+        /// This is called to update the inventories UI, to ensure we are displaying the present version of items in the inventory
+        /// </summary>
+
+        public void ContinueGame()
+        {
+            Debug.Log("Game Continued");
+
+            // Check if PlayerController exists and activate it
+            PlayerController playerController = GetComponent<PlayerController>();
+            if (playerController != null)
+            {
+                playerController.enabled = true;  // Re-enable the PlayerController script
+            }
+            else
+            {
+                Debug.LogError("PlayerController component not found on the player object.");
+            }
+
+            // Optionally, you can disable the Player script to stop unnecessary updates after resuming
+            this.enabled = false;  // Disable the Player script (optional, based on your needs)
+        }
+        #endregion
+
+
 
 
         #region Player Item Methods

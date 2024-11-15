@@ -5,6 +5,7 @@ using UnityEngine;
 using PlayerLocomotionInput = Scripts.Player.Input.PlayerLocomotionInput;
 using PlayerActionInput = Scripts.Player.Input.PlayerActionInput;
 using GameSettings = Scripts.Game.GameSettings;
+using UnityEngine.InputSystem;
 
 namespace Scripts.Player
 {
@@ -76,6 +77,7 @@ namespace Scripts.Player
             {
                 Debug.LogError("GameSettings is null");
             }
+            this.enabled = false;
         }
         #endregion
 
