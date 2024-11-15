@@ -65,6 +65,7 @@ namespace Scripts.Game
         /// </summary>
         public void CreateMissions()
         {
+            //TODO: The trigger box missions will no longer work. To utlilise these please consult the BuildFarm Quest to change the Quest Script Logic.
             //MissionList = new List<Mission>() {new Mission("Mini Everest", "Explore the terrain and locate a short hill. Reach the top of the hill."),
             //                               new Mission("Find Trigger Box", "Explore the terrain and locate the trigger box. Pass under it and listen for the sound effect."),
             //                               new CollectMission("Collect Item", "Explore the terrain. There are three items you need to collect", 3),
@@ -80,9 +81,10 @@ namespace Scripts.Game
             Mission buildFarm = new Mission("Build Farm", "Using the shovel build an area to plant some vegitation");
             farmMission.AddSubMission(collectShovel);
             farmMission.AddSubMission(collectSeedBag);
-            farmMission.AddSubMission(findFarmLand);
+            //farmMission.AddSubMission(findFarmLand);
+            farmMission.AddSubMission(buildFarm);
 
-            MissionList = new List<Mission>() { buildFarm, farmMission, new CollectMission("Collect Item", "Explore the terrain. There are three items you need to collect", 3) };
+            MissionList = new List<Mission>() {farmMission, new CollectMission("Collect Item", "Explore the terrain. There are three items you need to collect", 3) };
     }
         #endregion
 
