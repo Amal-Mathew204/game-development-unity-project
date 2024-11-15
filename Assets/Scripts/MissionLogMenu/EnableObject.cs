@@ -19,7 +19,6 @@ namespace Scripts.MissonLogMenu
         {
             info.SetActive(true);
             PlayerManager.Instance.SetMissionLogUIToggle(true);
-            GameManager.Instance.EnableMouseCursor();
         }
 
 

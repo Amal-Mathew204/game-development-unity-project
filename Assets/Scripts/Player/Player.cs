@@ -272,6 +272,25 @@ namespace Scripts.Player
         public void SetMissionLogUIToggle(bool isMissionLogOpen)
         {
             _playerUIInput.ToggleMissionLogMenu = isMissionLogOpen;
+            SetCursorVisibility();
+        }
+        #endregion
+
+        #region Cursor Methods
+        /// <summary>
+        /// Method Sets a boolean value for the class property ToggleMissionLogMenu
+        /// inside the activate instance of the PlayerUIInput Class
+        /// </summary>
+        public void SetCursorVisibility()
+        {
+            if (_playerInventoryInput.toggleInventory || _playerUIInput.ToggleMissionLogMenu)
+            {
+                GameManager.Instance.EnableMouseCursor();
+            }
+            else
+            {
+                GameManager.Instance.DisableMouseCursor();
+            }
         }
         #endregion
 

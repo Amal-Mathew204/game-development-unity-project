@@ -34,12 +34,10 @@ namespace Scripts.Player.Input
             ToggleMissionLogMenu = !ToggleMissionLogMenu;
             if (ToggleMissionLogMenu)
             {
-                GameManager.Instance.EnableMouseCursor();
                 openMissionLogButton.onClick.Invoke();
             }
             else
             {
-                GameManager.Instance.DisableMouseCursor();
                 closeMissionLogButton.onClick.Invoke();
             }
 

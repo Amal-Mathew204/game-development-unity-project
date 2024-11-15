@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using GameManager = Scripts.Game.GameManager;
+using PlayerManager = Scripts.Player.Player;
 
 
 namespace Scripts.Player.Input
@@ -16,17 +17,8 @@ namespace Scripts.Player.Input
         public void OnToggleInventory(InputAction.CallbackContext context) {
             if (context.performed) {
                 toggleInventory = !toggleInventory;
+                PlayerManager.Instance.SetCursorVisibility();
             }
-
-            if (toggleInventory)
-            {
-                GameManager.Instance.EnableMouseCursor();
-            }
-            else
-            {
-                GameManager.Instance.DisableMouseCursor();
-            }
-
         }
     }
 }
