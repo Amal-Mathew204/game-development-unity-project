@@ -4348,9 +4348,25 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 3674d9fc-ddbe-46ff-a676-9f502662158c
     m_ActionName: 'UI/MissionLog[/Keyboard/m]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5795637166951440408}
+        m_TargetAssemblyTypeName: Scripts.Player.Player, Assembly-CSharp
+        m_MethodName: ContinueGame
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
+    m_ActionId: 2ce02335-89e6-4c92-b91c-6f1fb7f6cba7
+    m_ActionName: UI/New action
   m_NeverAutoSwitchControlSchemes: 1
   m_DefaultControlScheme: Keyboard&Mouse
-  m_DefaultActionMap: Player
+  m_DefaultActionMap: UI
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
 --- !u!114 &3870960847939773920
@@ -4466,6 +4482,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1
   gatheringTime: 0.5
+  startOfGame: 1
 --- !u!114 &5795637166951440408
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4483,6 +4500,7 @@ MonoBehaviour:
   _inventoryPanel: {fileID: 4401240480415576691}
   _inventoryUIParent: {fileID: 6744890442093820604}
   _inventoryWarningText: {fileID: 81463352244117436}
+  _startNPC: {fileID: 0}
 --- !u!1 &4954197587891052707
 GameObject:
   m_ObjectHideFlags: 0
@@ -4511,7 +4529,7 @@ Transform:
   m_GameObject: {fileID: 4954197587891052707}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.00000023841858, y: 0.70000005, z: -5.000003}
+  m_LocalPosition: {x: 0, y: 0.7000002, z: -5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5969,7 +5987,7 @@ Transform:
   m_GameObject: {fileID: 7326183822162858948}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.00000023841858, y: 0.70000005, z: -5.000003}
+  m_LocalPosition: {x: 0, y: 0.7000002, z: -5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

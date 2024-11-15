@@ -3,7 +3,7 @@ using TMPro;
 using System.Collections;
 using Scripts.Game;
 
-namespace Scripts.NPC
+namespace Scripts.MissonLogMenu
 {
     public class NPCTrigger : MonoBehaviour
     {
