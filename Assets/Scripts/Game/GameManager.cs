@@ -65,16 +65,23 @@ namespace Scripts.Game
         /// </summary>
         public void CreateMissions()
         {
+            //MissionList = new List<Mission>() {new Mission("Mini Everest", "Explore the terrain and locate a short hill. Reach the top of the hill."),
+            //                               new Mission("Find Trigger Box", "Explore the terrain and locate the trigger box. Pass under it and listen for the sound effect."),
+            //                               new CollectMission("Collect Item", "Explore the terrain. There are three items you need to collect", 3),
+            //                               new Mission("Fallen Hero", "Explore the terrain. There is a robot who failed its mission. Talk to it."),
+            //                               new Mission("Stairway", "Explore the terrain. There are some steps. Reach the top."),
+            //                               new Mission("Create Farm", "Find the tools and land to greenify the world ")};
+
             HasPlayerWonGame = false; //reset condition
             Mission farmMission = new Mission("Create Farm", "");
-            CollectMission collectShovel = new CollectMission("Find Shovel", "", 1, new List<string>() {"Shovel"});
-            CollectMission collectSeedBag = new CollectMission("Find SeedBags", "", 5, new List<string>() { "SeedBags" });
+            CollectMission collectShovel = new CollectMission("Find Shovel", "Explore the terrian to salvage the seed bags", 1, new List<string>() { "Shovel" });
+            CollectMission collectSeedBag = new CollectMission("Find SeedBags", "Explore the terrian to salvage the seed bags", 3, new List<string>() { "Seed Bag" });
             Mission findFarmLand = new Mission("Find Farm Land", "");
             farmMission.AddSubMission(collectShovel);
             farmMission.AddSubMission(collectSeedBag);
             farmMission.AddSubMission(findFarmLand);
 
-            MissionList = new List<Mission>() { farmMission };
+            MissionList = new List<Mission>() { farmMission, new CollectMission("Collect Item", "Explore the terrain. There are three items you need to collect", 3) };
     }
         #endregion
 
