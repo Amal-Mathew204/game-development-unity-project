@@ -178,6 +178,23 @@ namespace Scripts.Game
             Cursor.visible = true;
         }
         #endregion
+
+        #region Game Screen Methods
+        /// <summary>
+        /// 
+        /// </summary>
+        public void ChangeEnterTextFieldVisibility(bool visibility)
+        {
+            GameObject gameScreenCanvas = GameObject.FindGameObjectWithTag("GameScreen");
+            if(gameScreenCanvas == null)
+            {
+                Debug.LogError("Game Screen could not be found");
+                return;
+            }
+            GameObject enterTextField = gameScreenCanvas.transform.Find("EnterTextField").gameObject;
+            enterTextField.SetActive(visibility);
+        }
+        #endregion
     }
 
 }
