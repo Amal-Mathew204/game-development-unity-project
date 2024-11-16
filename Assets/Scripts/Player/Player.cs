@@ -222,8 +222,7 @@ namespace Scripts.Player
                     {
                         playerController.enabled = true;  // Re-enable the PlayerController script
                         playerInput.SwitchCurrentActionMap("Player");
-                        GameObject message = GameObject.FindGameObjectWithTag("Continue Message");
-                        message.SetActive(false);
+                        GameManager.Instance.ChangeEnterTextFieldVisibility(false);
                     }
                     else
                     {

@@ -85,9 +85,7 @@ namespace Scripts.NPC
             if (textComponent != null)
             {
                 textComponent.text = _textSections[_currentTextIndex];
-                GameObject message = GameObject.FindGameObjectWithTag("ContinueMessage");
-                message.SetActive(true);
-                Debug.Log(message);
+                GameManager.Instance.ChangeEnterTextFieldVisibility(true);
             }
             
         }

@@ -4500,7 +4500,6 @@ MonoBehaviour:
   _inventoryPanel: {fileID: 4401240480415576691}
   _inventoryUIParent: {fileID: 6744890442093820604}
   _inventoryWarningText: {fileID: 81463352244117436}
-  _startNPC: {fileID: 0}
 --- !u!1 &4954197587891052707
 GameObject:
   m_ObjectHideFlags: 0
