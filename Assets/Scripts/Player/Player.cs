@@ -29,6 +29,7 @@ namespace Scripts.Player
         private PlayerInventoryInput _playerInventoryInput;
         private PlayerUIInput _playerUIInput;
 
+
         [Header("Inventory Components")]
         private List<ItemPickup> _inventory = new List<ItemPickup>();
         [SerializeField] private int _maximumInventorySize = 10;
@@ -45,6 +46,7 @@ namespace Scripts.Player
         [Header("Game Start Components")]
         private GameObject _startNPC; // Reference to the startNPC prefab
         private StartNPC _npcTrigger;
+        public bool startOfGame = true;
 
 
         //cache values
@@ -87,12 +89,14 @@ namespace Scripts.Player
             _playerUIInput = GetComponent<PlayerUIInput>();
             _startNPC = GameObject.FindGameObjectWithTag("StartNPC");
             _npcTrigger = _startNPC.GetComponentInChildren<StartNPC>();
+            
         }
         #endregion
 
         #region Update Methods
         private void Update()
         {
+            
             ToggleInventoryUI();
             ToggleInventoryWarningMessage();
         }
@@ -130,7 +134,7 @@ namespace Scripts.Player
         /// </summary>
         private void ToggleInventoryUI()
         {
-            if (_inventoryPanel == null || _playerInventoryInput.toggleInventory == _isInventoryOpen)
+            if (_inventoryPanel == null || _playerInventoryInput.toggleInventory  == _isInventoryOpen)
             {
                 return;
             }
@@ -202,6 +206,8 @@ namespace Scripts.Player
         #region Start NPC
         /// <summary>
         /// This is called at the start of the game to cycle through the starter NPC comments and enable player movement once done
+        /// Once the method has finished displaying all NPC comments we disable the entertextfield and allow the player to move around
+        /// in the game
         /// </summary>
         public void ContinueGame(InputAction.CallbackContext context)
         {
@@ -221,6 +227,7 @@ namespace Scripts.Player
                     if (playerController != null)
                     {
                         playerController.enabled = true;  // Re-enable the PlayerController script
+                        startOfGame = false;
                         playerInput.SwitchCurrentActionMap("Player");
                         GameManager.Instance.ChangeEnterTextFieldVisibility(false);
                     }
