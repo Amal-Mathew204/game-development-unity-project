@@ -7,7 +7,7 @@ namespace Scripts.NPC
 {
     public class NPCTrigger : MonoBehaviour
     {
-        public GameObject bubbleText;
+        public GameObject bubbleText;        
         private TextMeshPro textComponent;
         public float typeWritingSpeed;
         public string message;
