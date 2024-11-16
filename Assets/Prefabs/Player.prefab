@@ -4464,17 +4464,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _characterController: {fileID: 4825075224428912013}
   _playerCamera: {fileID: 5368965581856224664}
-  walkSpeed: 100
-  walkAcceleration: 100
-  runSpeed: 100
-  runAcceleration: 100
+  walkSpeed: 2
+  walkAcceleration: 25
+  runSpeed: 4
+  runAcceleration: 35
   sprintSpeed: 7
-  sprintAcceleration: 100
+  sprintAcceleration: 50
   drag: 20
-  gravity: 20
-  jumpSpeed: 100
-  inAirAcceleration: 100
-  terminalVelocity: 30
+  gravity: 25
+  jumpSpeed: 1
+  inAirAcceleration: 25
+  terminalVelocity: 50
   lookSensitivityH: 0.5
   lookSensitivityV: 0.5
   lookLimitV: 70
