@@ -976,7 +976,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  rotationSpeed: 3
+  _rotationSpeed: 3
 --- !u!1 &867923498461311581
 GameObject:
   m_ObjectHideFlags: 0
