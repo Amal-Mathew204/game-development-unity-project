@@ -7,7 +7,7 @@ namespace Scripts.Player
     public class PlayerQuestPointer : MonoBehaviour
     {
         [HideInInspector] public Transform target; //target location
-        [SerializeField] private float rotationSpeed; //rotation speed of arrow
+        [SerializeField] private float _rotationSpeed; //rotation speed of arrow
 
 
         /// <summary>
