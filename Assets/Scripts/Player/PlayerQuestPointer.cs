@@ -7,7 +7,7 @@ namespace Scripts.Player
     public class PlayerQuestPointer : MonoBehaviour
     {
         [HideInInspector] public Transform target; //target location
-        [SerializeField] private float _rotationSpeed; //rotation speed of arrow
+        [SerializeField] private float _rotationSpeed = 3.0f; //rotation speed of arrow
 
 
         /// <summary>
@@ -30,7 +30,7 @@ namespace Scripts.Player
                 return;
             }
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(target.position - transform.position),
-            rotationSpeed * Time.deltaTime);
+            _rotationSpeed * Time.deltaTime);
         }
     }
 }
