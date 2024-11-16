@@ -2,12 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Scripts.Quests
+namespace Scripts.Player
 {
-    public class QuestPointer : MonoBehaviour
+    public class PlayerQuestPointer : MonoBehaviour
     {
-        public Transform target; //target location
+        [HideInInspector] public Transform target; //target location
         [SerializeField] private float rotationSpeed; //rotation speed of arrow
+
+
+        /// <summary>
+		/// This method sets an initial target for the PlayerQuestPointer
+		/// </summary>
+        private void Start()
+        {
+            target = GameObject.FindGameObjectWithTag("SlopeTrigger").transform;
+            Debug.Log(target);
+        }
 
         /// <summary>
         /// Rotates the arrow to face the target position using spherical interpolation.
@@ -15,8 +25,12 @@ namespace Scripts.Quests
         /// </summary>
         private void Update()
         {
+            if(target == null)
+            {
+                return;
+            }
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(target.position - transform.position),
-                rotationSpeed * Time.deltaTime);
+            rotationSpeed * Time.deltaTime);
         }
     }
 }
