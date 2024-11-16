@@ -24,7 +24,12 @@ namespace Scripts.Player
     public class Player : MonoBehaviour
     {
         #region Class Variables
+        [Header("Player Components")]
         public static Player Instance;  // Singleton instance
+        private PlayerInventoryInput _playerInventoryInput;
+        private PlayerUIInput _playerUIInput;
+
+        [Header("Inventory Components")]
         private List<ItemPickup> _inventory = new List<ItemPickup>();
         [SerializeField] private int _maximumInventorySize = 10;
         [SerializeField] private TextMeshProUGUI _inventoryText;
@@ -34,20 +39,22 @@ namespace Scripts.Player
         private bool _activateInventoryWarningMessage = false;
         private float _inventoryWarningMessageTimeDisplayed = 0f;
         private float _warningTextTimeDuration = 2f;
-        private PlayerInventoryInput _playerInventoryInput;
-        private PlayerUIInput _playerUIInput;
+        private bool _isInventoryOpen = false;
         private List<GameObject> _storedItems = new List<GameObject>();
 
-
+        [Header("Game Start Components")]
         private GameObject _startNPC; // Reference to the startNPC prefab
         private StartNPC _npcTrigger;
 
 
         //cache values
-        private bool _isInventoryOpen = false;
+
         #endregion
 
         #region Awake Methods
+        /// <summary>
+        /// Call SetInstance on awake of this script
+        /// </summary>
         private void Awake()
         {
             SetInstance();
@@ -72,7 +79,7 @@ namespace Scripts.Player
 
         #region Start Methods
         /// <summary>
-        /// Initalise Player Inventory Input Private Field
+        /// Initalise Player Inventory Input Private Field, the starter NPC and the NPCtrigger
         /// </summary>
         private void Start()
         {
@@ -194,9 +201,8 @@ namespace Scripts.Player
 
         #region Start NPC
         /// <summary>
-        /// This is called to update the inventories UI, to ensure we are displaying the present version of items in the inventory
+        /// This is called at the start of the game to cycle through the starter NPC comments and enable player movement once done
         /// </summary>
-
         public void ContinueGame(InputAction.CallbackContext context)
         {
             if (!context.performed)
@@ -225,9 +231,6 @@ namespace Scripts.Player
             }
         }
         #endregion
-
-
-
 
         #region Player Item Methods
         /// <summary>
