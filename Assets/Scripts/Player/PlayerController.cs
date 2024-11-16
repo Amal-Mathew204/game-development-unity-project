@@ -281,7 +281,7 @@ namespace Scripts.Player
         #region Late Update Methods
         private void LateUpdate()
         {
-            Debug.Log(_playerLocomotionInput.LookInput);
+            
             if (startOfGame)
             {
                 if(this.enabled)

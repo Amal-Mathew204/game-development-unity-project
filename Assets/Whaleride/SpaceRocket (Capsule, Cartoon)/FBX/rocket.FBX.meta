@@ -1,79 +1,222 @@
 fileFormatVersion: 2
 guid: 4891bd9dc190fc94a838d0409002e3e2
+AssetOrigin:
+  serializedVersion: 1
+  productId: 196997
+  packageName: Rocket (Cartoon, Capsule)
+  packageVersion: 1.0
+  assetPath: Assets/Whaleride/SpaceRocket (Capsule, Cartoon)/FBX/rocket.FBX
+  uploadId: 441519
 ModelImporter:
-  serializedVersion: 23
-  fileIDToRecycleName:
-    100000: body
-    100002: borders
-    100004: chair
-    100006: exhaust_00
-    100008: exhaust_01
-    100010: exhaust_02
-    100012: exhaust_03
-    100014: glass
-    100016: //RootNode
-    100018: table
-    100020: window_004
-    100022: window_005
-    100024: window_006
-    100026: window_01
-    400000: body
-    400002: borders
-    400004: chair
-    400006: exhaust_00
-    400008: exhaust_01
-    400010: exhaust_02
-    400012: exhaust_03
-    400014: glass
-    400016: //RootNode
-    400018: table
-    400020: window_004
-    400022: window_005
-    400024: window_006
-    400026: window_01
-    2100000: 13 - Default
-    2300000: body
-    2300002: borders
-    2300004: chair
-    2300006: exhaust_00
-    2300008: exhaust_01
-    2300010: exhaust_02
-    2300012: exhaust_03
-    2300014: glass
-    2300016: table
-    2300018: window_004
-    2300020: window_005
-    2300022: window_006
-    2300024: window_01
-    3300000: body
-    3300002: borders
-    3300004: chair
-    3300006: exhaust_00
-    3300008: exhaust_01
-    3300010: exhaust_02
-    3300012: exhaust_03
-    3300014: glass
-    3300016: table
-    3300018: window_004
-    3300020: window_005
-    3300022: window_006
-    3300024: window_01
-    4300000: body
-    4300002: exhaust_00
-    4300004: exhaust_01
-    4300006: exhaust_03
-    4300008: exhaust_02
-    4300010: window_01
-    4300012: borders
-    4300014: glass
-    4300016: chair
-    4300018: table
-    4300020: window_004
-    4300022: window_005
-    4300024: window_006
+  serializedVersion: 22200
+  internalIDToNameTable:
+  - first:
+      1: 100000
+    second: body
+  - first:
+      1: 100002
+    second: borders
+  - first:
+      1: 100004
+    second: chair
+  - first:
+      1: 100006
+    second: exhaust_00
+  - first:
+      1: 100008
+    second: exhaust_01
+  - first:
+      1: 100010
+    second: exhaust_02
+  - first:
+      1: 100012
+    second: exhaust_03
+  - first:
+      1: 100014
+    second: glass
+  - first:
+      1: 100016
+    second: //RootNode
+  - first:
+      1: 100018
+    second: table
+  - first:
+      1: 100020
+    second: window_004
+  - first:
+      1: 100022
+    second: window_005
+  - first:
+      1: 100024
+    second: window_006
+  - first:
+      1: 100026
+    second: window_01
+  - first:
+      4: 400000
+    second: body
+  - first:
+      4: 400002
+    second: borders
+  - first:
+      4: 400004
+    second: chair
+  - first:
+      4: 400006
+    second: exhaust_00
+  - first:
+      4: 400008
+    second: exhaust_01
+  - first:
+      4: 400010
+    second: exhaust_02
+  - first:
+      4: 400012
+    second: exhaust_03
+  - first:
+      4: 400014
+    second: glass
+  - first:
+      4: 400016
+    second: //RootNode
+  - first:
+      4: 400018
+    second: table
+  - first:
+      4: 400020
+    second: window_004
+  - first:
+      4: 400022
+    second: window_005
+  - first:
+      4: 400024
+    second: window_006
+  - first:
+      4: 400026
+    second: window_01
+  - first:
+      21: 2100000
+    second: 13 - Default
+  - first:
+      23: 2300000
+    second: body
+  - first:
+      23: 2300002
+    second: borders
+  - first:
+      23: 2300004
+    second: chair
+  - first:
+      23: 2300006
+    second: exhaust_00
+  - first:
+      23: 2300008
+    second: exhaust_01
+  - first:
+      23: 2300010
+    second: exhaust_02
+  - first:
+      23: 2300012
+    second: exhaust_03
+  - first:
+      23: 2300014
+    second: glass
+  - first:
+      23: 2300016
+    second: table
+  - first:
+      23: 2300018
+    second: window_004
+  - first:
+      23: 2300020
+    second: window_005
+  - first:
+      23: 2300022
+    second: window_006
+  - first:
+      23: 2300024
+    second: window_01
+  - first:
+      33: 3300000
+    second: body
+  - first:
+      33: 3300002
+    second: borders
+  - first:
+      33: 3300004
+    second: chair
+  - first:
+      33: 3300006
+    second: exhaust_00
+  - first:
+      33: 3300008
+    second: exhaust_01
+  - first:
+      33: 3300010
+    second: exhaust_02
+  - first:
+      33: 3300012
+    second: exhaust_03
+  - first:
+      33: 3300014
+    second: glass
+  - first:
+      33: 3300016
+    second: table
+  - first:
+      33: 3300018
+    second: window_004
+  - first:
+      33: 3300020
+    second: window_005
+  - first:
+      33: 3300022
+    second: window_006
+  - first:
+      33: 3300024
+    second: window_01
+  - first:
+      43: 4300000
+    second: body
+  - first:
+      43: 4300002
+    second: exhaust_00
+  - first:
+      43: 4300004
+    second: exhaust_01
+  - first:
+      43: 4300006
+    second: exhaust_03
+  - first:
+      43: 4300008
+    second: exhaust_02
+  - first:
+      43: 4300010
+    second: window_01
+  - first:
+      43: 4300012
+    second: borders
+  - first:
+      43: 4300014
+    second: glass
+  - first:
+      43: 4300016
+    second: chair
+  - first:
+      43: 4300018
+    second: table
+  - first:
+      43: 4300020
+    second: window_004
+  - first:
+      43: 4300022
+    second: window_005
+  - first:
+      43: 4300024
+    second: window_006
   externalObjects: {}
   materials:
-    importMaterials: 1
+    materialImportMode: 1
     materialName: 0
     materialSearch: 1
     materialLocation: 1
@@ -82,9 +225,8 @@ ModelImporter:
     bakeSimulation: 0
     resampleCurves: 1
     optimizeGameObjects: 0
+    removeConstantScaleCurves: 0
     motionNodeName: 
-    rigImportErrors: 
-    rigImportWarnings: 
     animationImportErrors: 
     animationImportWarnings: 
     animationRetargetingWarnings: 
@@ -104,27 +246,38 @@ ModelImporter:
     lODScreenPercentages: []
     globalScale: 1
     meshCompression: 0
-    addColliders: 0
+    addColliders: 1
     useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importPhysicalCameras: 1
     importVisibility: 1
     importBlendShapes: 1
     importCameras: 1
     importLights: 1
+    nodeNameCollisionStrategy: 0
+    fileIdsGeneration: 1
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
-    optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
+    bakeAxisConversion: 0
     preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    optimizeBones: 1
+    meshOptimizationFlags: -1
     indexFormat: 0
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 0
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
     secondaryUVPackMargin: 4
     useFileScale: 1
-    previousCalculatedGlobalScale: 1
-    hasPreviousCalculatedGlobalScale: 0
+    strictVertexDataChecks: 0
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
@@ -133,10 +286,10 @@ ModelImporter:
     legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
     blendShapeNormalImportMode: 1
     normalSmoothingSource: 0
+  referencedClips: []
   importAnimation: 1
-  copyAvatar: 0
   humanDescription:
-    serializedVersion: 2
+    serializedVersion: 3
     human: []
     skeleton: []
     armTwist: 0.5
@@ -146,21 +299,20 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
+    globalScale: 1
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 0
   humanoidOversampling: 1
+  avatarSetup: 0
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 0
+  importBlendShapeDeformPercent: 0
+  remapMaterialsIfMaterialImportModeIsNone: 1
   additionalBone: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 
-AssetOrigin:
-  serializedVersion: 1
-  productId: 196997
-  packageName: Rocket (Cartoon, Capsule)
-  packageVersion: 1.0
-  assetPath: Assets/Whaleride/SpaceRocket (Capsule, Cartoon)/FBX/rocket.FBX
-  uploadId: 441519
