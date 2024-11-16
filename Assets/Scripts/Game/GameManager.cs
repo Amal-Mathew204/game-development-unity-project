@@ -181,7 +181,9 @@ namespace Scripts.Game
 
         #region Game Screen Methods
         /// <summary>
-        /// 
+        /// This method is used to toggle the visibility of the enter text field
+        /// This method allows the player to be acknowledged that they need to press enter to move to the next line
+        /// Called through the player script
         /// </summary>
         public void ChangeEnterTextFieldVisibility(bool visibility)
         {
