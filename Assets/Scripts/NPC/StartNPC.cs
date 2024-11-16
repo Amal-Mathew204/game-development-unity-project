@@ -85,8 +85,14 @@ namespace Scripts.NPC
             if (textComponent != null)
             {
                 textComponent.text = _textSections[_currentTextIndex];
+                GameObject message = GameObject.FindGameObjectWithTag("ContinueMessage");
+                message.SetActive(true);
+                Debug.Log(message);
             }
+            
         }
+
+        
 
         //    /// <summary>
         //    /// This is an iterative method which when the bubbleText GameObject is active, the method adds a single character to the text component
