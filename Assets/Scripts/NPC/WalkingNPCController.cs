@@ -71,6 +71,15 @@ namespace Scripts.NPC
                 //HandleNPCConversation();
                 RotateToPlayer();
             }
+            else
+            {
+                HandleNPCMovement();
+            }
+        }
+
+        public void HandleNPCMovement()
+        {
+
         }
 
         /// <summary>
