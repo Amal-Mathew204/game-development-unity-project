@@ -5,7 +5,7 @@ namespace Scripts.Player
 {
     public class PlayerItemRaycast : MonoBehaviour
     {
-        public float raycastDistance = 3f;  
+        public float raycastDistance = 1f;  
         private ItemPickup _currentItem = null;
 
 
@@ -25,13 +25,15 @@ namespace Scripts.Player
             Ray upwardRay = new Ray(transform.position, upwardDirection);
 
             // Create the ray going 45 degrees downwards
-            Vector3 downwardDirection = (transform.forward + Vector3.down).normalized;
+            
+            Vector3 downwardDirection = Quaternion.Euler(25f, 0f, 90f) * Vector3.forward; // 20 degrees down
             Ray downwardRay = new Ray(transform.position, downwardDirection);
 
             RaycastHit hit;
             // Check if the forward ray hits something
             if (Physics.Raycast(forwardRay, out hit, raycastDistance))
             {
+                Debug.DrawRay(transform.position, transform.forward * raycastDistance, Color.green);  // Forward Ray in Green
                 Debug.Log("Forward Ray hit: " + hit.collider.name);
             }
 
@@ -44,10 +46,12 @@ namespace Scripts.Player
             // Check if the downward ray hits something
             if (Physics.Raycast(downwardRay, out hit, raycastDistance))
             {
+                //Debug.DrawRay(transform.position, downwardDirection * 3f, Color.red);
                 Debug.Log("Downward Ray hit: " + hit.collider.name);
+
             }
             // Perform the raycast and check if it hits something within the specified distance
-            if (Physics.Raycast(upwardRay , out hit, raycastDistance))
+            if (Physics.Raycast(forwardRay , out hit, raycastDistance))
             {
                 // Try to get the ItemPickup component from the object the raycast hits
                 ItemPickup item = hit.collider.GetComponent<ItemPickup>();
@@ -78,6 +82,7 @@ namespace Scripts.Player
                 _currentItem.OnRaycastExit();
                 _currentItem = null;
             }
+            
         }
     }
 }
