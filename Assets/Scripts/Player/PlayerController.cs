@@ -282,15 +282,15 @@ namespace Scripts.Player
         private void LateUpdate()
         {
             
-            if (startOfGame)
+            if (startOfGame)    // if player is in start NPC Conversation
             {
                 if(this.enabled)
                 {
-                    startOfGame = false;
+                    startOfGame = false;       
                 
                 }
             }
-            else
+            else // if the start NPC diagloue has ended 
             {
                 UpdateCameraRotation(); // rotates both the camera and player according to look input direction
             }
