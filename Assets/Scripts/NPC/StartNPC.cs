@@ -24,7 +24,9 @@ namespace Scripts.NPC
             if (bubbleText == null)
             {
                 Debug.LogError("BubbleText prefab is not assigned");
+                return;
             }
+
 
             bubbleText.SetActive(true);
             _textComponent = bubbleText.GetComponent<TextMeshPro>();
@@ -32,6 +34,7 @@ namespace Scripts.NPC
             if (_textComponent == null)
             {
                 Debug.LogError("TextMeshPro component not found on bubbleText GameObject.");
+                return;
             }
             //set NPC SubtitleSpeed
             if (GameSettings.Instance != null)
@@ -41,6 +44,7 @@ namespace Scripts.NPC
             else
             {
                 Debug.LogError("GameSettings is null");
+                return;
             }
 
             // Populate text sections for cycling

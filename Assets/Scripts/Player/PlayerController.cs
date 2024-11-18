@@ -292,7 +292,7 @@ namespace Scripts.Player
             }
             else
             {
-                UpdateCameraRotation();
+                UpdateCameraRotation(); // rotates both the camera and player according to look input direction
             }
         }
 
