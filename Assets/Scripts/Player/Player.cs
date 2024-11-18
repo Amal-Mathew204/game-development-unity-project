@@ -28,6 +28,8 @@ namespace Scripts.Player
         public static Player Instance;  // Singleton instance
         private PlayerInventoryInput _playerInventoryInput;
         private PlayerUIInput _playerUIInput;
+        private PlayerController _playerController;
+        private PlayerInput _playerInput;
 
 
         [Header("Inventory Components")]
@@ -89,6 +91,8 @@ namespace Scripts.Player
             _playerUIInput = GetComponent<PlayerUIInput>();
             _startNPC = GameObject.FindGameObjectWithTag("StartNPC");
             _npcTrigger = _startNPC.GetComponentInChildren<StartNPC>();
+            _playerController = GetComponent<PlayerController>();
+            _playerInput = GetComponent<PlayerInput>();
             
         }
         #endregion
@@ -140,15 +144,14 @@ namespace Scripts.Player
             }
             _isInventoryOpen = !_isInventoryOpen;
             _inventoryPanel.SetActive(_isInventoryOpen);
-            PlayerInput playerInput = GetComponent<PlayerInput>();
             if (_isInventoryOpen)
             {
-                playerInput.SwitchCurrentActionMap("UI");
+                _playerInput.SwitchCurrentActionMap("UI");
                 _inventoryWarningText.SetActive(false);
             }
             else
             {
-                playerInput.SwitchCurrentActionMap("Player");
+                _playerInput.SwitchCurrentActionMap("Player");
                 if (_activateInventoryWarningMessage)
                 {
                     _inventoryWarningText.SetActive(true);
@@ -404,6 +407,36 @@ namespace Scripts.Player
             }
             Destroy(Instance.gameObject);
             Instance = null;
+        }
+
+        /// <summary>
+        /// This method disables the Player Controller Script and sets the Action Map of the Player to UI
+        /// </summary>
+        public void DisableNPCMovement()
+        {
+            _playerController.enabled = false;
+            _playerInput.SwitchCurrentActionMap("UI");
+        }
+
+        /// <summary>
+        /// This method enables the Player Controller Script and sets the Action Map of the Player to UI
+        /// </summary>
+        public void EnableNPCMovement()
+        {
+            _playerController.enabled = true;
+            _playerInput.SwitchCurrentActionMap("Player");
+        }
+
+        /// <summary>
+        /// This method rototes the player to a transform position specified in the method arguement.
+        /// </summary>
+        /// <param name="transform"></param>
+        public void RotatePlayerToTarget(Transform targetTransform)
+        {
+            float ROTATIONSPEED = 3f;
+            transform.rotation = Quaternion.Slerp(transform.rotation,
+                Quaternion.LookRotation(targetTransform.position - transform.position),
+                ROTATIONSPEED * Time.deltaTime);
         }
         #endregion
     }

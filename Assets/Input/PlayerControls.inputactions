@@ -571,6 +571,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "AcceptTask",
+                    "type": "Button",
+                    "id": "fa9702b6-5308-4f2c-a17a-50dfea3461c6",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -1022,6 +1031,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "MissionLog",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "774e2d7a-ad91-485f-813b-0e665b489f82",
+                    "path": "<Keyboard>/f",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "AcceptTask",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
