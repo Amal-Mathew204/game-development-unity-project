@@ -26,7 +26,7 @@ namespace Scripts.NPC
         protected override void Start()
         {
             base.Start();
-            NPCScript = new List<string>() { "Hello" };
+            NPCScript = new List<string>() { "Hello", "Good Bye" };
         }
 
         #region TriggerBox Methods
@@ -40,8 +40,6 @@ namespace Scripts.NPC
                 bubbleText.SetActive(true);
                 //Disable Player Movement
                 _scriptIndex = 0;
-                istalkingToPlayer = true;
-                
             }
         }
 
@@ -53,6 +51,7 @@ namespace Scripts.NPC
             if (other.CompareTag("Player"))
             {
                 bubbleText.SetActive(false);
+
                 //enable player movement
                 istalkingToPlayer = false;
             }
@@ -65,11 +64,20 @@ namespace Scripts.NPC
         /// </summary>
         private void Update()
         {
-            //add to this condition F Key Pressed
             if (istalkingToPlayer)
             {
-                //HandleNPCConversation();
+                if (PlayerManager.Instance.getTaskAccepted())
+                {
+                    HandleNPCConversation();
+                }
                 RotateToPlayer();
+                PlayerManager.Instance.RotatePlayerToTarget(transform);
+            }
+            else if (PlayerManager.Instance.getTaskAccepted() && _scriptIndex==0)
+            {
+                istalkingToPlayer = true;
+                PlayerManager.Instance.DisableNPCMovement();
+                HandleNPCConversation();
             }
             else
             {
@@ -77,6 +85,9 @@ namespace Scripts.NPC
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public void HandleNPCMovement()
         {
 
@@ -90,6 +101,7 @@ namespace Scripts.NPC
             Transform playerTransform = PlayerManager.Instance.gameObject.transform;
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(playerTransform.position - transform.position),
 _rotationSpeed * Time.deltaTime);
+            //transform.LookAt(playerTransform.position);
         }
         #endregion
 
@@ -117,6 +129,11 @@ _rotationSpeed * Time.deltaTime);
             _coroutineActive = true;
             yield return StartCoroutine(TypeText());
             _scriptIndex += 1;
+            if(_scriptIndex == NPCScript.Count)
+            {
+                istalkingToPlayer = false;
+                PlayerManager.Instance.EnableNPCMovement();
+            }
             _coroutineActive = false;
         }
         #endregion

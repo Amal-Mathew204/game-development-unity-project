@@ -93,6 +93,7 @@ namespace Scripts.NPC
         /// </summary>
         protected IEnumerator TypeText()
         {
+            textComponent.text = "";
             foreach (char character in message)
             {
                 textComponent.text += character;

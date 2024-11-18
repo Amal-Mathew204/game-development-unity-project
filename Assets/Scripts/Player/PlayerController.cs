@@ -292,7 +292,11 @@ namespace Scripts.Player
             }
             else // if the start NPC diagloue has ended 
             {
-                UpdateCameraRotation(); // rotates both the camera and player according to look input direction
+                if(_playerLocomotionInput.LookInput != Vector2.zero)
+                {
+                    UpdateCameraRotation(); // rotates both the camera and player according to look input direction
+                }
+
             }
         }
 
