@@ -17,7 +17,7 @@ namespace Scripts.NPC
 
 
         /// <summary>
-
+        /// Initializes the StartNPC component. Sets up the text component, assigns typewriting speed, and initializes dialogue sections.
         /// </summary>
         void Start()
         {
@@ -53,9 +53,11 @@ namespace Scripts.NPC
             DisplayCurrentText();
         }
 
-        /// <summary>
-        /// 
+        // <summary>
+        /// Cycles through the dialogue text sections. Moves to the next section if available and displays it. Returns false if at the end of the dialogue.
+        /// True if more text remains, false if at the end of the dialogue
         /// </summary>
+       
         public bool CycleBubbleText()
         {
             if (_textSections == null || _textSections.Count == 0)
@@ -79,7 +81,9 @@ namespace Scripts.NPC
         }
 
 
-
+        /// <summary>
+        /// Displays the current section of text in the TextMeshPro component.
+        /// </summary>
         private void DisplayCurrentText()
         {
             if (textComponent != null)
@@ -89,30 +93,5 @@ namespace Scripts.NPC
             }
             
         }
-
-        
-
-        //    /// <summary>
-        //    /// This is an iterative method which when the bubbleText GameObject is active, the method adds a single character to the text component
-        //    /// every time specified interval.
-        //    /// </summary>
-        //    IEnumerator TypeText()
-        //    {
-        //        foreach (char character in message)
-        //        {
-        //            textComponent.text += character;
-
-        //            if (bubbleText.activeSelf)
-        //            {
-        //                yield return new WaitForSeconds(typeWritingSpeed);
-        //            }
-        //            else
-        //            {
-        //                textComponent.text = "";
-        //                break;
-        //            }
-        //        }
-        //    }
-        //}
     }
 }
