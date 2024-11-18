@@ -3027,6 +3027,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1109188909384096935, guid: 4db2c805d0ec74d01b34bd7799668a16, type: 3}
+      propertyPath: m_UseGravity
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1109188909384096935, guid: 4db2c805d0ec74d01b34bd7799668a16, type: 3}
+      propertyPath: m_IsKinematic
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1109188909384096935, guid: 4db2c805d0ec74d01b34bd7799668a16, type: 3}
+      propertyPath: m_ExcludeLayers.m_Bits
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6598307509454318507, guid: 4db2c805d0ec74d01b34bd7799668a16, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.79
