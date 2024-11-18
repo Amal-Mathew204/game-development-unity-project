@@ -14,11 +14,11 @@ namespace Scripts.NPC
 
 
         /// <summary>
-        /// Ensure the text is hidden initially
-        /// Get the TextMeshPro component attached to the bubbleText GameObject
-        /// Check if the TextMeshPro component is properly found
+        /// The Start Method Intially sets the bubble text SetActive to False 
+        /// and gets/sets the typing speed value from Game Settings
+        /// The Method contains checks to see if the textComponent inside bubbletext GameObject
         /// </summary>
-        void Start()
+        protected virtual void Start()
         {
             bubbleText.SetActive(false);
             textComponent = bubbleText.GetComponent<TextMeshPro>();
@@ -42,7 +42,7 @@ namespace Scripts.NPC
         /// Check if the object that entered the trigger has the tag "Player"
         /// Activate the bubble text, making it visible
         /// </summary>
-        private void OnTriggerEnter(Collider other)
+        protected virtual void OnTriggerEnter(Collider other)
         {
 
             if (other.CompareTag("Player"))
@@ -57,7 +57,7 @@ namespace Scripts.NPC
         /// Check if the object that exited the trigger has the tag "Player"
         /// Deactivate the bubble text, hiding it again
         /// </summary>
-        private void OnTriggerExit(Collider other)
+        protected virtual void OnTriggerExit(Collider other)
         {
 
             if (other.CompareTag("Player"))
@@ -91,7 +91,7 @@ namespace Scripts.NPC
         /// This is an iterative method which when the bubbleText GameObject is active, the method adds a single character to the text component
         /// every time specified interval.
         /// </summary>
-        IEnumerator TypeText()
+        protected IEnumerator TypeText()
         {
             foreach (char character in message)
             {
