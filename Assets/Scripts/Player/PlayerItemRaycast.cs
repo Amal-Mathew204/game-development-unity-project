@@ -16,12 +16,38 @@ namespace Scripts.Player
 
         void Update()
         {
-        
-            Ray ray = new Ray(transform.position, transform.forward);
-            RaycastHit hit;  
 
+            // Create the ray going forward
+            Ray forwardRay = new Ray(transform.position, transform.forward);
+
+            // Create the ray going 45 degrees upwards
+            Vector3 upwardDirection = (transform.forward + Vector3.up).normalized;
+            Ray upwardRay = new Ray(transform.position, upwardDirection);
+
+            // Create the ray going 45 degrees downwards
+            Vector3 downwardDirection = (transform.forward + Vector3.down).normalized;
+            Ray downwardRay = new Ray(transform.position, downwardDirection);
+
+            RaycastHit hit;
+            // Check if the forward ray hits something
+            if (Physics.Raycast(forwardRay, out hit, raycastDistance))
+            {
+                Debug.Log("Forward Ray hit: " + hit.collider.name);
+            }
+
+            // Check if the upward ray hits something
+            if (Physics.Raycast(upwardRay, out hit, raycastDistance))
+            {
+                Debug.Log("Upward Ray hit: " + hit.collider.name);
+            }
+
+            // Check if the downward ray hits something
+            if (Physics.Raycast(downwardRay, out hit, raycastDistance))
+            {
+                Debug.Log("Downward Ray hit: " + hit.collider.name);
+            }
             // Perform the raycast and check if it hits something within the specified distance
-            if (Physics.Raycast(ray, out hit, raycastDistance))
+            if (Physics.Raycast(upwardRay , out hit, raycastDistance))
             {
                 // Try to get the ItemPickup component from the object the raycast hits
                 ItemPickup item = hit.collider.GetComponent<ItemPickup>();
