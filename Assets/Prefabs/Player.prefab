@@ -4344,6 +4344,22 @@ MonoBehaviour:
         m_CallState: 1
     m_ActionId: ff9b6093-42ba-40fc-9d7d-b563deb9467f
     m_ActionName: 'UI/MissionLog[/Keyboard/m]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 331166954769566835}
+        m_TargetAssemblyTypeName: Scripts.Player.Input.PlayerActionInput, Assembly-CSharp
+        m_MethodName: OnAccept
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
+    m_ActionId: fa9702b6-5308-4f2c-a17a-50dfea3461c6
+    m_ActionName: 'UI/AcceptTask[/Keyboard/f]'
   m_NeverAutoSwitchControlSchemes: 1
   m_DefaultControlScheme: Keyboard&Mouse
   m_DefaultActionMap: UI
