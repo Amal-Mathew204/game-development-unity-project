@@ -9,7 +9,7 @@ namespace Scripts.NPC
     public class StartNPC : MonoBehaviour
     {
         [SerializeField] private GameObject bubbleText;
-        private TextMeshPro textComponent;
+        private TextMeshPro _textComponent;
         private List<string> _textSections;
         private int _currentTextIndex = 0;
 
@@ -27,9 +27,9 @@ namespace Scripts.NPC
             }
 
             bubbleText.SetActive(true);
-            textComponent = bubbleText.GetComponent<TextMeshPro>();
+            _textComponent = bubbleText.GetComponent<TextMeshPro>();
 
-            if (textComponent == null)
+            if (_textComponent == null)
             {
                 Debug.LogError("TextMeshPro component not found on bubbleText GameObject.");
             }
@@ -86,9 +86,9 @@ namespace Scripts.NPC
         /// </summary>
         private void DisplayCurrentText()
         {
-            if (textComponent != null)
+            if (_textComponent != null)
             {
-                textComponent.text = _textSections[_currentTextIndex];
+                _textComponent.text = _textSections[_currentTextIndex];
                 GameManager.Instance.ChangeEnterTextFieldVisibility(true);
             }
             
