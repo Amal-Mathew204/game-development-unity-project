@@ -381,6 +381,9 @@ namespace Scripts.Player
         }
         #endregion
         #region Action Methods
+        /// <summary>
+        /// Method for getting all tasks that accepted
+        /// </summary>
         public bool getTaskAccepted()
         {
             PlayerActionInput playerActionInput = GetComponent<PlayerActionInput>();
