@@ -288,7 +288,7 @@ namespace Scripts.Player
 
         #region Mission Methods
         /// <summary>
-        /// 
+        /// Method for getting all the collect missions. Works by going through every mission and adds collect missions to the collect mission list.
         /// </summary>
         public List<CollectMission> GetCollectMissions(List<Mission> missionList)
         {
