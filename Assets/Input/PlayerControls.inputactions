@@ -85,6 +85,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "MissionLog",
+                    "type": "Button",
+                    "id": "d2da0062-71cc-447b-8775-7f0e41e9ac50",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -428,6 +437,17 @@
                     "action": "AcceptTask",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c741c31f-6a28-4d99-9912-14600a046bea",
+                    "path": "<Keyboard>/m",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MissionLog",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
@@ -529,6 +549,24 @@
                     "name": "Inventory",
                     "type": "Button",
                     "id": "bcda0478-3f6e-4ab7-8ae8-337e570e2680",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Enter",
+                    "type": "Button",
+                    "id": "3304c873-b88e-4e39-9b27-ad817fb83421",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "MissionLog",
+                    "type": "Button",
+                    "id": "ff9b6093-42ba-40fc-9d7d-b563deb9467f",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -962,6 +1000,28 @@
                     "processors": "",
                     "groups": "Keyboard&Mouse",
                     "action": "Inventory",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9d6010a7-3175-4752-9892-8319a0bc19c8",
+                    "path": "<Keyboard>/enter",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Enter",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a98615a9-7d50-452e-883f-c6ad722f9b77",
+                    "path": "<Keyboard>/m",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MissionLog",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
