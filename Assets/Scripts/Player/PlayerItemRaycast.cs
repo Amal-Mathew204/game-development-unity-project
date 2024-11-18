@@ -7,7 +7,7 @@ namespace Scripts.Player
     {
         public float raycastDistance = 1f;  
         private ItemPickup _currentItem = null;
-
+        [SerializeField] private LayerMask _itemLayerMask;
 
         /// <summary>
         /// Create a Ray object starting from the player's position and going forward
@@ -51,7 +51,7 @@ namespace Scripts.Player
 
             }
             // Perform the raycast and check if it hits something within the specified distance
-            if (Physics.Raycast(forwardRay , out hit, raycastDistance))
+            if (Physics.Raycast(forwardRay , out hit, raycastDistance, _itemLayerMask))
             {
                 // Try to get the ItemPickup component from the object the raycast hits
                 ItemPickup item = hit.collider.GetComponent<ItemPickup>();

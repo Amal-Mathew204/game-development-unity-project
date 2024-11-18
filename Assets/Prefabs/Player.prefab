@@ -4406,6 +4406,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   raycastDistance: 3
+  _itemLayerMask:
+    serializedVersion: 2
+    m_Bits: 128
 --- !u!114 &8432731887704831777
 MonoBehaviour:
   m_ObjectHideFlags: 0
