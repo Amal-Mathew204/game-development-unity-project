@@ -14,6 +14,9 @@ public class BuildFarm : MonoBehaviour
     private bool _playerInTriggerBox = false;
     [SerializeField] private GameObject _farmLand;
 
+    /// <summary>
+    /// Method for checking if the user has entered the trigger box
+    /// </summary>
     private void OnTriggerEnter(Collider other)
     {
         // Check if the object entering the trigger is the player
@@ -23,6 +26,9 @@ public class BuildFarm : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Method for checking if the user has exited the trigger box
+    /// </summary>
     private void OnTriggerExit(Collider other)
     {
         // Check if the object entering the trigger is the player
@@ -32,6 +38,9 @@ public class BuildFarm : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Method for updating mission completiton status 
+    /// </summary>
     public void Update()
     {
         if (_playerInTriggerBox && CheckShovelInInventory() && PlayerManager.Instance.getTaskAccepted() && _farmBuilt == false)
@@ -47,6 +56,9 @@ public class BuildFarm : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Method checks for shovel within inventory
+    /// </summary>
     public bool CheckShovelInInventory()
     {
         List<ItemPickup> inventory = PlayerManager.Instance.Inventory;
