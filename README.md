@@ -18,6 +18,7 @@ __Game Build Repo:__ https://github.com/Amal-Mathew204/The-Wasteland-Gardener
 Third Party Assests:
 * [Jammo Character | Mix and Jam 1.1](https://assetstore.unity.com/packages/3d/characters/jammo-character-mix-and-jam-158456?srsltid=AfmBOooTRYysbq1T2GOEt7QOrpRF8EXbNHmFyoquy1aLwUDVvBmj96DS)
 * [Mixamo (for importing animations)](https://www.mixamo.com/)
+* [Rocket] (https://assetstore.unity.com/packages/3d/vehicles/space/rocket-cartoon-capsule-196997)
 
 Assets installed from the unity registry: 
 * Input System 1.7.0
