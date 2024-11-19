@@ -5,7 +5,7 @@ namespace Scripts.Player
 {
     public class PlayerItemRaycast : MonoBehaviour
     {
-        public float raycastDistance = 1f;  
+        [SerializeField] private float _raycastDistance = 3f;  
         private ItemPickup _currentItem = null;
         [SerializeField] private LayerMask _itemLayerMask;
 
@@ -19,7 +19,7 @@ namespace Scripts.Player
             Ray forwardRay = new Ray(transform.position, transform.forward);
             RaycastHit hit;
             // Perform the raycast and check if it hits something within the specified distance
-            if (Physics.Raycast(forwardRay , out hit, raycastDistance, _itemLayerMask))
+            if (Physics.Raycast(forwardRay , out hit, _raycastDistance, _itemLayerMask))
             {
                 // Try to get the ItemPickup component from the object the raycast hits
                 ItemPickup item = hit.collider.GetComponent<ItemPickup>();
