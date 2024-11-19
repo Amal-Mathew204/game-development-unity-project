@@ -18,6 +18,8 @@ namespace Scripts.NPC
         private int _scriptIndex = 0;
         private bool _coroutineActive = false;
         [SerializeField] private float _rotationSpeed = 3f;
+        private bool _inTriggerBox = false;
+        [SerializeField] private LayerMask _npcLayerMask;
         #endregion
 
         /// <summary>
@@ -40,6 +42,7 @@ namespace Scripts.NPC
                 bubbleText.SetActive(true);
                 //Disable Player Movement
                 _scriptIndex = 0;
+                _inTriggerBox = true;
             }
         }
 
@@ -54,6 +57,7 @@ namespace Scripts.NPC
 
                 //enable player movement
                 istalkingToPlayer = false;
+                _inTriggerBox = false;
             }
         }
         #endregion
@@ -71,20 +75,17 @@ namespace Scripts.NPC
                     HandleNPCConversation();
                 }
                 RotateToPlayer();
-                PlayerManager.Instance.RotatePlayerToTarget(transform);
+                return;
             }
-            else if (PlayerManager.Instance.getTaskAccepted() && _scriptIndex==0)
+            HandleNPCMovement();
+            if (_inTriggerBox && PlayerManager.Instance.CheckPlayerIsFacingTarget(_npcLayerMask) && PlayerManager.Instance.getTaskAccepted() && _scriptIndex == 0)
             {
                 istalkingToPlayer = true;
                 PlayerManager.Instance.DisableNPCMovement();
                 HandleNPCConversation();
             }
-            else
-            {
-                HandleNPCMovement();
-            }
-        }
 
+        }
         /// <summary>
         /// 
         /// </summary>

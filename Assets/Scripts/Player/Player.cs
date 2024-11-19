@@ -428,15 +428,21 @@ namespace Scripts.Player
         }
 
         /// <summary>
-        /// This method rototes the player to a transform position specified in the method arguement.
+        /// The method creates a raycast from the middle of the player to determine if the Player is facing
+        /// an object (determined via a raycast hist, with a given distance and layermask)
         /// </summary>
-        /// <param name="transform"></param>
-        public void RotatePlayerToTarget(Transform targetTransform)
+        public bool CheckPlayerIsFacingTarget(LayerMask layerMask, float raycastDistance = 3f)
         {
-            float ROTATIONSPEED = 3f;
-            transform.rotation = Quaternion.Slerp(transform.rotation,
-                Quaternion.LookRotation(targetTransform.position - transform.position),
-                ROTATIONSPEED * Time.deltaTime);
+            CharacterController characterController = GetComponent<CharacterController>();
+            Vector3 rayOrigin = new Vector3(transform.position.x, transform.position.y + (characterController.height / 2), transform.position.z);
+            Ray ray = new Ray(rayOrigin, transform.forward);
+            RaycastHit hit;
+            if (Physics.Raycast(ray, out hit, raycastDistance, layerMask))
+            {
+                Debug.DrawLine(rayOrigin, hit.point, Color.red);
+                return true;
+            }
+            return false;
         }
         #endregion
     }

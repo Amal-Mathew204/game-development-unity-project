@@ -8,11 +8,14 @@ TagManager:
   - MissionUI
   - PlayerEyes
   - SlopeTrigger
+  - GameScreen
+  - ContinueMessage
+  - StartNPC
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - NPC
   - Water
   - UI
   - Player
