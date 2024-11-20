@@ -9,12 +9,16 @@ namespace Scripts.Item
 {
     public class ItemPickup : MonoBehaviour
     {
-        public string itemName;  
-        private bool _isInRange = false;  // This will be true when the player is looking at the item
+        public string itemName;
         [SerializeField] private TMP_Text _itemLabel;
+        private bool _isInRange = false;  // This will be true when the player is looking at the item
         private PlayerState _playerState;
         private PlayerActionInput _playerActionInput;
 
+        /// <summary>
+        /// Initializes the item's dependencies by retrieving the player's state and action input components.
+        /// Logs an error if these components are not found. Also updates the item's label with its name.
+        /// </summary>
 
         private void OnEnable()
         {
@@ -55,8 +59,9 @@ namespace Scripts.Item
         {
             _isInRange = false;
         }
+
         /// <summary>
-        /// Method to try picking up the item if the player is in range and presses the interact button
+        /// Method to try picking up the item if the player is in range and presses the gather button
         /// </summary>
         public void TryPickUp()
         {
@@ -67,10 +72,6 @@ namespace Scripts.Item
                 {
                     gameObject.SetActive(false);
                 }
-            }
-            else
-            {
-                Debug.Log("could not pickup item");
             }
         }
     }
