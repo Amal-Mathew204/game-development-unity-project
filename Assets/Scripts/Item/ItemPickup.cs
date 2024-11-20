@@ -68,6 +68,10 @@ namespace Scripts.Item
                     gameObject.SetActive(false);
                 }
             }
+            else
+            {
+                Debug.Log("could not pickup item");
+            }
         }
     }
 
