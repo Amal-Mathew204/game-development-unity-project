@@ -20,6 +20,17 @@ namespace Scripts.NPC
         [SerializeField] private float _rotationSpeed = 3f;
         private bool _inTriggerBox = false;
         [SerializeField] private LayerMask _npcLayerMask;
+
+        //Movement fields
+        private int _minTime = 1;
+        private int _maxTime = 5;
+        private bool _isWalking = false;
+        private bool _isRotatingLeft = false;
+        private bool _isRotatingRight = false;
+        private bool _startedMovement = false;
+        [SerializeField] private float _npcRotationSpeed = 3f;
+        [SerializeField] private float _movementSpeed = 5f;
+        private Rigidbody _rigidBody;
         #endregion
 
         /// <summary>
@@ -29,6 +40,8 @@ namespace Scripts.NPC
         {
             base.Start();
             NPCScript = new List<string>() { "Hello", "Good Bye" };
+            _rigidBody = GetComponent<Rigidbody>();
+
         }
 
         #region TriggerBox Methods
@@ -91,7 +104,66 @@ namespace Scripts.NPC
         /// </summary>
         public void HandleNPCMovement()
         {
+            if (istalkingToPlayer)
+            {
+                return;
+            }
 
+            if(_startedMovement == false)
+            {
+                StartCoroutine(RandomNPCMovement());
+            }
+
+            //Process Random Movement Conditions
+            if (_isRotatingRight)
+            {
+                transform.Rotate(transform.up * Time.deltaTime * _npcRotationSpeed);
+            }
+            if (_isRotatingLeft)
+            {
+                transform.Rotate(transform.up * Time.deltaTime * -_npcRotationSpeed);
+            }
+            if (_isWalking)
+            {
+                _rigidBody.AddForce(transform.forward * _movementSpeed);
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public IEnumerator RandomNPCMovement()
+        {
+            _startedMovement = true;
+            int rotateTime = Random.Range(_minTime,_maxTime);
+            int rotateWait = Random.Range(_minTime,_maxTime);
+            int rotateDirection = Random.Range(1, 3);
+
+            int walkWait = Random.Range(_minTime,_maxTime);
+            int walkTime = Random.Range(_minTime,_maxTime);
+
+
+            yield return new WaitForSeconds(walkWait);
+            _isWalking = true;
+            yield return new WaitForSeconds(walkTime);
+            _isWalking = false;
+            yield return new WaitForSeconds(rotateWait);
+
+            if(rotateDirection == 1)
+            {
+                _isRotatingRight = true;
+                yield return new WaitForSeconds(rotateTime);
+                _isRotatingRight = false;
+            }
+
+            if(rotateDirection == 2)
+            {
+                _isRotatingLeft = true;
+                yield return new WaitForSeconds(rotateTime);
+                _isRotatingLeft = false;
+            }
+
+            _startedMovement = false;
         }
 
         /// <summary>
