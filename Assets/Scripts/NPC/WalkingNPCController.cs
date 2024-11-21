@@ -112,7 +112,7 @@ namespace Scripts.NPC
             if (_inTriggerBox && PlayerManager.Instance.CheckPlayerIsFacingTarget(_npcLayerMask) && PlayerManager.Instance.getTaskAccepted() && _scriptIndex == 0)
             {
                 istalkingToPlayer = true;
-                PlayerManager.Instance.DisableNPCMovement();
+                PlayerManager.Instance.DisablePlayerMovement();
                 HandleNPCConversation();
             }
 
@@ -236,7 +236,7 @@ _rotationSpeed * Time.deltaTime);
             if(_scriptIndex == NPCScript.Count)
             {
                 istalkingToPlayer = false;
-                PlayerManager.Instance.EnableNPCMovement();
+                PlayerManager.Instance.EnablePlayerMovement();
             }
             //end of dialouge (single line from script)
             _coroutineActive = false;

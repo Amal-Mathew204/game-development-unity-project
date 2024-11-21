@@ -412,7 +412,7 @@ namespace Scripts.Player
         /// <summary>
         /// This method disables the Player Controller Script and sets the Action Map of the Player to UI
         /// </summary>
-        public void DisableNPCMovement()
+        public void DisablePlayerMovement()
         {
             _playerController.enabled = false;
             _playerInput.SwitchCurrentActionMap("UI");
@@ -421,7 +421,7 @@ namespace Scripts.Player
         /// <summary>
         /// This method enables the Player Controller Script and sets the Action Map of the Player to UI
         /// </summary>
-        public void EnableNPCMovement()
+        public void EnablePlayerMovement()
         {
             _playerController.enabled = true;
             _playerInput.SwitchCurrentActionMap("Player");
@@ -439,7 +439,6 @@ namespace Scripts.Player
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit, raycastDistance, layerMask))
             {
-                Debug.DrawLine(rayOrigin, hit.point, Color.red);
                 return true;
             }
             return false;
