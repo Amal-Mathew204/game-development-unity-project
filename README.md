@@ -19,6 +19,7 @@ Third Party Assests:
 * [Jammo Character | Mix and Jam 1.1](https://assetstore.unity.com/packages/3d/characters/jammo-character-mix-and-jam-158456?srsltid=AfmBOooTRYysbq1T2GOEt7QOrpRF8EXbNHmFyoquy1aLwUDVvBmj96DS)
 * [Mixamo (for importing animations)](https://www.mixamo.com/)
 * [Rocket](https://www.mixamo.com/](https://assetstore.unity.com/packages/3d/vehicles/space/rocket-cartoon-capsule-196997))
+* [Steampunk Toy Robot 3D Model](https://free3d.com/3d-model/a-steampunk-toy-robot-178705.html)
 
 Assets installed from the unity registry: 
 * Input System 1.7.0
