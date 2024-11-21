@@ -54,7 +54,12 @@ __Gathering Items:__
 
 * __E__: Press this key to gather items when you’re near them. Look for glowing objects or prompts that indicate items can be collected.
 
+__Game Interaction__:
+* __F__: Press F key to accept tasks and interactions during gameplay. An example of this would be talking to the NPC
+* __Enter__: Press Enter Key to cycle through Start NPC dialogue
+
 __Mission Logs__:
+* Press __M__ Key To Open Mission Log Menu
 * Use your mouse or trackpad to navigate through the mission logs.
 * Hover over different logs to highlight them.
 * Click on a log to select it and view details about your current missions or objectives.
