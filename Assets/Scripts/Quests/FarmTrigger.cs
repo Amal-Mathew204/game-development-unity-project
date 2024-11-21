@@ -7,6 +7,9 @@ using System.Collections.Generic;
 public class FarmTrigger : MonoBehaviour
 {
     private int count = 0;
+    /// <summary>
+    /// Method for when player enters farm trigger box with all seeds
+    /// </summary>
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
@@ -19,6 +22,9 @@ public class FarmTrigger : MonoBehaviour
         }
                 
     }
+    /// <summary>
+    /// Method checks for checking if seed is in Inventory 
+    /// </summary>
     public bool CheckSeedInventory()
     {
         List<ItemPickup> inventory = PlayerManager.Instance.Inventory;
