@@ -12,6 +12,7 @@ TagManager:
   - ContinueMessage
   - StartNPC
   - PauseMenu
+  - SeedBag
   layers:
   - Default
   - TransparentFX

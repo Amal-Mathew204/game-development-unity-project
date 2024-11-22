@@ -26,6 +26,7 @@ public class FarmTrigger : MonoBehaviour
             }
 
         }
+        Debug.Log(other.tag);
         if (other.CompareTag("SeedBag") && isSeedBagInside == false)
         {
             Destroy(other.gameObject);
