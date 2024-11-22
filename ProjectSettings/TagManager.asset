@@ -11,6 +11,7 @@ TagManager:
   - GameScreen
   - ContinueMessage
   - StartNPC
+  - PauseMenu
   layers:
   - Default
   - TransparentFX

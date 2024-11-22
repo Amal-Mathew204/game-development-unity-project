@@ -12,6 +12,7 @@ namespace Scripts.Player.Input
     public class PlayerUIInput : MonoBehaviour
     {
         public bool ToggleMissionLogMenu { get; set; } = false;
+        public bool TogglePauseMenu { get; set; } = false;
         /// <summary>
         /// Method Toggles the visibility of the Mission Log Menu inside the game.
         /// The method will also toggle mouse cursor visibility dependant on the visibility of the inventory.
@@ -41,6 +42,25 @@ namespace Scripts.Player.Input
                 closeMissionLogButton.onClick.Invoke();
             }
 
+        }
+        /// <summary>
+        /// Toggles the pause menu when the input action is performed.
+        /// Sets the TogglePauseMenu flag to true when the pause input is received.
+        /// </summary>
+        public void OnTogglePauseMenu(InputAction.CallbackContext context)
+        {
+            if (context.performed)
+            {
+                TogglePauseMenu = true;
+
+            }
+        }
+        /// <summary>
+        /// Resets the TogglePauseMenu flag to false after each frame, ensuring it's only triggered once per input.
+        /// </summary>
+        public void LateUpdate()
+        {
+            TogglePauseMenu = false;
         }
 
     }

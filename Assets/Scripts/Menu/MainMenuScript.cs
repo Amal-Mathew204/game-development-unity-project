@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 using GameManager = Scripts.Game.GameManager;
 
-namespace Scripts.MainMenu
+namespace Scripts.Menu
 {
     public class MainMenuScript : MonoBehaviour
     {
