@@ -81,6 +81,7 @@ namespace Scripts.Game
             CollectMission collectSeedBag = new CollectMission("Find SeedBags", "Explore the terrian to salvage the seed bags", 3, new List<string>() { "Seed Bag" });
             Mission findFarmLand = new Mission("Find Farm Land", "");
             Mission buildFarm = new Mission("Build Farm", "Using the shovel build an area to plant some vegitation");
+            Mission plantSeed = new Mission("Plant Seed", "Drop the seed bags in the farmland ");
 
             //Adds sub-mission to the farm mission 
             farmMission.AddSubMission(collectShovel);
