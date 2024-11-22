@@ -29,7 +29,7 @@ public class FarmTrigger : MonoBehaviour
             Destroy(other.gameObject);
             isSeedBagInside =  true;
             _dirtPile.SetActive(true);
-            _arrowIndicator.SetActive(true);
+            _arrowIndicator.SetActive(false);
 
         }
 
