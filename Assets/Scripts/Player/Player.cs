@@ -285,10 +285,6 @@ namespace Scripts.Player
             Vector3 dropPosition = transform.position + transform.forward * 2f;
             item.gameObject.transform.position = dropPosition;
             item.gameObject.SetActive(true);
-            //GameObject droppedItem = Instantiate(item.gameObject, dropPosition, Quaternion.identity);
-            //droppedItem.SetActive(true);
-            
-            //Destroy(item);
         }
         #endregion
 
