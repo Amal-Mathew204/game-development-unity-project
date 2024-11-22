@@ -10,9 +10,17 @@ using MissionLogDropdown = Scripts.MissonLogMenu.Dropdown;
 public class BuildFarm : MonoBehaviour
 {
     private bool _farmBuilt = false;
-    [SerializeField] private Dropdown _dropdown;
+    private MissionLogDropdown _dropdown;
     private bool _playerInTriggerBox = false;
     [SerializeField] private GameObject _farmLand;
+
+    /// <summary>
+    /// 
+    /// </summary>
+    public void Start()
+    {
+       _dropdown = GameObject.FindGameObjectWithTag("MissionUI").GetComponent<MissionLogDropdown>();
+    }
 
     /// <summary>
     /// Method for checking if the user has entered the trigger box
@@ -48,10 +56,9 @@ public class BuildFarm : MonoBehaviour
             Mission mission = _dropdown.GetMission("Build Farm");
             _farmLand.SetActive(true);
             mission.SetMissionCompleted();
-            MissionLogDropdown dropdown = GameObject.FindGameObjectWithTag("MissionUI").GetComponent<MissionLogDropdown>();
-            if (dropdown.MissionTitles.FindIndex(title => title == mission.MissionTitle) + 1 == dropdown.dropdown.value)
+            if (_dropdown.MissionTitles.FindIndex(title => title == mission.MissionTitle) + 1 == _dropdown.dropdown.value)
             {
-                dropdown.UpdateCompletionStatus(true);
+                _dropdown.UpdateCompletionStatus(true);
             }
         }
     }
