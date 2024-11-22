@@ -10,6 +10,7 @@ public class FarmTrigger : MonoBehaviour
     private int count = 0;
     private bool isSeedBagInside = false;
     [SerializeField] private GameObject _dirtPile;
+    [SerializeField] private GameObject _arrowIndicator;
     /// <summary>
     /// Method for when player enters farm trigger box with all seeds
     /// </summary>
@@ -28,6 +29,7 @@ public class FarmTrigger : MonoBehaviour
             Destroy(other.gameObject);
             isSeedBagInside =  true;
             _dirtPile.SetActive(true);
+            _arrowIndicator.SetActive(true);
 
         }
 
