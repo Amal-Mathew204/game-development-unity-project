@@ -20,7 +20,12 @@ public class FarmTrigger : MonoBehaviour
             }
 
         }
-                
+        if (other.CompareTag("SeedBag"))
+        {
+            Destroy(other.gameObject);
+        }
+
+
     }
     /// <summary>
     /// Method checks for checking if seed is in Inventory 
