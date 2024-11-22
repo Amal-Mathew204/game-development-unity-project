@@ -4,6 +4,7 @@ using PlayerManager = Scripts.Player.Player;
 using Scripts.Item;
 using System.Collections.Generic;
 
+
 public class FarmTrigger : MonoBehaviour
 {
     private int count = 0;
