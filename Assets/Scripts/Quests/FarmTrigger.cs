@@ -7,6 +7,7 @@ using System.Collections.Generic;
 public class FarmTrigger : MonoBehaviour
 {
     private int count = 0;
+    private bool isSeedBagInside = false;
     /// <summary>
     /// Method for when player enters farm trigger box with all seeds
     /// </summary>
@@ -20,9 +21,11 @@ public class FarmTrigger : MonoBehaviour
             }
 
         }
-        if (other.CompareTag("SeedBag"))
+        if (other.CompareTag("SeedBag") && isSeedBagInside == false)
         {
             Destroy(other.gameObject);
+            isSeedBagInside =  true;
+
         }
 
 
