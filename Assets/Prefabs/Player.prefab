@@ -4360,6 +4360,38 @@ MonoBehaviour:
         m_CallState: 1
     m_ActionId: fa9702b6-5308-4f2c-a17a-50dfea3461c6
     m_ActionName: 'UI/AcceptTask[/Keyboard/f]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4412788927991290736}
+        m_TargetAssemblyTypeName: Scripts.Player.Input.PlayerUIInput, Assembly-CSharp
+        m_MethodName: OnTogglePauseMenu
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 7d9a395b-e84e-465d-a70c-9a3ec6147930
+    m_ActionName: 'Player/Pause[/Keyboard/p]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4412788927991290736}
+        m_TargetAssemblyTypeName: Scripts.Player.Input.PlayerUIInput, Assembly-CSharp
+        m_MethodName: OnTogglePauseMenu
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
+    m_ActionId: 28a3ff14-40c6-45d3-a3d0-f05fea71d6d5
+    m_ActionName: 'UI/Pause[/Keyboard/p]'
   m_NeverAutoSwitchControlSchemes: 1
   m_DefaultControlScheme: Keyboard&Mouse
   m_DefaultActionMap: UI
@@ -4490,6 +4522,7 @@ MonoBehaviour:
   _inventoryPanel: {fileID: 4401240480415576691}
   _inventoryUIParent: {fileID: 6744890442093820604}
   _inventoryWarningText: {fileID: 81463352244117436}
+  pauseMenu: {fileID: 0}
   startOfGame: 1
 --- !u!114 &4412788927991290736
 MonoBehaviour:

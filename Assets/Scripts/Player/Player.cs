@@ -50,9 +50,10 @@ namespace Scripts.Player
         private StartNPC _npcTrigger;
         public bool startOfGame = true;
 
-
+        [Header("Pause Menu Components")]
+        [SerializeField] private GameObject pauseMenu;
         //cache values
-
+        private bool _pauseMenuActive = false;
         #endregion
 
         #region Awake Methods
@@ -93,18 +94,90 @@ namespace Scripts.Player
             _npcTrigger = _startNPC.GetComponentInChildren<StartNPC>();
             _playerController = GetComponent<PlayerController>();
             _playerInput = GetComponent<PlayerInput>();
-            
+
+            //reference pause menu
+            pauseMenu = GetPauseMenu();
+        }
+
+        /// <summary>
+        /// Retrieves the Pause Menu GameObject by searching within the GameScreen's child objects.
+        /// </summary>
+        public GameObject GetPauseMenu()
+        {
+            GameObject gameScreen = GameObject.Find("GameScreen");
+            Transform[] children = gameScreen.GetComponentsInChildren<Transform>(true);
+            foreach (Transform child in children)
+            {
+                if (child.name == "Pause Menu")
+                {
+                    return child.gameObject;
+                }
+            }
+            return null;
         }
         #endregion
 
         #region Update Methods
+        /// <summary>
+        /// Continuously checks and updates inventory UI visibility, inventory warning message, 
+        /// and pause menu visibility each frame.
+        /// </summary>
         private void Update()
         {
             
             ToggleInventoryUI();
             ToggleInventoryWarningMessage();
+            TogglePauseMenu();
         }
         #endregion
+
+
+        #region Pause Methods
+        /// <summary>
+        /// Checks the input for toggling the pause menu and updates its visibility if needed.
+        /// </summary>
+        public void TogglePauseMenu()
+        {
+            if (_playerUIInput.TogglePauseMenu)
+            {
+               ChangePauseMenuVisibility();
+            }
+            
+        }
+
+        /// <summary>
+        /// Toggles the visibility of the pause menu, pauses/unpauses the game,
+        /// and switches the current input action map between "UI" and "Player" accordingly.
+        /// </summary>
+        public void ChangePauseMenuVisibility()
+        {
+            _pauseMenuActive = !_pauseMenuActive;
+            Debug.Log(_pauseMenuActive);
+
+            if (pauseMenu != null)
+            {
+                pauseMenu.SetActive(_pauseMenuActive);
+                if (_pauseMenuActive)
+                {
+                    Time.timeScale = 0f;
+                    _playerInput.SwitchCurrentActionMap("UI");
+                    GameManager.Instance.EnableMouseCursor();
+
+                }
+                else
+                {
+                    Time.timeScale = 1f;
+                    _playerInput.SwitchCurrentActionMap("Player");
+                    GameManager.Instance.DisableMouseCursor();
+                }
+            }
+            else
+            {
+                Debug.LogError("Player Menu Is Not Found");
+            }
+        }
+        #endregion
+
 
         #region Player Inventory Methods
         /// <summary>
