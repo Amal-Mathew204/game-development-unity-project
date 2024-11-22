@@ -144,6 +144,7 @@ GameObject:
   - component: {fileID: 38805053}
   - component: {fileID: 38805052}
   - component: {fileID: 38805051}
+  - component: {fileID: 38805057}
   m_Layer: 0
   m_Name: FarmLand
   m_TagString: Untagged
@@ -487,6 +488,18 @@ Transform:
   - {fileID: 1104086799}
   m_Father: {fileID: 1478769320}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &38805057
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 38805050}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0adf115634d834b1a8fd2911658b6bee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &39471789
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2897,7 +2910,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh33450
+  m_Name: pb_Mesh56988
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -3546,6 +3559,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _dirtPile: {fileID: 2026863260}
   _arrowIndicator: {fileID: 1850692228}
+  _seedPlantingQuest: {fileID: 38805057}
 --- !u!65 &1104086801
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4505,6 +4519,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _dirtPile: {fileID: 1992485610}
   _arrowIndicator: {fileID: 221671763}
+  _seedPlantingQuest: {fileID: 38805057}
 --- !u!65 &1334600782
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5217,6 +5232,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _dirtPile: {fileID: 1390174346}
   _arrowIndicator: {fileID: 369083226}
+  _seedPlantingQuest: {fileID: 38805057}
 --- !u!1001 &1562324833
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5997,6 +6013,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _dirtPile: {fileID: 1263194336}
   _arrowIndicator: {fileID: 860810218}
+  _seedPlantingQuest: {fileID: 38805057}
 --- !u!65 &1968862538
 BoxCollider:
   m_ObjectHideFlags: 0

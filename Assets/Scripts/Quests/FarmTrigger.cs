@@ -3,6 +3,7 @@ using System.Collections;
 using PlayerManager = Scripts.Player.Player;
 using Scripts.Item;
 using System.Collections.Generic;
+using Scripts.Quests;
 
 
 public class FarmTrigger : MonoBehaviour
@@ -11,6 +12,7 @@ public class FarmTrigger : MonoBehaviour
     private bool isSeedBagInside = false;
     [SerializeField] private GameObject _dirtPile;
     [SerializeField] private GameObject _arrowIndicator;
+    [SerializeField] private SeedPlantingQuest _seedPlantingQuest;
     /// <summary>
     /// Method for when player enters farm trigger box with all seeds
     /// </summary>
@@ -30,7 +32,7 @@ public class FarmTrigger : MonoBehaviour
             isSeedBagInside =  true;
             _dirtPile.SetActive(true);
             _arrowIndicator.SetActive(false);
-
+            _seedPlantingQuest.IncrementSeedsPlanted();
         }
 
 
