@@ -56,7 +56,8 @@ namespace Scripts.Player.Input
             }
         }
         /// <summary>
-        /// Resets the TogglePauseMenu flag to false after each frame, ensuring it's only triggered once per input.
+        /// Resets the TogglePauseMenu to false after each frame, ensuring it's only triggered once per input
+        /// Ensures that the pause menu does not flicker on and off
         /// </summary>
         public void LateUpdate()
         {
