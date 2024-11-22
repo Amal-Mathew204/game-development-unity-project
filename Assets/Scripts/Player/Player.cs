@@ -256,6 +256,7 @@ namespace Scripts.Player
             }
 
             Inventory.Add(item);
+            item.gameObject.SetActive(false);
             HandleItemInMission(item.itemName);
             UpdateInventoryUI();
             return true;
@@ -282,10 +283,12 @@ namespace Scripts.Player
             RemoveItem(item);
 
             Vector3 dropPosition = transform.position + transform.forward * 2f;
-            GameObject droppedItem = Instantiate(item.gameObject, dropPosition, Quaternion.identity);
-            droppedItem.SetActive(true);
-
-            Destroy(item);
+            item.gameObject.transform.position = dropPosition;
+            item.gameObject.SetActive(true);
+            //GameObject droppedItem = Instantiate(item.gameObject, dropPosition, Quaternion.identity);
+            //droppedItem.SetActive(true);
+            
+            //Destroy(item);
         }
         #endregion
 
