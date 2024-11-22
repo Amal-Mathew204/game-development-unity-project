@@ -152,7 +152,7 @@ namespace Scripts.Player
         public void ChangePauseMenuVisibility()
         {
             _pauseMenuActive = !_pauseMenuActive;
-            Debug.Log(_pauseMenuActive);
+            
 
             if (pauseMenu != null)
             {
