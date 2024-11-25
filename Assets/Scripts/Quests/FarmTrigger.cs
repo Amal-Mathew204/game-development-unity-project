@@ -8,7 +8,7 @@ using Scripts.Quests;
 
 public class FarmTrigger : MonoBehaviour
 {
-    private int count = 0;
+    private int _count = 0;
     private bool _isSeedBagInside = false;
     [SerializeField] private GameObject _dirtPile;
     [SerializeField] private GameObject _arrowIndicator;
@@ -52,9 +52,9 @@ public class FarmTrigger : MonoBehaviour
         {
             if (item.itemName == "Seed Bag")
             {
-                count = count + 1;
+                _count = _count + 1;
             }
-            if (count == 4)
+            if (_count == 4)
             {
                 Debug.Log("All seeds have been found ");
                 return true;
