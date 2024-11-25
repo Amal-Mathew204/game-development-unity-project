@@ -15,7 +15,7 @@ public class BuildFarm : MonoBehaviour
     [SerializeField] private GameObject _farmLand;
 
     /// <summary>
-    /// 
+    /// Works as the first frame of the game 
     /// </summary>
     public void Start()
     {
