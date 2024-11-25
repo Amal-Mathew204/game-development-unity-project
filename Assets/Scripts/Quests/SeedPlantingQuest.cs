@@ -11,7 +11,7 @@ namespace Scripts.Quests
 
 
         /// <summary>
-        /// 
+        /// Works as the first frame of the game 
         /// </summary>
         private void Start()
         {
@@ -20,7 +20,7 @@ namespace Scripts.Quests
         }
 
         /// <summary>
-        /// 
+        /// Updates the Plant Seed Mission 
         /// </summary>
         private void Update()
         {
