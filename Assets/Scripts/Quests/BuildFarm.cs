@@ -15,7 +15,8 @@ public class BuildFarm : MonoBehaviour
     [SerializeField] private GameObject _farmLand;
 
     /// <summary>
-    /// Works as the first frame of the game 
+    /// Works as the first frame of the game
+    /// Finds Mission UI interface component and assigns to variable 
     /// </summary>
     public void Start()
     {
