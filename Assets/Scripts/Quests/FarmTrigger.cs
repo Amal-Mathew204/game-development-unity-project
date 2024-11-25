@@ -18,16 +18,6 @@ public class FarmTrigger : MonoBehaviour
     /// </summary>
     private void OnTriggerEnter(Collider other)
     {
-        ///Player has entered the trigger box and if all seed has been collected a debug line is printed
-        if (other.CompareTag("Player"))
-        {
-            if (CheckSeedInventory())
-            {
-                Debug.Log("User is allowed to start planting");
-            }
-
-        }
-        Debug.Log(other.tag);
         ///Checks if seed bag has been dropped and if there is also no other seed bags
         if (other.CompareTag("SeedBag") && _isSeedBagInside == false)
         {
@@ -56,7 +46,6 @@ public class FarmTrigger : MonoBehaviour
             }
             if (_count == 4)
             {
-                Debug.Log("All seeds have been found ");
                 return true;
             }
         }
