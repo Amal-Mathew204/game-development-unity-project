@@ -9,7 +9,7 @@ using Scripts.Quests;
 public class FarmTrigger : MonoBehaviour
 {
     private int count = 0;
-    private bool isSeedBagInside = false;
+    private bool _isSeedBagInside = false;
     [SerializeField] private GameObject _dirtPile;
     [SerializeField] private GameObject _arrowIndicator;
     [SerializeField] private SeedPlantingQuest _seedPlantingQuest;
@@ -18,6 +18,7 @@ public class FarmTrigger : MonoBehaviour
     /// </summary>
     private void OnTriggerEnter(Collider other)
     {
+        ///Player has entered the trigger box and if all seed has been collected a debug line is printed
         if (other.CompareTag("Player"))
         {
             if (CheckSeedInventory())
@@ -27,10 +28,13 @@ public class FarmTrigger : MonoBehaviour
 
         }
         Debug.Log(other.tag);
-        if (other.CompareTag("SeedBag") && isSeedBagInside == false)
+        ///Checks if seed bag has been dropped and if there is also no other seed bags
+        if (other.CompareTag("SeedBag") && _isSeedBagInside == false)
         {
+            ///Destroys seed bag and actived dirtpile object
+            ///Arrow indicator is also decativited and the planting quest is incremeted
             Destroy(other.gameObject);
-            isSeedBagInside =  true;
+            _isSeedBagInside =  true;
             _dirtPile.SetActive(true);
             _arrowIndicator.SetActive(false);
             _seedPlantingQuest.IncrementSeedsPlanted();
