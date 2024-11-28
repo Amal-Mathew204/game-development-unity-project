@@ -16,7 +16,7 @@ namespace Scripts.NPC
     {
         #region Class Variables
         [HideInInspector] public bool istalkingToPlayer = false;
-        public List<string> NPCScript { get; set; } = new List<string>() { "Hello", "Good Bye" };
+        public List<string> NPCScript { get; set; } = new List<string>() { "Hello", "How Is Your Day", "Good Bye" };
         private int _scriptIndex = 0;
         private bool _coroutineActive = false;
         [SerializeField] private float _rotationSpeed = 3f;
@@ -69,7 +69,7 @@ namespace Scripts.NPC
                 //Disable Player Movement
                 _scriptIndex = 0;
                 _inTriggerBox = true;
-                GameScreen.Instance.ShowKeyPrompt("Press F Key To Continue");
+                GameScreen.Instance.ShowKeyPrompt("Press F Key To Talk To NPC");
             }
         }
 
@@ -114,6 +114,7 @@ namespace Scripts.NPC
             //Conditions (including pressing F Key) to start interaction with NPC
             if (_inTriggerBox && PlayerManager.Instance.CheckPlayerIsFacingTarget(_npcLayerMask) && PlayerManager.Instance.getTaskAccepted() && _scriptIndex == 0)
             {
+                GameScreen.Instance.HideKeyPrompt();
                 istalkingToPlayer = true;
                 PlayerManager.Instance.DisablePlayerMovement();
                 HandleNPCConversation();
@@ -233,6 +234,7 @@ _rotationSpeed * Time.deltaTime);
         {
             //start of dialouge (single line from script)
             _coroutineActive = true;
+            GameScreen.Instance.HideKeyPrompt();
             yield return StartCoroutine(TypeText());
             _scriptIndex += 1;
             //The condition that the NPC no longer has any more lines in its script to say to the player
@@ -240,6 +242,11 @@ _rotationSpeed * Time.deltaTime);
             {
                 istalkingToPlayer = false;
                 PlayerManager.Instance.EnablePlayerMovement();
+                GameScreen.Instance.HideKeyPrompt();
+            }
+            else
+            {
+                GameScreen.Instance.ShowKeyPrompt("Press F Key To Continue");
             }
             //end of dialouge (single line from script)
             _coroutineActive = false;
