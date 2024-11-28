@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using PlayerManager = Scripts.Player.Player;
 
-
 namespace Scripts.Menu
 {
     public class MissionLogMenu : MonoBehaviour
