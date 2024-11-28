@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Scripts.MissonLogMenu;
 using UnityEngine;
 using PlayerManager = Scripts.Player.Player;
+using Scripts.Game;
 
 
 namespace Scripts.NPC
@@ -68,6 +69,7 @@ namespace Scripts.NPC
                 //Disable Player Movement
                 _scriptIndex = 0;
                 _inTriggerBox = true;
+                GameScreen.Instance.ShowKeyPrompt("Press F Key To Continue");
             }
         }
 
@@ -85,6 +87,7 @@ namespace Scripts.NPC
                 //enable player movement
                 istalkingToPlayer = false;
                 _inTriggerBox = false;
+                GameScreen.Instance.HideKeyPrompt();
             }
         }
         #endregion
