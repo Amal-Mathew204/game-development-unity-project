@@ -58,6 +58,10 @@ namespace Scripts.Player
         [SerializeField] private GameObject pauseMenu;
         //cache values
         private bool _pauseMenuActive = false;
+
+        [Header("Mission Log Components")]
+        [SerializeField] private GameObject missionLogMenu;
+        private bool _missionLogMenuActive = false;
         #endregion
 
         #region Awake Methods
@@ -99,8 +103,10 @@ namespace Scripts.Player
             _playerController = GetComponent<PlayerController>();
             _playerInput = GetComponent<PlayerInput>();
 
-            //reference pause menu
+            //reference menus
             pauseMenu = GetPauseMenu();
+            missionLogMenu = GetMissionLogMenu();
+
         }
 
         /// <summary>
@@ -128,10 +134,11 @@ namespace Scripts.Player
         /// </summary>
         private void Update()
         {
-            
             ToggleInventoryUI();
             ToggleInventoryWarningMessage();
             TogglePauseMenu();
+            ToggleMissionLogMenu();
+
         }
         #endregion
 
@@ -179,6 +186,68 @@ namespace Scripts.Player
             {
                 Debug.LogError("Player Menu Is Not Found");
             }
+        }
+        #endregion
+
+
+        #region Mission Log Methods
+        /// <summary>
+        /// Checks the input for toggling the mission log menu and updates its visibility if needed.
+        /// </summary>
+        public void ToggleMissionLogMenu()
+        {
+            if (_playerUIInput.ToggleMissionLogMenu)
+            {
+                ChangeMissionLogMenuVisibility();
+            }
+        }
+
+        /// <summary>
+        /// Toggles the visibility of the mission log menu, pauses/unpauses the game,
+        /// and switches the current input action map between "UI" and "Player" accordingly.
+        /// </summary>
+        public void ChangeMissionLogMenuVisibility()
+        {
+            _missionLogMenuActive = !_missionLogMenuActive;
+
+            if (missionLogMenu != null)
+            {
+                missionLogMenu.SetActive(_missionLogMenuActive);
+
+                if (_missionLogMenuActive)
+                {
+                    Time.timeScale = 0f;
+                    _playerInput.SwitchCurrentActionMap("UI");
+                    GameManager.Instance.EnableMouseCursor();
+                }
+                else
+                {
+                    Time.timeScale = 1f;
+                    _playerInput.SwitchCurrentActionMap("Player");
+                    GameManager.Instance.DisableMouseCursor();
+                }
+            }
+            else
+            {
+                Debug.LogError("Mission Log Menu is not found");
+            }
+        }
+
+        /// <summary>
+        /// Retrieves the Mission Log Menu GameObject by searching within the GameScreen's child objects.
+        /// </summary>
+        public GameObject GetMissionLogMenu()
+        {
+            GameObject gameScreen = GameObject.Find("GameScreen");
+            Transform[] children = gameScreen.GetComponentsInChildren<Transform>(true);
+            foreach (Transform child in children)
+            {
+                if (child.name == "Mission Log Menu")
+                {
+                    return child.gameObject;
+                }
+            }
+            return null;
         }
         #endregion
 
