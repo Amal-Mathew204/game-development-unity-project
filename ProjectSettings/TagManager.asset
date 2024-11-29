@@ -13,6 +13,7 @@ TagManager:
   - StartNPC
   - PauseMenu
   - SeedBag
+  - Radar
   layers:
   - Default
   - TransparentFX
