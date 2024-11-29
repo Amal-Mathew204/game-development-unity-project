@@ -14,6 +14,7 @@ TagManager:
   - PauseMenu
   - SeedBag
   - Radar
+  - Barrel
   layers:
   - Default
   - TransparentFX
