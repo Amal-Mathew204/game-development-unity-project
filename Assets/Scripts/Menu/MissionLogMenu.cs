@@ -16,7 +16,6 @@ namespace Scripts.Menu
         public List<string> MissionTitles { get; private set; }
         public List<Mission> SubMissions { get; private set; } = new List<Mission>();
 
-
         void Start()
         {
             MissionList = GameManager.Instance.MissionList;
@@ -82,6 +81,14 @@ namespace Scripts.Menu
             {
                 // Optionally display a message or handle UI differently if no sub-missions exist
                 Debug.Log("No sub-missions for this mission.");
+            }
+        }
+
+        public void ClearMissionCards()
+        {
+            foreach (Transform child in contentPanel)
+            {
+                GameObject.Destroy(child.gameObject);
             }
         }
     }

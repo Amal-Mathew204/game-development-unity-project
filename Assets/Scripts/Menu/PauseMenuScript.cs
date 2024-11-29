@@ -63,9 +63,14 @@ namespace Scripts.Menu
         /// </summary>
         public void CloseMissionLogMenu()
         {
+            if (_missionLogMenuController != null)
+            {
+                _missionLogMenuController.ClearMissionCards();
+            }
             _missionLogMenu.SetActive(false);
         }
 
     }
+
 }
 
