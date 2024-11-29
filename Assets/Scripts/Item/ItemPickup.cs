@@ -11,9 +11,9 @@ namespace Scripts.Item
     {
         public string itemName;
         [SerializeField] private TMP_Text _itemLabel;
-        private bool _isInRange = false;  // This will be true when the player is looking at the item
-        private PlayerState _playerState;
-        private PlayerActionInput _playerActionInput;
+        protected bool _isInRange = false;  // This will be true when the player is looking at the item
+        protected PlayerState _playerState;
+        protected PlayerActionInput _playerActionInput;
 
         /// <summary>
         /// Initializes the item's dependencies by retrieving the player's state and action input components.
@@ -63,7 +63,7 @@ namespace Scripts.Item
         /// <summary>
         /// Method to try picking up the item if the player is in range and presses the gather button
         /// </summary>
-        public void TryPickUp()
+        public virtual void TryPickUp()
         {
             if (_isInRange && _playerActionInput.IsGathering && _playerState.CanGather())
             {
