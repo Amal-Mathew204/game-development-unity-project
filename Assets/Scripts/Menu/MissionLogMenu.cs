@@ -36,15 +36,45 @@ namespace Scripts.Menu
 
         private void SetupCard(GameObject card, Mission mission)
         {
-            TextMeshProUGUI titleText = card.GetComponentInChildren<TextMeshProUGUI>(); // Find the TextMeshPro component
+            TextMeshProUGUI titleText = card.GetComponentInChildren<TextMeshProUGUI>(); // Main title
+
             if (titleText != null)
             {
-                titleText.text = mission.MissionTitle; // Set the text to the mission's title
-                Debug.Log("Assigned Mission Title: " + mission.MissionTitle); // Debug to confirm it's working
+                titleText.text = mission.MissionTitle;
             }
-            else
+
+            // Assuming a container GameObject exists in your card prefab for sub-missions text
+            Transform subMissionContainer = card.transform.Find("SubMissionContainer");
+            if (subMissionContainer == null)
             {
-                Debug.LogError("TextMeshPro component not found on the mission card prefab!");
+                Debug.LogError("SubMissionContainer not found in the prefab!");
+                return;
+            }
+
+            // Clear previous sub-missions texts (if any)
+            foreach (Transform child in subMissionContainer)
+            {
+                GameObject.Destroy(child.gameObject);
+            }
+
+            // Create new TextMeshProUGUI for each sub-mission
+            foreach (Mission subMission in mission.SubMissions)
+            {
+                GameObject subMissionTextObj = new GameObject("SubMissionText", typeof(TextMeshProUGUI));
+                TextMeshProUGUI subMissionText = subMissionTextObj.GetComponent<TextMeshProUGUI>();
+
+                // Configure the TextMeshPro component
+                subMissionText.text = subMission.MissionTitle + (subMission.IsMissionCompleted() ? " (Complete)" : " (Incomplete)");
+                subMissionText.fontSize = 24; // Set a smaller font size for sub-missions
+                subMissionText.alignment = TextAlignmentOptions.Left;
+                subMissionText.color = subMission.IsMissionCompleted() ? Color.green : Color.red; // Green for completed, red for incomplete
+                subMissionText.enableWordWrapping = true;
+                subMissionText.overflowMode = TextOverflowModes.Ellipsis;
+                subMissionText.rectTransform.sizeDelta = new Vector2(350, 30); // Adjust width and height as needed
+
+                // Set parent to the subMissionContainer and adjust localScale
+                subMissionTextObj.transform.SetParent(subMissionContainer, false);
+                subMissionTextObj.transform.localScale = Vector3.one;
             }
         }
     }
