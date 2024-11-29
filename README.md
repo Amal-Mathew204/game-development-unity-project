@@ -27,6 +27,11 @@ Third Party Assests:
 * [GameCore Radar System Lite](https://assetstore.unity.com/packages/tools/game-toolkits/game-core-radar-system-lite-226229) (pre-built scripts used)
 * [Explosion Sound](https://mixkit.co/free-sound-effects/explosion/)
 * [Legacy Particle Pack](https://assetstore.unity.com/packages/vfx/particles/legacy-particle-pack-73777)
+* [Shovel](https://assetstore.unity.com/packages/3d/props/tools/rusty-black-shovel-73088)
+* [Farm Fence](https://assetstore.unity.com/packages/3d/props/stylized-farm-asset-pack-small-276993)
+* [Farm Terrain](https://assetstore.unity.com/packages/2d/textures-materials/floors/outdoor-ground-textures-12555)
+* [Soil Patch](https://assetstore.unity.com/packages/3d/vegetation/plants/cartoon-farm-crops-79777)
+* [Seed Bag](https://sketchfab.com/3d-models/seed-bag-93dfc2af49bb464f8754ed0ee1cbf912)
 
 Assets installed from the unity registry: 
 * Input System 1.7.0
