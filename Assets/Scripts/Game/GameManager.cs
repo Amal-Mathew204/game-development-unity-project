@@ -107,7 +107,7 @@ namespace Scripts.Game
             farmMission.AddSubMission(buildFarm);
 
             MissionList = new List<Mission>() {farmMission, cleanUp, 
-                                               plantSeed,
+                                               plantSeed, wasteBarrel,
                                                findWater};
         }
         #endregion
