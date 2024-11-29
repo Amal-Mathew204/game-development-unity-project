@@ -40,7 +40,7 @@ namespace Scripts.Menu
 
             if (titleText != null)
             {
-                titleText.text = mission.MissionTitle;
+                titleText.text = mission.MissionTitle + (mission.IsMissionCompleted() ? " (Complete)" : " (Incomplete)");
             }
 
             // Assuming a container GameObject exists in your card prefab for sub-missions text
@@ -57,24 +57,32 @@ namespace Scripts.Menu
                 GameObject.Destroy(child.gameObject);
             }
 
-            // Create new TextMeshProUGUI for each sub-mission
-            foreach (Mission subMission in mission.SubMissions)
+            // Only populate sub-missions if they exist
+            if (mission.hasSubMissions())
             {
-                GameObject subMissionTextObj = new GameObject("SubMissionText", typeof(TextMeshProUGUI));
-                TextMeshProUGUI subMissionText = subMissionTextObj.GetComponent<TextMeshProUGUI>();
+                foreach (Mission subMission in mission.SubMissions)
+                {
+                    GameObject subMissionTextObj = new GameObject("SubMissionText", typeof(TextMeshProUGUI));
+                    TextMeshProUGUI subMissionText = subMissionTextObj.GetComponent<TextMeshProUGUI>();
 
-                // Configure the TextMeshPro component
-                subMissionText.text = subMission.MissionTitle + (subMission.IsMissionCompleted() ? " (Complete)" : " (Incomplete)");
-                subMissionText.fontSize = 24; // Set a smaller font size for sub-missions
-                subMissionText.alignment = TextAlignmentOptions.Left;
-                subMissionText.color = subMission.IsMissionCompleted() ? Color.green : Color.red; // Green for completed, red for incomplete
-                subMissionText.enableWordWrapping = true;
-                subMissionText.overflowMode = TextOverflowModes.Ellipsis;
-                subMissionText.rectTransform.sizeDelta = new Vector2(350, 30); // Adjust width and height as needed
+                    // Configure the TextMeshPro component for sub-missions
+                    subMissionText.text = subMission.MissionTitle + (subMission.IsMissionCompleted() ? " (Complete)" : " (Incomplete)");
+                    subMissionText.fontSize = 24;
+                    subMissionText.alignment = TextAlignmentOptions.Left;
+                    subMissionText.color = subMission.IsMissionCompleted() ? Color.green : Color.red;
+                    subMissionText.enableWordWrapping = true;
+                    subMissionText.overflowMode = TextOverflowModes.Ellipsis;
+                    subMissionText.rectTransform.sizeDelta = new Vector2(350, 30);
 
-                // Set parent to the subMissionContainer and adjust localScale
-                subMissionTextObj.transform.SetParent(subMissionContainer, false);
-                subMissionTextObj.transform.localScale = Vector3.one;
+                    // Set parent to the subMissionContainer and adjust localScale
+                    subMissionTextObj.transform.SetParent(subMissionContainer, false);
+                    subMissionTextObj.transform.localScale = Vector3.one;
+                }
+            }
+            else
+            {
+                // Optionally display a message or handle UI differently if no sub-missions exist
+                Debug.Log("No sub-missions for this mission.");
             }
         }
     }
