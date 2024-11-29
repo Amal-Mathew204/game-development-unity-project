@@ -79,7 +79,7 @@ namespace Scripts.Game
             Mission farmMission = new Mission("Create Farm", "");
             CollectMission collectShovel = new CollectMission("Find Shovel", "Explore the terrian to locate the shovel which is needed for farming", 1, new List<string>() { "Shovel" });
             CollectMission collectSeedBag = new CollectMission("Find SeedBags", "Explore the terrian to salvage the seed bags", 3, new List<string>() { "Seed Bag" });
-            CollectMission cleanUp = new CollectMission("Clean Up", "Clean up all the oil barrels around the map ", 7, new List<string>() { "barrel" });
+            CollectMission cleanUp = new CollectMission("Clean Up", "Clean up all the oil barrels around the map ", 2, new List<string>() { "barrel" });
             Mission findFarmLand = new Mission("Find Farm Land", "");
             Mission buildFarm = new Mission("Build Farm", "Using the shovel build an area to plant some vegetation");
             Mission plantSeed = new Mission("Plant Seed", "Drop the seed bags in the farmland ");
@@ -105,7 +105,7 @@ namespace Scripts.Game
             //farmMission.AddSubMission(findFarmLand);
             farmMission.AddSubMission(buildFarm);
 
-            MissionList = new List<Mission>() {farmMission, new CollectMission("Collect Item", "Explore the terrain. There are three items you need to collect", 3), 
+            MissionList = new List<Mission>() {farmMission, cleanUp, 
                                                plantSeed,
                                                findWater};
         }
