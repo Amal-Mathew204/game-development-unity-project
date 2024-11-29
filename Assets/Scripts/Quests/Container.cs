@@ -10,26 +10,65 @@ using Scripts.Quests;
 public class Container : MonoBehaviour
 {
     private int _count = 0;
-    [SerializeField] private SeedPlantingQuest _seedPlantingQuest;
+    private MissionLogDropdown _dropdown;
+    private int _oilDropped = 0;
+
+    /// <summary>
+    /// Works as the first frame of the game
+    /// Finds Mission UI interface component and assigns to variable 
+    /// </summary>
+    private void Start()
+    {
+        _dropdown = GameObject.FindGameObjectWithTag("MissionUI").GetComponent<MissionLogDropdown>();
+
+    }
+
+    /// <summary>
+    /// Updates the Place Barrel in Container Mission 
+    /// </summary>
+    private void Update()
+    {
+        if (_oilDropped == 5)
+        {
+            ///Gets Plant Place Barrel in Container mission
+            if (_dropdown == null)
+            {
+                Debug.LogError("Mission UI Dropdown Component not Found");
+            }
+            Mission mission = _dropdown.GetMission("Place Barrel in Container");
+            if (mission == null)
+            {
+                Debug.LogError("Mission Place Barrel in Container Not Found");
+            }
+            ///Marks Mission as completed 
+            mission.SetMissionCompleted();
+            ///Updates Completion Status
+            if (_dropdown.MissionTitles.FindIndex(title => title == mission.MissionTitle) + 1 == _dropdown.dropdown.value)
+            {
+                _dropdown.UpdateCompletionStatus(true);
+            }
+        }
+    }
+
     /// <summary>
     /// Method for when player enters farm trigger box with all barrels
     /// </summary>
     private void OnTriggerEnter(Collider other)
     {
-        ///Mission mission = _dropdown.GetMission("Plant Seed");
         ///Destroys barrel object when dropped 
         if (other.CompareTag("Barrel"))
         {
+            _oilDropped = _oilDropped + 1;
             ///Destroys Barrel
             Destroy(other.gameObject);
+
         }
-
-
     }
+
     /// <summary>
     /// Method checks for checking if barrel is in Inventory 
     /// </summary>
-    public bool CheckSeedInventory()
+    public bool CheckBarrelInventory()
     {
         List<ItemPickup> inventory = PlayerManager.Instance.Inventory;
         foreach (ItemPickup item in inventory)
@@ -38,7 +77,7 @@ public class Container : MonoBehaviour
             {
                 _count = _count + 1;
             }
-            if (_count == 3)
+            if (_count == 5)
             {
                 return true;
             }
