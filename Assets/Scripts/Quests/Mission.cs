@@ -10,7 +10,7 @@ namespace Scripts.Quests
         public string MissionInfo { get; private set; }
         public List<Mission> SubMissions { get; private set; } = new List<Mission>();
         private bool _missionCompleted = false;
-        public bool IsCompleted { get; set; } // Track completion status
+        
 
         /// <summary>
         /// On Class Intialisation set the missions title and information
