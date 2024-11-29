@@ -19,13 +19,12 @@ namespace Scripts.Menu
 
         void Start()
         {
-            GenerateMissionCards();
             MissionList = GameManager.Instance.MissionList;
 
         }
 
 
-        private void GenerateMissionCards()
+        public void GenerateMissionCards()
         {
             foreach (Mission mission in GameManager.Instance.MissionList)
             {

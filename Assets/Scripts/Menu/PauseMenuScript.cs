@@ -8,11 +8,18 @@ namespace Scripts.Menu
     public class PauseMenuScript : MonoBehaviour
     {
         [Header("Mission Log Components")]
-        [SerializeField] private GameObject missionLogMenu;
+        private GameObject _missionLogMenu;
+        private MissionLogMenu _missionLogMenuController;
+
 
         private void Start()
         {
-            missionLogMenu = GetMissionLogMenu();
+            _missionLogMenu = GetMissionLogMenu();
+            if (_missionLogMenu == null)
+            {
+                Debug.LogError("Mission Log Menu is null");
+            }
+            _missionLogMenuController = _missionLogMenu.GetComponent<MissionLogMenu>();
         }
 
         /// <summary>
@@ -46,7 +53,9 @@ namespace Scripts.Menu
         /// </summary>
         public void OpenMissionLogMenu()
         {
-            missionLogMenu.SetActive(true);
+            _missionLogMenu.SetActive(true);
+            _missionLogMenuController.GenerateMissionCards();
+
         }
 
         /// <summary>
@@ -54,7 +63,7 @@ namespace Scripts.Menu
         /// </summary>
         public void CloseMissionLogMenu()
         {
-            missionLogMenu.SetActive(false);
+            _missionLogMenu.SetActive(false);
         }
 
     }
