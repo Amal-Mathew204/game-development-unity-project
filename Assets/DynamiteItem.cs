@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Scripts.Game;
 using UnityEngine.Rendering;
+using PlayerManager = Scripts.Player.Player;
 
 public class DynamiteItem : MonoBehaviour
 {
@@ -32,7 +33,7 @@ public class DynamiteItem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(_playerInRange && Input.GetKeyDown(KeyCode.F))
+        if(_playerInRange && PlayerManager.Instance.getTaskAccepted())
         {
             {
                 StartCoroutine(Detonate());
