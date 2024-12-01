@@ -59,9 +59,9 @@ namespace Scripts.Game
         }
 
         /// <summary>
-        /// 
+        /// This reduces the battery level of the player by a percentage
         /// </summary>
-        /// <param name="level"></param>
+        
         public void SetBatteryLevelReduction(float percentageReduction)
         {
             if(percentageReduction <= 0 &&  percentageReduction > 1)
