@@ -20,6 +20,11 @@ Third Party Assests:
 * [Mixamo (for importing animations)](https://www.mixamo.com/)
 * [Rocket](https://www.mixamo.com/](https://assetstore.unity.com/packages/3d/vehicles/space/rocket-cartoon-capsule-196997))
 * [Steampunk Toy Robot 3D Model](https://free3d.com/3d-model/a-steampunk-toy-robot-178705.html)
+* [Explosives Package](https://assetstore.unity.com/packages/3d/props/explosives-package-8093).
+* [Unlit Stylized Water Pack](https://assetstore.unity.com/packages/2d/textures-materials/water/unlit-stylized-water-pack-142285)
+* [Terrain Tools](https://assetstore.unity.com/packages/tools/terrain/terrain-tools-64852)
+* [Cyberpunk GPS Tracker](https://www.cgtrader.com/items/3339615/download-page) (pre-built scripts used)
+* [GameCore Radar System Lite](https://assetstore.unity.com/packages/tools/game-toolkits/game-core-radar-system-lite-226229) (pre-built scripts used)
 
 Assets installed from the unity registry: 
 * Input System 1.7.0
