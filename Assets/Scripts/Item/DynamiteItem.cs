@@ -9,6 +9,7 @@ using System.Threading;
 using TMPro;
 using Scripts.Quests;
 using MissionLogDropdown = Scripts.MissonLogMenu.Dropdown;
+using Scripts.Audio;
 using System;
 
 namespace Scripts.Item
@@ -26,6 +27,8 @@ namespace Scripts.Item
         [SerializeField] private float _blockSpawnRadius = 2f;
         [SerializeField] private int _blockCount = 40; // Number of mini-blocks
         [SerializeField] private const float HEALTHREDUCTIONVALUE = 0.25f;
+
+        [SerializeField] private AudioClip _explosionAudioClip;
 
         private MissionLogDropdown _dropdown;
         private bool _playerInRange = false;
@@ -120,7 +123,7 @@ namespace Scripts.Item
             List<GameObject> spawnedBlocks = SpawnMiniBlocks();
 
             // Wait 5 seconds before destroying blocks
-            yield return StartCoroutine(DestroyBlocksAfterDelay(spawnedBlocks, 5f));
+            yield return StartCoroutine(DestroyBlocksAfterDelay(spawnedBlocks, 7f));
 
             // Destroy the DynamiteItem object after the detonation process
             Destroy(gameObject);
@@ -149,6 +152,11 @@ namespace Scripts.Item
         {
             Instantiate(_explosionEffect, transform.position, Quaternion.identity);
 
+            // Play the explosion sound using the AudioManager
+            if (AudioManager.Instance != null)
+            {
+                AudioManager.Instance.PlaySFX(_explosionAudioClip);
+            }
         }
 
         /// <summary>
