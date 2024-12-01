@@ -15,6 +15,11 @@ namespace Scripts.Item
         #endregion
 
         #region PickUp Methods
+
+        /// <summary>
+        /// Method to try picking up the item if the player is in range and presses the gather button
+        /// Specifically for the GPS Scanner as we need to activate the radar
+        /// </summary>
         public override void TryPickUp()
         {
             if (_isInRange && _playerActionInput.IsGathering && _playerState.CanGather())

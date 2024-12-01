@@ -1,3 +1,4 @@
+using Scripts.Game;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,7 +16,8 @@ namespace Scripts.Quests
         /// </summary>
         public void Start()
         {
-            _dropdown = GameObject.FindGameObjectWithTag("MissionUI").GetComponent<MissionLogDropdown>();
+            _dropdown = GameManager.Instance.GetMissionLogDropdownComponent();
+            
         }
 
         /// <summary>
