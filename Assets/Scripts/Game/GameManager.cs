@@ -43,7 +43,6 @@ namespace Scripts.Game
         {
             SetInstance();
             CreateMissions();
-            SetClassVariables();
         }
         /// <summary>
         /// Ensures only a single instance of the GameManger class (and GameObject) is created.
@@ -58,18 +57,6 @@ namespace Scripts.Game
             else
             {
                 Destroy(gameObject);
-            }
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        private void SetClassVariables()
-        {
-            _gameState = GameObject.FindGameObjectWithTag("GameScreen").GetComponentInChildren<GameState>();
-            if(_gameState == null)
-            {
-                Debug.LogError("Game State Component Could Not Be Found");
             }
         }
 
@@ -254,6 +241,14 @@ namespace Scripts.Game
         public void SetBatteryLevelReduction(float percentageReduction)
         {
             _gameState.SetBatteryLevelReduction(percentageReduction);
+        }
+
+        /// <summary>
+        /// The method allows the GameState class to set a reference to itself through the Game Manager Singleton Instance
+        /// </summary>
+        public void SetGameState(GameState state)
+        {
+            _gameState = state;
         }
         #endregion
     }

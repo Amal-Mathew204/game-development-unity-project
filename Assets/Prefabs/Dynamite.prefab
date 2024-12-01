@@ -264,7 +264,7 @@ MonoBehaviour:
   _explosionRadius: 5
   _explosionForce: 200
   _blockSpawnRadius: 5
-  _blockCount: 300
+  _blockCount: 200
 --- !u!54 &3576690237895066311
 Rigidbody:
   m_ObjectHideFlags: 0
