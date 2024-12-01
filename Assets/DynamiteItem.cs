@@ -92,6 +92,17 @@ public class DynamiteItem : MonoBehaviour
         // Start countdown and show bubble text
         yield return StartCoroutine(HandleCountdown());
 
+        //disable all child game objects
+        Transform[] children = gameObject.GetComponentsInChildren<Transform>();
+        foreach (Transform child in children)
+        {
+            //dont disable child of parent
+            if (child != transform)
+            {
+                child.gameObject.SetActive(false);
+            }
+        }
+
         // Instantiate explosion effect
         InstantiateExplosionEffect();
 
