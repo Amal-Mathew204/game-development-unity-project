@@ -20,7 +20,7 @@ namespace Scripts.Game
             GameManager.Instance.GameStateCanvas = this.gameObject.transform.Find("Canvas").gameObject;
             _totalGameTime = GameManager.Instance.GameTime;
             _gameElapsedTime = GameManager.Instance.GameTimeElapsed;
-
+            GameManager.Instance.SetGameState(this);
         }
 
         /// <summary>
