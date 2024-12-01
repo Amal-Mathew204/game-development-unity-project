@@ -4,6 +4,9 @@ using UnityEngine;
 using Scripts.Game;
 using UnityEngine.Rendering;
 using PlayerManager = Scripts.Player.Player;
+using Unity.VisualScripting;
+using System.Threading;
+using TMPro;
 
 public class DynamiteItem : MonoBehaviour
 {
@@ -13,8 +16,10 @@ public class DynamiteItem : MonoBehaviour
     [SerializeField] private float _explosionForce = 2f; // Force applied to block
     [SerializeField] private GameObject _targetObject; // Specify layers to check for destructible objects
     [SerializeField] private List<GameObject> _invisibleBlocks;
+    [SerializeField] private TextMeshPro _bubbleText;
 
     private bool _playerInRange = false;
+    
 
     private void OnTriggerEnter(Collider other)
     {
@@ -40,6 +45,10 @@ public class DynamiteItem : MonoBehaviour
         if (_playerInRange && PlayerManager.Instance.getTaskAccepted())
         {
             {
+
+                GameScreen.Instance.HideKeyPrompt();
+                
+
                 StartCoroutine(Detonate());
             }
         }
@@ -48,9 +57,21 @@ public class DynamiteItem : MonoBehaviour
     private IEnumerator Detonate()
     {
 
-        yield return new WaitForSeconds(_explosionDelay);
+        int countdown = 3;
 
-        GameScreen.Instance.HideKeyPrompt(); // Hide the key prompt
+        // Show bubble text and countdown
+        while (countdown > 0)
+        {
+            _bubbleText.gameObject.SetActive(true); // Ensure bubble text is visible
+            _bubbleText.text = $"{countdown}";      // Update countdown text
+            yield return new WaitForSeconds(1f);   // Wait 1 second
+            countdown--;
+        }
+
+        _bubbleText.gameObject.SetActive(false);
+
+        //yield return new WaitForSeconds(_explosionDelay);
+
         Instantiate(_explosionEffect, transform.position, Quaternion.identity);
 
         Destroy(gameObject);
