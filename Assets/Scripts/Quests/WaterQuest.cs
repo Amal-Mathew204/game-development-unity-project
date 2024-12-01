@@ -10,13 +10,18 @@ namespace Scripts.Quests
         private MissionLogDropdown _dropdown;
 
         /// <summary>
-        /// Works as the first frame of the game
-        /// Finds Mission UI interface component and assigns to variable 
+        /// Initializes the script by finding the Mission UI component and assigning it to the dropdown variable.
+        /// This is called when the script starts.
         /// </summary>
         public void Start()
         {
             _dropdown = GameObject.FindGameObjectWithTag("MissionUI").GetComponent<MissionLogDropdown>();
         }
+
+        /// <summary>
+        /// Detects when the player enters the trigger zone.
+        /// Marks the "Water Source Location" mission as completed and updates the mission log UI accordingly.
+        /// </summary>
         private void OnTriggerEnter(Collider other)
         {
             if (other.CompareTag("Player"))
