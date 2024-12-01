@@ -27,7 +27,6 @@ namespace Scripts.Quests
             {
                 return true;
             }
-            Debug.Log("Mission " + this.MissionTitle +": " + _typeOfItems.Contains(itemName));
             return _typeOfItems.Contains(itemName);
         }
 

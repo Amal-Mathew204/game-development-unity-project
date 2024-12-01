@@ -13,6 +13,8 @@ using Scripts.Player.Input;
 using Scripts.Quests;
 using Scripts.NPC;
 using MissionLogDropdown = Scripts.MissonLogMenu.Dropdown;
+using Ilumisoft.RadarSystem;
+using UnityEditor.Rendering;
 
 
 
@@ -49,6 +51,8 @@ namespace Scripts.Player
         private GameObject _startNPC; // Reference to the startNPC prefab
         private StartNPC _npcTrigger;
         public bool startOfGame = true;
+
+        public Radar radar;
 
         [Header("Pause Menu Components")]
         [SerializeField] private GameObject pauseMenu;
@@ -287,11 +291,11 @@ namespace Scripts.Player
         /// </summary>
         public void ContinueGame(InputAction.CallbackContext context)
         {
-            if (!context.performed)
+            if (!context.performed && startOfGame == false)
             {
                 return;
             }
-            Debug.Log("Game Continued");
+            
 
             if (_npcTrigger != null)
             {
@@ -353,7 +357,15 @@ namespace Scripts.Player
         /// </summary>
         public void DropItem(ItemPickup item)
         {
+            
+            if (item.itemName == "GPS Scanner")
+            {
+                
+                radar.DeactivateRadar();
+            }
+
             RemoveItem(item);
+            
 
             Vector3 dropPosition = transform.position + transform.forward * 2f;
             item.gameObject.transform.position = dropPosition;
