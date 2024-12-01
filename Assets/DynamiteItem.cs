@@ -14,29 +14,31 @@ public class DynamiteItem : MonoBehaviour
 {
     [SerializeField] private GameObject _explosionEffect;
     [SerializeField] private GameObject _miniBlockPrefab; // Prefab for mini-blocks
+    [SerializeField] private TextMeshPro _bubbleText;
+    [SerializeField] private GameObject _destroyableObject; // Specify layers to check for destructible objects
+
     [SerializeField] private float _explosionDelay;
     [SerializeField] private float _explosionRadius = 20f; // Radius of the explosion
     [SerializeField] private float _explosionForce = 2f; // Force applied to block
     [SerializeField] private float _blockSpawnRadius = 2f;
-    [SerializeField] private GameObject _destroyableObject; // Specify layers to check for destructible objects
-
-    [SerializeField] private TextMeshPro _bubbleText;
     [SerializeField] private int _blockCount = 40; // Number of mini-blocks
-
 
     private MissionLogDropdown _dropdown;
     private bool _playerInRange = false;
     private bool _canDetonate = true;
 
     /// <summary>
-    /// Works as the first frame of the game
-    /// Finds Mission UI interface component and assigns to variable 
+    /// Finds the Mission UI component and assigns it to the dropdown variable.
+    /// Called when the script starts.
     /// </summary>
     public void Start()
     {
         _dropdown = GameObject.FindGameObjectWithTag("MissionUI").GetComponent<MissionLogDropdown>();
     }
 
+    /// <summary>
+    /// Detects when the player enters the trigger zone and shows a prompt to detonate.
+    /// </summary>
     private void OnTriggerEnter(Collider other)
     {
         if (_canDetonate)
@@ -46,14 +48,14 @@ public class DynamiteItem : MonoBehaviour
                 _playerInRange = true;
                 GameScreen.Instance.ShowKeyPrompt("Press F to detonate");
             }
-
         }
-        
     }
 
+    /// <summary>
+    /// Detects when the player exits the trigger zone and hides the prompt.
+    /// </summary>
     private void OnTriggerExit(Collider other)
     {
-        
         if (other.CompareTag("Player"))
         {
             _playerInRange = false;
@@ -61,48 +63,34 @@ public class DynamiteItem : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
+    /// <summary>
+    /// Monitors player input and starts the detonation sequence if the player is in range.
+    /// </summary>
     void Update()
     {
         if (_playerInRange && PlayerManager.Instance.getTaskAccepted())
         {
-            {
-                _canDetonate = false;
-
-                GameScreen.Instance.HideKeyPrompt();
-                
-
-                StartCoroutine(Detonate());
-            }
+            _canDetonate = false;
+            GameScreen.Instance.HideKeyPrompt();
+            StartCoroutine(Detonate());
         }
     }
+
+    /// <summary>
+    /// Ensures the key prompt is hidden when the object is disabled.
+    /// </summary>
     public void OnDisable()
     {
         GameScreen.Instance.HideKeyPrompt();
-        Debug.Log("DynamiteItem script disabled");
-    }
-    
-
-    private void OnDestroy()
-    {
-        Debug.Log("DynamiteItem object destroyed");
     }
 
+    /// <summary>
+    /// Handles the entire detonation process: countdown, explosion effect, target destruction, block spawning, and block destruction.
+    /// </summary>
     private IEnumerator Detonate()
     {
         // Start countdown and show bubble text
         yield return StartCoroutine(HandleCountdown());
-
-        //disable all child game objects
-        Transform[] children = gameObject.GetComponentsInChildren<Transform>();
-        foreach (Transform child in children)
-        {
-            //dont disable child of parent
-            if(child != transform)
-            {
-                child.gameObject.SetActive(false);
-            }
-        }
 
         // Instantiate explosion effect
         InstantiateExplosionEffect();
@@ -110,11 +98,9 @@ public class DynamiteItem : MonoBehaviour
         // Handle target object destruction if within explosion radius
         HandleTargetDestruction();
 
-        
         // Spawn mini blocks and apply forces
         List<GameObject> spawnedBlocks = SpawnMiniBlocks();
 
-        
         // Wait 5 seconds before destroying blocks
         yield return StartCoroutine(DestroyBlocksAfterDelay(spawnedBlocks, 5f));
 
@@ -122,6 +108,9 @@ public class DynamiteItem : MonoBehaviour
         Destroy(gameObject);
     }
 
+    /// <summary>
+    /// Handles the countdown before the explosion, updating the bubble text and waiting for each second.
+    /// </summary>
     private IEnumerator HandleCountdown()
     {
         int countdown = 3;
@@ -134,13 +123,20 @@ public class DynamiteItem : MonoBehaviour
         }
         _bubbleText.gameObject.SetActive(false);
     }
-    
+
+    /// <summary>
+    /// Instantiates the explosion effect at the dynamite item's position.
+    /// </summary>
     private void InstantiateExplosionEffect()
     {
         Instantiate(_explosionEffect, transform.position, Quaternion.identity);
         Debug.Log("Explosion effect instantiated");
     }
 
+    /// <summary>
+    /// Destroys the target object if it is within the explosion radius.
+    /// Updates mission status accordingly.
+    /// </summary>
     private void HandleTargetDestruction()
     {
         if (_destroyableObject != null)
@@ -165,6 +161,10 @@ public class DynamiteItem : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Spawns a number of mini blocks at random positions within a defined radius from the dynamite item.
+    /// Applies forces to the blocks to simulate explosion.
+    /// </summary>
     private List<GameObject> SpawnMiniBlocks()
     {
         List<GameObject> spawnedBlocks = new List<GameObject>();
@@ -185,9 +185,11 @@ public class DynamiteItem : MonoBehaviour
         return spawnedBlocks;
     }
 
+    /// <summary>
+    /// Destroys the spawned blocks after a given delay.
+    /// </summary>
     private IEnumerator DestroyBlocksAfterDelay(List<GameObject> blocks, float delay)
     {
-        
         yield return new WaitForSeconds(delay);
 
         foreach (GameObject block in blocks)
@@ -199,6 +201,4 @@ public class DynamiteItem : MonoBehaviour
             }
         }
     }
-
-
 }
