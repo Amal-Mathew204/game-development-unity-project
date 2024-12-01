@@ -25,6 +25,7 @@ Third Party Assests:
 * [Terrain Tools](https://assetstore.unity.com/packages/tools/terrain/terrain-tools-64852)
 * [Cyberpunk GPS Tracker](https://www.cgtrader.com/items/3339615/download-page) (pre-built scripts used)
 * [GameCore Radar System Lite](https://assetstore.unity.com/packages/tools/game-toolkits/game-core-radar-system-lite-226229) (pre-built scripts used)
+* [Explosion Sound](https://mixkit.co/free-sound-effects/explosion/)
 
 Assets installed from the unity registry: 
 * Input System 1.7.0
