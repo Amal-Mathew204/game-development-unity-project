@@ -10,6 +10,7 @@ namespace Scripts.Item
     public class GPSScannerPickup : ItemPickup
     {
         #region Class Variables
+        
         public Radar radar;
         #endregion
 
@@ -25,7 +26,8 @@ namespace Scripts.Item
 
                     if(itemName == "GPS Scanner" && radar != null)
                     {
-                        radar.ActivateRadar();
+                        PlayerCharacter.Instance.radar.ActivateRadar();
+                       
                     }
                 }
             }

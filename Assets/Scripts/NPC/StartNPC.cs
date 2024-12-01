@@ -79,7 +79,7 @@ namespace Scripts.NPC
             }
             else
             {
-                Debug.Log("End of dialogue reached");
+                
                 return false; // No more text
             }
         }

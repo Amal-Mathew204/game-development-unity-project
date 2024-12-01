@@ -188,18 +188,29 @@
                 return new Vector2(distanceToPlayer.x, distanceToPlayer.z);
             }
 
+            /// <summary>
+            /// This activates the Radar UI
+            /// </summary>
             public void ActivateRadar()
             {
                 if (iconContainer!= null)
                 {
-                    iconContainer.gameObject.SetActive(true);
-                    Debug.Log("Radar Activated!");
-                }
-                // Optionally, activate the parent Radar UI if it's entirely deactivated
-                if (iconContainer.transform.parent != null)
-                {
+                    //iconContainer.gameObject.SetActive(true);
                     iconContainer.transform.parent.gameObject.SetActive(true);
                 }
-        }
+                // Optionally, activate the parent Radar UI if it's entirely deactivated
+                
+            }
+
+        
+            /// <summary>
+            /// This deactivates the Radar UI
+            /// </summary>
+            public void DeactivateRadar()
+            {
+                //iconContainer.gameObject.SetActive(false);
+                iconContainer.transform.parent.gameObject.SetActive(false);
+
+            }
         }
     }

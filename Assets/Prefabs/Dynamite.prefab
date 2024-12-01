@@ -126,8 +126,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 10
-  m_fontSizeBase: 10
+  m_fontSize: 20
+  m_fontSizeBase: 20
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -257,31 +257,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _explosionEffect: {fileID: 1000011797152326, guid: acf39d9f4addf294d93fa56fa373961b, type: 3}
+  _miniBlockPrefab: {fileID: 7181025614434640457, guid: a0519d813764df742b0c07faaaad3ab9, type: 3}
+  _bubbleText: {fileID: 7105801760040741462}
+  _destroyableObject: {fileID: 0}
   _explosionDelay: 3
   _explosionRadius: 5
-  _explosionForce: 300
-  _targetObject: {fileID: 0}
-  _invisibleBlocks:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  _bubbleText: {fileID: 7105801760040741462}
+  _explosionForce: 200
+  _blockSpawnRadius: 5
+  _blockCount: 300
 --- !u!54 &3576690237895066311
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -343,7 +326,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 1.283}
+  m_AnchoredPosition: {x: 0, y: 1.745}
   m_SizeDelta: {x: 3, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!23 &7202883759799513081
