@@ -50,6 +50,13 @@ namespace Scripts.Item
         {
             _dropdown = GameManager.Instance.GetMissionLogDropdownComponent();
         }
+        /// <summary>
+        /// Removes the key prompt from appearing after dropping the item
+        /// </summary>
+        public void OnDisable()
+        {
+            GameScreen.Instance.HideKeyPrompt();
+        }
         #endregion
 
         #region Trigger Detection

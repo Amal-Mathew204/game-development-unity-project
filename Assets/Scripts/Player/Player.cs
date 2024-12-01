@@ -13,7 +13,7 @@ using Scripts.Player.Input;
 using Scripts.Quests;
 using Scripts.NPC;
 using MissionLogDropdown = Scripts.MissonLogMenu.Dropdown;
-using Ilumisoft.RadarSystem;
+using Ilumisoft.RadarSystem;   //this is a third party class
 using UnityEditor.Rendering;
 
 
