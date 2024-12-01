@@ -83,14 +83,31 @@ namespace Scripts.Game
             Mission buildFarm = new Mission("Build Farm", "Using the shovel build an area to plant some vegetation");
             Mission plantSeed = new Mission("Plant Seed", "Drop the seed bags in the farmland ");
 
-            //Adds sub-mission to the farm mission 
+            CollectMission collectGPSScanner = new CollectMission("Find Gps Scanner", "Explore the terrian to locate the gps scanner which is needed to locate a water source", 1, new List<string>() { "GPS Scanner" });
+            CollectMission collectDynamite = new CollectMission("Find dynamite", "Explore the terrian to locate the dynamite which is needed to blow up the entrance to the water source", 1, new List<string>() { "Dynamite" });
+
+            Mission findWaterCave = new Mission("Water Source Location", "Use the gps scanner to locate a water source and the dynamite to blow up the cave entrance");
+            Mission blowUpEntrance = new Mission("Blow Up Entrance", "Use the dynamite to blow up the water cave's entrance");
+
+            Mission findWater = new Mission("Find Water", "In order to grow crops on this desolate land we need to find a water source. " +
+                                            "You must locate the Gps Scanner and a piece of dynamite. " +
+                                            "Use the gps scanner to locate the water source and detonate the dynamite over the water cave's entrance");
+
+            findWater.AddSubMission(new List<Mission>() { collectGPSScanner, collectDynamite, findWaterCave, blowUpEntrance });
+
+
+
+
+            ////Adds sub-mission to the farm mission 
             farmMission.AddSubMission(collectShovel);
             farmMission.AddSubMission(collectSeedBag);
             //farmMission.AddSubMission(findFarmLand);
             farmMission.AddSubMission(buildFarm);
 
-            MissionList = new List<Mission>() {farmMission, new CollectMission("Collect Item", "Explore the terrain. There are three items you need to collect", 3), plantSeed};
-    }
+            MissionList = new List<Mission>() {farmMission, new CollectMission("Collect Item", "Explore the terrain. There are three items you need to collect", 3), 
+                                               plantSeed,
+                                               findWater};
+        }
         #endregion
 
         #region Update Methods
