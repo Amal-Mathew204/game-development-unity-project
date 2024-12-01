@@ -32,7 +32,7 @@ namespace Scripts.Game
         public List<Mission> MissionList { get; private set; } = new List<Mission>();
         public GameObject GameStateCanvas { get; set; }
         public bool HasPlayerWonGame { get; private set; }
-
+        private GameState _gameState;
         [Header("Game Time Settings")]
         public float GameTimeElapsed;
         [field: SerializeField] public float GameTime { get; private set; } = 60f;
@@ -43,6 +43,7 @@ namespace Scripts.Game
         {
             SetInstance();
             CreateMissions();
+            SetClassVariables();
         }
         /// <summary>
         /// Ensures only a single instance of the GameManger class (and GameObject) is created.
@@ -57,6 +58,18 @@ namespace Scripts.Game
             else
             {
                 Destroy(gameObject);
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        private void SetClassVariables()
+        {
+            _gameState = GameObject.FindGameObjectWithTag("GameScreen").GetComponentInChildren<GameState>();
+            if(_gameState == null)
+            {
+                Debug.LogError("Game State Component Could Not Be Found");
             }
         }
 
@@ -231,6 +244,16 @@ namespace Scripts.Game
             }
             GameObject enterTextField = gameScreenCanvas.transform.Find("EnterTextField").gameObject;
             enterTextField.SetActive(visibility);
+        }
+        #endregion
+
+        #region Game State Methods
+        /// <summary>
+        /// 
+        /// </summary>
+        public void SetBatteryLevelReduction(float percentageReduction)
+        {
+            _gameState.SetBatteryLevelReduction(percentageReduction);
         }
         #endregion
     }

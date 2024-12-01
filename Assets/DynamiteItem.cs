@@ -9,6 +9,7 @@ using System.Threading;
 using TMPro;
 using Scripts.Quests;
 using MissionLogDropdown = Scripts.MissonLogMenu.Dropdown;
+using System;
 
 public class DynamiteItem : MonoBehaviour
 {
@@ -22,6 +23,7 @@ public class DynamiteItem : MonoBehaviour
     [SerializeField] private float _explosionForce = 2f; // Force applied to block
     [SerializeField] private float _blockSpawnRadius = 2f;
     [SerializeField] private int _blockCount = 40; // Number of mini-blocks
+    [SerializeField] private const float HEALTHREDUCTIONVALUE = 0.25f;
 
     private MissionLogDropdown _dropdown;
     private bool _playerInRange = false;
@@ -33,7 +35,7 @@ public class DynamiteItem : MonoBehaviour
     /// </summary>
     public void Start()
     {
-        _dropdown = GameObject.FindGameObjectWithTag("MissionUI").GetComponent<MissionLogDropdown>();
+        _dropdown = GameManager.Instance.GetMissionLogDropdownComponent();
     }
 
     /// <summary>
@@ -109,6 +111,9 @@ public class DynamiteItem : MonoBehaviour
         // Handle target object destruction if within explosion radius
         HandleTargetDestruction();
 
+        //Handle Player Damage
+        HandlePlayerDamage();
+
         // Spawn mini blocks and apply forces
         List<GameObject> spawnedBlocks = SpawnMiniBlocks();
 
@@ -145,6 +150,20 @@ public class DynamiteItem : MonoBehaviour
     }
 
     /// <summary>
+    /// 
+    /// </summary>
+    private void HandlePlayerDamage()
+    {
+        Vector3 playerPosition = PlayerManager.Instance.transform.position;
+
+        float distanceToPlayer = Vector3.Distance(transform.position, playerPosition);
+        if (distanceToPlayer <= _explosionRadius)
+        {
+            GameManager.Instance.SetBatteryLevelReduction(HEALTHREDUCTIONVALUE);
+        }
+
+    }
+    /// <summary>
     /// Destroys the target object if it is within the explosion radius.
     /// Updates mission status accordingly.
     /// </summary>
@@ -165,10 +184,6 @@ public class DynamiteItem : MonoBehaviour
                     _dropdown.UpdateCompletionStatus(true);
                 }
             }
-            else
-            {
-                Debug.Log("Target object too far away");
-            }
         }
     }
 
@@ -181,7 +196,7 @@ public class DynamiteItem : MonoBehaviour
         List<GameObject> spawnedBlocks = new List<GameObject>();
         for (int i = 0; i < _blockCount; i++)
         {
-            Vector3 spawnPosition = transform.position + Random.insideUnitSphere * _blockSpawnRadius;
+            Vector3 spawnPosition = transform.position + UnityEngine.Random.insideUnitSphere * _blockSpawnRadius;
             GameObject block = Instantiate(_miniBlockPrefab, spawnPosition, Quaternion.identity);
             Rigidbody blockRigidBody = block.GetComponent<Rigidbody>();
 

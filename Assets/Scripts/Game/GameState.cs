@@ -57,5 +57,22 @@ namespace Scripts.Game
             _batteryLevel = level;
             _batteryLevelTextField.text = $"Battery Level: {_batteryLevel}%";
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="level"></param>
+        public void SetBatteryLevelReduction(float percentageReduction)
+        {
+            if(percentageReduction <= 0 &&  percentageReduction > 1)
+            {
+                Debug.LogError("Invalid Percentage Reduction");
+                return;
+            }
+            float gameTimeLeft = (_batteryLevel / 100f) * _totalGameTime;
+            _gameElapsedTime += gameTimeLeft * percentageReduction;
+        }
+
+
     }
 }
