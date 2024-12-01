@@ -16,24 +16,32 @@ namespace Scripts.Item
 {
     public class DynamiteItem : MonoBehaviour
     {
+        #region Variables
+        [Header("Explosion Settings")]
         [SerializeField] private GameObject _explosionEffect;
         [SerializeField] private GameObject _miniBlockPrefab; // Prefab for mini-blocks
-        [SerializeField] private TextMeshPro _bubbleText;
-        [SerializeField] private GameObject _destroyableObject; // Specify layers to check for destructible objects
-
+        [SerializeField] private GameObject _destroyableObject; // Object to destroy within radius
         [SerializeField] private float _explosionDelay;
         [SerializeField] private float _explosionRadius = 20f; // Radius of the explosion
         [SerializeField] private float _explosionForce = 2f; // Force applied to block
         [SerializeField] private float _blockSpawnRadius = 2f;
         [SerializeField] private int _blockCount = 40; // Number of mini-blocks
-        [SerializeField] private const float HEALTHREDUCTIONVALUE = 0.25f;
 
+        [Header("UI Elements")]
+        [SerializeField] private TextMeshPro _bubbleText;
+
+        [Header("Audio")]
         [SerializeField] private AudioClip _explosionAudioClip;
+
+        [Header("Player Effects")]
+        [SerializeField] private const float HEALTHREDUCTIONVALUE = 0.25f;
 
         private MissionLogDropdown _dropdown;
         private bool _playerInRange = false;
         private bool _canDetonate = true;
+        #endregion
 
+        #region Start
         /// <summary>
         /// Finds the Mission UI component and assigns it to the dropdown variable.
         /// Called when the script starts.
@@ -42,19 +50,18 @@ namespace Scripts.Item
         {
             _dropdown = GameManager.Instance.GetMissionLogDropdownComponent();
         }
+        #endregion
 
+        #region Trigger Detection
         /// <summary>
         /// Detects when the player enters the trigger zone and shows a prompt to detonate.
         /// </summary>
         private void OnTriggerEnter(Collider other)
         {
-            if (_canDetonate)
+            if (_canDetonate && other.CompareTag("Player"))
             {
-                if (other.CompareTag("Player"))
-                {
-                    _playerInRange = true;
-                    GameScreen.Instance.ShowKeyPrompt("Press F to detonate");
-                }
+                _playerInRange = true;
+                GameScreen.Instance.ShowKeyPrompt("Press F to detonate");
             }
         }
 
@@ -69,7 +76,9 @@ namespace Scripts.Item
                 GameScreen.Instance.HideKeyPrompt();
             }
         }
+        #endregion
 
+        #region Update 
         /// <summary>
         /// Monitors player input and starts the detonation sequence if the player is in range.
         /// </summary>
@@ -82,15 +91,9 @@ namespace Scripts.Item
                 StartCoroutine(Detonate());
             }
         }
+        #endregion
 
-        /// <summary>
-        /// Ensures the key prompt is hidden when the object is disabled.
-        /// </summary>
-        public void OnDisable()
-        {
-            GameScreen.Instance.HideKeyPrompt();
-        }
-
+        #region Detonation 
         /// <summary>
         /// Handles the entire detonation process: countdown, explosion effect, target destruction, block spawning, and block destruction.
         /// </summary>
@@ -99,11 +102,10 @@ namespace Scripts.Item
             // Start countdown and show bubble text
             yield return StartCoroutine(HandleCountdown());
 
-            //disable all child game objects
+            // Disable all child game objects
             Transform[] children = gameObject.GetComponentsInChildren<Transform>();
             foreach (Transform child in children)
             {
-                //dont disable child of parent
                 if (child != transform)
                 {
                     child.gameObject.SetActive(false);
@@ -116,13 +118,13 @@ namespace Scripts.Item
             // Handle target object destruction if within explosion radius
             HandleTargetDestruction();
 
-            //Handle Player Damage
+            // Handle player damage
             HandlePlayerDamage();
 
             // Spawn mini blocks and apply forces
             List<GameObject> spawnedBlocks = SpawnMiniBlocks();
 
-            // Wait 5 seconds before destroying blocks
+            // Wait 7 seconds before destroying blocks
             yield return StartCoroutine(DestroyBlocksAfterDelay(spawnedBlocks, 7f));
 
             // Destroy the DynamiteItem object after the detonation process
@@ -144,15 +146,16 @@ namespace Scripts.Item
             }
             _bubbleText.gameObject.SetActive(false);
         }
+        #endregion
 
+        #region Explosion 
         /// <summary>
-        /// Instantiates the explosion effect at the dynamite item's position.
+        /// Instantiates the explosion effect at the dynamite item's position and plays the sound effect.
         /// </summary>
         private void InstantiateExplosionEffect()
         {
             Instantiate(_explosionEffect, transform.position, Quaternion.identity);
 
-            // Play the explosion sound using the AudioManager
             if (AudioManager.Instance != null)
             {
                 AudioManager.Instance.PlaySFX(_explosionAudioClip);
@@ -160,7 +163,7 @@ namespace Scripts.Item
         }
 
         /// <summary>
-        /// 
+        /// Reduces the player's battery level if they are within the explosion radius.
         /// </summary>
         private void HandlePlayerDamage()
         {
@@ -171,11 +174,9 @@ namespace Scripts.Item
             {
                 GameManager.Instance.SetBatteryLevelReduction(HEALTHREDUCTIONVALUE);
             }
-
         }
         /// <summary>
-        /// Destroys the target object if it is within the explosion radius.
-        /// Updates mission status accordingly.
+        /// Destroys the target object if it is within the explosion radius and updates mission status accordingly.
         /// </summary>
         private void HandleTargetDestruction()
         {
@@ -196,7 +197,9 @@ namespace Scripts.Item
                 }
             }
         }
+        #endregion
 
+        #region Rubble Management
         /// <summary>
         /// Spawns a number of mini blocks at random positions within a defined radius from the dynamite item.
         /// Applies forces to the blocks to simulate explosion.
@@ -235,6 +238,6 @@ namespace Scripts.Item
                 }
             }
         }
+        #endregion
     }
 }
-

@@ -236,7 +236,7 @@ namespace Scripts.Game
 
         #region Game State Methods
         /// <summary>
-        /// 
+        /// This method is called to reduce the battery level of the player via percentage
         /// </summary>
         public void SetBatteryLevelReduction(float percentageReduction)
         {
