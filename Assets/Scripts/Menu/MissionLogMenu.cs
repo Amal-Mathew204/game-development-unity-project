@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using PlayerManager = Scripts.Player.Player;
 using GameManager = Scripts.Game.GameManager;
 using Mission = Scripts.Quests.Mission;
 using TMPro;
@@ -36,9 +35,17 @@ namespace Scripts.Menu
         {
             TextMeshProUGUI titleText = card.GetComponentInChildren<TextMeshProUGUI>(); // Main title
 
+
             if (titleText != null)
             {
                 titleText.text = mission.MissionTitle + (mission.IsMissionCompleted() ? " (Complete)" : " (Incomplete)");
+            }
+
+            // Get the description text component and update it
+            TextMeshProUGUI descriptionText = card.transform.Find("Description").GetComponent<TextMeshProUGUI>();
+            if (descriptionText != null)
+            {
+                descriptionText.text = mission.MissionInfo; // Set the mission description text
             }
 
             // Assuming a container GameObject exists in your card prefab for sub-missions text
@@ -58,12 +65,12 @@ namespace Scripts.Menu
             // Only populate sub-missions if they exist
             if (mission.hasSubMissions())
             {
+                subMissionContainer.gameObject.SetActive(true);
                 foreach (Mission subMission in mission.SubMissions)
                 {
                     GameObject subMissionTextObj = new GameObject("SubMissionText", typeof(TextMeshProUGUI));
                     TextMeshProUGUI subMissionText = subMissionTextObj.GetComponent<TextMeshProUGUI>();
 
-                    // Configure the TextMeshPro component for sub-missions
                     subMissionText.text = subMission.MissionTitle + (subMission.IsMissionCompleted() ? " (Complete)" : " (Incomplete)");
                     subMissionText.fontSize = 24;
                     subMissionText.alignment = TextAlignmentOptions.Left;
@@ -72,15 +79,13 @@ namespace Scripts.Menu
                     subMissionText.overflowMode = TextOverflowModes.Ellipsis;
                     subMissionText.rectTransform.sizeDelta = new Vector2(350, 30);
 
-                    // Set parent to the subMissionContainer and adjust localScale
                     subMissionTextObj.transform.SetParent(subMissionContainer, false);
                     subMissionTextObj.transform.localScale = Vector3.one;
                 }
             }
             else
             {
-                // Optionally display a message or handle UI differently if no sub-missions exist
-                Debug.Log("No sub-missions for this mission.");
+                subMissionContainer.gameObject.SetActive(false); // Hide if no sub-missions
             }
         }
 
