@@ -59,6 +59,7 @@ namespace Scripts.Quests
         public void SetMissionCompleted()
         {
             _missionCompleted = true;
+
             if (ParentMission != null)
             {
                 ParentMission.CheckAndUpdateMissionCompletion();

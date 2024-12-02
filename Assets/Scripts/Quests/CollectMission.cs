@@ -42,13 +42,22 @@ namespace Scripts.Quests
             }
 
             _collectedItems += 1;
-            if(_totalNumberOfItems == _collectedItems)
+
+            if (_collectedItems >= _totalNumberOfItems)
             {
                 SetMissionCompleted();
-                CheckAndUpdateMissionCompletion();
+
+                // If the mission has a parent, check and update the parent's completion status
+                if (ParentMission != null)
+                {
+                    ParentMission.CheckAndUpdateMissionCompletion();
+                }
             }
         }
 
+        /// <summary>
+        /// Returns the progress of item collection in the format "collected/total"
+        /// </summary>
         public string GetItemProgress()
         {
             return $"{_collectedItems}/{_totalNumberOfItems}";

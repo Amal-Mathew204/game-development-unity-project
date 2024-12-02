@@ -10,7 +10,7 @@ namespace Scripts.Menu
 {
     public class MissionLogMenu : MonoBehaviour
     {
-        [SerializeField] private GameObject missionCardPrefab; // Drag your Mission Card prefab here in the inspector
+        [SerializeField] private GameObject missionCardPrefab; 
         [SerializeField] private Transform contentPanel; // The panel where cards will be instantiated
         public List<Mission> MissionList { get; private set; }
         public List<string> MissionTitles { get; private set; }
@@ -19,46 +19,51 @@ namespace Scripts.Menu
         void Start()
         {
             MissionList = GameManager.Instance.MissionList;
-
         }
 
-
+        /// <summary>
+        /// Generates a card for each mission in the game manager's mission list
+        /// </summary>
         public void GenerateMissionCards()
         {
             foreach (Mission mission in GameManager.Instance.MissionList)
             {
                 GameObject card = Instantiate(missionCardPrefab, contentPanel);
-                SetupCard(card, mission);
+                SetupCard(card, mission); 
             }
         }
 
+        /// <summary>
+        /// Configures the cards for each mission with all its relvant information
+        /// Including title, completion status, description, submissions (if any) and their completion status, and a progress counter (where relevant)
+        /// </summary>
         private void SetupCard(GameObject card, Mission mission)
         {
-            TextMeshProUGUI titleText = card.GetComponentInChildren<TextMeshProUGUI>(); // Main title
+            TextMeshProUGUI titleText = card.GetComponentInChildren<TextMeshProUGUI>(); // Mission title
+            TextMeshProUGUI descriptionText = card.transform.Find("Description").GetComponent<TextMeshProUGUI>(); // Misstion description
+            TextMeshProUGUI itemProgressText = card.transform.Find("Progress").GetComponent<TextMeshProUGUI>(); // Progress counter for collect missions
+            Transform subMissionContainer = card.transform.Find("SubMissionContainer"); // Submission container
 
 
+            // Display title
             if (titleText != null)
             {
                 titleText.text = mission.MissionTitle + (mission.IsMissionCompleted() ? " (Complete)" : " (Incomplete)");
             }
 
-            // Get the description text component and update it
-            TextMeshProUGUI descriptionText = card.transform.Find("Description").GetComponent<TextMeshProUGUI>();
+            // Display description
             if (descriptionText != null)
             {
                 descriptionText.text = mission.MissionInfo; // Set the mission description text
             }
-
-            // Assuming a container GameObject exists in your card prefab for sub-missions text
-            Transform subMissionContainer = card.transform.Find("SubMissionContainer");
+           
+            // Check for submission container in the prefab
             if (subMissionContainer == null)
             {
                 Debug.LogError("SubMissionContainer not found in the prefab!");
                 return;
             }
-
-            TextMeshProUGUI itemProgressText = card.transform.Find("Progress").GetComponent<TextMeshProUGUI>();
-
+            
             // Set item progress if it's a CollectMission
             if (mission is CollectMission collect)
             {
@@ -67,16 +72,10 @@ namespace Scripts.Menu
             }
             else
             {
-                itemProgressText.gameObject.SetActive(false); // Hide if not a collect mission
+                itemProgressText.gameObject.SetActive(false); 
             }
 
-            // Clear previous sub-missions texts (if any)
-            foreach (Transform child in subMissionContainer)
-            {
-                GameObject.Destroy(child.gameObject);
-            }
-
-            // Only populate sub-missions if they exist
+            // Only display sub-missions if they exist
             if (mission.hasSubMissions())
             {
                 subMissionContainer.gameObject.SetActive(true);
@@ -92,6 +91,7 @@ namespace Scripts.Menu
                         progressText = collectMission.GetItemProgress() + " ";
                     }
 
+                    // All the information and format of submissions
                     subMissionText.text = subMission.MissionTitle + " " + progressText + (subMission.IsMissionCompleted() ? " (Complete)" : " (Incomplete)");
                     subMissionText.fontSize = 24;
                     subMissionText.alignment = TextAlignmentOptions.Left;
@@ -99,6 +99,7 @@ namespace Scripts.Menu
                     subMissionText.overflowMode = TextOverflowModes.Ellipsis;
                     subMissionText.rectTransform.sizeDelta = new Vector2(350, 30);
 
+                    // Set the parent of the sub-mission text object to the subMissionContainer
                     subMissionTextObj.transform.SetParent(subMissionContainer, false);
                     subMissionTextObj.transform.localScale = Vector3.one;
                 }
@@ -109,6 +110,10 @@ namespace Scripts.Menu
             }
         }
 
+        /// <summary>
+        /// Clears all the mission cards from the panel
+        /// Providing empty panel for next generation (each time mission log is opened)
+        /// </summary>
         public void ClearMissionCards()
         {
             foreach (Transform child in contentPanel)
