@@ -8,6 +8,7 @@ namespace Scripts.Quests
     {
         public string MissionTitle { get; private set; }
         public string MissionInfo { get; private set; }
+        public Mission ParentMission { get; private set; }
         public List<Mission> SubMissions { get; private set; } = new List<Mission>();
         private bool _missionCompleted = false;
         
@@ -26,6 +27,7 @@ namespace Scripts.Quests
         /// </summary>
         public void AddSubMission(Mission subMission)
         {
+            subMission.ParentMission = this;
             this.SubMissions.Add(subMission);
         }
 
@@ -35,7 +37,11 @@ namespace Scripts.Quests
         public void AddSubMission(List<Mission> subMissions)
         {
             List<Mission> clone = new List<Mission>(subMissions);
-            this.SubMissions.AddRange(clone);
+            foreach (Mission subMission in subMissions)
+            {
+                subMission.ParentMission = this; // Set the parent mission for each sub-mission
+                this.SubMissions.Add(subMission);
+            }
         }
 
         /// <summary>
@@ -53,6 +59,11 @@ namespace Scripts.Quests
         public void SetMissionCompleted()
         {
             _missionCompleted = true;
+            if (ParentMission != null)
+            {
+                ParentMission.CheckAndUpdateMissionCompletion();
+            }
+
         }
 
         /// <summary>
@@ -61,6 +72,17 @@ namespace Scripts.Quests
         public bool IsMissionCompleted()
         {
             return _missionCompleted;
+        }
+
+        /// <summary>
+        /// Check all sub-missions and update the completion status of this mission.
+        /// </summary>
+        public void CheckAndUpdateMissionCompletion()
+        {
+            if (SubMissions.Count > 0 && SubMissions.TrueForAll(subMission => subMission.IsMissionCompleted()))
+            {
+                SetMissionCompleted();
+            }
         }
     }
 }

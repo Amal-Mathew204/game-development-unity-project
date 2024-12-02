@@ -95,7 +95,6 @@ namespace Scripts.Menu
                     subMissionText.text = subMission.MissionTitle + " " + progressText + (subMission.IsMissionCompleted() ? " (Complete)" : " (Incomplete)");
                     subMissionText.fontSize = 24;
                     subMissionText.alignment = TextAlignmentOptions.Left;
-                    subMissionText.color = subMission.IsMissionCompleted() ? Color.green : Color.red;
                     subMissionText.enableWordWrapping = true;
                     subMissionText.overflowMode = TextOverflowModes.Ellipsis;
                     subMissionText.rectTransform.sizeDelta = new Vector2(350, 30);
