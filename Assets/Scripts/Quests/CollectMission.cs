@@ -48,6 +48,11 @@ namespace Scripts.Quests
             }
         }
 
+        public string GetItemProgress()
+        {
+            return $"{_collectedItems}/{_totalNumberOfItems}";
+        }
+
     }
 }
 

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using GameManager = Scripts.Game.GameManager;
 using Mission = Scripts.Quests.Mission;
+using CollectMission = Scripts.Quests.CollectMission;
 using TMPro;
 
 namespace Scripts.Menu
@@ -56,6 +57,19 @@ namespace Scripts.Menu
                 return;
             }
 
+            TextMeshProUGUI itemProgressText = card.transform.Find("Progress").GetComponent<TextMeshProUGUI>();
+
+            // Set item progress if it's a CollectMission
+            if (mission is CollectMission collect)
+            {
+                itemProgressText.gameObject.SetActive(true);
+                itemProgressText.text = collect.GetItemProgress();
+            }
+            else
+            {
+                itemProgressText.gameObject.SetActive(false); // Hide if not a collect mission
+            }
+
             // Clear previous sub-missions texts (if any)
             foreach (Transform child in subMissionContainer)
             {
@@ -71,7 +85,14 @@ namespace Scripts.Menu
                     GameObject subMissionTextObj = new GameObject("SubMissionText", typeof(TextMeshProUGUI));
                     TextMeshProUGUI subMissionText = subMissionTextObj.GetComponent<TextMeshProUGUI>();
 
-                    subMissionText.text = subMission.MissionTitle + (subMission.IsMissionCompleted() ? " (Complete)" : " (Incomplete)");
+                    // Update text to include item progress if it's a CollectMission
+                    string progressText = "";
+                    if (subMission is CollectMission collectMission)
+                    {
+                        progressText = collectMission.GetItemProgress() + " ";
+                    }
+
+                    subMissionText.text = subMission.MissionTitle + " " + progressText + (subMission.IsMissionCompleted() ? " (Complete)" : " (Incomplete)");
                     subMissionText.fontSize = 24;
                     subMissionText.alignment = TextAlignmentOptions.Left;
                     subMissionText.color = subMission.IsMissionCompleted() ? Color.green : Color.red;
