@@ -45,6 +45,7 @@ namespace Scripts.Quests
             if(_totalNumberOfItems == _collectedItems)
             {
                 SetMissionCompleted();
+                CheckAndUpdateMissionCompletion();
             }
         }
 
