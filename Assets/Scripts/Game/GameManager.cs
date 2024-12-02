@@ -76,7 +76,7 @@ namespace Scripts.Game
             HasPlayerWonGame = false; //reset condition
 
             // Creates new mission called create Farm and collect/sub missions associated with it 
-            Mission farmMission = new Mission("Create Farm", "");
+            Mission farmMission = new Mission("Create Farm", "Build the farm by collecting items required and planting seeds");
             CollectMission collectShovel = new CollectMission("Find Shovel", "Explore the terrian to locate the shovel which is needed for farming", 1, new List<string>() { "Shovel" });
             CollectMission collectSeedBag = new CollectMission("Find SeedBags", "Explore the terrian to salvage the seed bags", 3, new List<string>() { "Seed Bag" });
             CollectMission cleanUp = new CollectMission("Clean Up", "Clean up all the oil barrels around the map ", 2, new List<string>() { "Barrel" });
