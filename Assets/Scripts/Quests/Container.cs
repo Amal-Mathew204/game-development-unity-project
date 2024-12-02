@@ -3,6 +3,7 @@ using System.Collections;
 using PlayerManager = Scripts.Player.Player;
 using Scripts.Item;
 using System.Collections.Generic;
+using Scripts.Game;
 using MissionLogDropdown = Scripts.MissonLogMenu.Dropdown;
 using Scripts.Quests;
 
@@ -19,7 +20,7 @@ public class Container : MonoBehaviour
     /// </summary>
     private void Start()
     {
-        _dropdown = GameObject.FindGameObjectWithTag("MissionUI").GetComponent<MissionLogDropdown>();
+        _dropdown = GameManager.Instance.GetMissionLogDropdownComponent();
 
     }
 
@@ -59,8 +60,9 @@ public class Container : MonoBehaviour
         if (other.CompareTag("Barrel"))
         {
             _oilDropped = _oilDropped + 1;
-            ///Destroys Barrel
-            Destroy(other.gameObject);
+            /////Destroys Barrel
+            //Destroy(other.gameObject);
+            Debug.Log("Trigger");
 
         }
     }
