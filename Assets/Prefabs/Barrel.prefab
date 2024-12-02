@@ -219,7 +219,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b938bd71387511644b8babe1343d7806, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemName: barrel
+  itemName: Barrel
   _itemLabel: {fileID: 8072274806005415762}
 --- !u!65 &7829144060484044522
 BoxCollider:

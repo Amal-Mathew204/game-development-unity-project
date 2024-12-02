@@ -13,6 +13,7 @@ public class Container : MonoBehaviour
     private int _count = 0;
     private MissionLogDropdown _dropdown;
     private int _oilDropped = 0;
+    public List<GameObject> ItemsInDisposal = new List<GameObject>();
 
     /// <summary>
     /// Works as the first frame of the game
@@ -60,10 +61,7 @@ public class Container : MonoBehaviour
         if (other.CompareTag("Barrel"))
         {
             _oilDropped = _oilDropped + 1;
-            /////Destroys Barrel
-            //Destroy(other.gameObject);
-            Debug.Log("Trigger");
-
+            ItemsInDisposal.Add(other.gameObject);
         }
     }
 
