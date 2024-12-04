@@ -4,84 +4,90 @@ using PlayerManager = Scripts.Player.Player;
 using Scripts.Item;
 using System.Collections.Generic;
 using Scripts.Game;
+using Scripts.GarbageDisposal;
 using MissionLogDropdown = Scripts.MissonLogMenu.Dropdown;
 using Scripts.Quests;
 
-
-public class Container : MonoBehaviour
+namespace Scripts.Quests
 {
-    private int _count = 0;
-    private MissionLogDropdown _dropdown;
-    private int _oilDropped = 0;
-    public List<GameObject> ItemsInDisposal = new List<GameObject>();
-
-    /// <summary>
-    /// Works as the first frame of the game
-    /// Finds Mission UI interface component and assigns to variable 
-    /// </summary>
-    private void Start()
+    public class Container : MonoBehaviour
     {
-        _dropdown = GameManager.Instance.GetMissionLogDropdownComponent();
+        [SerializeField] private GarbageDisposalController _garbageDisposalController;
+        private int _count = 0;
+        private MissionLogDropdown _dropdown;
+        private int _oilDropped = 0;
+        public List<GameObject> ItemsInDisposal = new List<GameObject>();
 
-    }
-
-    /// <summary>
-    /// Updates the Place Barrel in Container Mission 
-    /// </summary>
-    private void Update()
-    {
-        if (_oilDropped == 5)
+        /// <summary>
+        /// Works as the first frame of the game
+        /// Finds Mission UI interface component and assigns to variable 
+        /// </summary>
+        private void Start()
         {
-            ///Gets Plant Place Barrel in Container mission
-            if (_dropdown == null)
+            _dropdown = GameManager.Instance.GetMissionLogDropdownComponent();
+
+        }
+
+        /// <summary>
+        /// Updates the Place Barrel in Container Mission 
+        /// </summary>
+        private void Update()
+        {
+            if (_oilDropped == 5)
             {
-                Debug.LogError("Mission UI Dropdown Component not Found");
-            }
-            Mission mission = _dropdown.GetMission("Place Barrel in Container");
-            if (mission == null)
-            {
-                Debug.LogError("Mission Place Barrel in Container Not Found");
-            }
-            ///Marks Mission as completed 
-            mission.SetMissionCompleted();
-            ///Updates Completion Status
-            if (_dropdown.MissionTitles.FindIndex(title => title == mission.MissionTitle) + 1 == _dropdown.dropdown.value)
-            {
-                _dropdown.UpdateCompletionStatus(true);
+                ///Gets Plant Place Barrel in Container mission
+                if (_dropdown == null)
+                {
+                    Debug.LogError("Mission UI Dropdown Component not Found");
+                }
+                Mission mission = _dropdown.GetMission("Place Barrel in Container");
+                if (mission == null)
+                {
+                    Debug.LogError("Mission Place Barrel in Container Not Found");
+                }
+                ///Marks Mission as completed 
+                mission.SetMissionCompleted();
+                //set GarbageDisposalController Active
+                _garbageDisposalController.isActive = true;
+                ///Updates Completion Status
+                if (_dropdown.MissionTitles.FindIndex(title => title == mission.MissionTitle) + 1 == _dropdown.dropdown.value)
+                {
+                    _dropdown.UpdateCompletionStatus(true);
+                }
             }
         }
-    }
 
-    /// <summary>
-    /// Method for when player enters farm trigger box with all barrels
-    /// </summary>
-    private void OnTriggerEnter(Collider other)
-    {
-        ///Destroys barrel object when dropped 
-        if (other.CompareTag("Barrel"))
+        /// <summary>
+        /// Method for when player enters farm trigger box with all barrels
+        /// </summary>
+        private void OnTriggerEnter(Collider other)
         {
-            _oilDropped = _oilDropped + 1;
-            ItemsInDisposal.Add(other.gameObject);
-        }
-    }
-
-    /// <summary>
-    /// Method checks for checking if barrel is in Inventory 
-    /// </summary>
-    public bool CheckBarrelInventory()
-    {
-        List<ItemPickup> inventory = PlayerManager.Instance.Inventory;
-        foreach (ItemPickup item in inventory)
-        {
-            if (item.itemName == "Barrel")
+            ///Destroys barrel object when dropped 
+            if (other.CompareTag("Barrel"))
             {
-                _count = _count + 1;
-            }
-            if (_count == 5)
-            {
-                return true;
+                _oilDropped = _oilDropped + 1;
+                ItemsInDisposal.Add(other.gameObject);
             }
         }
-        return false;
+
+        /// <summary>
+        /// Method checks for checking if barrel is in Inventory 
+        /// </summary>
+        public bool CheckBarrelInventory()
+        {
+            List<ItemPickup> inventory = PlayerManager.Instance.Inventory;
+            foreach (ItemPickup item in inventory)
+            {
+                if (item.itemName == "Barrel")
+                {
+                    _count = _count + 1;
+                }
+                if (_count == 5)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
     }
 }
