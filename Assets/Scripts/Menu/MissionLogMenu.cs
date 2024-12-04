@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using GameManager = Scripts.Game.GameManager;
 using Mission = Scripts.Quests.Mission;
 using CollectMission = Scripts.Quests.CollectMission;
