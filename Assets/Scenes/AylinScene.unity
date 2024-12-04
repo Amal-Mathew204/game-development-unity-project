@@ -3319,17 +3319,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4000010819335194, guid: c26cacf51e485c54b95fdbf9ad976ddf, type: 3}
   m_PrefabInstance: {fileID: 1070495608}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1105214845 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2735655437802052165, guid: a7dc663c5999f412cab874ee16315d84, type: 3}
-  m_PrefabInstance: {fileID: 1657943595}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!43 &1183912977
 Mesh:
   m_ObjectHideFlags: 0
@@ -5045,11 +5034,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8054013538747883417, guid: a7dc663c5999f412cab874ee16315d84, type: 3}
       propertyPath: m_fontSize
-      value: 20
+      value: 36
       objectReference: {fileID: 0}
     - target: {fileID: 8054013538747883417, guid: a7dc663c5999f412cab874ee16315d84, type: 3}
       propertyPath: m_fontSizeBase
-      value: 20
+      value: 36
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 323233574440423209, guid: a7dc663c5999f412cab874ee16315d84, type: 3}
@@ -5326,9 +5315,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7408c487e1f9744a2b5a86cd5315c776, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  missionDropdown: {fileID: 1679277335}
-  targetButton: {fileID: 1105214845}
-  buttonText: {fileID: 627924847}
+  _dropdown: {fileID: 1679277335}
+  _buttonText: {fileID: 627924847}
+  _defaultButtonText: Select a Mission
 --- !u!1001 &1775056739
 PrefabInstance:
   m_ObjectHideFlags: 0
