@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using GameManager = Scripts.Game.GameManager;
 using Mission = Scripts.Quests.Mission;
 using CollectMission = Scripts.Quests.CollectMission;
@@ -15,10 +16,28 @@ namespace Scripts.Menu
         public List<Mission> MissionList { get; private set; }
         public List<string> MissionTitles { get; private set; }
         public List<Mission> SubMissions { get; private set; } = new List<Mission>();
+        [SerializeField] private TMP_Dropdown _dropdown;
 
         void Start()
         {
             MissionList = GameManager.Instance.MissionList;
+            PopulateDropdown();
+        }
+
+        /// <summary>
+        /// Populates the dropdown menu dynamically with mission titles
+        /// </summary>
+        void PopulateDropdown()
+        {
+            _dropdown.ClearOptions();  // Clear existing options
+            List<string> missionTitles = new List<string>();
+
+            foreach (var mission in GameManager.Instance.MissionList)
+            {
+                missionTitles.Add(mission.MissionTitle);
+            }
+
+            _dropdown.AddOptions(missionTitles);  
         }
 
         /// <summary>
