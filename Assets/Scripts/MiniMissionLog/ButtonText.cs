@@ -3,14 +3,14 @@ using TMPro;
 
 public class DropdownButtonUpdater : MonoBehaviour
 {
-    [SerializeField] private TMP_Dropdown dropdown; 
-    [SerializeField] private TextMeshProUGUI buttonText;
-    [SerializeField] private string defaultButtonText = "Select a Mission"; 
+    [SerializeField] private TMP_Dropdown _dropdown; 
+    [SerializeField] private TextMeshProUGUI _buttonText;
+    [SerializeField] private string _defaultButtonText = "Select a Mission"; 
 
     void Start()
     {
         UpdateButtonWithPlaceholder();  
-        dropdown.onValueChanged.AddListener(delegate { UpdateButtonText(); }); 
+        _dropdown.onValueChanged.AddListener(delegate { UpdateButtonText(); }); 
     }
 
     /// <summary>
@@ -18,9 +18,9 @@ public class DropdownButtonUpdater : MonoBehaviour
     /// </summary>
     private void UpdateButtonText()
     {
-        if (dropdown.value >= 0 && dropdown.value < dropdown.options.Count)
+        if (_dropdown.value >= 0 && _dropdown.value < _dropdown.options.Count)
         {
-            buttonText.text = dropdown.options[dropdown.value].text; 
+            _buttonText.text = _dropdown.options[_dropdown.value].text; 
         }
         else
         {
@@ -33,6 +33,6 @@ public class DropdownButtonUpdater : MonoBehaviour
     /// </summary>
     private void UpdateButtonWithPlaceholder()
     {
-        buttonText.text = defaultButtonText;
+        _buttonText.text = _defaultButtonText;
     }
 }
