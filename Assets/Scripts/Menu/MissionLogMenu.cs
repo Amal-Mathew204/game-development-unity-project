@@ -21,22 +21,44 @@ namespace Scripts.Menu
         {
             MissionList = GameManager.Instance.MissionList;
             PopulateDropdown();
+            _dropdown.onValueChanged.AddListener(OnDropdownValueChanged); 
         }
 
         /// <summary>
-        /// Populates the dropdown menu dynamically with mission titles
+        /// Populates the dropdown menu dynamically with mission titles 
         /// </summary>
         void PopulateDropdown()
         {
             _dropdown.ClearOptions();  // Clear existing options
-            List<string> missionTitles = new List<string>();
+            List<TMP_Dropdown.OptionData> options = new List<TMP_Dropdown.OptionData>
+            {
+                new TMP_Dropdown.OptionData("Select Mission") // Placeholder
+            };
 
             foreach (var mission in GameManager.Instance.MissionList)
             {
-                missionTitles.Add(mission.MissionTitle);
+                options.Add(new TMP_Dropdown.OptionData(mission.MissionTitle));
             }
 
-            _dropdown.AddOptions(missionTitles);  
+            _dropdown.AddOptions(options);
+            _dropdown.value = 0; 
+            _dropdown.RefreshShownValue();
+        }
+
+        /// <summary>
+        /// Event handler for dropdown value changes
+        /// </summary>
+        private void OnDropdownValueChanged(int index)
+        {
+            if (index == 0)
+            {
+                // If placeholder "Select Mission" is still selected, do nothing or display default info
+            }
+            else
+            {
+                // Update the display or other elements as necessary
+                Debug.Log("Mission Selected: " + _dropdown.options[index].text);
+            }
         }
 
         /// <summary>
