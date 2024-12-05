@@ -43,14 +43,6 @@ namespace Scripts.Item
 
         #region Start
         /// <summary>
-        /// Finds the Mission UI component and assigns it to the dropdown variable.
-        /// Called when the script starts.
-        /// </summary>
-        public void Start()
-        {
-            _dropdown = GameManager.Instance.GetMissionLogDropdownComponent();
-        }
-        /// <summary>
         /// Removes the key prompt from appearing after dropping the item
         /// </summary>
         public void OnDisable()
@@ -194,13 +186,7 @@ namespace Scripts.Item
                 if (distanceToTarget <= _explosionRadius)
                 {
                     Destroy(_destroyableObject);
-                    Mission mission = _dropdown.GetMission("Blow Up Entrance");
-                    mission.SetMissionCompleted();
-
-                    if (_dropdown.MissionTitles.FindIndex(title => title == mission.MissionTitle) + 1 == _dropdown.dropdown.value)
-                    {
-                        _dropdown.UpdateCompletionStatus(true);
-                    }
+                    GameManager.Instance.SetMissionComplete("Blow Up Entrance");
                 }
             }
         }

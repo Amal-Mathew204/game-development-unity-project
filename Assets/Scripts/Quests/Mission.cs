@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
+﻿using System.Collections.Generic;
 
 namespace Scripts.Quests
 {
@@ -11,7 +9,6 @@ namespace Scripts.Quests
         public Mission ParentMission { get; private set; }
         public List<Mission> SubMissions { get; private set; } = new List<Mission>();
         private bool _missionCompleted = false;
-        
 
         /// <summary>
         /// On Class Intialisation set the missions title and information

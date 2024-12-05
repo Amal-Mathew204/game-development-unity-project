@@ -1,15 +1,11 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Data;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
-using Scripts.MissonLogMenu;
 using Scripts.Quests;
 using PlayerManager = Scripts.Player.Player;
-using DropdownComponent = Scripts.MissonLogMenu.Dropdown;
+
 
 
 namespace Scripts.Game
@@ -44,6 +40,7 @@ namespace Scripts.Game
             SetInstance();
             CreateMissions();
         }
+
         /// <summary>
         /// Ensures only a single instance of the GameManger class (and GameObject) is created.
         /// </summary>
@@ -78,9 +75,9 @@ namespace Scripts.Game
             // Creates new mission called create Farm and collect/sub missions associated with it 
             Mission farmMission = new Mission("Create Farm", "Build the farm by collecting items required and planting seeds");
             CollectMission collectShovel = new CollectMission("Find Shovel", "Explore the terrian to locate the shovel which is needed for farming", 1, new List<string>() { "Shovel" });
-            CollectMission collectSeedBag = new CollectMission("Find SeedBags", "Explore the terrian to salvage the seed bags", 3, new List<string>() { "Seed Bag" });
-            CollectMission cleanUp = new CollectMission("Clean Up", "Clean up all the oil barrels around the map ", 2, new List<string>() { "Barrel" });
-            Mission wasteBarrel = new Mission("Place Barrel in Container", "Place all barrel in container");
+            CollectMission collectSeedBag = new CollectMission("Find SeedBags", "Explore the terrian to salvage the seed bags", 4, new List<string>() { "Seed Bag" });
+            CollectMission cleanUp = new CollectMission("Clean Up", "Clean up all the oil barrels around the map ", 5, new List<string>() { "Barrel" });
+            Mission wasteBarrel = new Mission("Place Barrels in Container", "Place all barrels in container");
             Mission findFarmLand = new Mission("Find Farm Land", "");
             Mission buildFarm = new Mission("Build Farm", "Using the shovel build an area to plant some vegetation");
             Mission plantSeed = new Mission("Plant Seed", "Drop the seed bags in the farmland ");
@@ -94,9 +91,6 @@ namespace Scripts.Game
             Mission findWater = new Mission("Find Water", "In order to grow crops on this desolate land we need to find a water source ");
 
             findWater.AddSubMission(new List<Mission>() { collectGPSScanner, collectDynamite, findWaterCave, blowUpEntrance });
-
-
-
 
             ////Adds sub-mission to the farm mission 
             farmMission.AddSubMission(collectShovel);
@@ -180,24 +174,6 @@ namespace Scripts.Game
         }
         #endregion
 
-        #region Access Game Objects Methods
-        /// <summary>
-        /// Throws exception if game object is not found
-        /// </summary>
-        public DropdownComponent GetMissionLogDropdownComponent()
-        {
-            DropdownComponent dropdown = GameObject.FindGameObjectWithTag("MissionUI").GetComponent<DropdownComponent>();
-            if (dropdown == null)
-            {
-                throw new Exception("Dropdown component not found");
-            }
-            else
-            {
-                return dropdown;
-            }
-        }
-        #endregion
-
         #region Disable Methods
         /// <summary>
         /// Method Disables visability of the mouse cursor
@@ -253,6 +229,10 @@ namespace Scripts.Game
         #endregion
 
         #region Mission Methods
+        /// <summary>
+        /// Marks the specified mission as completed
+        /// Retrieves the mission by its title and sets it as completed
+        /// </summary>
         public void SetMissionComplete(string missionTitle)
         {
             Mission mission = GetMission(missionTitle);
@@ -265,7 +245,8 @@ namespace Scripts.Game
         }
 
         /// <summary>
-        /// 
+        /// Retrieves a mission by its title from the list of missions
+        /// Searches both main missions and their sub-missions
         /// </summary>
         private Mission GetMission(string MissionTitle)
         {
