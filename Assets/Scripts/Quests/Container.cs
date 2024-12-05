@@ -1,12 +1,10 @@
 ﻿using UnityEngine;
-using System.Collections;
 using PlayerManager = Scripts.Player.Player;
 using Scripts.Item;
 using System.Collections.Generic;
 using Scripts.Game;
 using Scripts.GarbageDisposal;
-using MissionLogDropdown = Scripts.MissonLogMenu.Dropdown;
-using Scripts.Quests;
+
 
 namespace Scripts.Quests
 {
@@ -14,19 +12,8 @@ namespace Scripts.Quests
     {
         [SerializeField] private GarbageDisposalController _garbageDisposalController;
         private int _count = 0;
-        private MissionLogDropdown _dropdown;
         private int _oilDropped = 0;
         public List<GameObject> ItemsInDisposal = new List<GameObject>();
-
-        /// <summary>
-        /// Works as the first frame of the game
-        /// Finds Mission UI interface component and assigns to variable 
-        /// </summary>
-        private void Start()
-        {
-            _dropdown = GameManager.Instance.GetMissionLogDropdownComponent();
-
-        }
 
         /// <summary>
         /// Updates the Place Barrel in Container Mission 
