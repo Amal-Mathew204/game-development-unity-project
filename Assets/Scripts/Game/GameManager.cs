@@ -91,9 +91,7 @@ namespace Scripts.Game
             Mission findWaterCave = new Mission("Water Source Location", "Use the gps scanner to locate a water source and the dynamite to blow up the cave entrance");
             Mission blowUpEntrance = new Mission("Blow Up Entrance", "Use the dynamite to blow up the water cave's entrance");
 
-            Mission findWater = new Mission("Find Water", "In order to grow crops on this desolate land we need to find a water source. " +
-                                            "You must locate the Gps Scanner and a piece of dynamite. " +
-                                            "Use the gps scanner to locate the water source and detonate the dynamite over the water cave's entrance");
+            Mission findWater = new Mission("Find Water", "In order to grow crops on this desolate land we need to find a water source ");
 
             findWater.AddSubMission(new List<Mission>() { collectGPSScanner, collectDynamite, findWaterCave, blowUpEntrance });
 
@@ -251,6 +249,47 @@ namespace Scripts.Game
         public void SetGameState(GameState state)
         {
             _gameState = state;
+        }
+        #endregion
+
+        #region Mission Methods
+        public void SetMissionComplete(string missionTitle)
+        {
+            Mission mission = GetMission(missionTitle);
+            if(mission == null)
+            {
+                Debug.LogError($"Mission {missionTitle} was not found");
+                return;
+            }
+            mission.SetMissionCompleted();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        private Mission GetMission(string MissionTitle)
+        {
+            foreach (Mission mission in MissionList)
+            {
+                if (mission.hasSubMissions())
+                {
+                    foreach (Mission subMission in mission.SubMissions)
+                    {
+                        if (subMission.MissionTitle == MissionTitle)
+                        {
+                            return subMission;
+                        }
+                    }
+                }
+                else
+                {
+                    if (mission.MissionTitle == MissionTitle)
+                    {
+                        return mission;
+                    }
+                }
+            }
+            return null;
         }
         #endregion
     }
