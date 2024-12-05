@@ -10,6 +10,11 @@ namespace Scripts.Quests
         private List<string> _typeOfItems;
 
         /// <summary>
+        /// Event that is triggered whenever a mission's data is updated
+        /// </summary>
+        public static event Action OnMissionUpdated = delegate { };
+
+        /// <summary>
         /// Class Contructor for Collect Missions
         /// Collect Missions must set total number of items to be collected and any item names specific for the mission
         /// </summary>
@@ -41,6 +46,7 @@ namespace Scripts.Quests
             }
 
             _collectedItems += 1;
+            OnMissionUpdated.Invoke();
 
             if (_collectedItems >= _totalNumberOfItems)
             {

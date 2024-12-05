@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using Scripts.MissonLogMenu;
 using UnityEngine;
 using PlayerManager = Scripts.Player.Player;
 using Scripts.Game;

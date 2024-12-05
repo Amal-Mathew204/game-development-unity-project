@@ -23,9 +23,37 @@ namespace Scripts.MiniMissionLog
         }
 
         /// <summary>
+        /// Ensures that the UI updates appropriately in response to changes in mission progress and completion status
+        /// </summary>
+        void OnEnable()
+        {
+            CollectMission.OnMissionUpdated += RefreshMissionDisplay;
+            CollectMission.OnMissionStatusUpdated += UpdateCompletionStatus;
+        }
+
+        /// <summary>
+        /// Unsubscribes from mission-related events when the panel becomes inactive
+        /// </summary>
+        void OnDisable()
+        {
+            CollectMission.OnMissionUpdated -= RefreshMissionDisplay;
+            CollectMission.OnMissionStatusUpdated -= UpdateCompletionStatus;
+        }
+
+        /// <summary>
+        /// Checks if there is a valid selection in the dropdown and then updates the mission details accordingly
+        /// </summary>
+        private void RefreshMissionDisplay()
+        {
+            if (_dropdown.options.Count > 0 && _dropdown.value > 0)
+            {
+                UpdateMissionDetails(_dropdown.options[_dropdown.value].text);
+            }
+        }
+
+        /// <summary>
         /// Updates the button text based on the selection of the dropdown
         /// </summary>
-
         private void UpdateButtonText()
         {
             if (_dropdown.value > 0 && _dropdown.value < _dropdown.options.Count)
@@ -40,34 +68,38 @@ namespace Scripts.MiniMissionLog
             }
         }
 
+        /// <summary>
+        /// Updates the mission details in the UI based on the selected mission title
+        /// </summary>
         private void UpdateMissionDetails(string missionTitle)
         {
             Mission selectedMission = FindMissionByTitle(missionTitle);
             if (selectedMission != null)
             {
                 _missionDescriptionText.text = selectedMission.MissionInfo;
-                // Append the item progress to the status for collect missions
+
                 if (selectedMission is CollectMission collectMission)
                 {
-                    _missionDescriptionText.text += $" ({collectMission.GetItemProgress()})"; // e.g., " (3/5)"
+                    _missionDescriptionText.text += $" ({collectMission.GetItemProgress()})"; // Displays counter in fraction format
                 }
-                string statusText = selectedMission.IsMissionCompleted() ? "Completed" : "Incomplete";
 
-                
-
+                string statusText = selectedMission.IsMissionCompleted() ? "Complete" : "Incomplete";
                 _missionStatusText.text = statusText;
                 UpdateSubMissions(selectedMission);
             }
         }
 
-
-
+        /// <summary>
+        /// Retrieves a mission by its title from the list of missions managed by the GameManager
+        /// </summary>
         private Mission FindMissionByTitle(string title)
         {
-            // Assuming GameManager or another manager class holds all missions
             return GameManager.Instance.MissionList.Find(mission => mission.MissionTitle == title);
         }
 
+        /// <summary>
+        /// Updates the UI display for sub-missions related to a selected main mission
+        /// </summary>
         private void UpdateSubMissions(Mission mission)
         {
             // Clear existing sub-missions display
@@ -76,34 +108,35 @@ namespace Scripts.MiniMissionLog
                 Destroy(child.gameObject);
             }
 
-            // Dynamically create and configure TextMeshProUGUI elements for each sub-mission
+            // Dynamically creates elements for submissions
             foreach (var subMission in mission.SubMissions)
             {
                 GameObject subMissionTextObj = new GameObject("SubMissionText", typeof(TextMeshProUGUI));
                 TextMeshProUGUI subMissionText = subMissionTextObj.GetComponent<TextMeshProUGUI>();
 
-                // Configure the TextMeshPro component
+                // Retrieves completion status for each submission
                 string progressText = "";
                 if (subMission is CollectMission collectMission)
                 {
-                    progressText = $" ({collectMission.GetItemProgress()})"; // e.g., " (3/5)"
+                    progressText = $" ({collectMission.GetItemProgress()})"; 
                 }
-                subMissionText.text = $"{subMission.MissionTitle}{progressText} - {(subMission.IsMissionCompleted() ? "C" : "X")}";
+
+                subMissionText.text = $"{subMission.MissionTitle}{progressText} - {(subMission.IsMissionCompleted() ? "C" : "X")}"; // Marking "Complete" as "C" and "Incomplete" as "X"
 
                 subMissionText.fontSize = 24;
                 subMissionText.alignment = TextAlignmentOptions.Left;
                 subMissionText.enableWordWrapping = true;
                 subMissionText.overflowMode = TextOverflowModes.Ellipsis;
-                subMissionText.rectTransform.sizeDelta = new Vector2(300, 30); // Set size as needed
+                subMissionText.rectTransform.sizeDelta = new Vector2(300, 30); 
 
-                // Set the parent of the sub-mission text object to the subMissionContainer
                 subMissionTextObj.transform.SetParent(_subMissionContainer, false);
                 subMissionTextObj.transform.localScale = Vector3.one;
             }
         }
 
-
-
+        /// <summary>
+        /// Clears all mission-related information from the UI
+        /// </summary>
         private void ClearMissionDetails()
         {
             _missionDescriptionText.text = "";
@@ -114,11 +147,26 @@ namespace Scripts.MiniMissionLog
             }
         }
 
+        /// <summary>
+        /// Sets the button text to a default placeholder and clears any existing mission details
+        /// </summary>
         private void UpdateButtonWithPlaceholder()
         {
             _buttonText.text = _defaultButtonText;
             ClearMissionDetails();
         }
+
+        /// <summary>
+        /// Updates the display of the mission's completion status based on the current selection in the dropdown menu
+        /// </summary>
+        private void UpdateCompletionStatus()
+        {
+            if (_dropdown.options.Count > 0 && _dropdown.value > 0)
+            {
+                UpdateMissionDetails(_dropdown.options[_dropdown.value].text);  
+            }
+        }
+
     }
 }
 
