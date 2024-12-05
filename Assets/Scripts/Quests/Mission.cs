@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System;
 
 namespace Scripts.Quests
 {
@@ -9,6 +10,11 @@ namespace Scripts.Quests
         public Mission ParentMission { get; private set; }
         public List<Mission> SubMissions { get; private set; } = new List<Mission>();
         private bool _missionCompleted = false;
+
+        /// <summary>
+        /// Event that is triggered whenever the status of any mission changes 
+        /// </summary>
+        public static event Action OnMissionStatusUpdated = delegate { };
 
         /// <summary>
         /// On Class Intialisation set the missions title and information
@@ -56,6 +62,7 @@ namespace Scripts.Quests
         public void SetMissionCompleted()
         {
             _missionCompleted = true;
+            OnMissionStatusUpdated.Invoke();
 
             if (ParentMission != null)
             {

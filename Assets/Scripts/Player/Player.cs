@@ -8,11 +8,9 @@ using UnityEditor;
 using TMPro;
 using Scripts.Game;
 using Scripts.Item;
-using Scripts.MissonLogMenu;
 using Scripts.Player.Input;
 using Scripts.Quests;
 using Scripts.NPC;
-using MissionLogDropdown = Scripts.MissonLogMenu.Dropdown;
 using Ilumisoft.RadarSystem;   //this is a third party class
 using UnityEditor.Rendering;
 

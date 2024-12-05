@@ -8,7 +8,6 @@ using Unity.VisualScripting;
 using System.Threading;
 using TMPro;
 using Scripts.Quests;
-using MissionLogDropdown = Scripts.MissonLogMenu.Dropdown;
 using Scripts.Audio;
 using System;
 
@@ -36,7 +35,6 @@ namespace Scripts.Item
         [Header("Player Effects")]
         [SerializeField] private const float HEALTHREDUCTIONVALUE = 0.25f;
 
-        private MissionLogDropdown _dropdown;
         private bool _playerInRange = false;
         private bool _canDetonate = true;
         #endregion
