@@ -130,7 +130,6 @@ namespace Scripts.GarbageDisposal
             {
                 DetonateWorld();
             }
-            LaunchGarbage();
             _handelGarbage = true;
             ToggleGarbageDetonateButtonActiveState(false);
         }
