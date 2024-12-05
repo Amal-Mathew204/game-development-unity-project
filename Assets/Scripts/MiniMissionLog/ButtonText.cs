@@ -1,38 +1,43 @@
 using UnityEngine;
-using TMPro; 
+using TMPro;
 
-public class DropdownButtonUpdater : MonoBehaviour
+
+namespace Scripts.MiniMissionLog
 {
-    [SerializeField] private TMP_Dropdown _dropdown; 
-    [SerializeField] private TextMeshProUGUI _buttonText;
-    [SerializeField] private string _defaultButtonText = "Select a Mission"; 
-
-    void Start()
+    public class DropdownButtonUpdater : MonoBehaviour
     {
-        UpdateButtonWithPlaceholder();  
-        _dropdown.onValueChanged.AddListener(delegate { UpdateButtonText(); }); 
-    }
+        [SerializeField] private TMP_Dropdown _dropdown;
+        [SerializeField] private TextMeshProUGUI _buttonText;
+        [SerializeField] private string _defaultButtonText = "Select a Mission";
 
-    /// <summary>
-    /// Updates the button text based on the selection of the dropdown
-    /// </summary>
-    private void UpdateButtonText()
-    {
-        if (_dropdown.value >= 0 && _dropdown.value < _dropdown.options.Count)
+        void Start()
         {
-            _buttonText.text = _dropdown.options[_dropdown.value].text; 
+            UpdateButtonWithPlaceholder();
+            _dropdown.onValueChanged.AddListener(delegate { UpdateButtonText(); });
         }
-        else
-        {
-            UpdateButtonWithPlaceholder(); 
-        }
-    }
 
-    /// <summary>
-    /// Sets the button text to the placeholder value
-    /// </summary>
-    private void UpdateButtonWithPlaceholder()
-    {
-        _buttonText.text = _defaultButtonText;
+        /// <summary>
+        /// Updates the button text based on the selection of the dropdown
+        /// </summary>
+        private void UpdateButtonText()
+        {
+            if (_dropdown.value >= 0 && _dropdown.value < _dropdown.options.Count)
+            {
+                _buttonText.text = _dropdown.options[_dropdown.value].text;
+            }
+            else
+            {
+                UpdateButtonWithPlaceholder();
+            }
+        }
+
+        /// <summary>
+        /// Sets the button text to the placeholder value
+        /// </summary>
+        private void UpdateButtonWithPlaceholder()
+        {
+            _buttonText.text = _defaultButtonText;
+        }
     }
 }
+

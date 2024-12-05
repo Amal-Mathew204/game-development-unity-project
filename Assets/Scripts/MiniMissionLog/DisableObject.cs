@@ -4,7 +4,7 @@ using UnityEngine;
 using PlayerManager = Scripts.Player.Player;
 using GameManager = Scripts.Game.GameManager;
 
-namespace Scripts.MissonLogMenu
+namespace Scripts.MiniMissionLog
 {
     public class DisableObject : MonoBehaviour
     {
