@@ -35,25 +35,9 @@ namespace Scripts.Quests
         {
             if (_oilDropped == 5)
             {
-                ///Gets Plant Place Barrel in Container mission
-                if (_dropdown == null)
-                {
-                    Debug.LogError("Mission UI Dropdown Component not Found");
-                }
-                Mission mission = _dropdown.GetMission("Place Barrel in Container");
-                if (mission == null)
-                {
-                    Debug.LogError("Mission Place Barrel in Container Not Found");
-                }
-                ///Marks Mission as completed 
-                mission.SetMissionCompleted();
+                 GameManager.Instance.SetMissionComplete("Place Barrels in Container");
                 //set GarbageDisposalController Active
                 _garbageDisposalController.isActive = true;
-                ///Updates Completion Status
-                if (_dropdown.MissionTitles.FindIndex(title => title == mission.MissionTitle) + 1 == _dropdown.dropdown.value)
-                {
-                    _dropdown.UpdateCompletionStatus(true);
-                }
             }
         }
 
