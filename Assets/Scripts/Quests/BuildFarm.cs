@@ -1,83 +1,68 @@
 ﻿using UnityEngine;
-using System.Collections;
 using PlayerManager = Scripts.Player.Player;
 using Scripts.Item;
 using System.Collections.Generic;
-using Scripts.MissonLogMenu;
-using Scripts.Quests;
-using MissionLogDropdown = Scripts.MissonLogMenu.Dropdown;
+using GameManager = Scripts.Game.GameManager;
 
-public class BuildFarm : MonoBehaviour
+namespace Scripts.Quests
 {
-    private bool _farmBuilt = false;
-    private MissionLogDropdown _dropdown;
-    private bool _playerInTriggerBox = false;
-    [SerializeField] private GameObject _farmLand;
-
-    /// <summary>
-    /// Works as the first frame of the game
-    /// Finds Mission UI interface component and assigns to variable 
-    /// </summary>
-    public void Start()
+    public class BuildFarm : MonoBehaviour
     {
-       _dropdown = GameObject.FindGameObjectWithTag("MissionUI").GetComponent<MissionLogDropdown>();
-    }
+        private bool _farmBuilt = false;
+        private bool _playerInTriggerBox = false;
+        [SerializeField] private GameObject _farmLand;
 
-    /// <summary>
-    /// Method for checking if the user has entered the trigger box
-    /// </summary>
-    private void OnTriggerEnter(Collider other)
-    {
-        // Check if the object entering the trigger is the player
-        if (other.CompareTag("Player"))
+        /// <summary>
+        /// Method for checking if the user has entered the trigger box
+        /// </summary>
+        private void OnTriggerEnter(Collider other)
         {
-            _playerInTriggerBox = true;
-        }
-    }
-
-    /// <summary>
-    /// Method for checking if the user has exited the trigger box
-    /// </summary>
-    private void OnTriggerExit(Collider other)
-    {
-        // Check if the object entering the trigger is the player
-        if (other.CompareTag("Player"))
-        {
-            _playerInTriggerBox = false;
-        }
-    }
-
-    /// <summary>
-    /// Method for updating mission completiton status 
-    /// </summary>
-    public void Update()
-    {
-        if (_playerInTriggerBox && CheckShovelInInventory() && PlayerManager.Instance.getTaskAccepted() && _farmBuilt == false)
-        {
-            Mission mission = _dropdown.GetMission("Build Farm");
-            _farmLand.SetActive(true);
-            mission.SetMissionCompleted();
-            if (_dropdown.MissionTitles.FindIndex(title => title == mission.MissionTitle) + 1 == _dropdown.dropdown.value)
+            // Check if the object entering the trigger is the player
+            if (other.CompareTag("Player"))
             {
-                _dropdown.UpdateCompletionStatus(true);
+                _playerInTriggerBox = true;
             }
         }
-    }
 
-    /// <summary>
-    /// Method checks for shovel within inventory
-    /// </summary>
-    public bool CheckShovelInInventory()
-    {
-        List<ItemPickup> inventory = PlayerManager.Instance.Inventory;
-        foreach (ItemPickup item in inventory)
+        /// <summary>
+        /// Method for checking if the user has exited the trigger box
+        /// </summary>
+        private void OnTriggerExit(Collider other)
         {
-            if (item.itemName == "Shovel")
+            // Check if the object entering the trigger is the player
+            if (other.CompareTag("Player"))
             {
-                return true;
+                _playerInTriggerBox = false;
             }
         }
-        return false;
-    }
 
+        /// <summary>
+        /// Method for updating mission completiton status 
+        /// </summary>
+        public void Update()
+        {
+            if (_playerInTriggerBox && CheckShovelInInventory() && PlayerManager.Instance.getTaskAccepted() && _farmBuilt == false)
+            {
+                _farmLand.SetActive(true);
+                GameManager.Instance.SetMissionComplete("Build Farm");
+            }
+        }
+
+        /// <summary>
+        /// Method checks for shovel within inventory
+        /// </summary>
+        public bool CheckShovelInInventory()
+        {
+            List<ItemPickup> inventory = PlayerManager.Instance.Inventory;
+            foreach (ItemPickup item in inventory)
+            {
+                if (item.itemName == "Shovel")
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+    }
 }
