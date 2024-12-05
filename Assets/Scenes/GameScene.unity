@@ -996,7 +996,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed277790dcdc94e80a625485f485c872, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _dropdown: {fileID: 710254189}
 --- !u!65 &385693817
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2534,17 +2533,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
---- !u!114 &710254189 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 323233574440423209, guid: a7dc663c5999f412cab874ee16315d84, type: 3}
-  m_PrefabInstance: {fileID: 2129019502}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 00eeb2f5821654f41a3100eef3d6bd6f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &814923138
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3503,6 +3491,17 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!114 &1069115941 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2901011464718012537, guid: 4c759055e2c63b54bb60680e5a2b1f73, type: 3}
+  m_PrefabInstance: {fileID: 8458149219353082572}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b743370ac3e4ec2a1668f5455a8ef8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1070495608
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3599,7 +3598,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68df3e8bb9a2c43d484dc534840a32d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _dropdown: {fileID: 710254189}
 --- !u!65 &1121498767
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5801,8 +5799,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f29290a3f74434701a501c7c7efbd443, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _triggerSound: {fileID: 8300000, guid: 485d769097c4ec44986ebf117315c745, type: 3}
-  _dropdown: {fileID: 710254189}
 --- !u!1001 &1839044650
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6765,6 +6761,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MissionUI
       objectReference: {fileID: 0}
+    - target: {fileID: 2254166371695848580, guid: a7dc663c5999f412cab874ee16315d84, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5524773318980949075, guid: a7dc663c5999f412cab874ee16315d84, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -6805,6 +6805,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8094537031454574411, guid: a7dc663c5999f412cab874ee16315d84, type: 3}
+      propertyPath: _dropdown
+      value: 
+      objectReference: {fileID: 1069115941}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
