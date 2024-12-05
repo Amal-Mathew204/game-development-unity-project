@@ -59,12 +59,20 @@ namespace Scripts.GarbageDisposal
                 if (_timer > _itemLiveTime)
                 { 
                     _itemsLaunched = false;
-                    Container container = GetComponentInChildren<Container>();
-                    foreach (GameObject garbageItem in container.ItemsInDisposal)
-                    {
-                        Destroy(garbageItem);
-                    }
+                    DeleteGarbageItems();
                 }
+            }
+        }
+
+        /// <summary>
+        /// This method deletes all the items (registered) inside of the garbage container
+        /// </summary>
+        private void DeleteGarbageItems()
+        {
+            Container container = GetComponentInChildren<Container>();
+            foreach (GameObject garbageItem in container.ItemsInDisposal)
+            {
+                Destroy(garbageItem);
             }
         }
         #endregion
