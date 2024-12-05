@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using Scripts.Game;
 using Scripts.GarbageDisposal;
 
-
 namespace Scripts.Quests
 {
     public class Container : MonoBehaviour
