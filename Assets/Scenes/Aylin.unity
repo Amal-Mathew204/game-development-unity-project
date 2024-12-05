@@ -3308,26 +3308,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 721747059}
   m_CullTransparentMesh: 1
---- !u!1 &750872283 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4817176761580238973, guid: a7dc663c5999f412cab874ee16315d84, type: 3}
-  m_PrefabInstance: {fileID: 2129019502}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &750872288
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 750872283}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7408c487e1f9744a2b5a86cd5315c776, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _dropdown: {fileID: 206294761}
-  _buttonText: {fileID: 1167203128}
-  _defaultButtonText: Select a Mission
 --- !u!1 &770477279
 GameObject:
   m_ObjectHideFlags: 0
@@ -5108,7 +5088,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.000061035156, y: -0.000061035156}
+  m_AnchoredPosition: {x: 0, y: -0.000061035156}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1076759652
@@ -5438,17 +5418,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1167203128 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8054013538747883417, guid: a7dc663c5999f412cab874ee16315d84, type: 3}
-  m_PrefabInstance: {fileID: 2129019502}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1178034165
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9750,9 +9719,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: MissionUI
       objectReference: {fileID: 0}
-    - target: {fileID: 3752969532024162616, guid: a7dc663c5999f412cab874ee16315d84, type: 3}
-      propertyPath: m_SortingOrder
+    - target: {fileID: 2254166371695848580, guid: a7dc663c5999f412cab874ee16315d84, type: 3}
+      propertyPath: m_SizeDelta.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2532229589151132450, guid: a7dc663c5999f412cab874ee16315d84, type: 3}
+      propertyPath: m_fontSize
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 2532229589151132450, guid: a7dc663c5999f412cab874ee16315d84, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 5524773318980949075, guid: a7dc663c5999f412cab874ee16315d84, type: 3}
       propertyPath: m_LocalPosition.x
@@ -9794,25 +9771,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8054013538747883417, guid: a7dc663c5999f412cab874ee16315d84, type: 3}
-      propertyPath: m_fontSize
-      value: 36
-      objectReference: {fileID: 0}
-    - target: {fileID: 8054013538747883417, guid: a7dc663c5999f412cab874ee16315d84, type: 3}
-      propertyPath: m_fontSizeBase
-      value: 36
-      objectReference: {fileID: 0}
+    - target: {fileID: 8094537031454574411, guid: a7dc663c5999f412cab874ee16315d84, type: 3}
+      propertyPath: _dropdown
+      value: 
+      objectReference: {fileID: 206294761}
     m_RemovedComponents: []
-    m_RemovedGameObjects:
-    - {fileID: 6007144059911187605, guid: a7dc663c5999f412cab874ee16315d84, type: 3}
-    - {fileID: 6832992153737446557, guid: a7dc663c5999f412cab874ee16315d84, type: 3}
-    - {fileID: 4145128562964469078, guid: a7dc663c5999f412cab874ee16315d84, type: 3}
-    - {fileID: 5558009663644469867, guid: a7dc663c5999f412cab874ee16315d84, type: 3}
+    m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 4817176761580238973, guid: a7dc663c5999f412cab874ee16315d84, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 750872288}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a7dc663c5999f412cab874ee16315d84, type: 3}
 --- !u!1001 &2147431560
 PrefabInstance:
