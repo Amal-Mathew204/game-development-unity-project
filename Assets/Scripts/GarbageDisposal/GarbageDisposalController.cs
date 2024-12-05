@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 using Scripts.Game;
 using Scripts.Quests;
 using UnityEngine.UI;
@@ -10,8 +11,14 @@ namespace Scripts.GarbageDisposal
     {
         #region Class Variables
         public bool isActive { get; set; } = false;
-        private bool _launchedGarbage = false;
+        private bool _handelGarbage = false;
         private GameObject _garbageDetonateButton;
+        [SerializeField] private GameObject _plasmaExplosion;
+        private bool _plasmaActivated = false;
+        [SerializeField] private float _plasmaExpansionTime = 10f;
+        private bool _itemsLaunched = false;
+        [SerializeField] private float _itemLiveTime = 5f;
+        private float _timer = 0f;
         #endregion
 
         #region Start Methods
@@ -23,7 +30,41 @@ namespace Scripts.GarbageDisposal
             _garbageDetonateButton = GetGarbageDetonateButton();
             if(_garbageDetonateButton != null)
             {
-                _garbageDetonateButton.GetComponent<Button>().onClick.AddListener(LaunchGarbage);
+                _garbageDetonateButton.GetComponent<Button>().onClick.AddListener(HandleGarbageDisposal);
+            }
+        }
+        #endregion
+
+
+        #region Update
+        /// <summary>
+        /// Update Methods handles either two conditons
+        /// Update method sets a timer for when the plasma is activated, after a certain time the player will lose the game
+        /// Update method sets a timer for when the items have been launched. After 5s there are deleted from the game
+        /// </summary>
+        public void Update()
+        {
+            if (_plasmaActivated)
+            {
+                _timer += Time.deltaTime;
+                if(_timer > _plasmaExpansionTime)
+                {
+                    GameManager.Instance.SetPlayerHasLost();
+                    _plasmaActivated = false;
+                }
+            }
+            else if (_itemsLaunched)
+            {
+                _timer += Time.deltaTime;
+                if (_timer > _itemLiveTime)
+                { 
+                    _itemsLaunched = false;
+                    Container container = GetComponentInChildren<Container>();
+                    foreach (GameObject garbageItem in container.ItemsInDisposal)
+                    {
+                        Destroy(garbageItem);
+                    }
+                }
             }
         }
         #endregion
@@ -35,7 +76,7 @@ namespace Scripts.GarbageDisposal
         /// </summary>
         private void OnTriggerEnter(Collider other)
         {
-            if (other.CompareTag("Player") && isActive && _launchedGarbage == false)
+            if (other.CompareTag("Player") && isActive && _handelGarbage == false)
             {
                 ToggleGarbageDetonateButtonActiveState(true);
             }
@@ -55,25 +96,60 @@ namespace Scripts.GarbageDisposal
         #endregion
 
         #region Garbage Detonation Methods
+
         /// <summary>
-        /// This method is used to add an explosive force to each Garbage Object Registered in the
-        /// Garbage disposal container
+        /// This handes the DO NOT PRESS on click event.
+        /// Either the garbage launches to space (deleting within 5s)
+        /// Or the world detonates
+        /// This method only executes its logic once
         /// </summary>
-        public void LaunchGarbage()
+        public void HandleGarbageDisposal()
         {
-            if (_launchedGarbage)
+            if (_handelGarbage)
             {
                 return;
             }
 
-            //Get RigidBody Objects
+            //Set a 99% change to detonate world
+            //Set a 1% chance for garbage to launchs to space
+            System.Random random = new System.Random();
+            int choice = random.Next(1, 101);
+            if (choice == 1)
+            {
+                LaunchGarbage();
+            }
+            else
+            {
+                DetonateWorld();
+            }
+            LaunchGarbage();
+            _handelGarbage = true;
+            ToggleGarbageDetonateButtonActiveState(false);
+        }
+
+        /// <summary>
+        /// This method is used to add a force to each Garbage Object Registered in the
+        /// Garbage disposal container
+        /// </summary>
+        public void LaunchGarbage()
+        {
+            //Get RigidBody Objects and add force
             Container container = GetComponentInChildren<Container>();
             foreach (GameObject garbageItem in container.ItemsInDisposal)
             {
                 Rigidbody itemRigidBody = garbageItem.GetComponent<Rigidbody>();
-                itemRigidBody.AddForce(new Vector3(0f, 100000f, 100000f));
+                itemRigidBody.AddForce(new Vector3(0f, 100000f, -100000f));
             }
-            _launchedGarbage = true;
+            _itemsLaunched = true;
+        }
+
+        /// <summary>
+        /// This method will enable the effects of the player detonating the word
+        /// </summary>
+        public void DetonateWorld()
+        {
+            _plasmaExplosion.SetActive(true);
+            _plasmaActivated = true;
         }
         #endregion
 
