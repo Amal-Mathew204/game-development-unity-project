@@ -10,6 +10,7 @@ using TMPro;
 using Scripts.Quests;
 using Scripts.Audio;
 using System;
+using UnityEngine.SceneManagement;
 
 namespace Scripts.Item
 {
@@ -45,7 +46,10 @@ namespace Scripts.Item
         /// </summary>
         public void OnDisable()
         {
-            GameScreen.Instance.HideKeyPrompt();
+            if (SceneManager.GetActiveScene().name != "StartScene")
+            {
+                GameScreen.Instance.HideKeyPrompt();
+            }
         }
         #endregion
 
