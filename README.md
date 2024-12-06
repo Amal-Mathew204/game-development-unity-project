@@ -33,7 +33,7 @@ Third Party Assests:
 * [Soil Patch](https://assetstore.unity.com/packages/3d/vegetation/plants/cartoon-farm-crops-79777)
 * [Seed Bag](https://sketchfab.com/3d-models/seed-bag-93dfc2af49bb464f8754ed0ee1cbf912)
 * [Skip](https://rigmodels.com/model.php?view=Trash_Container_1_PBR-3d-model__1e571d71692e489d9c0ca51a0b7bf8ce&searchkeyword=garbage%20container&manualsearch=1#google_vignettehttps://rigmodels.com/model.php?view=Trash_Container_1_PBR-3d-model__1e571d71692e489d9c0ca51a0b7bf8ce&searchkeyword=garbage%20container&manualsearch=1#google_vignette)
-* [Arrow](https://sketchfab.com/3d-models/direction-arrow-6ef46718c7b242e39fcad7f27ee858a5)
+* [3D Arrow](https://sketchfab.com/3d-models/direction-arrow-6ef46718c7b242e39fcad7f27ee858a5)
 
 Assets installed from the unity registry: 
 * Input System 1.7.0
