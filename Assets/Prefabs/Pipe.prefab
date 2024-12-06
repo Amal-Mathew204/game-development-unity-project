@@ -198,6 +198,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4aff2dc1e26b411fb7178335b01e258, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _pipe: {fileID: 2820289870462772268}
+  _itemRigidbody: {fileID: 6420085365914846428}
+  _snapPointOne: {fileID: 7715169912452241081}
+  _snapPointTwo: {fileID: 79820779213471895}
 --- !u!1 &7715169912452241081
 GameObject:
   m_ObjectHideFlags: 0
