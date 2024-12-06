@@ -15,6 +15,10 @@ namespace Scripts.MiniMissionLog
         [SerializeField] private Transform _subMissionContainer; 
         [SerializeField] private string _defaultButtonText = "Select a Mission";
 
+
+        /// <summary>
+        /// Initializes the UI components when the script instance is first loaded
+        /// </summary>
         void Start()
         {
             UpdateButtonWithPlaceholder();

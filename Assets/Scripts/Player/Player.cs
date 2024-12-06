@@ -420,25 +420,8 @@ namespace Scripts.Player
                     continue;
                 }
                 collectMission.RegisterCollectedItem(itemName);
-
-                //if (collectMission.IsMissionCompleted())
-                //{
-                //    UpdateDropDownMissionStatus(collectMission);
-                //}
             }
         }
-
-        /// <summary>
-        /// Method Checks If Mission is selected in dropdown menu. If true the mission status is updated on the dropdown menu.
-        /// </summary>
-        //private void UpdateDropDownMissionStatus(CollectMission collectMission)
-        //{
-        //    MissionLogDropdown dropdown = GameObject.FindGameObjectWithTag("MissionUI").GetComponent<MissionLogDropdown>();
-        //    if (dropdown.MissionTitles.FindIndex(title => title == collectMission.MissionTitle) + 1 == dropdown.dropdown.value)
-        //    {
-        //        dropdown.UpdateCompletionStatus(true);
-        //    }
-        //}
         #endregion
 
         #region MissionLog Methods
@@ -480,8 +463,6 @@ namespace Scripts.Player
             return playerActionInput.IsPressingAcceptKey;
         }
         #endregion
-
-
 
         #region Utility Methods
         /// <summary>
