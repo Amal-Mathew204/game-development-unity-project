@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using PlayerManager = Scripts.Player.Player;
 
 namespace Scripts.Menu
 {
@@ -26,9 +27,8 @@ namespace Scripts.Menu
             {
                 pos[i] = distance * i; 
             }
-
             // Handle user input on the scrollbar
-            if (Input.GetMouseButton(0))
+            if (PlayerManager.Instance.CheckLeftMouseButtonDown())
             {
                 scroll_pos = scrollbar.GetComponent<Scrollbar>().value;
             }
