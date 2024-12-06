@@ -63,7 +63,6 @@ namespace Scripts.Quests
             if (other.CompareTag("FuelCell"))
             {
                 _fuelCellDropped = _fuelCellDropped + 1;
-                ItemsInDisposal.Add(other.gameObject);
             }
         }
 
