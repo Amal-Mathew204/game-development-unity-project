@@ -29,9 +29,11 @@ namespace Scripts.Player.Input
                 Debug.LogError("Mission UI Does Not Exist");
                 return;
             }
+
             Transform canvas = missionUI.transform.GetChild(0);
             Button openMissionLogButton = canvas.GetChild(1).GetChild(0).gameObject.GetComponent<Button>();
-            Button closeMissionLogButton = canvas.GetChild(0).GetChild(1).gameObject.GetComponent<Button>();
+            Button closeMissionLogButton = canvas.GetChild(0).GetChild(0).gameObject.GetComponent<Button>();
+            
             ToggleMissionLogMenu = !ToggleMissionLogMenu;
             if (ToggleMissionLogMenu)
             {
