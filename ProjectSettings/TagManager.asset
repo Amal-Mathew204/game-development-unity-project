@@ -15,6 +15,7 @@ TagManager:
   - SeedBag
   - Radar
   - Barrel
+  - Pipe
   layers:
   - Default
   - TransparentFX

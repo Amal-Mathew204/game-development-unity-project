@@ -75,3 +75,9 @@ crashlytics-build.properties
 # Development Folder
 /[Aa]ssets/[Dd]evelopment/*
 /[Aa]ssets/[Dd]evelopment.meta
+Assets/Scripts/FullScreenShortcut.cs
+Assets/Scripts/FullScreenShortcut.cs.meta
+ProjectSettings/Packages/com.unity.probuilder/Settings.json
+ProjectSettings/Packages/com.unity.probuilder/Settings.json
+ProjectSettings/Packages/com.unity.probuilder/Settings.json
+ProjectSettings/Packages/com.unity.probuilder/Settings.json
