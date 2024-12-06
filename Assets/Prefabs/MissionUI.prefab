@@ -342,7 +342,6 @@ GameObject:
   - component: {fileID: 3295907078444992119}
   - component: {fileID: 2659622294948429497}
   - component: {fileID: 664157826315564073}
-  - component: {fileID: 4739861595286689972}
   m_Layer: 5
   m_Name: Main
   m_TagString: Untagged
@@ -411,22 +410,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &4739861595286689972
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2472232700140309779}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fff633d209b9f448a9d32b56a4b5b056, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  canvasObject: {fileID: 2472232700140309779}
-  titleText: {fileID: 0}
-  descriptionText: {fileID: 2532229589151132450}
-  progressText: {fileID: 6700539070970578516}
 --- !u!1 &3532719204247068400
 GameObject:
   m_ObjectHideFlags: 0
