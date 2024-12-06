@@ -170,6 +170,7 @@ namespace Scripts.Game
         {
             CreateMissions(); //reset missions
             PlayerManager.DestroyGameObject();
+            GameScreen.DestroyGameObject();
             SceneManager.LoadScene("StartScene");
         }
         #endregion

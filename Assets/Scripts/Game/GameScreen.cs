@@ -68,5 +68,19 @@ namespace Scripts.Game
             _keyPromptTextField.SetActive(false);
         }
         #endregion
+        
+        #region Utility Methods
+        /// <summary>
+        /// Destroys Player GameObject
+        /// </summary>
+        public static void DestroyGameObject()
+        {
+            if (Instance == null){
+                return;
+            }
+            Destroy(Instance.gameObject);
+            _instance = null;
+        }
+        #endregion
     }
 }
