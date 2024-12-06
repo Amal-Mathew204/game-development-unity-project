@@ -78,6 +78,7 @@ namespace Scripts.Game
             CollectMission collectShovel = new CollectMission("Find Shovel", "Explore the terrian to locate the shovel which is needed for farming", 1, new List<string>() { "Shovel" });
             CollectMission collectSeedBag = new CollectMission("Find SeedBags", "Explore the terrian to salvage the seed bags", 4, new List<string>() { "Seed Bag" });
             CollectMission cleanUp = new CollectMission("Clean Up", "Clean up all the oil barrels around the map ", 5, new List<string>() { "Barrel" });
+            CollectMission collectFuelCell = new CollectMission("Collect Fuell Cell", "Collect all fuel cells to turn on the generator ", 3, new List<string>() { "Fuel Cell" });
             Mission wasteBarrel = new Mission("Place Barrels in Container", "Place all barrels in container");
             Mission findFarmLand = new Mission("Find Farm Land", "");
             Mission buildFarm = new Mission("Build Farm", "Using the shovel build an area to plant some vegetation");
@@ -91,7 +92,10 @@ namespace Scripts.Game
 
             Mission findWater = new Mission("Find Water", "In order to grow crops on this desolate land we need to find a water source ");
 
-            findWater.AddSubMission(new List<Mission>() { collectGPSScanner, collectDynamite, findWaterCave, blowUpEntrance });
+
+
+            Mission TurnOnGenerator = new Mission("Turn on Generator", "Use the fuel cells and drop them onto the generator to turn on the power");
+            findWater.AddSubMission(new List<Mission>() { collectGPSScanner, collectDynamite, findWaterCave, blowUpEntrance, TurnOnGenerator });
 
             ////Adds sub-mission to the farm mission 
             farmMission.AddSubMission(collectShovel);
@@ -101,7 +105,7 @@ namespace Scripts.Game
 
             MissionList = new List<Mission>() {farmMission, cleanUp, 
                                                plantSeed, wasteBarrel,
-                                               findWater};
+                                               findWater,collectFuelCell};
         }
         #endregion
 
