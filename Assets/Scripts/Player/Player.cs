@@ -462,6 +462,14 @@ namespace Scripts.Player
             PlayerActionInput playerActionInput = GetComponent<PlayerActionInput>();
             return playerActionInput.IsPressingAcceptKey;
         }
+
+        /// <summary>
+        /// This method returns a boolean value dependant on if the left mouse button is held down
+        /// </summary>
+        public bool CheckLeftMouseButtonDown()
+        {
+            return _playerUIInput.MouseButtonHeldDown;
+        }
         #endregion
 
         #region Utility Methods

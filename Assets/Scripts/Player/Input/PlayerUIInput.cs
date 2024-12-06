@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -13,6 +14,9 @@ namespace Scripts.Player.Input
     {
         public bool ToggleMissionLogMenu { get; set; } = false;
         public bool TogglePauseMenu { get; set; } = false;
+        public bool MouseButtonHeldDown { get; set; } = false;
+        
+        
         /// <summary>
         /// Method Toggles the visibility of the Mission Log Menu inside the game.
         /// The method will also toggle mouse cursor visibility dependant on the visibility of the inventory.
@@ -57,6 +61,23 @@ namespace Scripts.Player.Input
 
             }
         }
+        
+        /// <summary>
+        /// This method toggles whether the mouse button is being held down
+        /// </summary>
+        public void GetMouseButtonDown(InputAction.CallbackContext context)
+        {
+            if (context.performed)
+            {
+                MouseButtonHeldDown = true;
+            }
+
+            if (context.canceled)
+            {
+                MouseButtonHeldDown = false;
+            }
+        }
+
         /// <summary>
         /// Resets the TogglePauseMenu to false after each frame, ensuring it's only triggered once per input
         /// Ensures that the pause menu does not flicker on and off
