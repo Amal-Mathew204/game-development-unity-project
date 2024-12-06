@@ -3810,6 +3810,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1256150140199265698}
     m_Modifications:
+    - target: {fileID: 1754838540620734997, guid: dc689f695dc4d4ff7b06f20f1693b342, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -124.2
+      objectReference: {fileID: 0}
     - target: {fileID: 4455284530555256774, guid: dc689f695dc4d4ff7b06f20f1693b342, type: 3}
       propertyPath: m_Name
       value: GameState
