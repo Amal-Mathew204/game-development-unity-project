@@ -11,14 +11,23 @@ namespace Scripts.Menu
         float scroll_pos = 0;
         float[] pos;
 
+        /// <summary>
+        /// Handles smooth transitions for a scrollbar-controlled UI element 
+        /// Calculates positions for child elements based on the number of children and evenly spaces them
+        /// </summary>
         private void Update()
         {
+            // Calculate the positions for each child element based on the number of children
             pos = new float[transform.childCount];
-            float distance = 1f / (pos.Length - 1);
+            float distance = 1f / (pos.Length - 1); // Distance between each position
+
+            
             for (int i = 0; i < pos.Length; i++)
             {
-                pos[i] = distance * i;
+                pos[i] = distance * i; 
             }
+
+            // Handle user input on the scrollbar
             if (Input.GetMouseButton(0))
             {
                 scroll_pos = scrollbar.GetComponent<Scrollbar>().value;
@@ -34,6 +43,7 @@ namespace Scripts.Menu
                 }
             }
 
+            // Scale the child elements based on their proximity to the scrollbar's handle
             for (int i = 0; i < pos.Length; i++)
             {
                 if (scroll_pos < pos[i] + (distance / 2) && scroll_pos > pos[i] - (distance / 2))
