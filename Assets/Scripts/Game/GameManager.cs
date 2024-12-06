@@ -28,6 +28,7 @@ namespace Scripts.Game
         public List<Mission> MissionList { get; private set; } = new List<Mission>();
         public GameObject GameStateCanvas { get; set; }
         public bool HasPlayerWonGame { get; private set; }
+        public bool HasGameEnded { get; private set; } = false;
         private GameState _gameState;
         [Header("Game Time Settings")]
         public float GameTimeElapsed;
@@ -158,6 +159,7 @@ namespace Scripts.Game
             returnToStartMenuButton.onClick.AddListener(ReturnToStartMenu);
             PlayerInput playerInput = PlayerManager.Instance.gameObject.GetComponent<PlayerInput>();
             playerInput.SwitchCurrentActionMap("UI");
+            HasGameEnded = true;
         }
         #endregion
 
