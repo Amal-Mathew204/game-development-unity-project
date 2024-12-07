@@ -35,6 +35,9 @@ Third Party Assests:
 * [Skip](https://rigmodels.com/model.php?view=Trash_Container_1_PBR-3d-model__1e571d71692e489d9c0ca51a0b7bf8ce&searchkeyword=garbage%20container&manualsearch=1#google_vignettehttps://rigmodels.com/model.php?view=Trash_Container_1_PBR-3d-model__1e571d71692e489d9c0ca51a0b7bf8ce&searchkeyword=garbage%20container&manualsearch=1#google_vignette)
 * [3D Arrow](https://sketchfab.com/3d-models/direction-arrow-6ef46718c7b242e39fcad7f27ee858a5)
 * [Recharge Station](https://sketchfab.com/3d-models/recharge-station-bb0aa56b621e4065bce9bbdc49e83d37)
+* [Solar Pannel](https://assetstore.unity.com/packages/3d/props/industrial/high-quality-solar-panel-175231)
+* [Generator](https://sketchfab.com/3d-models/scifi-style-generator-c218cb5146eb47539fee5ff8801508f9)
+* [Fuel Cell](https://sketchfab.com/3d-models/sci-fi-power-generator-free-72ec1e883c7c4d76bace9c0fde8afe49)
 
 Assets installed from the unity registry: 
 * Input System 1.7.0
