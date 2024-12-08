@@ -5,125 +5,161 @@ using UnityEngine.InputSystem;
 using Mission = Scripts.Quests.Mission;
 using UnityEngine.UI;
 
-public class PanicTrigger : MonoBehaviour
+namespace Scripts.Game
 {
-    public GameObject panicPanel; // Assign this in the inspector with your UI panel
-    private bool _panicActive = false; // To track the state of the panic panel
-    private PlayerInput _playerInput;
-    private Image panelImage; // The Image component of the panel
-    private bool _isFlickering = false;
-
-    [System.Obsolete]
-    void Start()
+    public class PanicTrigger : MonoBehaviour
     {
-        _playerInput = FindObjectOfType<PlayerInput>(); // Ensure this finds the correct PlayerInput component
-        panelImage = panicPanel.GetComponent<Image>();
-        if (panelImage == null)
+        public GameObject panicPanel;
+        private Image _panelImage;
+        private bool _panicActive = false;
+        private bool _isFlickering = false;
+        public static PlayerInput _playerInput;
+
+        /// <summary>
+        /// Locates and assigns the PlayerInput component from the player GameObject tagged "Player"
+        /// Retrieves the Image component from the assigned panicPanel
+        /// </summary>
+        void Start()
         {
-            Debug.LogError("No Image component found on the panic panel!");
-        }
-    }
+            _playerInput = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInput>();
+            _panelImage = panicPanel.GetComponent<Image>();
 
-    void OnEnable()
-    {
-        Mission.OnMissionStatusUpdated += CheckMissionCompletion;
-    }
-
-    void OnDisable()
-    {
-        Mission.OnMissionStatusUpdated -= CheckMissionCompletion;
-    }
-
-    private void CheckMissionCompletion()
-    {
-        Mission specificMission = GameManager.Instance.MissionList.Find(m => m.MissionTitle == "Clean Up");
-        if (specificMission != null && specificMission.IsMissionCompleted())
-        {
-            StartCoroutine(TriggerPanic());
-        }
-    }
-
-    private IEnumerator TriggerPanic()
-    {
-        yield return new WaitForSeconds(3); // Delay before triggering the panic
-        TogglePanic(true);
-        StartFlickering();
-    }
-
-    private void TogglePanic(bool isActive)
-    {
-        panicPanel.SetActive(isActive);
-        _panicActive = isActive;
-
-        // Lock or unlock the game based on the panic state
-        if (isActive)
-        {
-            Time.timeScale = 0; // Pause the game
-            _playerInput.SwitchCurrentActionMap("UI"); // Switch to UI input mode
-            Cursor.lockState = CursorLockMode.None; // Unlock the cursor
-            Cursor.visible = true; // Show the cursor
-        }
-        else
-        {
-            Time.timeScale = 1; // Resume the game
-            _playerInput.SwitchCurrentActionMap("Player"); // Switch back to player control
-            Cursor.lockState = CursorLockMode.Locked; // Lock the cursor
-            Cursor.visible = false; // Hide the cursor
-        }
-    }
-
-    // Optional: Method to disable the panic panel and reset states after some time
-    private IEnumerator CalmDownAfterPanic()
-    {
-        yield return new WaitForSeconds(10); // Adjust recovery time
-        TogglePanic(false);
-    }
-
-    public void StartFlickering()
-    {
-        if (!_isFlickering)
-        {
-            _isFlickering = true;
-            StartCoroutine(FlickerEffect());
-        }
-    }
-
-    public void StopFlickering()
-    {
-        _isFlickering = false;
-    }
-
-    private IEnumerator FlickerEffect()
-    {
-        while (_isFlickering)
-        {
-            float minAlpha = Random.Range(0.2f, 0.5f); // Random minimum alpha value
-            float maxAlpha = Random.Range(0.6f, 1.0f); // Random maximum alpha value
-            float duration = Random.Range(0.05f, 0.5f); // Random duration for one cycle of alpha changes
-
-            // Gradually increase the alpha to maxAlpha
-            float startAlpha = panelImage.color.a;
-            for (float t = 0; t <= 1; t += Time.unscaledDeltaTime / duration)
+            if (_panelImage == null)
             {
-                float alpha = Mathf.Lerp(startAlpha, maxAlpha, t);
-                panelImage.color = new Color(panelImage.color.r, panelImage.color.g, panelImage.color.b, alpha);
-                yield return null;
+                Debug.LogError("No Image component found on the panic panel!");
             }
+        }
 
-            // Random pause at max alpha
-            yield return new WaitForSecondsRealtime(Random.Range(0.05f, 0.2f));
+        /// <summary>
+        /// Subscribes to the OnMissionStatusUpdated event when the GameObject is enabled
+        /// </summary>
+        void OnEnable()
+        {
+            Mission.OnMissionStatusUpdated += CheckMissionCompletion;
+        }
 
-            // Gradually decrease the alpha back to minAlpha
-            startAlpha = panelImage.color.a;
-            for (float t = 0; t <= 1; t += Time.unscaledDeltaTime / duration)
+        /// <summary>
+        /// Unsubscribes from the OnMissionStatusUpdated event when the GameObject is disabled
+        /// </summary>
+        void OnDisable()
+        {
+            Mission.OnMissionStatusUpdated -= CheckMissionCompletion;
+        }
+
+        /// <summary>
+        /// Checks if a specific mission, identified by title, has been completed
+        /// Initiates panic sequence if the mission is found
+        /// </summary>
+        private void CheckMissionCompletion()
+        {
+            Mission specificMission = GameManager.Instance.MissionList.Find(m => m.MissionTitle == "Clean Up");
+            if (specificMission != null && specificMission.IsMissionCompleted())
             {
-                float alpha = Mathf.Lerp(startAlpha, minAlpha, t);
-                panelImage.color = new Color(panelImage.color.r, panelImage.color.g, panelImage.color.b, alpha);
-                yield return null;
+                StartCoroutine(TriggerPanic());
             }
+        }
 
-            // Random pause at min alpha
-            yield return new WaitForSecondsRealtime(Random.Range(0.05f, 0.2f));
+        /// <summary>
+        /// Delays the activation of panic mode, then triggers the panic state and starts the flickering effect
+        /// </summary>
+        private IEnumerator TriggerPanic()
+        {
+            yield return new WaitForSeconds(3); // 3 second delay
+            TogglePanic(true);
+            StartFlickering();
+        }
+
+        /// <summary>
+        /// Pauses the game, switches input controls to UI mode, and makes the cursor visible and unlocked,
+        /// When deactivated, it resumes normal game operations, reverts input controls to player mode,
+        /// and hides and locks the cursor 
+        /// </summary>
+        private void TogglePanic(bool isActive)
+        {
+            panicPanel.SetActive(isActive);
+            _panicActive = isActive;
+
+            // Lock or unlock the game based on the panic state
+            if (isActive)
+            {
+                Time.timeScale = 0; // Pause the game
+                _playerInput.SwitchCurrentActionMap("UI"); 
+                Cursor.lockState = CursorLockMode.None; 
+                Cursor.visible = true; 
+            }
+            else
+            {
+                Time.timeScale = 1; // Resume the game
+                _playerInput.SwitchCurrentActionMap("Player"); 
+                Cursor.lockState = CursorLockMode.Locked; 
+                Cursor.visible = false; 
+            }
+        }
+
+        /// <summary>
+        /// Waits for a set recovery time before deactivating the panic state
+        /// </summary>
+        private IEnumerator CalmDownAfterPanic()
+        {
+            yield return new WaitForSeconds(10); // 10 seconds for recovery time
+            TogglePanic(false);
+        }
+
+        /// <summary>
+        /// Initiates the flickering effect on the panic panel if it is not already active
+        /// </summary>
+        public void StartFlickering()
+        {
+            if (!_isFlickering)
+            {
+                _isFlickering = true;
+                StartCoroutine(FlickerEffect());
+            }
+        }
+
+        /// <summary>
+        /// Stops the flickering effect on the panic panel by setting the flickering state to inactive
+        /// </summary>
+        public void StopFlickering()
+        {
+            _isFlickering = false;
+        }
+
+        /// <summary>
+        /// Continuously adjusts the alpha transparency of the panic panel's image to create a flickering effect.
+        /// </summary>
+        private IEnumerator FlickerEffect()
+        {
+            while (_isFlickering)
+            {
+                float minAlpha = Random.Range(0.2f, 0.5f); // Random minimum alpha value
+                float maxAlpha = Random.Range(0.6f, 1.0f); // Random maximum alpha value
+                float duration = Random.Range(0.05f, 0.5f); // Random duration for one cycle of alpha changes
+
+                // Gradually increase the alpha to maxAlpha
+                float startAlpha = _panelImage.color.a;
+                for (float t = 0; t <= 1; t += Time.unscaledDeltaTime / duration)
+                {
+                    float alpha = Mathf.Lerp(startAlpha, maxAlpha, t);
+                    _panelImage.color = new Color(_panelImage.color.r, _panelImage.color.g, _panelImage.color.b, alpha);
+                    yield return null;
+                }
+
+                // Random pause at max alpha
+                yield return new WaitForSecondsRealtime(Random.Range(0.05f, 0.2f));
+
+                // Gradually decrease the alpha back to minAlpha
+                startAlpha = _panelImage.color.a;
+                for (float t = 0; t <= 1; t += Time.unscaledDeltaTime / duration)
+                {
+                    float alpha = Mathf.Lerp(startAlpha, minAlpha, t);
+                    _panelImage.color = new Color(_panelImage.color.r, _panelImage.color.g, _panelImage.color.b, alpha);
+                    yield return null;
+                }
+
+                // Random pause at min alpha
+                yield return new WaitForSecondsRealtime(Random.Range(0.05f, 0.2f));
+            }
         }
     }
 }
