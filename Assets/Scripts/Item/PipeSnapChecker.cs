@@ -12,6 +12,7 @@ namespace Scripts.Item
 {
   public class PipeSnapChecker : MonoBehaviour
   {
+        [SerializeField] private GameObject _parentOfItemObject;  
         [SerializeField] private Rigidbody _itemRigidbody;
         public bool SnapperActive = false;
         private bool _isInTriggerBox = false;
@@ -38,31 +39,20 @@ namespace Scripts.Item
             {
               return;
             }
-
-            float angleDifference = GetRotationDifference(this.transform, other.transform);
+            
+            //force drop pipe to be in same direction as set pipe 
+            other.transform.rotation = Quaternion.Euler(0, _parentOfItemObject.transform.eulerAngles.y, 0);
 
             Vector3 otherSnapPointOne = otherPipeSnapChecker._snapPointOne.transform.position;
             Vector3 otherSnapPointTwo = otherPipeSnapChecker._snapPointTwo.transform.position;
             Vector3 pipeSnapPointOne = _snapPointOne.transform.position;
             Vector3 pipeSnapPointTwo = _snapPointTwo.transform.position;
+            
+            
+            Vector3 offset3 = pipeSnapPointOne - otherSnapPointTwo;
+            Vector3 offset4 = pipeSnapPointTwo - otherSnapPointOne;
+            bool connected = CheckOffsetSnapPoints(other, offset3) ? true : CheckOffsetSnapPoints(other,offset4);
 
-            bool connected;
-
-            if (angleDifference <= 180)
-            {
-                Debug.Log("less than 180");
-        
-                Vector3 offset1 = pipeSnapPointOne - otherSnapPointOne;
-                Vector3 offset2 = pipeSnapPointTwo - otherSnapPointTwo;
-                connected = CheckOffsetSnapPoints(other, offset1) ? true : CheckOffsetSnapPoints(other, offset2);
-            } 
-            else
-            {
-                 Debug.Log("more than 180");
-                 Vector3 offset3 = pipeSnapPointOne - otherSnapPointTwo;
-                 Vector3 offset4 = pipeSnapPointTwo - otherSnapPointOne;
-                 connected = CheckOffsetSnapPoints(other, offset3) ? true : CheckOffsetSnapPoints(other,offset4);
-            }
             if (!connected)
             {
                 Debug.Log("pipes not connected");
@@ -73,8 +63,8 @@ namespace Scripts.Item
 
         private bool CheckOffsetSnapPoints(Collider other, Vector3 offset)
         {
-          Debug.Log("Check Offset Snap Points" + (offset.magnitude < _maxDistance));        
-          if (offset.magnitude < _maxDistance)
+          Debug.Log("Check Offset Snap Points" + (offset.magnitude <= _maxDistance));        
+          if (offset.magnitude <= _maxDistance)
           {
             MoveOtherPipe(other, offset);
             return true;
@@ -82,18 +72,9 @@ namespace Scripts.Item
           return false;
         }
 
-        private float GetRotationDifference(Transform pipe1, Transform pipe2)
-        {
-            Vector3 forward1 = pipe1.forward;
-            Vector3 forward2 = pipe2.forward;
-
-            float angleDifference = Vector3.Angle(forward1, forward2);
-            Debug.Log(angleDifference);
-            return angleDifference;
-        }
-
         private void MoveOtherPipe(Collider other, Vector3 offset)
         {
+          
                 other.transform.position += offset;
                 other.GetComponent<Rigidbody>().isKinematic = true;
                 Debug.Log("snap to other pipe");
