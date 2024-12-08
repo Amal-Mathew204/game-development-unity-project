@@ -128,7 +128,6 @@ namespace Scripts.Player
         /// </summary>
         private void Update()
         {
-            
             ToggleInventoryUI();
             ToggleInventoryWarningMessage();
             TogglePauseMenu();
@@ -369,6 +368,14 @@ namespace Scripts.Player
 
             Vector3 dropPosition = transform.position + transform.forward * 2f;
             item.gameObject.transform.position = dropPosition;
+            // Debug.Log("Player Old Rotation: " + item.PlayerRotation);
+            // Debug.Log("Player Current Rotation: " + this.transform.eulerAngles.y);
+            
+            float rotationChange = this.transform.eulerAngles.y - item.PlayerRotation;
+            
+            // Debug.Log("Item Old Rotation: " + item.gameObject.transform.eulerAngles.y);
+            item.gameObject.transform.rotation = Quaternion.Euler(0f, item.gameObject.transform.eulerAngles.y + rotationChange, 0f);
+            // Debug.Log("Item New Rotation: " + item.gameObject.transform.eulerAngles.y);
             item.gameObject.SetActive(true);
         }
         #endregion
