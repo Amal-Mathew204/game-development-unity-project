@@ -142,7 +142,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3365588523671888865}
   - component: {fileID: 170243919226608816}
-  - component: {fileID: 4888356695181183539}
+  - component: {fileID: 132748501415757649}
   m_Layer: 7
   m_Name: PipeSnapChecker
   m_TagString: Untagged
@@ -186,7 +186,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 20, y: 5, z: 10}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &4888356695181183539
+--- !u!114 &132748501415757649
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -195,7 +195,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5502964091075141501}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a4aff2dc1e26b411fb7178335b01e258, type: 3}
+  m_Script: {fileID: 11500000, guid: fcffbd1731004160a2aae99f01fc7dee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _parentOfItemObject: {fileID: 3566451927766192758}

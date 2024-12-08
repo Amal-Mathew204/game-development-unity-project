@@ -5,10 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7a7d4672-6d7b-41d4-a92e-ccf037d10889" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Item/PipeBendSnapChecker.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Item/PipeBendSnapChecker.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.game-development-unity-project/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.game-development-unity-project/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Pipe 90.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Pipe 90.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Pipe.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Pipe.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/AamirScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/AamirScene.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Item/PipeSnapChecker.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Item/PipeSnapChecker.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -99,7 +99,7 @@
       <workItem from="1733508684089" duration="5657000" />
       <workItem from="1733663948145" duration="189000" />
       <workItem from="1733667299617" duration="4700000" />
-      <workItem from="1733685439651" duration="5540000" />
+      <workItem from="1733685439651" duration="7504000" />
     </task>
     <servers />
   </component>

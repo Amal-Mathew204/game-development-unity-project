@@ -12,15 +12,15 @@ namespace Scripts.Item
 {
   public class PipeSnapChecker : MonoBehaviour
   {
-        [SerializeField] private GameObject _parentOfItemObject;  
-        [SerializeField] private Rigidbody _itemRigidbody;
+        [SerializeField] protected GameObject _parentOfItemObject;  
+        [SerializeField] protected Rigidbody _itemRigidbody;
         public bool SnapperActive = false;
-        private bool _isInTriggerBox = false;
-        [SerializeField] private GameObject _snapPointOne;
-        [SerializeField] private GameObject _snapPointTwo;
-        private float _maxDistance = 10f;
+        protected bool _isInTriggerBox = false;
+        [SerializeField] public GameObject _snapPointOne;
+        [SerializeField] public GameObject _snapPointTwo;
+        protected float _maxDistance = 10f;
     
-        private void OnTriggerEnter(Collider other)
+        protected  virtual void OnTriggerEnter(Collider other)
         {
           if (other.CompareTag("Player"))
           {
@@ -61,7 +61,7 @@ namespace Scripts.Item
           }
         }
 
-        private bool CheckOffsetSnapPoints(Collider other, Vector3 offset, GameObject pipeSnapPoint, GameObject otherSnapPoint)
+        protected bool CheckOffsetSnapPoints(Collider other, Vector3 offset, GameObject pipeSnapPoint, GameObject otherSnapPoint)
         {
           Debug.Log("Check Offset Snap Points" + (offset.magnitude <= _maxDistance));        
           if (offset.magnitude <= _maxDistance)
@@ -82,7 +82,7 @@ namespace Scripts.Item
           return false;
         }
 
-        private void MoveOtherPipe(Collider other, Vector3 offset)
+        protected void MoveOtherPipe(Collider other, Vector3 offset)
         {
           
                 other.transform.position += offset;
@@ -90,7 +90,7 @@ namespace Scripts.Item
                 Debug.Log("snap to other pipe");
             
         }
-        private void OnDisable()
+        protected void OnDisable()
         {
           SnapperActive = false;
           _isInTriggerBox = false;
@@ -98,7 +98,7 @@ namespace Scripts.Item
           _itemRigidbody.isKinematic = false;
         }
 
-        private void Update()
+        protected void Update()
         {
           if (_isInTriggerBox && SnapperActive == false)
           {
@@ -111,7 +111,7 @@ namespace Scripts.Item
           }
         }
 
-        private void OnTriggerExit(Collider other)
+        protected void OnTriggerExit(Collider other)
         {
           if (other.CompareTag("Player"))
           {
