@@ -6,101 +6,128 @@ using PlayerManager = Scripts.Player.Player;
 using Unity.VisualScripting;
 using UnityEditor.TerrainTools;
 using UnityEngine;
+using UnityEditor.Networking.PlayerConnection;
 
 namespace Scripts.Item
 {
   public class PipeSnapChecker : MonoBehaviour
   {
-    [SerializeField] private Rigidbody _itemRigidbody;
-    public bool SnapperActive = false;
-    private bool _isInTriggerBox = false;
-    [SerializeField] private GameObject _snapPointOne;
-    [SerializeField] private GameObject _snapPointTwo;
-    private float _maxDistance = 10f;
+        [SerializeField] private Rigidbody _itemRigidbody;
+        public bool SnapperActive = false;
+        private bool _isInTriggerBox = false;
+        [SerializeField] private GameObject _snapPointOne;
+        [SerializeField] private GameObject _snapPointTwo;
+        private float _maxDistance = 10f;
     
-    private void OnTriggerEnter(Collider other)
-    {
-      if (other.CompareTag("Player"))
-      {
-        _isInTriggerBox = true;
-        if (SnapperActive == false)
+        private void OnTriggerEnter(Collider other)
         {
-          GameScreen.Instance.ShowKeyPrompt("Confirm Set Pipe");
+          if (other.CompareTag("Player"))
+          {
+            _isInTriggerBox = true;
+            if (SnapperActive == false)
+            {
+              GameScreen.Instance.ShowKeyPrompt("Confirm Set Pipe");
+            }
+
+          }
+
+          if (other.CompareTag("Pipe") && SnapperActive)
+          {
+            PipeSnapChecker otherPipeSnapChecker = other.gameObject.GetComponentInChildren<PipeSnapChecker>();
+            if (otherPipeSnapChecker == null)
+            {
+              return;
+            }
+
+            float angleDifference = GetRotationDifference(this.transform, other.transform);
+
+            Vector3 otherSnapPointOne = otherPipeSnapChecker._snapPointOne.transform.position;
+            Vector3 otherSnapPointTwo = otherPipeSnapChecker._snapPointTwo.transform.position;
+            Vector3 pipeSnapPointOne = _snapPointOne.transform.position;
+            Vector3 pipeSnapPointTwo = _snapPointTwo.transform.position;
+
+            bool connected;
+
+            if (angleDifference <= 180)
+            {
+                Debug.Log("less than 180");
+        
+                Vector3 offset1 = pipeSnapPointOne - otherSnapPointOne;
+                Vector3 offset2 = pipeSnapPointTwo - otherSnapPointTwo;
+                connected = CheckOffsetSnapPoints(other, offset1) ? true : CheckOffsetSnapPoints(other, offset2);
+            } 
+            else
+            {
+                 Debug.Log("more than 180");
+                 Vector3 offset3 = pipeSnapPointOne - otherSnapPointTwo;
+                 Vector3 offset4 = pipeSnapPointTwo - otherSnapPointOne;
+                 connected = CheckOffsetSnapPoints(other, offset3) ? true : CheckOffsetSnapPoints(other,offset4);
+            }
+            if (!connected)
+            {
+                Debug.Log("pipes not connected");
+            }
+    
+          }
         }
 
-      }
-
-      if (other.CompareTag("Pipe") && SnapperActive)
-      {
-        PipeSnapChecker otherPipeSnapChecker = other.gameObject.GetComponentInChildren<PipeSnapChecker>();
-        if (otherPipeSnapChecker == null)
+        private bool CheckOffsetSnapPoints(Collider other, Vector3 offset)
         {
-          return;
+          Debug.Log("Check Offset Snap Points" + (offset.magnitude < _maxDistance));        
+          if (offset.magnitude < _maxDistance)
+          {
+            MoveOtherPipe(other, offset);
+            return true;
+          }
+          return false;
         }
 
-        Vector3 otherSnapPointOne = otherPipeSnapChecker._snapPointOne.transform.position;
-        Vector3 otherSnapPointTwo = otherPipeSnapChecker._snapPointTwo.transform.position;
-
-        Vector3 pipeSnapPointOne = _snapPointOne.transform.position;
-        Vector3 pipeSnapPointTwo = _snapPointTwo.transform.position;
-        
-        
-        Vector3 offset1 = pipeSnapPointOne - otherSnapPointOne;
-        Vector3 offset2 = pipeSnapPointTwo - otherSnapPointTwo;
-        Vector3 offset3 = pipeSnapPointOne - otherSnapPointTwo;
-        Vector3 offset4 = pipeSnapPointTwo - otherSnapPointOne;
-
-        bool connected = CheckOffsetSnapPoints(other, offset1) ? true :
-                         CheckOffsetSnapPoints(other, offset2) ? true : 
-                         CheckOffsetSnapPoints(other, offset3) ? true : CheckOffsetSnapPoints(other, offset4);
-      }
-    }
-
-    private bool CheckOffsetSnapPoints(Collider other, Vector3 offset)
-    {
-      Debug.Log("Check Offset Snap Points" + (offset.magnitude < _maxDistance));
-      if (offset.magnitude < _maxDistance)
-      {
-        MoveOtherPipe(other, offset);
-        return true;
-      }
-      return false;
-    }
-    
-    private void MoveOtherPipe(Collider other, Vector3 offset)
-    {
-      other.transform.position += offset;
-      other.GetComponent<Rigidbody>().isKinematic = true;
-    }
-    private void OnDisable()
-    {
-      SnapperActive = false;
-      _isInTriggerBox = false;
-      GameScreen.Instance.HideKeyPrompt();
-      _itemRigidbody.isKinematic = false;
-    }
-
-    private void Update()
-    {
-      if (_isInTriggerBox && SnapperActive == false)
-      {
-        if (PlayerManager.Instance.getTaskAccepted())
+        private float GetRotationDifference(Transform pipe1, Transform pipe2)
         {
+            Vector3 forward1 = pipe1.forward;
+            Vector3 forward2 = pipe2.forward;
+
+            float angleDifference = Vector3.Angle(forward1, forward2);
+            Debug.Log(angleDifference);
+            return angleDifference;
+        }
+
+        private void MoveOtherPipe(Collider other, Vector3 offset)
+        {
+                other.transform.position += offset;
+                other.GetComponent<Rigidbody>().isKinematic = true;
+                Debug.Log("snap to other pipe");
+            
+        }
+        private void OnDisable()
+        {
+          SnapperActive = false;
+          _isInTriggerBox = false;
           GameScreen.Instance.HideKeyPrompt();
-          SnapperActive = true;
-          _itemRigidbody.isKinematic = true;
+          _itemRigidbody.isKinematic = false;
         }
-      }
-    }
 
-    private void OnTriggerExit(Collider other)
-    {
-      if (other.CompareTag("Player"))
-      {
-        _isInTriggerBox = false;
-        GameScreen.Instance.HideKeyPrompt();
-      }
-    }
-  }  
+        private void Update()
+        {
+          if (_isInTriggerBox && SnapperActive == false)
+          {
+            if (PlayerManager.Instance.getTaskAccepted())
+            {
+              GameScreen.Instance.HideKeyPrompt();
+              SnapperActive = true;
+              _itemRigidbody.isKinematic = true;
+            }
+          }
+        }
+
+        private void OnTriggerExit(Collider other)
+        {
+          if (other.CompareTag("Player"))
+          {
+            _isInTriggerBox = false;
+            GameScreen.Instance.HideKeyPrompt();
+          }
+        }
+      }  
 }
 
