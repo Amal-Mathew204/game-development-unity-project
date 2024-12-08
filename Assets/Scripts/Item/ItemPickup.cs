@@ -14,6 +14,7 @@ namespace Scripts.Item
         protected bool _isInRange = false;  // This will be true when the player is looking at the item
         protected PlayerState _playerState;
         protected PlayerActionInput _playerActionInput;
+        public float PlayerRotation {get; private set;}
 
         /// <summary>
         /// Initializes the item's dependencies by retrieving the player's state and action input components.
@@ -70,6 +71,7 @@ namespace Scripts.Item
                 _playerState.CurrentActionState = PlayerActionState.Gathering;
                 if (PlayerCharacter.Instance.AddItem(this))
                 {
+                    PlayerRotation = PlayerCharacter.Instance.transform.eulerAngles.y;
                     gameObject.SetActive(false);
                 }
             }
