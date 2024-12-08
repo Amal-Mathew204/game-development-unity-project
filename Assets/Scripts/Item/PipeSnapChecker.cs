@@ -71,7 +71,7 @@ namespace Scripts.Item
             Debug.Log("Angle: " + angle);
             if (Convert.ToInt32(angle) == 90 || Convert.ToInt32(angle) == -90)
             {
-              other.transform.rotation = Quaternion.Euler(0, _parentOfItemObject.transform.eulerAngles.y+90, 0);
+              other.transform.rotation = Quaternion.Euler(0, _parentOfItemObject.transform.eulerAngles.y + 90, 0);
               angle = (Vector3.Angle(pipeSnapPoint.transform.right, otherSnapPoint.transform.right));
               Debug.Log("Angle: " + angle);
               Vector3 newOffset = pipeSnapPoint.transform.position - otherSnapPoint.transform.position;
