@@ -6,10 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="7a7d4672-6d7b-41d4-a92e-ccf037d10889" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.game-development-unity-project/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.game-development-unity-project/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Pipe.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Pipe.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Item/ItemPickup.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Item/ItemPickup.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Item/PipeSnapChecker.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Item/PipeSnapChecker.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/Player.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player/Player.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -98,7 +95,8 @@
       <updated>1733508679638</updated>
       <workItem from="1733508684089" duration="5657000" />
       <workItem from="1733663948145" duration="189000" />
-      <workItem from="1733667299617" duration="4013000" />
+      <workItem from="1733667299617" duration="4700000" />
+      <workItem from="1733685439651" duration="3775000" />
     </task>
     <servers />
   </component>

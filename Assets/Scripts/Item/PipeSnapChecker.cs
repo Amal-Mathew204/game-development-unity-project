@@ -51,7 +51,7 @@ namespace Scripts.Item
             
             Vector3 offset3 = pipeSnapPointOne - otherSnapPointTwo;
             Vector3 offset4 = pipeSnapPointTwo - otherSnapPointOne;
-            bool connected = CheckOffsetSnapPoints(other, offset3) ? true : CheckOffsetSnapPoints(other,offset4);
+            bool connected = CheckOffsetSnapPoints(other, offset3, _snapPointOne, otherPipeSnapChecker._snapPointTwo ) ? true : CheckOffsetSnapPoints(other,offset4, _snapPointTwo, otherPipeSnapChecker._snapPointOne );
 
             if (!connected)
             {
@@ -61,12 +61,22 @@ namespace Scripts.Item
           }
         }
 
-        private bool CheckOffsetSnapPoints(Collider other, Vector3 offset)
+        private bool CheckOffsetSnapPoints(Collider other, Vector3 offset, GameObject pipeSnapPoint, GameObject otherSnapPoint)
         {
           Debug.Log("Check Offset Snap Points" + (offset.magnitude <= _maxDistance));        
           if (offset.magnitude <= _maxDistance)
           {
             MoveOtherPipe(other, offset);
+            float angle = (Vector3.Angle(pipeSnapPoint.transform.right, otherSnapPoint.transform.right));
+            Debug.Log("Angle: " + angle);
+            if (Convert.ToInt32(angle) == 90 || Convert.ToInt32(angle) == -90)
+            {
+              other.transform.rotation = Quaternion.Euler(0, _parentOfItemObject.transform.eulerAngles.y+90, 0);
+              angle = (Vector3.Angle(pipeSnapPoint.transform.right, otherSnapPoint.transform.right));
+              Debug.Log("Angle: " + angle);
+              Vector3 newOffset = pipeSnapPoint.transform.position - otherSnapPoint.transform.position;
+              MoveOtherPipe(other, newOffset);
+            }
             return true;
           }
           return false;
