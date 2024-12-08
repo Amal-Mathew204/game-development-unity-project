@@ -9,7 +9,7 @@ namespace Scripts.Game
 {
     public class PanicTrigger : MonoBehaviour
     {
-        public GameObject panicPanel;
+        public GameObject _panicPanel;
         private Image _panelImage;
         private bool _panicActive = false;
         private bool _isFlickering = false;
@@ -22,7 +22,7 @@ namespace Scripts.Game
         void Start()
         {
             _playerInput = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInput>();
-            _panelImage = panicPanel.GetComponent<Image>();
+            _panelImage = _panicPanel.GetComponent<Image>();
 
             if (_panelImage == null)
             {
@@ -76,7 +76,7 @@ namespace Scripts.Game
         /// </summary>
         private void TogglePanic(bool isActive)
         {
-            panicPanel.SetActive(isActive);
+            _panicPanel.SetActive(isActive);
             _panicActive = isActive;
 
             // Lock or unlock the game based on the panic state
