@@ -21,9 +21,33 @@ namespace Scripts.Game
             }
         }
         [SerializeField] private GameObject _keyPromptTextField;
+        private TextMeshProUGUI _microchipsTextField;
 
         #endregion
 
+        #region Microchips Methods
+        /// <summary>
+        /// The setter method to set the `_microchipsTextField` class field
+        /// </summary>
+        public void SetMicrochipsTextComponent(TextMeshProUGUI textComponent)
+        {
+            _microchipsTextField = textComponent;
+        }
+
+        /// <summary>
+        /// This method sets the microchips value to be displayed on screen
+        /// </summary>
+        public void UpdateMicrochipsValue(int value)
+        {
+            if (_microchipsTextField == null)
+            {
+                return;
+            }
+            
+            _microchipsTextField.text = "Microchips: " + value.ToString();
+        }
+        #endregion
+        
         #region Awake Methods
         private void Awake()
         {
@@ -45,7 +69,7 @@ namespace Scripts.Game
             }
         }
         #endregion
-
+        
         #region Key Prompt Message Field Methods
         /// <summary>
         /// This method sets the sets the KeyPromptTextField GameObject to active (making the GameObject visible)
