@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using System.Collections;
 using TMPro;
 
@@ -10,6 +11,19 @@ namespace Scripts.Game
         private float _totalGameTime;
         [SerializeField] private TMP_Text _batteryLevelTextField;
         private int _batteryLevel = 100;
+        
+        
+        /// <summary>
+        /// Method sets the Microchips gameobject text component to the GameScreen Singleton
+        /// </summary>
+        public void OnEnable()
+        {
+            GameObject microChipTextField = this.transform.Find("Microchips").gameObject;
+            if (microChipTextField != null)
+            {
+                GameScreen.Instance.SetMicrochipsTextComponent(microChipTextField.GetComponent<TextMeshProUGUI>());
+            }
+        }
 
         /// <summary>
         /// Method will set Canvas Game Object in the GameStateCanvas field inside GameManager
@@ -22,11 +36,6 @@ namespace Scripts.Game
             _totalGameTime = GameManager.Instance.GameTime;
             _gameElapsedTime = GameManager.Instance.GameTimeElapsed;
             GameManager.Instance.SetGameState(this);
-            GameObject microChipTextField = this.transform.Find("Microchips").gameObject;
-            if (microChipTextField != null)
-            {
-                GameScreen.Instance.SetMicrochipsTextComponent(microChipTextField.GetComponent<TextMeshProUGUI>());
-            }
         }
 
         /// <summary>
