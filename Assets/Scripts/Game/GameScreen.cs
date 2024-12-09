@@ -5,6 +5,7 @@ using UnityEngine;
 
 namespace Scripts.Game
 {
+    [DefaultExecutionOrder(-1)]
     public class GameScreen : MonoBehaviour
     {
         #region Class Variables
