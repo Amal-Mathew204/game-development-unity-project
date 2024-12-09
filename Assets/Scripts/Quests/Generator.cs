@@ -15,6 +15,7 @@ namespace Scripts.Quests
         private int _count = 0;
         private MissionLogDropdown _dropdown;
         private int _fuelCellDropped = 0;
+        private bool _missionComplete = false;
         public List<GameObject> ItemsInDisposal = new List<GameObject>();
 
         /// <summary>
@@ -32,7 +33,7 @@ namespace Scripts.Quests
         /// </summary>
         private void Update()
         {
-            if (_fuelCellDropped == 3)
+            if (_fuelCellDropped == 3 && _missionComplete==false)
             {
                 ///Gets Plant Place Barrel in Container mission
                 if (_dropdown == null)
@@ -51,6 +52,7 @@ namespace Scripts.Quests
                 {
                     _dropdown.UpdateCompletionStatus(true);
                 }
+                _missionComplete = true;
             }
         }
 
