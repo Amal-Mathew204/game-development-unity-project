@@ -13,17 +13,19 @@ namespace Scripts.Quests
         private int _count = 0;
         private int _oilDropped = 0;
         public List<GameObject> ItemsInDisposal = new List<GameObject>();
+        private bool _missionComplete = false;
 
         /// <summary>
         /// Updates the Place Barrel in Container Mission 
         /// </summary>
         private void Update()
         {
-            if (_oilDropped == 5)
+            if (_oilDropped == 5 && !_missionComplete==false)
             {
                  GameManager.Instance.SetMissionComplete("Place Barrels in Container");
                 //set GarbageDisposalController Active
                 _garbageDisposalController.isActive = true;
+                _missionComplete = true;
             }
         }
 
