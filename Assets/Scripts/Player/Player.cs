@@ -15,9 +15,6 @@ using Ilumisoft.RadarSystem;   //this is a third party class
 using UnityEditor.Rendering;
 
 
-
-
-
 namespace Scripts.Player
 {
     [DefaultExecutionOrder(-1)]
@@ -30,7 +27,20 @@ namespace Scripts.Player
         private PlayerUIInput _playerUIInput;
         private PlayerController _playerController;
         private PlayerInput _playerInput;
-        public int MicroChips { get; set; } = 10;
+        private int _mircoChips = 10;
+
+        public int MicroChips
+        {
+            get
+            {
+                return _mircoChips;
+            }
+            set
+            {
+                this._mircoChips = value;
+                GameScreen.Instance.UpdateMicrochipsValue(_mircoChips);
+            }
+        }
 
         [Header("Inventory Components")]
         public List<ItemPickup> Inventory = new List<ItemPickup>();
