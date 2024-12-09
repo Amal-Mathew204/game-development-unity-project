@@ -30,7 +30,7 @@ namespace Scripts.Player
         private PlayerUIInput _playerUIInput;
         private PlayerController _playerController;
         private PlayerInput _playerInput;
-
+        public int MicroChips { get; set; } = 10;
 
         [Header("Inventory Components")]
         public List<ItemPickup> Inventory = new List<ItemPickup>();
@@ -100,6 +100,9 @@ namespace Scripts.Player
 
             //reference menus
             pauseMenu = GetPauseMenu();
+            
+            //set Microchips ammount on screen
+            GameScreen.Instance.UpdateMicrochipsValue(MicroChips);
        
 
         }
