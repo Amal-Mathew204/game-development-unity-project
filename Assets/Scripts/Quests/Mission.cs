@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System;
-
+using PlayerManager = Scripts.Player.Player;
 namespace Scripts.Quests
 {
     public class Mission
@@ -67,6 +67,10 @@ namespace Scripts.Quests
             if (ParentMission != null)
             {
                 ParentMission.CheckAndUpdateMissionCompletion();
+            }
+            else
+            {
+                PlayerManager.Instance.MicroChips += 10;
             }
 
         }
