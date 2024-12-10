@@ -26,8 +26,6 @@ namespace RechargeStation
                     _canRecharge = true;
                     GameScreen.Instance.ShowKeyPrompt("Press F to Buy Charge (5 credits for 10 percent)");
                 }
-                
-
             }
         }
         
