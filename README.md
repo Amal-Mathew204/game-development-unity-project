@@ -34,6 +34,7 @@ Third Party Assests:
 * [Seed Bag](https://sketchfab.com/3d-models/seed-bag-93dfc2af49bb464f8754ed0ee1cbf912)
 * [Skip](https://rigmodels.com/model.php?view=Trash_Container_1_PBR-3d-model__1e571d71692e489d9c0ca51a0b7bf8ce&searchkeyword=garbage%20container&manualsearch=1#google_vignettehttps://rigmodels.com/model.php?view=Trash_Container_1_PBR-3d-model__1e571d71692e489d9c0ca51a0b7bf8ce&searchkeyword=garbage%20container&manualsearch=1#google_vignette)
 * [3D Arrow](https://sketchfab.com/3d-models/direction-arrow-6ef46718c7b242e39fcad7f27ee858a5)
+* [Recharge Station](https://sketchfab.com/3d-models/recharge-station-bb0aa56b621e4065bce9bbdc49e83d37)
 
 Assets installed from the unity registry: 
 * Input System 1.7.0
