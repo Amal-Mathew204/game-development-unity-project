@@ -38,6 +38,7 @@ namespace Scripts.Player
             set
             {
                 this._mircoChips = value;
+                //Update value on screen
                 GameScreen.Instance.UpdateMicrochipsValue(_mircoChips);
             }
         }
