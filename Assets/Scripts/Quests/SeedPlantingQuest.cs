@@ -7,15 +7,17 @@ namespace Scripts.Quests
     {
         [SerializeField] private const int _totalSeeds = 4;
         private int _seedsPlanted = 0;
+        private bool _missionCompleted = false;
 
         /// <summary>
         /// Updates the Plant Seed Mission 
         /// </summary>
         private void Update()
         {
-            if (_seedsPlanted == _totalSeeds)
+            if (_seedsPlanted == _totalSeeds && !_missionCompleted)
             {
                 GameManager.Instance.SetMissionComplete("Plant Seed");
+                _missionCompleted = true;
             }
         }
 
