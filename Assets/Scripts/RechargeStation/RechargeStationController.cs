@@ -6,7 +6,7 @@ using PlayerManager = Scripts.Player.Player;
 
 namespace RechargeStation
 {
-    public class RechargeStationController
+    public class RechargeStationController : MonoBehaviour
     {
         [SerializeField] private int _costPerCharge = 5;
         private bool _playerInTriggerBox = false;

@@ -676,6 +676,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3961407841711326063}
   - component: {fileID: 7939223251057712518}
+  - component: {fileID: 149446351797898866}
   m_Layer: 0
   m_Name: Recharge Station
   m_TagString: Untagged
@@ -691,7 +692,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6926599251033545796}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 0.95634466, z: -0, w: 0.29224128}
+  m_LocalRotation: {x: 0, y: 0.9563456, z: 0, w: 0.29223824}
   m_LocalPosition: {x: -145.39, y: 0, z: 47.82}
   m_LocalScale: {x: 10, y: 10, z: 10}
   m_ConstrainProportionsScale: 0
@@ -726,6 +727,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.4171766, y: 1.0671366, z: 1}
   m_Center: {x: -0.20858851, y: 0.03356738, z: -0.0000000051733196}
+--- !u!114 &149446351797898866
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6926599251033545796}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ecc021ce8f646de871a653fcc9be481, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _costPerCharge: 5
 --- !u!1 &7352004489747027617
 GameObject:
   m_ObjectHideFlags: 0
