@@ -223,6 +223,14 @@ namespace Scripts.Game
         }
 
         /// <summary>
+        /// This method is called to increase the battery level
+        /// </summary>
+        public void SetBatteryLevelIncrease(float batteryLevelIncreaseValue)
+        {
+            _gameState.SetBatteryLevelIncrease(batteryLevelIncreaseValue);
+        }
+        
+        /// <summary>
         /// The method allows the GameState class to set a reference to itself through the Game Manager Singleton Instance
         /// </summary>
         public void SetGameState(GameState state)

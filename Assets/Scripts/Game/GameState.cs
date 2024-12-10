@@ -87,6 +87,25 @@ namespace Scripts.Game
             float gameTimeLeft = (_batteryLevel / 100f) * _totalGameTime;
             _gameElapsedTime += gameTimeLeft * percentageReduction;
         }
+        
+        /// <summary>
+        /// This increases the battery level by a specific battery level value
+        /// </summary>
+        public void SetBatteryLevelIncrease(float batteryLevelIncreaseValue)
+        {
+            if(batteryLevelIncreaseValue <= 0 &&  batteryLevelIncreaseValue > 1)
+            {
+                Debug.LogError("Invalid Battery Level Increase");
+                return;
+            }
+            float gameTimeToReduce = (batteryLevelIncreaseValue/100) * _totalGameTime;
+            _gameElapsedTime -= gameTimeToReduce;
+            //make sure no above 100% percentage vvalues
+            if (_gameElapsedTime < 0)
+            {
+                _gameElapsedTime = 0;
+            }
+        }
 
 
     }
