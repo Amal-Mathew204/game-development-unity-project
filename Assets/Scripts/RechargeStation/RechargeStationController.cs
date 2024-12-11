@@ -4,7 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using PlayerManager = Scripts.Player.Player;
 
-namespace RechargeStation
+namespace Scripts.RechargeStation
 {
     public class RechargeStationController : MonoBehaviour
     {
@@ -21,7 +21,7 @@ namespace RechargeStation
             if(other.CompareTag("Player"))
             {
                 _playerInTriggerBox = true;
-                if (Player.Instance.MicroChips >= _costPerCharge)
+                if (PlayerManager.Instance.MicroChips >= _costPerCharge)
                 {
                     _canRecharge = true;
                     GameScreen.Instance.ShowKeyPrompt("Press F to Buy Charge (5 credits for 10 percent)");
