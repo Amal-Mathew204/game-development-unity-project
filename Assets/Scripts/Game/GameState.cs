@@ -15,6 +15,7 @@ namespace Scripts.Game
         
         /// <summary>
         /// Method sets the Microchips gameobject text component to the GameScreen Singleton
+        /// Method sets the Time gameobject text component to the GameScreen Singleton
         /// </summary>
         public void OnEnable()
         {
@@ -22,6 +23,12 @@ namespace Scripts.Game
             if (microChipTextField != null)
             {
                 GameScreen.Instance.SetMicrochipsTextComponent(microChipTextField.GetComponent<TextMeshProUGUI>());
+            }
+            
+            GameObject timeTextField = this.transform.Find("Time").gameObject;
+            if (timeTextField != null)
+            {
+                GameScreen.Instance.SetMicrochipsTextComponent(timeTextField.GetComponent<TextMeshProUGUI>());
             }
         }
 

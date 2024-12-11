@@ -23,6 +23,7 @@ namespace Scripts.Game
         }
         [SerializeField] private GameObject _keyPromptTextField;
         private TextMeshProUGUI _microchipsTextField;
+        private TextMeshProUGUI _timeTextField;
 
         #endregion
 
@@ -91,6 +92,29 @@ namespace Scripts.Game
         public void HideKeyPrompt()
         {
             _keyPromptTextField.SetActive(false);
+        }
+        #endregion
+        
+        #region Time Methods
+        /// <summary>
+        /// The setter method to set the `_timeTextField` class field
+        /// </summary>
+        public void SetTimeTextComponent(TextMeshProUGUI textComponent)
+        {
+            _timeTextField = textComponent;
+        }
+
+        /// <summary>
+        /// This method sets the time value to be displayed on screen
+        /// </summary>
+        public void UpdateTimeValue(string value)
+        {
+            if (_timeTextField == null)
+            {
+                return;
+            }
+            
+            _timeTextField.text = value;
         }
         #endregion
         
