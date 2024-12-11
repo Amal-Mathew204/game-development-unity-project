@@ -16,6 +16,13 @@ namespace Scripts.Lighting
         private DateTime _currentTime;
         private TimeSpan _sunriseTime;
         private TimeSpan _sunsetTime;
+        
+        [SerializeField] private Color _dayAmbientLight;
+        [SerializeField] private Color _nightAmbientLight;
+        [SerializeField] private AnimationCurve _ambientLightCurve;
+        
+        [SerializeField] private float maxSunLightIntensity;
+        private Light _moonLight;
         #endregion
 
         /// <summary>
