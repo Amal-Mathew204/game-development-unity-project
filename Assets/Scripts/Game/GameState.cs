@@ -28,7 +28,7 @@ namespace Scripts.Game
             GameObject timeTextField = this.transform.Find("Time").gameObject;
             if (timeTextField != null)
             {
-                GameScreen.Instance.SetMicrochipsTextComponent(timeTextField.GetComponent<TextMeshProUGUI>());
+                GameScreen.Instance.SetTimeTextComponent(timeTextField.GetComponent<TextMeshProUGUI>());
             }
         }
 
