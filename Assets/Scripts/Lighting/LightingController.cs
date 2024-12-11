@@ -9,7 +9,7 @@ namespace Scripts.Lighting
         #region Class Variables
         [SerializeField] private float _timeMultiplier;
         [SerializeField] private float _startTimeHour;
-        [SerializeField] private GameObject _sunLight;
+        [SerializeField] private Light _sunLight;
         [SerializeField] private float _sunriseHour;
         [SerializeField] private float _sunsetHour;
         
@@ -21,8 +21,9 @@ namespace Scripts.Lighting
         [SerializeField] private Color _nightAmbientLight;
         [SerializeField] private AnimationCurve _ambientLightCurve;
         
-        [SerializeField] private float maxSunLightIntensity;
-        private Light _moonLight;
+        [SerializeField] private float _maxSunLightIntensity;
+        [SerializeField] private Light _moonLight;
+        [SerializeField] private float _maxMoonLightIntensity;
         #endregion
 
         /// <summary>
@@ -42,6 +43,7 @@ namespace Scripts.Lighting
             //update time in game
             UpdateTime();
             RotateSun();
+            UpdateLightRendering();
         }
 
         /// <summary>
@@ -92,6 +94,23 @@ namespace Scripts.Lighting
                 difference += TimeSpan.FromHours(24);
             }
             return difference;
+        }
+        
+        
+        /// <summary>
+        /// Adjust light properties in game
+        /// Intensity of the sun and moon light adjusted
+        /// ambient light colour value adjusted
+        /// </summary>
+        private void UpdateLightRendering()
+        {
+            //Get the direction of the sun (-1: up, 0: horizontal, 1: down)
+            float dotProduct = Vector3.Dot(_sunLight.transform.forward, Vector3.down);
+            //non-linear transitions of light intensity
+            _sunLight.intensity = Mathf.Lerp(0, _maxSunLightIntensity,_ambientLightCurve.Evaluate(dotProduct));
+            _moonLight.intensity = Mathf.Lerp(_maxMoonLightIntensity, 0, _ambientLightCurve.Evaluate(dotProduct));
+            
+            RenderSettings.ambientLight = Color.Lerp(_nightAmbientLight, _dayAmbientLight, _ambientLightCurve.Evaluate(dotProduct));
         }
     }
 }
