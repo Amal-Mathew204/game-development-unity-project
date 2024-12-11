@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8791094497013326986}
   - component: {fileID: 8374906490759140909}
   m_Layer: 0
-  m_Name: TimeController
+  m_Name: LightController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
