@@ -18,8 +18,7 @@ namespace Scripts.Quests
         private AudioSource _source;
 
         /// <summary>
-        /// Works as the first frame of the game
-        /// Finds Mission UI interface component and assigns to variable 
+        /// Gets audio component 
         /// </summary>
         private void Start()
         {
@@ -28,7 +27,7 @@ namespace Scripts.Quests
         }
 
         /// <summary>
-        /// Updates the Finds Fuel Cell Misison in Container Mission 
+        /// Updates the Turn on Generator Misison in Container Mission 
         /// </summary>
         private void Update()
         {
@@ -44,7 +43,8 @@ namespace Scripts.Quests
         /// </summary>
         private void OnTriggerEnter(Collider other)
         {
-            ///Destroys Fuel Cell object when dropped 
+            ///Destroys Fuel Cell object when dropped
+            ///Play SFX
             if (other.CompareTag("FuelCell"))
             {
                 _fuelCellDropped = _fuelCellDropped + 1;
