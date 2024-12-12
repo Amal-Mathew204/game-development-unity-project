@@ -19,6 +19,7 @@ namespace Scripts.GarbageDisposal
         private bool _itemsLaunched = false;
         [SerializeField] private float _itemLiveTime = 5f;
         private float _timer = 0f;
+        private AudioSource _source;
         #endregion
 
         #region Start Methods
@@ -28,7 +29,8 @@ namespace Scripts.GarbageDisposal
         private void Start()
         {
             _garbageDetonateButton = GetGarbageDetonateButton();
-            if(_garbageDetonateButton != null)
+            _source = GetComponent<AudioSource>();
+            if (_garbageDetonateButton != null)
             {
                 _garbageDetonateButton.GetComponent<Button>().onClick.AddListener(HandleGarbageDisposal);
             }
@@ -157,6 +159,7 @@ namespace Scripts.GarbageDisposal
         {
             _plasmaExplosion.SetActive(true);
             _plasmaActivated = true;
+            _source.Play();
         }
         #endregion
 
