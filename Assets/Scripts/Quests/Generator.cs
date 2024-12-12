@@ -17,6 +17,7 @@ namespace Scripts.Quests
         private int _fuelCellDropped = 0;
         private bool _missionComplete = false;
         public List<GameObject> ItemsInDisposal = new List<GameObject>();
+        private AudioSource _source;
 
         /// <summary>
         /// Works as the first frame of the game
@@ -25,17 +26,18 @@ namespace Scripts.Quests
         private void Start()
         {
             _dropdown = GameManager.Instance.GetMissionLogDropdownComponent();
+            _source = GetComponent<AudioSource>();
 
         }
 
         /// <summary>
-        /// Updates the Place Barrel in Container Mission 
+        /// Updates the Finds Fuel Cell Misison in Container Mission 
         /// </summary>
         private void Update()
         {
             if (_fuelCellDropped == 3 && _missionComplete==false)
             {
-                ///Gets Plant Place Barrel in Container mission
+                ///Gets Finds Fuel Cell in Container mission
                 if (_dropdown == null)
                 {
                     Debug.LogError("Mission UI Dropdown Component not Found");
@@ -57,19 +59,21 @@ namespace Scripts.Quests
         }
 
         /// <summary>
-        /// Method for when player enters farm trigger box with all barrels
+        /// Method for when player enters farm trigger box with all Fuel Cell
         /// </summary>
         private void OnTriggerEnter(Collider other)
         {
-            ///Destroys barrel object when dropped 
+            ///Destroys Fuel Cell object when dropped 
             if (other.CompareTag("FuelCell"))
             {
                 _fuelCellDropped = _fuelCellDropped + 1;
+                _source.Play();
+                Destroy(other.gameObject);
             }
         }
 
         /// <summary>
-        /// Method checks for checking if barrel is in Inventory 
+        /// Method checks for checking if Fuel Cell is in Inventory 
         /// </summary>
         public bool CheckFuellCellInventory()
         {
