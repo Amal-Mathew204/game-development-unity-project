@@ -5,7 +5,6 @@ using Scripts.Item;
 using System.Collections.Generic;
 using Scripts.Game;
 using Scripts.GarbageDisposal;
-using MissionLogDropdown = Scripts.MissonLogMenu.Dropdown;
 using Scripts.Quests;
 
 namespace Scripts.Quests
@@ -13,7 +12,6 @@ namespace Scripts.Quests
     public class Generator : MonoBehaviour
     {
         private int _count = 0;
-        private MissionLogDropdown _dropdown;
         private int _fuelCellDropped = 0;
         private bool _missionComplete = false;
         public List<GameObject> ItemsInDisposal = new List<GameObject>();
@@ -25,7 +23,6 @@ namespace Scripts.Quests
         /// </summary>
         private void Start()
         {
-            _dropdown = GameManager.Instance.GetMissionLogDropdownComponent();
             _source = GetComponent<AudioSource>();
 
         }
@@ -35,25 +32,9 @@ namespace Scripts.Quests
         /// </summary>
         private void Update()
         {
-            if (_fuelCellDropped == 3 && _missionComplete==false)
+            if (_fuelCellDropped == 3 && _missionComplete == false)
             {
-                ///Gets Finds Fuel Cell in Container mission
-                if (_dropdown == null)
-                {
-                    Debug.LogError("Mission UI Dropdown Component not Found");
-                }
-                Mission mission = _dropdown.GetMission("Turn on Generator");
-                if (mission == null)
-                {
-                    Debug.LogError("Mission Turn on Generator Not Found");
-                }
-                ///Marks Mission as completed 
-                mission.SetMissionCompleted();
-                ///Updates Completion Status
-                if (_dropdown.MissionTitles.FindIndex(title => title == mission.MissionTitle) + 1 == _dropdown.dropdown.value)
-                {
-                    _dropdown.UpdateCompletionStatus(true);
-                }
+                GameManager.Instance.SetMissionComplete("Turn on Generator");
                 _missionComplete = true;
             }
         }

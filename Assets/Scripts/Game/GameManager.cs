@@ -92,10 +92,12 @@ namespace Scripts.Game
 
             Mission findWater = new Mission("Find Water", "In order to grow crops on this desolate land we need to find a water source ");
 
-
+            Mission restorePower = new Mission("Restore Power", "Find the fuell cells to restore power ");
 
             Mission TurnOnGenerator = new Mission("Turn on Generator", "Use the fuel cells and drop them onto the generator to turn on the power");
-            findWater.AddSubMission(new List<Mission>() { collectGPSScanner, collectDynamite, findWaterCave, blowUpEntrance, TurnOnGenerator });
+
+            findWater.AddSubMission(new List<Mission>() { collectGPSScanner, collectDynamite, findWaterCave, blowUpEntrance});
+            restorePower.AddSubMission(new List<Mission>() {collectFuelCell, TurnOnGenerator });
 
             ////Adds sub-mission to the farm mission 
             farmMission.AddSubMission(collectShovel);
@@ -105,7 +107,7 @@ namespace Scripts.Game
 
             MissionList = new List<Mission>() {farmMission, cleanUp, 
                                                plantSeed, wasteBarrel,
-                                               findWater,collectFuelCell};
+                                               findWater,restorePower};
         }
         #endregion
 
