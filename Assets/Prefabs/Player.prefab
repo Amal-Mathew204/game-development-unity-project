@@ -4399,6 +4399,22 @@ MonoBehaviour:
         m_CallState: 1
     m_ActionId: 28a3ff14-40c6-45d3-a3d0-f05fea71d6d5
     m_ActionName: 'UI/Pause[/Keyboard/p]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3056818251508428185, guid: dc07c38831b9f834a95c1ae2c4d206e6, type: 3}
+        m_TargetAssemblyTypeName: Scripts.Item.PipeEditor, Assembly-CSharp
+        m_MethodName: OnRotateLeft
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
+    m_ActionId: 80e7d5e5-1b74-4a5a-ad3d-4a0f951930a6
+    m_ActionName: 'UI/RotateLeft[/Keyboard/rightArrow]'
   m_NeverAutoSwitchControlSchemes: 1
   m_DefaultControlScheme: Keyboard&Mouse
   m_DefaultActionMap: UI

@@ -5,7 +5,9 @@ using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using GameManager = Scripts.Game.GameManager;
-
+using Scripts.Item;
+using Scripts.Game;
+using UnityEngine.Rendering;
 
 namespace Scripts.Player.Input
 {
@@ -13,6 +15,8 @@ namespace Scripts.Player.Input
     {
         public bool ToggleMissionLogMenu { get; set; } = false;
         public bool TogglePauseMenu { get; set; } = false;
+
+        private GameObject _currentPipe;
         /// <summary>
         /// Method Toggles the visibility of the Mission Log Menu inside the game.
         /// The method will also toggle mouse cursor visibility dependant on the visibility of the inventory.
@@ -54,6 +58,106 @@ namespace Scripts.Player.Input
                 TogglePauseMenu = true;
 
             }
+        }
+
+        /// <summary>
+        /// Called when rotating the pipe left.
+        /// </summary>
+        public void OnRotateLeft(InputAction.CallbackContext context)
+        {
+            
+
+            if (context.performed && _currentPipe != null)
+            {
+
+                _currentPipe.transform.Rotate(Vector3.up * 90f, Space.Self);
+
+                Debug.Log("Pipe rotated: " + _currentPipe.name);
+                PipeAttachChecker[] attachCheckers = _currentPipe.GetComponentsInChildren<PipeAttachChecker>();
+                Debug.Log("AttachCheckers found: " + attachCheckers.Length);
+
+                foreach (var checker in attachCheckers)
+                {
+                    Debug.Log("Checker found on: " + checker.gameObject.name);
+                }
+
+                Debug.Log("Length of checkers: " + attachCheckers.Length);
+
+                if (attachCheckers[0] != null)
+                {
+                    attachCheckers[0].CheckForPipeAttachment();
+
+                }
+
+                if (attachCheckers[1] != null)
+                {
+                    attachCheckers[1].CheckForPipeAttachment();
+
+                }
+                
+                if (attachCheckers[0] || attachCheckers[1] == null)
+                {
+                    GameScreen.Instance.HideKeyPrompt();
+                }
+                
+            }
+            else
+            {
+                GameScreen.Instance.HideKeyPrompt();
+            }
+
+        }
+
+        public void OnRotateUp(InputAction.CallbackContext context)
+        {
+            PipeAttachChecker[] attachCheckers = _currentPipe.GetComponentsInChildren<PipeAttachChecker>();
+
+            if (context.performed && _currentPipe != null)
+            {
+
+                _currentPipe.transform.Rotate(Vector3.forward * 90f, Space.Self);
+
+                Debug.Log("Pipe rotated: " + _currentPipe.name);
+
+                Debug.Log("Length of checkers: " + attachCheckers.Length);
+
+                if (attachCheckers[0] != null)
+                {
+                    attachCheckers[0].CheckForPipeAttachment();
+
+                }
+
+                if (attachCheckers[1] != null)
+                {
+                    attachCheckers[1].CheckForPipeAttachment();
+
+                }
+            }
+        }
+
+        public void OnRotateX(InputAction.CallbackContext context)
+        {
+            if (context.performed && _currentPipe != null)
+            {
+                _currentPipe.transform.Rotate(Vector3.right * 90f, Space.Self);
+                Debug.Log("Pipe rotated: " + _currentPipe.name);
+
+                PipeAttachChecker attachChecker = _currentPipe.GetComponentInChildren<PipeAttachChecker>();
+
+                if (attachChecker != null)
+                {
+                    attachChecker.CheckForPipeAttachment();
+
+                }
+            }
+        }
+
+        /// <summary>
+        /// Sets the current pipe object that should be rotated.
+        /// </summary>
+        public void SetCurrentPipe(GameObject pipe)
+        {
+            _currentPipe = pipe;
         }
         /// <summary>
         /// Resets the TogglePauseMenu to false after each frame, ensuring it's only triggered once per input
