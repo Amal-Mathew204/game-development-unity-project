@@ -38,6 +38,8 @@ Third Party Assests:
 * [Solar Pannel](https://assetstore.unity.com/packages/3d/props/industrial/high-quality-solar-panel-175231)
 * [Generator](https://sketchfab.com/3d-models/scifi-style-generator-c218cb5146eb47539fee5ff8801508f9)
 * [Fuel Cell](https://sketchfab.com/3d-models/sci-fi-power-generator-free-72ec1e883c7c4d76bace9c0fde8afe49)
+* [Plasma Explosion SFX](https://assetstore.unity.com/packages/audio/sound-fx/electric-shock-sfx-303475)
+* [Fuell Cell SFX](https://assetstore.unity.com/packages/audio/sound-fx/electric-shock-sfx-303475)
 
 Assets installed from the unity registry: 
 * Input System 1.7.0
