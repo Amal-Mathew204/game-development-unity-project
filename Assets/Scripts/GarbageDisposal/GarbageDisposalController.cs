@@ -157,9 +157,9 @@ namespace Scripts.GarbageDisposal
         /// </summary>
         public void DetonateWorld()
         {
+            _source.Play();
             _plasmaExplosion.SetActive(true);
             _plasmaActivated = true;
-            _source.Play();
         }
         #endregion
 
