@@ -25,6 +25,7 @@ namespace Scripts.GarbageDisposal
         #region Start Methods
         /// <summary>
         /// Start Method Gets a reference to the Garbage Detonate Button and if found it sets its on click method
+        /// The method also gets the audio source component
         /// </summary>
         private void Start()
         {
@@ -153,7 +154,8 @@ namespace Scripts.GarbageDisposal
         }
 
         /// <summary>
-        /// This method will enable the effects of the player detonating the word
+        /// This method will enable the effects of the player detonating the word inlcuding activating effects
+        /// and sound effects 
         /// </summary>
         public void DetonateWorld()
         {
