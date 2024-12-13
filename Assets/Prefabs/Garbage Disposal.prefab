@@ -20083,6 +20083,7 @@ MonoBehaviour:
   _plasmaExplosion: {fileID: 1555426298549581993}
   _plasmaExpansionTime: 10
   _itemLiveTime: 5
+  _source: {fileID: 8300000, guid: 1e79063be793f8c48966970408f42ebf, type: 3}
 --- !u!1 &1050411795817107402
 GameObject:
   m_ObjectHideFlags: 0
