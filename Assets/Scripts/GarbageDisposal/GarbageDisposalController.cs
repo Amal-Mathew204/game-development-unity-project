@@ -4,6 +4,7 @@ using System;
 using Scripts.Game;
 using Scripts.Quests;
 using UnityEngine.UI;
+using Scripts.Audio;
 
 namespace Scripts.GarbageDisposal
 {
@@ -19,7 +20,7 @@ namespace Scripts.GarbageDisposal
         private bool _itemsLaunched = false;
         [SerializeField] private float _itemLiveTime = 5f;
         private float _timer = 0f;
-        private AudioSource _source;
+        [SerializeField] private AudioClip _source;
         #endregion
 
         #region Start Methods
@@ -30,7 +31,7 @@ namespace Scripts.GarbageDisposal
         private void Start()
         {
             _garbageDetonateButton = GetGarbageDetonateButton();
-            _source = GetComponent<AudioSource>();
+
             if (_garbageDetonateButton != null)
             {
                 _garbageDetonateButton.GetComponent<Button>().onClick.AddListener(HandleGarbageDisposal);
@@ -159,7 +160,7 @@ namespace Scripts.GarbageDisposal
         /// </summary>
         public void DetonateWorld()
         {
-            _source.Play();
+            AudioManager.Instance.PlaySFXLoop(_source);
             _plasmaExplosion.SetActive(true);
             _plasmaActivated = true;
         }

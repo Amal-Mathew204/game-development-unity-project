@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using Scripts.Game;
 using Scripts.GarbageDisposal;
 using Scripts.Quests;
+using Scripts.Audio ;
 
 namespace Scripts.Quests
 {
@@ -15,16 +16,7 @@ namespace Scripts.Quests
         private int _fuelCellDropped = 0;
         private bool _missionComplete = false;
         public List<GameObject> ItemsInDisposal = new List<GameObject>();
-        private AudioSource _source;
-
-        /// <summary>
-        /// Gets audio component 
-        /// </summary>
-        private void Start()
-        {
-            _source = GetComponent<AudioSource>();
-
-        }
+        [SerializeField] private AudioClip _source;
 
         /// <summary>
         /// Updates the Turn on Generator Misison in Container Mission 
@@ -48,7 +40,7 @@ namespace Scripts.Quests
             if (other.CompareTag("FuelCell"))
             {
                 _fuelCellDropped = _fuelCellDropped + 1;
-                _source.Play();
+                AudioManager.Instance.PlaySFX(_source);
                 Destroy(other.gameObject);
             }
         }

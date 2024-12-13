@@ -68,15 +68,33 @@ namespace Scripts.Audio
             PlaySoundClip(sfxSource, clip);
 
         }
+
+
+        /// <summary>
+        /// Plays a SFX sound on loop 
+        /// </summary>
+        public void PlaySFXLoop (AudioClip clip)
+        {
+            PlaySoundClip(sfxSource, clip, true);
+        }
+
+        /// <summary>
+        /// Stops SFX sound on loop 
+        /// </summary>
+        public void StopSFXLoop()
+        {
+            sfxSource.Stop();
+        }
+
         /// <summary>
         /// Plays an AudioClip on the specified AudioSource by setting the clip and starting playback.
+        /// Takes in a boolean value to indicate if the SFX should play in loop or not (By default its false)
         /// This is a utility method that abstracts the common logic of setting up and playing a sound
         /// for both music and sound effects, ensuring reuse and consistency in the way audio is handled.
         /// </summary>
-        private void PlaySoundClip(AudioSource source, AudioClip clip)
+        private void PlaySoundClip(AudioSource source, AudioClip clip,Boolean loop = false)
         {
-            /// <param name="source">The AudioSource responsible for playing the sound (music or SFX).</param>
-            /// <param name="clip">The AudioClip to assign to the AudioSource for playback.</param>
+            source.loop = loop;
             source.clip = clip;
             source.Play();
         }
