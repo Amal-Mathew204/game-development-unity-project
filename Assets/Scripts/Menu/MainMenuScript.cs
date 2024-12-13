@@ -55,7 +55,8 @@ namespace Scripts.Menu
         /// </summary>
         private void OptionPress()
         {
-            Debug.Log("Options Menu");
+            OptionsMenu.gameObject.SetActive(true);
+            MainMenu.gameObject.SetActive(false);
         }
 
     }
