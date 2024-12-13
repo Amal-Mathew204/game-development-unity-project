@@ -102,6 +102,27 @@ namespace Scripts.Game
         {
             CameraSensitivity = PlayerPrefs.GetFloat("CameraSensitivity");
             NPCSubtitleSpeed = PlayerPrefs.GetFloat("NPCSubtitleSpeed");
+
+            //check NPCSubtitleSpeed
+            if(NPCSubtitleSpeed > 0.1f)
+            {
+                NPCSubtitleSpeed = 0.1f;
+            }
+
+            if (NPCSubtitleSpeed < 0.01f)
+            {
+                NPCSubtitleSpeed = 0.01f;
+            }
+
+            //Check Camera Sensitivity
+            if (CameraSensitivity < 0)
+            {
+                CameraSensitivity = 0;
+            }
+            if (CameraSensitivity > 1)
+            {
+                CameraSensitivity = 1;
+            }
         }
         #endregion
     }
