@@ -18,14 +18,13 @@ __Game Build Repo:__ https://github.com/Amal-Mathew204/The-Wasteland-Gardener
 Third Party Assests:
 * [Jammo Character | Mix and Jam 1.1](https://assetstore.unity.com/packages/3d/characters/jammo-character-mix-and-jam-158456?srsltid=AfmBOooTRYysbq1T2GOEt7QOrpRF8EXbNHmFyoquy1aLwUDVvBmj96DS)
 * [Mixamo (for importing animations)](https://www.mixamo.com/)
-* [Rocket](https://www.mixamo.com/](https://assetstore.unity.com/packages/3d/vehicles/space/rocket-cartoon-capsule-196997))
-* [Walking NPC](https://free3d.com/3d-model/a-steampunk-toy-robot-178705.html](https://www.cgtrader.com/items/3208164/download-page))
+* [Rocket](https://assetstore.unity.com/packages/3d/vehicles/space/rocket-cartoon-capsule-196997)
+* [Walking NPC](https://www.cgtrader.com/items/3208164/download-page)
 * [Explosives Package](https://assetstore.unity.com/packages/3d/props/explosives-package-8093).
 * [Unlit Stylized Water Pack](https://assetstore.unity.com/packages/2d/textures-materials/water/unlit-stylized-water-pack-142285)
-* [Terrain Tools](https://assetstore.unity.com/packages/tools/terrain/terrain-tools-64852)
 * [Cyberpunk GPS Tracker](https://www.cgtrader.com/items/3339615/download-page) (pre-built scripts used)
 * [GameCore Radar System Lite](https://assetstore.unity.com/packages/tools/game-toolkits/game-core-radar-system-lite-226229) (pre-built scripts used)
-* [Explosion Sound](https://mixkit.co/free-sound-effects/explosion/)
+* [Explosion SFX Sound](https://mixkit.co/free-sound-effects/explosion/)
 * [Legacy Particle Pack](https://assetstore.unity.com/packages/vfx/particles/legacy-particle-pack-73777)
 * [Shovel](https://rigmodels.com/model.php?view=Stylized_Western_Shovel-3d-model__0ce7943480e84766848cf8603d439b96&searchkeyword=shovel&manualsearch=1#google_vignette)
 * [Farm Fence](https://assetstore.unity.com/packages/3d/props/stylized-farm-asset-pack-small-276993)
@@ -37,14 +36,18 @@ Third Party Assests:
 * [Solar Pannel](https://assetstore.unity.com/packages/3d/props/industrial/high-quality-solar-panel-175231)
 * [Generator](https://sketchfab.com/3d-models/scifi-style-generator-c218cb5146eb47539fee5ff8801508f9)
 * [Fuel Cell](https://rigmodels.com/model.php?view=Sci-fi_Energy_Cell-3d-model__cd0038c1c98d495a97a2892f83da57ab&manualsearch=1)
-* [Plasma Explosion SFX](https://assetstore.unity.com/packages/audio/sound-fx/electric-shock-sfx-303475)
-* [Fuell Cell SFX](https://assetstore.unity.com/packages/audio/sound-fx/electric-shock-sfx-303475)
+* [Plasma Explosion SFX Sound](https://assetstore.unity.com/packages/audio/sound-fx/electric-shock-sfx-303475)
+* [Fuell Cell SFX Sound](https://assetstore.unity.com/packages/audio/sound-fx/electric-shock-sfx-303475)
 * [Barrel](https://www.cgtrader.com/free-3d-models/industrial/other/barrel-840717c0-68a3-4780-8c1d-bc32876ff980)
+
+Third Party Tools:
+* [WebGL Optimizer](https://assetstore.unity.com/packages/tools/utilities/webgl-optimizer-230446) (Used to Analyse Build Logs when creating WebGL Builds
 
 Assets installed from the unity registry: 
 * Input System 1.7.0
 * Cinemachine 2.9.7
 * ProBuilder 5.0.7
+* Terrian Tools 5.1.2
 
 ## Tutorial
 ### Controls Overview
