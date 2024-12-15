@@ -20,7 +20,8 @@ namespace Scripts.Quests
         [SerializeField] private GameObject _rechargePoint;
 
         /// <summary>
-        /// Updates the Turn on Generator Misison in Container Mission 
+        /// Updates the Turn on Generator Misison in Container Mission
+        /// On completion of the Turn on Generator Mission, the rechargePoint gameobject is activated
         /// </summary>
         private void Update()
         {
