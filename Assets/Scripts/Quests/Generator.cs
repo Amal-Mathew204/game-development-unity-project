@@ -17,6 +17,7 @@ namespace Scripts.Quests
         private bool _missionComplete = false;
         public List<GameObject> ItemsInDisposal = new List<GameObject>();
         [SerializeField] private AudioClip _source;
+        [SerializeField] private GameObject _rechargePoint;
 
         /// <summary>
         /// Updates the Turn on Generator Misison in Container Mission 
@@ -26,6 +27,7 @@ namespace Scripts.Quests
             if (_fuelCellDropped == 3 && _missionComplete == false)
             {
                 GameManager.Instance.SetMissionComplete("Turn on Generator");
+                _rechargePoint.SetActive(true);
                 _missionComplete = true;
             }
         }
