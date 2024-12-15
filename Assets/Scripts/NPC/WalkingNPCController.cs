@@ -202,12 +202,14 @@ namespace Scripts.NPC
 
         /// <summary>
         /// This method rotates the NPC to the direction of the Player GameObject Transform Position
+        /// rotation is only applied on the y axis
         /// </summary>
         public void RotateToPlayer()
         {
             Transform playerTransform = PlayerManager.Instance.gameObject.transform;
-            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(playerTransform.position - transform.position),
-_rotationSpeed * Time.deltaTime);
+            Vector3 difference = playerTransform.position - transform.position;
+            Vector3 offset = new Vector3(difference.x, 0f, difference.z);
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(offset), _rotationSpeed * Time.deltaTime);
         }
         #endregion
 
