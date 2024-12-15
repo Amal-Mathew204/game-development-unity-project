@@ -41,9 +41,9 @@ Third Party Assests:
 * [Barrel](https://www.cgtrader.com/free-3d-models/industrial/other/barrel-840717c0-68a3-4780-8c1d-bc32876ff980)
 
 Third Party Tools:
-* [WebGL Optimizer](https://assetstore.unity.com/packages/tools/utilities/webgl-optimizer-230446) (Used to Analyse Build Logs when creating WebGL Builds
+* [WebGL Optimizer](https://assetstore.unity.com/packages/tools/utilities/webgl-optimizer-230446) (Used to Analyse Build Logs when creating WebGL Builds).
 
-Assets installed from the unity registry: 
+Assets installed from the Unity Registry: 
 * Input System 1.7.0
 * Cinemachine 2.9.7
 * ProBuilder 5.0.7
