@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Scripts.Audio;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -177,6 +178,7 @@ namespace Scripts.Game
         public void ReturnToStartMenu()
         {
             CreateMissions(); //reset missions
+            AudioManager.Instance.StopSFXLoop();
             PlayerManager.DestroyGameObject();
             GameScreen.DestroyGameObject();
             SceneManager.LoadScene("StartScene");
