@@ -451,10 +451,11 @@ namespace Scripts.Game
         }
         
         /// <summary>
-        /// This method loads game data from Player Prefs
+        /// This method loads game data from Player Prefs and Set it in the Game
         /// </summary>
         public void LoadGameData()
         {
+            //Get Data from Player Prefs
             string playerPositionToLoad = PlayerPrefs.GetString("PlayerPosition");
             string playerInventoryToLoad = PlayerPrefs.GetString("PlayerInventory");
             int playerMicrochips = PlayerPrefs.GetInt("PlayerMicrochips");
@@ -462,13 +463,18 @@ namespace Scripts.Game
             float gameElapsedTime = PlayerPrefs.GetFloat("GameElapsedTime");
             string missionsToLoad = PlayerPrefs.GetString("Missions");
             
+            //Obtain values from serialised fields
             Vector3 playerPosition = StringToVector3(playerPositionToLoad);
             List<string> playerInventory = JsonConvert.DeserializeObject<List<string>>(playerInventoryToLoad);
             DateTime currentTime = DateTime.Parse(currentTimeToLoad);
             Dictionary<string, Dictionary<string, string>> missionsDict = JsonConvert.DeserializeObject<Dictionary<string, Dictionary<string, string>>>(missionsToLoad);
             
-            PlayerManager.Instance.transform.position = playerPosition;
-            PlayerManager.Instance.MicroChips = playerMicrochips;
+            //Load Player Data
+            PlayerManager.Instance.SetLoadedPlayerData(playerPosition, playerMicrochips);
+            
+            //TODO: Load Player Inventory
+            
+            //Set Game Current Time and Elapsed Time
             GameObject.Find("LightController").GetComponent<LightingController>().SetCurrentTime(currentTime);
             _gameState.SetGameElapsedTime(gameElapsedTime);
             
@@ -504,7 +510,7 @@ namespace Scripts.Game
                 }
             }
             
-            //TODO: Load Player Inventory
+
             //TODO: Delete Objects from game
             //TODO: Set the State of Mission Prefabs
             
