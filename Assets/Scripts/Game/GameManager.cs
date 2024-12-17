@@ -1,5 +1,7 @@
 using System.Collections.Generic;
 using Scripts.Audio;
+using Scripts.Item;
+using Scripts.Lighting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -364,6 +366,63 @@ namespace Scripts.Game
                 Cursor.visible = true;
                 _virtualMouse.SetActive(false);
             }
+        }
+        #endregion
+
+        #region Save/Load Methods
+        /// <summary>
+        /// This method saves all game data inside the game
+        /// This includes the following properties:
+        /// battery level, player position, time of day, microchips held, mission list, items in inventory
+        /// </summary>
+        public void SaveGame()
+        {
+            //Data Collection
+            string playerPositionToSave = PlayerManager.Instance.transform.position.ToString();
+            List<string> playerInventory = new List<string>();
+            foreach (ItemPickup item in PlayerManager.Instance.Inventory)
+            {
+                playerInventory.Add(item.itemName);
+            }
+            string playerInventoryToSave = playerInventory.ToString();
+            float microChipsToSave = PlayerManager.Instance.MicroChips;
+            float gameElapsedTimeToSave = _gameState.GetGameElapsedTime();
+            List<string> missionsToString= new List<string>();
+            //Serializing missions data
+            //save the data from a Mission Object Inside of a Dictionary
+            //The dictionary will be converted to string format and stored inside of a list
+            foreach (Mission mission in MissionList)
+            {
+                Dictionary<string, string> missionData = new Dictionary<string, string>();
+                missionData.Add("title", mission.MissionTitle);
+                missionData.Add("completed", mission.IsMissionCompleted().ToString());
+                if (mission.hasSubMissions())
+                {
+                    missionData.Add("submissions", mission.SubMissions.Count.ToString());
+                    missionsToString.Add(missionData.ToString());
+                    //String Serialize and Save Sub Mission Data
+                    foreach (Mission subMission in mission.SubMissions)
+                    {
+                        Dictionary<string, string> submissionData = new Dictionary<string, string>();
+                        submissionData.Add("title", subMission.MissionTitle);
+                        submissionData.Add("completed", subMission.IsMissionCompleted().ToString());
+                        missionsToString.Add(submissionData.ToString());
+                    }
+                }
+                else
+                {
+                    missionsToString.Add(missionData.ToString());
+                }
+            }
+            string missionsToSave = missionsToString.ToString();
+            string currentTimeOfDayToSave = GameObject.Find("LightController").GetComponent<LightingController>().GetCurrentTime().ToString();
+            
+            Debug.Log("Player Position: " + playerPositionToSave);
+            Debug.Log("Player Inventory: " + playerInventoryToSave);
+            Debug.Log("Player Microchips: " + microChipsToSave);
+            Debug.Log("Current Time: " + currentTimeOfDayToSave);
+            Debug.Log("Game Elapsed Time: " + gameElapsedTimeToSave );
+            Debug.Log("Missions: " + missionsToSave);
         }
         #endregion
     }
