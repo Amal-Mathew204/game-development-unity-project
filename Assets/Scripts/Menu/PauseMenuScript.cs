@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Scripts.Game;
 using UnityEngine;
 using PlayerManager = Scripts.Player.Player;
 
@@ -68,6 +69,14 @@ namespace Scripts.Menu
                 _missionLogMenuController.ClearMissionCards();
             }
             _missionLogMenu.SetActive(false);
+        }
+    
+        /// <summary>
+        /// Calls the GameManager.cs method to save the games data
+        /// </summary>
+        public void SaveGame()
+        {
+            GameManager.Instance.SaveGame();
         }
 
     }
