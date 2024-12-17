@@ -15,10 +15,10 @@
     border-top-right-radius: 30px;
     border-bottom-right-radius: 30px;
     border-bottom-left-radius: 30px;
-    background-color: rgb(217, 119, 43);
+    background-color: rgba(194, 178, 128, 0.6);
 }
 
-.MenuButton :hover {
+.MenuButton:hover {
     width: 450px;
     height: 120px;
     margin-top: 30px;
@@ -27,13 +27,13 @@
     margin-left: 30px;
     font-size: 45px;
     -unity-font-style: bold;
-    border-top-width: 10px;
-    border-right-width: 10px;
-    border-bottom-width: 10px;
-    border-left-width: 10px;
+    border-top-width: 15px;
+    border-right-width: 15px;
+    border-bottom-width: 15px;
+    border-left-width: 15px;
     border-top-left-radius: 30px;
     border-top-right-radius: 30px;
     border-bottom-right-radius: 30px;
     border-bottom-left-radius: 30px;
-    background-color: rgb(255, 80, 0);
+    background-color: rgb(194, 178, 128);
 }
