@@ -382,41 +382,56 @@ namespace Scripts.Game
             //Data Collection
             string playerPositionToSave = PlayerManager.Instance.transform.position.ToString();
             List<string> playerInventory = new List<string>();
+            //Collect Name of Items in inventory
             foreach (ItemPickup item in PlayerManager.Instance.Inventory)
             {
                 playerInventory.Add(item.itemName);
             }
-            string playerInventoryToSave = String.Join(",", playerInventory);
-            float microChipsToSave = PlayerManager.Instance.MicroChips;
+            string playerInventoryToSave =JsonConvert.SerializeObject(playerInventory);
+            int microChipsToSave = PlayerManager.Instance.MicroChips;
             float gameElapsedTimeToSave = _gameState.GetGameElapsedTime();
-            List<string> missionsToString= new List<string>();
+            //Collect Mission Data 
+            Dictionary<string, Dictionary<string, string>> missionsListDictionary = new Dictionary<string, Dictionary<string, string>>();
             //Serializing missions data
             //save the data from a Mission Object Inside of a Dictionary
-            //The dictionary will be converted to string format and stored inside of a list
+            //The dictionaries will be stored into a list and serialised once all mission data is collected 
             foreach (Mission mission in MissionList)
             {
+                
                 Dictionary<string, string> missionData = new Dictionary<string, string>();
-                missionData.Add("title", mission.MissionTitle);
                 missionData.Add("completed", mission.IsMissionCompleted().ToString());
+                
+                //If a collect mission save number of collected items
+                if (mission.GetType().Name == "CollectMission")
+                {
+                    CollectMission collectMission = (CollectMission)mission;
+                    missionData.Add("collectedItems", collectMission.GetCollectedItems().ToString());
+                }
+                
                 if (mission.hasSubMissions())
                 {
                     missionData.Add("submissions", mission.SubMissions.Count.ToString());
-                    missionsToString.Add(JsonConvert.SerializeObject(missionData));
+                    missionsListDictionary.Add(mission.MissionTitle, missionData);
                     //String Serialize and Save Sub Mission Data
                     foreach (Mission subMission in mission.SubMissions)
                     {
                         Dictionary<string, string> submissionData = new Dictionary<string, string>();
-                        submissionData.Add("title", subMission.MissionTitle);
                         submissionData.Add("completed", subMission.IsMissionCompleted().ToString());
-                        missionsToString.Add(JsonConvert.SerializeObject(submissionData));
+                        //If a collect mission save number of collected items
+                        if (subMission.GetType().Name == "CollectMission")
+                        {
+                            CollectMission collectMission = (CollectMission)subMission;
+                            submissionData.Add("collectedItems", collectMission.GetCollectedItems().ToString());
+                        }
+                        missionsListDictionary.Add(subMission.MissionTitle, submissionData);
                     }
                 }
                 else
                 {
-                    missionsToString.Add(JsonConvert.SerializeObject(missionData));
+                    missionsListDictionary.Add(mission.MissionTitle, missionData);
                 }
             }
-            string missionsToSave = String.Join(",", missionsToString);
+            string missionsToSave = JsonConvert.SerializeObject(missionsListDictionary);
             string currentTimeToSave = GameObject.Find("LightController").GetComponent<LightingController>().GetCurrentTime().ToString();
             
             Debug.Log("Player Position: " + playerPositionToSave);
@@ -429,7 +444,7 @@ namespace Scripts.Game
             //Save Data To Player Prefs
             PlayerPrefs.SetString("PlayerPosition", playerPositionToSave);
             PlayerPrefs.SetString("PlayerInventory", playerInventoryToSave);
-            PlayerPrefs.SetFloat("PlayerMicrochips", microChipsToSave);
+            PlayerPrefs.SetInt("PlayerMicrochips", microChipsToSave);
             PlayerPrefs.SetString("CurrentTime", currentTimeToSave);
             PlayerPrefs.SetFloat("GameElapsedTime", gameElapsedTimeToSave);
             PlayerPrefs.SetString("Missions", missionsToSave);
@@ -440,7 +455,77 @@ namespace Scripts.Game
         /// </summary>
         public void LoadGameData()
         {
+            string playerPositionToLoad = PlayerPrefs.GetString("PlayerPosition");
+            string playerInventoryToLoad = PlayerPrefs.GetString("PlayerInventory");
+            int playerMicrochips = PlayerPrefs.GetInt("PlayerMicrochips");
+            string currentTimeToLoad = PlayerPrefs.GetString("CurrentTime");
+            float gameElapsedTime = PlayerPrefs.GetFloat("GameElapsedTime");
+            string missionsToLoad = PlayerPrefs.GetString("Missions");
             
+            Vector3 playerPosition = StringToVector3(playerPositionToLoad);
+            List<string> playerInventory = JsonConvert.DeserializeObject<List<string>>(playerInventoryToLoad);
+            DateTime currentTime = DateTime.Parse(currentTimeToLoad);
+            Dictionary<string, Dictionary<string, string>> missionsDict = JsonConvert.DeserializeObject<Dictionary<string, Dictionary<string, string>>>(missionsToLoad);
+            
+            PlayerManager.Instance.transform.position = playerPosition;
+            PlayerManager.Instance.MicroChips = playerMicrochips;
+            GameObject.Find("LightController").GetComponent<LightingController>().SetCurrentTime(currentTime);
+            _gameState.SetGameElapsedTime(gameElapsedTime);
+            
+            //set missions to state of loaded game
+            foreach (Mission mission in MissionList)
+            {
+                if (missionsDict[mission.MissionTitle]["completed"].Equals("True"))
+                {
+                    mission.SetMissionCompleted();
+                }
+                //If a collect mission load number of collected items
+                if (mission.GetType().Name == "CollectMission")
+                {
+                    CollectMission collectMission = (CollectMission)mission;
+                    collectMission.SetCollectedItems(Convert.ToInt32(missionsDict[mission.MissionTitle]["collectedItems"]));
+                }
+
+                if (mission.hasSubMissions())
+                {
+                    foreach (Mission subMission in mission.SubMissions)
+                    {
+                        if (missionsDict[subMission.MissionTitle]["completed"].Equals("True"))
+                        {
+                            subMission.SetMissionCompleted();
+                        }
+                        //If a collect mission load number of collected items
+                        if (subMission.GetType().Name == "CollectMission")
+                        {
+                            CollectMission collectMission = (CollectMission)subMission;
+                            collectMission.SetCollectedItems(Convert.ToInt32(missionsDict[subMission.MissionTitle]["collectedItems"]));
+                        }
+                    }
+                }
+            }
+            
+            //TODO: Load Player Inventory
+            //TODO: Delete Objects from game
+            //TODO: Set the State of Mission Prefabs
+            
+        }
+        #endregion
+        
+        #region Utility Methods
+        /// <summary>
+        /// Takes a string in format (x,y,z) and returns a vector 3 value
+        /// </summary>
+        public Vector3 StringToVector3(string value)
+        {
+            value = value.Replace("(", "");
+            value = value.Replace(")", "");
+            string[] values = value.Split(',');
+            if (values.Length != 3)
+            {
+                Debug.LogError($"Invalid Vector3 String Value: {value}");
+            }
+
+            return new Vector3(float.Parse(values[0]), float.Parse(values[1]), float.Parse(values[2]));
         }
         #endregion
     }
