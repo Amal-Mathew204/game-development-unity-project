@@ -36,6 +36,22 @@ namespace Scripts.Lighting
             _sunsetTime = TimeSpan.FromHours(_sunsetHour);
         }
         /// <summary>
+        /// This method returns the value of current time in the game
+        /// </summary>
+        public DateTime GetCurrentTime()
+        {
+            return _currentTime;
+        }
+        
+        /// <summary>
+        /// This method sets the value of _currentTime in the game
+        /// </summary>
+        public void SetCurrentTime(DateTime time)
+        {
+            _currentTime = time;
+        }
+        
+        /// <summary>
         /// Method changes the time of day and applies the changes to the lighting game object
         /// </summary>
         private void Update()
