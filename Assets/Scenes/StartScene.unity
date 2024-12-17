@@ -360,10 +360,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4112357539481585123, guid: eb9fe8d44ef074387bca39668a789a17, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6172984329188804154, guid: eb9fe8d44ef074387bca39668a789a17, type: 3}
       propertyPath: TutorialMenu
       value: 
       objectReference: {fileID: 1568836295}
+    - target: {fileID: 8601946681685034030, guid: eb9fe8d44ef074387bca39668a789a17, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
