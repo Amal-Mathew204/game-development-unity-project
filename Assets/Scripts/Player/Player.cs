@@ -141,6 +141,29 @@ namespace Scripts.Player
         }
         #endregion
 
+        #region LoadPlayerData Methods
+        /// <summary>
+        /// This method loads the Player Details from a Saved Game
+        /// </summary>
+        public void SetLoadedPlayerData(Vector3 playerPosition, int mircoChips)
+        {
+            SetInitialPlayerPosition(playerPosition);
+            MicroChips = mircoChips;
+            StartGame();
+        }
+        
+        /// <summary>
+        /// Method Sets the Initial Position of the Player (when playing a saved game)
+        /// </summary>
+        private void SetInitialPlayerPosition(Vector3 position)
+        {
+            CharacterController characterController = GetComponent<CharacterController>();
+            characterController.enabled = false;
+            transform.position = position;
+            characterController.enabled = true;
+        }
+        #endregion
+        
         #region Update Methods
         /// <summary>
         /// Continuously checks and updates inventory UI visibility, inventory warning message, 
@@ -353,21 +376,30 @@ namespace Scripts.Player
             {
                 if(!_npcTrigger.CycleBubbleText())
                 {
-                    // Check if PlayerController exists and activate it
-                    PlayerController playerController = GetComponent<PlayerController>();
-                    PlayerInput playerInput = GetComponent<PlayerInput>();
-                    if (playerController != null)
-                    {
-                        playerController.enabled = true;  // Re-enable the PlayerController script
-                        startOfGame = false;
-                        playerInput.SwitchCurrentActionMap("Player");
-                        GameManager.Instance.ChangeEnterTextFieldVisibility(false);
-                    }
-                    else
-                    {
-                        Debug.LogError("PlayerController component not found on the player object."); 
-                    }
+                    StartGame();
                 }
+            }
+        }
+        
+        /// <summary>
+        /// This method is used to enable movement of the player and disabling initial Text Fields Prompts
+        /// Allowing the Player to continue on and start playing the game
+        /// </summary>
+        private void StartGame()
+        {
+            // Check if PlayerController exists and activate it
+            PlayerController playerController = GetComponent<PlayerController>();
+            PlayerInput playerInput = GetComponent<PlayerInput>();
+            if (playerController != null)
+            {
+                playerController.enabled = true;  // Re-enable the PlayerController script
+                startOfGame = false;
+                playerInput.SwitchCurrentActionMap("Player");
+                GameManager.Instance.ChangeEnterTextFieldVisibility(false);
+            }
+            else
+            {
+                Debug.LogError("PlayerController component not found on the player object."); 
             }
         }
         #endregion
