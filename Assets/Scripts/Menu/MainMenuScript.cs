@@ -11,10 +11,12 @@ namespace Scripts.Menu
     {
         [SerializeField] private UIDocument _mainMenuDocument;
         private Button _playButton;
+        private Button _loadGameButton;
         private Button _settingButton;
         private Button _tutorialButton;
         public GameObject MainMenu;
         public GameObject OptionsMenu;
+        public GameObject TutorialMenu;
 
         /// <summary>
         ///Method obtains button components from the canvas main menu and assaigns it to a variable.
@@ -24,12 +26,14 @@ namespace Scripts.Menu
         {
             VisualElement root = _mainMenuDocument.rootVisualElement;
             _playButton = root.Q<Button>("PlayButton");
+            _loadGameButton = root.Q<Button>("LoadButton");
             _settingButton = root.Q<Button>("SettingButton");
             _tutorialButton = root.Q<Button>("TutorialButton");
 
             //set button clicked methods
             _playButton.clickable.clicked += PlayGame;
-            _tutorialButton.clickable.clicked += TutorialScreen;
+            _loadGameButton.clickable.clicked += LoadPress;
+            _tutorialButton.clickable.clicked += TutorialPress;
             _settingButton.clickable.clicked += OptionPress;
         }
 
@@ -43,11 +47,17 @@ namespace Scripts.Menu
         }
 
         /// <summary>
-        /// Quits the Game
+        /// Loads Tutorial Menu
         /// </summary>
-        private void TutorialScreen()
+        private void TutorialPress()
         {
-            Debug.Log("Tutorial Menu");
+            TutorialMenu.gameObject.SetActive(true);
+            MainMenu.gameObject.SetActive(false);
+        }
+
+        private void LoadPress()
+        {
+            Debug.Log("LoadGame");
         }
 
         /// <summary>
