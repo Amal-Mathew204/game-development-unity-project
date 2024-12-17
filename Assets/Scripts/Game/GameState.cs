@@ -63,6 +63,21 @@ namespace Scripts.Game
         }
 
         /// <summary>
+        /// This method returns the value of elapsed time in game
+        /// </summary>
+        public float GetGameElapsedTime()
+        {
+            return _gameElapsedTime;
+        }
+
+        /// <summary>
+        /// This method sets the value of elapsed time in game
+        /// </summary>
+        public void SetGameElapsedTime(float gameElapsedTime)
+        {
+            _gameElapsedTime = gameElapsedTime;
+        }
+        /// <summary>
         /// Method reduces the battery Percentage level
         /// </summary>
         private void AdjustBatteryLevel()
