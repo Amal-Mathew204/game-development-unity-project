@@ -177,6 +177,16 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ffbae745a85fe437bad630f4745c4006, type: 3}
+--- !u!1 &427429421 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8601946681685034030, guid: eb9fe8d44ef074387bca39668a789a17, type: 3}
+  m_PrefabInstance: {fileID: 177720361592525631}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &806379602 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3097645177964457963, guid: eb9fe8d44ef074387bca39668a789a17, type: 3}
+  m_PrefabInstance: {fileID: 177720361592525631}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &971376801
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -234,6 +244,70 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 083e180eddb814cf184897fb272b45d8, type: 3}
+--- !u!1 &1568836295
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1568836296}
+  - component: {fileID: 1568836297}
+  - component: {fileID: 1568836298}
+  m_Layer: 0
+  m_Name: TutorialMenu
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &1568836296
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1568836295}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 806379602}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1568836297
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1568836295}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 19102, guid: 0000000000000000e000000000000000, type: 0}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_PanelSettings: {fileID: 11400000, guid: 57e35c19dbf10410da13dda416821acb, type: 2}
+  m_ParentUI: {fileID: 0}
+  sourceAsset: {fileID: 9197481963319205126, guid: 8b6dbbdea34ea40769da8eb1c42a9ab4, type: 3}
+  m_SortingOrder: 0
+--- !u!114 &1568836298
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1568836295}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f75d93d13c4f457588978de484223f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _tutorialMenuDocument: {fileID: 1568836297}
+  MainMenu: {fileID: 427429421}
+  TutorialMenu: {fileID: 1568836295}
 --- !u!1001 &177720361592525631
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -286,9 +360,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6172984329188804154, guid: eb9fe8d44ef074387bca39668a789a17, type: 3}
+      propertyPath: TutorialMenu
+      value: 
+      objectReference: {fileID: 1568836295}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 3097645177964457963, guid: eb9fe8d44ef074387bca39668a789a17, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1568836296}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eb9fe8d44ef074387bca39668a789a17, type: 3}
 --- !u!1001 &2190520886947777684
