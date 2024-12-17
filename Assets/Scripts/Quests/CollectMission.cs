@@ -25,7 +25,21 @@ namespace Scripts.Quests
             _totalNumberOfItems = totalNumberOfItems;
             _typeOfItems = typeOfItems;
         }
-
+        /// <summary>
+        /// Method returns the number of collected items in the mission
+        /// </summary>
+        public int GetCollectedItems()
+        {
+            return _collectedItems;
+        }
+        /// <summary>
+        /// Method sets the number of collected items in the mission
+        /// </summary>
+        public void SetCollectedItems(int collectedItems)
+        {
+            _collectedItems = collectedItems;
+        }
+        
         //Check if the collected Item is applicable by the mission
         private bool CheckCollectedItem(string itemName)
         {
