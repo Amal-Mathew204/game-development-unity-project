@@ -78,6 +78,14 @@ namespace Scripts.Menu
         {
             GameManager.Instance.SaveGame();
         }
+        
+        /// <summary>
+        /// Calls the GameManager.cs method to load the games data
+        /// </summary>
+        public void LoadGame()
+        {
+            GameManager.Instance.LoadGameData();
+        }
 
     }
 
