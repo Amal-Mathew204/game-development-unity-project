@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using Newtonsoft.Json;
 using Scripts.Audio;
 using Scripts.Item;
 using Scripts.Lighting;
@@ -384,7 +386,7 @@ namespace Scripts.Game
             {
                 playerInventory.Add(item.itemName);
             }
-            string playerInventoryToSave = playerInventory.ToString();
+            string playerInventoryToSave = String.Join(",", playerInventory);
             float microChipsToSave = PlayerManager.Instance.MicroChips;
             float gameElapsedTimeToSave = _gameState.GetGameElapsedTime();
             List<string> missionsToString= new List<string>();
@@ -399,30 +401,46 @@ namespace Scripts.Game
                 if (mission.hasSubMissions())
                 {
                     missionData.Add("submissions", mission.SubMissions.Count.ToString());
-                    missionsToString.Add(missionData.ToString());
+                    missionsToString.Add(JsonConvert.SerializeObject(missionData));
                     //String Serialize and Save Sub Mission Data
                     foreach (Mission subMission in mission.SubMissions)
                     {
                         Dictionary<string, string> submissionData = new Dictionary<string, string>();
                         submissionData.Add("title", subMission.MissionTitle);
                         submissionData.Add("completed", subMission.IsMissionCompleted().ToString());
-                        missionsToString.Add(submissionData.ToString());
+                        missionsToString.Add(JsonConvert.SerializeObject(submissionData));
                     }
                 }
                 else
                 {
-                    missionsToString.Add(missionData.ToString());
+                    missionsToString.Add(JsonConvert.SerializeObject(missionData));
                 }
             }
-            string missionsToSave = missionsToString.ToString();
-            string currentTimeOfDayToSave = GameObject.Find("LightController").GetComponent<LightingController>().GetCurrentTime().ToString();
+            string missionsToSave = String.Join(",", missionsToString);
+            string currentTimeToSave = GameObject.Find("LightController").GetComponent<LightingController>().GetCurrentTime().ToString();
             
             Debug.Log("Player Position: " + playerPositionToSave);
             Debug.Log("Player Inventory: " + playerInventoryToSave);
             Debug.Log("Player Microchips: " + microChipsToSave);
-            Debug.Log("Current Time: " + currentTimeOfDayToSave);
+            Debug.Log("Current Time: " + currentTimeToSave);
             Debug.Log("Game Elapsed Time: " + gameElapsedTimeToSave );
             Debug.Log("Missions: " + missionsToSave);
+            
+            //Save Data To Player Prefs
+            PlayerPrefs.SetString("PlayerPosition", playerPositionToSave);
+            PlayerPrefs.SetString("PlayerInventory", playerInventoryToSave);
+            PlayerPrefs.SetFloat("PlayerMicrochips", microChipsToSave);
+            PlayerPrefs.SetString("CurrentTime", currentTimeToSave);
+            PlayerPrefs.SetFloat("GameElapsedTime", gameElapsedTimeToSave);
+            PlayerPrefs.SetString("Missions", missionsToSave);
+        }
+        
+        /// <summary>
+        /// This method loads game data from Player Prefs
+        /// </summary>
+        public void LoadGameData()
+        {
+            
         }
         #endregion
     }
