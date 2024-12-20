@@ -25,15 +25,24 @@ namespace Scripts.Item
             if (_isInRange && _playerActionInput.IsGathering && _playerState.CanGather())
             {
                 _playerState.CurrentActionState = PlayerActionState.Gathering;
-                if (PlayerCharacter.Instance.AddItem(this))
-                {
-                    gameObject.SetActive(false);
+                ProcessPickUp();
+            }
+        }
+        
+        /// <summary>
+        /// The method adds the current selected item into the players inventory
+        /// This method also activates the Scanner Radar once the item has been picked up
+        /// </summary>
+        public virtual void ProcessPickUp()
+        {
+            if (PlayerCharacter.Instance.AddItem(this))
+            {
+                gameObject.SetActive(false);
 
-                    if(itemName == "GPS Scanner" && radar != null)
-                    {
-                        PlayerCharacter.Instance.radar.ActivateRadar();
+                if(itemName == "GPS Scanner" && radar != null)
+                {
+                    PlayerCharacter.Instance.radar.ActivateRadar();
                        
-                    }
                 }
             }
         }

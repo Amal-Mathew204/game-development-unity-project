@@ -385,7 +385,7 @@ namespace Scripts.Game
             //Collect Name of Items in inventory
             foreach (ItemPickup item in PlayerManager.Instance.Inventory)
             {
-                playerInventory.Add(item.itemName);
+                playerInventory.Add(item.gameObject.name);
             }
             string playerInventoryToSave =JsonConvert.SerializeObject(playerInventory);
             int microChipsToSave = PlayerManager.Instance.MicroChips;
@@ -472,8 +472,12 @@ namespace Scripts.Game
             //Load Player Data
             PlayerManager.Instance.SetLoadedPlayerData(playerPosition, playerMicrochips);
             
-            //TODO: Load Player Inventory
-            
+            //Load Player Inventory
+            foreach (String itemGameObjectName in playerInventory)
+            {
+                GameObject itemGameObject = GameObject.Find(itemGameObjectName);
+                itemGameObject.GetComponent<ItemPickup>().ProcessPickUp();
+            }
             //Set Game Current Time and Elapsed Time
             GameObject.Find("LightController").GetComponent<LightingController>().SetCurrentTime(currentTime);
             _gameState.SetGameElapsedTime(gameElapsedTime);
