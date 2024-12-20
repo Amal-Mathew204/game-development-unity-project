@@ -33,7 +33,7 @@ namespace Scripts.Item
         /// The method adds the current selected item into the players inventory
         /// This method also activates the Scanner Radar once the item has been picked up
         /// </summary>
-        public virtual void ProcessPickUp()
+        public override void ProcessPickUp()
         {
             if (PlayerCharacter.Instance.AddItem(this))
             {
