@@ -729,6 +729,11 @@ Transform:
   - {fileID: 1881053414}
   m_Father: {fileID: 1486338052}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &209251182 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5289626006495601445, guid: 4c759055e2c63b54bb60680e5a2b1f73, type: 3}
+  m_PrefabInstance: {fileID: 6201904625034988758}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &233905213
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7244,6 +7249,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameScreen
       objectReference: {fileID: 0}
+    - target: {fileID: 8437199304484006427, guid: 4c759055e2c63b54bb60680e5a2b1f73, type: 3}
+      propertyPath: panicPanel
+      value: 
+      objectReference: {fileID: 209251182}
+    - target: {fileID: 8437199304484006427, guid: 4c759055e2c63b54bb60680e5a2b1f73, type: 3}
+      propertyPath: textPrefab
+      value: 
+      objectReference: {fileID: 3097648914689657616, guid: 713fc5d8e15514ca1af204ace3889330, type: 3}
+    - target: {fileID: 8437199304484006427, guid: 4c759055e2c63b54bb60680e5a2b1f73, type: 3}
+      propertyPath: textDuration
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8437199304484006427, guid: 4c759055e2c63b54bb60680e5a2b1f73, type: 3}
+      propertyPath: panicSoundClip
+      value: 
+      objectReference: {fileID: 8300000, guid: a7facbf54886e405aa920552fa14ab81, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
