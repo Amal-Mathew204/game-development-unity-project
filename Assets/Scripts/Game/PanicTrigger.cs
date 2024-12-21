@@ -1,22 +1,23 @@
 using UnityEngine;
 using System.Collections;
-using Scripts.Audio;
 using UnityEngine.InputSystem;
 using Mission = Scripts.Quests.Mission;
 using UnityEngine.UI;
 using AudioManager = Scripts.Audio.AudioManager;
+using TMPro;
 
 namespace Scripts.Game
 {
     public class PanicTrigger : MonoBehaviour
-    {
-        public GameObject _panicPanel;
+    { 
+        public GameObject panicPanel;
         private Image _panelImage;
         private bool _panicActive = false;
         private bool _isFlickering = false;
-        public static PlayerInput _playerInput;
+        private static PlayerInput _playerInput;
         public AudioClip panicSoundClip; 
-        
+
+        private string[] _thoughts = new string[] { "This is too much work...", "How am i supposed to to this by myself", "I just can't.", "I'm going to fail!", "What do I do?"};
 
         /// <summary>
         /// Locates and assigns the PlayerInput component from the player GameObject tagged "Player"
@@ -25,7 +26,7 @@ namespace Scripts.Game
         void Start()
         {
             _playerInput = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInput>();
-            _panelImage = _panicPanel.GetComponent<Image>();
+            _panelImage = panicPanel.GetComponent<Image>();
 
             if (_panelImage == null)
             {
@@ -64,10 +65,11 @@ namespace Scripts.Game
 
         /// <summary>
         /// Delays the activation of panic mode, then triggers the panic state and starts the flickering effect
+        /// With robot's thoughts
         /// </summary>
         private IEnumerator TriggerPanic()
         {
-            yield return new WaitForSeconds(3); // 3 second delay
+            yield return new WaitForSeconds(3); // 3-second delay
             TogglePanic(true);
             AudioManager.Instance.PlaySFXLoop(panicSoundClip);
             StartFlickering();
@@ -80,7 +82,7 @@ namespace Scripts.Game
         /// </summary>
         private void TogglePanic(bool isActive)
         {
-            _panicPanel.SetActive(isActive);
+            panicPanel.SetActive(isActive);
             _panicActive = isActive;
 
             // Lock or unlock the game based on the panic state
@@ -113,7 +115,7 @@ namespace Scripts.Game
         /// <summary>
         /// Initiates the flickering effect on the panic panel if it is not already active
         /// </summary>
-        public void StartFlickering()
+        private void StartFlickering()
         {
             if (!_isFlickering)
             {
