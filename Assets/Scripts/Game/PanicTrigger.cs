@@ -1,9 +1,10 @@
 using UnityEngine;
 using System.Collections;
-using GameManager = Scripts.Game.GameManager;
+using Scripts.Audio;
 using UnityEngine.InputSystem;
 using Mission = Scripts.Quests.Mission;
 using UnityEngine.UI;
+using AudioManager = Scripts.Audio.AudioManager;
 
 namespace Scripts.Game
 {
@@ -14,6 +15,8 @@ namespace Scripts.Game
         private bool _panicActive = false;
         private bool _isFlickering = false;
         public static PlayerInput _playerInput;
+        public AudioClip panicSoundClip; 
+        
 
         /// <summary>
         /// Locates and assigns the PlayerInput component from the player GameObject tagged "Player"
@@ -66,6 +69,7 @@ namespace Scripts.Game
         {
             yield return new WaitForSeconds(3); // 3 second delay
             TogglePanic(true);
+            AudioManager.Instance.PlaySFXLoop(panicSoundClip);
             StartFlickering();
         }
 
@@ -103,6 +107,7 @@ namespace Scripts.Game
         {
             yield return new WaitForSeconds(10); // 10 seconds for recovery time
             TogglePanic(false);
+            AudioManager.Instance.StopSFXLoop();
         }
 
         /// <summary>
