@@ -7,7 +7,7 @@ using UnityEngine.UIElements;
 using AudioManager = Scripts.Audio.AudioManager;
 using GameSettings = Scripts.Game.GameSettings;
 
-namespace Scripts.MainMenu
+namespace Scripts.Menu
 {
     public class OptionMenuScript : MonoBehaviour
     {
