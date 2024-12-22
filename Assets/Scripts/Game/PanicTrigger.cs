@@ -115,7 +115,6 @@ namespace Scripts.Game
         {
             yield return new WaitForSeconds(3); // 3-second delay
             TogglePanic(true);
-            PlayerManager.Instance.SwitchToFirstPerson();
             AudioManager.Instance.PlaySFXLoop(panicSoundClip);
             StartFlickering();
             StartDisplayingThoughts();
@@ -142,7 +141,7 @@ namespace Scripts.Game
                 PlayerManager.Instance.DisablePlayerMovement();
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;
-
+                PlayerManager.Instance.SwitchToFirstPerson();
             }
             else
             {
@@ -150,6 +149,7 @@ namespace Scripts.Game
                 PlayerManager.Instance.EnablePlayerMovement();
                 Cursor.lockState = CursorLockMode.Locked;
                 Cursor.visible = false;
+                PlayerManager.Instance.SwitchToThirdPerson();
             }
         }
 
@@ -172,6 +172,9 @@ namespace Scripts.Game
             }
             
             DisplaySpecificMessage("Reinforcements are on their way...");
+            
+            yield return new WaitForSeconds(2); 
+            TogglePanic(false);
         }
         #endregion
 
@@ -289,9 +292,6 @@ namespace Scripts.Game
         }
         
         /// <summary>
-        /// Displays a specific thought message.
-        /// </summary>
-        /// <summary>
         /// Displays a specific thought message with a typewriter effect.
         /// </summary>
         private void DisplaySpecificMessage(string message)
@@ -301,23 +301,22 @@ namespace Scripts.Game
             TextMeshProUGUI tmpText = newThought.GetComponent<TextMeshProUGUI>();
             if (tmpText != null)
             {
-                StartCoroutine(TypewriterEffect(tmpText, message, 0.05f)); // Adjust delay to suit your needs
+                StartCoroutine(TypewriterEffect(tmpText, message, 0.05f)); 
             }
-            // Optionally fade out and destroy the old thought if needed
+            
             if (_currentThought != null)
             {
                 StartCoroutine(FadeAndDestroyThought(_currentThought));
             }
-            _currentThought = newThought; // Update the current thought reference
+            _currentThought = newThought; 
         }
-
-
+        
         /// <summary>
         /// Coroutine that simulates a typewriter effect for displaying text.
         /// </summary>
         private IEnumerator TypewriterEffect(TextMeshProUGUI textComponent, string fullText, float delay)
         {
-            textComponent.text = ""; // Start with an empty string
+            textComponent.text = "";
             foreach (char c in fullText)
             {
                 textComponent.text += c; // Add each character one at a time
