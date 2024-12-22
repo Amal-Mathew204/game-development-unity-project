@@ -52,13 +52,13 @@ namespace Scripts.Player.Input
         /// <summary>
         /// Toggles the pause menu when the input action is performed.
         /// Sets the TogglePauseMenu flag to true when the pause input is received.
+        /// Pause Menu can only be toggled if the game has not ended
         /// </summary>
         public void OnTogglePauseMenu(InputAction.CallbackContext context)
         {
-            if (context.performed)
+            if (context.performed && GameManager.Instance.HasGameEnded == false)
             {
                 TogglePauseMenu = true;
-
             }
         }
         
