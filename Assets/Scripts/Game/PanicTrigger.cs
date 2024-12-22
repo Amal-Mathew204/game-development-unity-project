@@ -11,6 +11,7 @@ namespace Scripts.Game
 {
     public class PanicTrigger : MonoBehaviour
     {
+        #region Varaibles   
         public GameObject panicPanel;
         private Image _panelImage;
         private bool _panicActive = false;
@@ -25,27 +26,20 @@ namespace Scripts.Game
         private int _currentThoughtIndex = 0;
         private GameObject _currentThought;
         
-        [SerializeField]
-        private Vector2 spawnAreaMin = new Vector2(-200f, -150f);
-        [SerializeField]
-        private Vector2 spawnAreaMax = new Vector2(200f, 150f);
-
         // Timing configuration
-        [SerializeField]
-        private float thoughtDisplayDuration = 1.0f;
-        [SerializeField]
-        private float fadeInDuration = 0.2f;
-        [SerializeField]
-        private float fadeOutDuration = 0.2f;
-        [SerializeField]
-        private float initialPanicDelay = 1f;
+        [SerializeField] private float thoughtDisplayDuration = 0.5f;
+        [SerializeField] private float fadeInDuration = 0.2f;
+        [SerializeField] private float fadeOutDuration = 0.2f;
+        [SerializeField] private float initialPanicDelay = 1f;
 
         private string[] _thoughts = new string[]
         {
             "This is too much work...", "How am i supposed to to this by myself", "I just can't.", "I'm going to fail!",
             "What do I do?"
         };
+        #endregion
 
+        #region Initialisation
         /// <summary>
         /// Locates and assigns the PlayerInput component from the player GameObject tagged "Player"
         /// Retrieves the Image component from the assigned panicPanel
@@ -102,10 +96,12 @@ namespace Scripts.Game
                 StartCoroutine(TriggerPanic());
             }
         }
+        #endregion
 
+        #region Panic Mode
         /// <summary>
         /// Delays the activation of panic mode, then triggers the panic state and starts the flickering effect
-        /// With robot's thoughts
+        /// With robot's thoughts and panic sound
         /// </summary>
         private IEnumerator TriggerPanic()
         {
@@ -153,7 +149,9 @@ namespace Scripts.Game
             TogglePanic(false);
             AudioManager.Instance.StopSFXLoop();
         }
+        #endregion
 
+        #region Flickering Effect
         /// <summary>
         /// Initiates the flickering effect on the panic panel if it is not already active
         /// </summary>
@@ -210,8 +208,13 @@ namespace Scripts.Game
                 yield return new WaitForSecondsRealtime(Random.Range(0.05f, 0.2f));
             }
         }
-    
-       private void StartDisplayingThoughts()
+        #endregion
+
+        #region Thought Management
+        /// <summary>
+        /// Initiates the display of thoughts if not already in progress.
+        /// </summary>
+        private void StartDisplayingThoughts()
         {
             if (!_isDisplayingThoughts)
             {
@@ -221,25 +224,28 @@ namespace Scripts.Game
             }
         }
        
-
+        /// <summary>
+        /// Manages the sequence of displaying thoughts in a loop as long as _isDisplayingThoughts is true.
+        /// This coroutine handles the instantiation and cycling of thought texts using a prefab.
+        /// </summary>
         private IEnumerator DisplayThoughtsSequence()
         {
             while (_isDisplayingThoughts)
             {
                 // Create new thought
-                GameObject newThought = Instantiate(thoughtPrefab, thoughtContainer);
-                newThought.transform.localPosition = Vector3.zero; // Center position
+                GameObject newThought = Instantiate(thoughtPrefab, thoughtContainer); 
+                newThought.transform.localPosition = Vector3.zero; 
                 
+                // Retrieve and configure the TextMeshPro component of the new thought object for display.
                 TextMeshProUGUI tmpText = newThought.GetComponent<TextMeshProUGUI>();
                 if (tmpText != null)
                 {
                     tmpText.text = _thoughts[_currentThoughtIndex];
                     tmpText.alpha = 0f;
-                    // Ensure text alignment is center
                     tmpText.alignment = TextAlignmentOptions.Center;
                 }
 
-                // If there's an existing thought, fade it out
+                // Fade out existing thought
                 if (_currentThought != null)
                 {
                     StartCoroutine(FadeAndDestroyThought(_currentThought));
@@ -250,14 +256,16 @@ namespace Scripts.Game
                 // Fade in new thought
                 yield return StartCoroutine(FadeThought(_currentThought, true));
                 
-                // Display duration
                 yield return new WaitForSecondsRealtime(thoughtDisplayDuration);
                 
-                // Move to next thought
+                // Move onto the next thought
                 _currentThoughtIndex = (_currentThoughtIndex + 1) % _thoughts.Length;
             }
         }
 
+        /// <summary>
+        /// // Coroutine to fade a thought in or out.
+        /// </summary>
         private IEnumerator FadeThought(GameObject thought, bool fadeIn)
         {
             TextMeshProUGUI tmpText = thought.GetComponent<TextMeshProUGUI>();
@@ -267,22 +275,26 @@ namespace Scripts.Game
             float startAlpha = fadeIn ? 0f : 1f;
             float endAlpha = fadeIn ? 1f : 0f;
 
+            // Loop over the duration of the fade
             for (float t = 0; t < duration; t += Time.unscaledDeltaTime)
             {
+                // Calculate the current alpha value using linear interpolation
                 float alpha = Mathf.Lerp(startAlpha, endAlpha, t / duration);
+                // Apply the calculated alpha to the text component
                 tmpText.alpha = alpha;
                 yield return null;
             }
             tmpText.alpha = endAlpha;
         }
 
+        /// <summary>
+        /// Coroutine that fades out a thought GameObject and then destroys it.
+        /// </summary>
         private IEnumerator FadeAndDestroyThought(GameObject thought)
         {
             yield return StartCoroutine(FadeThought(thought, false));
             Destroy(thought);
         }
-   
-
-   
+        #endregion
     }
 }
