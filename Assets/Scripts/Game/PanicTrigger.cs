@@ -7,6 +7,7 @@ using UnityEngine.UI;
 using AudioManager = Scripts.Audio.AudioManager;
 using PlayerManager = Scripts.Player.Player;
 using TMPro;
+using Cinemachine;
 
 namespace Scripts.Game
 {
@@ -38,6 +39,10 @@ namespace Scripts.Game
             "This is too much work...", "How am i supposed to to this by myself", "I just can't.", "I'm going to fail!",
             "What do I do?"
         };
+        
+
+
+
         #endregion
 
         #region Initialisation
@@ -49,8 +54,8 @@ namespace Scripts.Game
         {
             _playerInput = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInput>();
             _panelImage = panicPanel.GetComponent<Image>();
-            
 
+            
             if (_panelImage == null)
             {
                 Debug.LogError("No Image component found on the panic panel!");
@@ -113,6 +118,9 @@ namespace Scripts.Game
             AudioManager.Instance.PlaySFXLoop(panicSoundClip);
             StartFlickering();
             StartDisplayingThoughts();
+            
+            //yield return new WaitForSeconds(10); // Duration of active panic before calming down starts
+            StartCoroutine(CalmDownAfterPanic());
         }
         
 
@@ -133,6 +141,7 @@ namespace Scripts.Game
                 PlayerManager.Instance.DisablePlayerMovement();
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;
+
             }
             else
             {
@@ -148,9 +157,19 @@ namespace Scripts.Game
         /// </summary>
         private IEnumerator CalmDownAfterPanic()
         {
-            yield return new WaitForSeconds(10); // 10 seconds for recovery time
-            TogglePanic(false);
+            yield return new WaitForSeconds(7); // 7-second for recovery time
             AudioManager.Instance.StopSFXLoop();
+            StopFlickering(); 
+            _panelImage.color = new Color(0.678f, 0.847f, 0.902f, 0.3f);
+            
+            _isDisplayingThoughts = false;
+            if (_currentThought != null)
+            {
+                StartCoroutine(FadeAndDestroyThought(_currentThought));
+                _currentThought = null; // Clear the reference to the current thought
+            }
+            
+            DisplaySpecificMessage("Reinforcements are on their way!");
         }
         #endregion
 
@@ -238,6 +257,7 @@ namespace Scripts.Game
                 // Create new thought
                 GameObject newThought = Instantiate(thoughtPrefab, thoughtContainer); 
                 newThought.transform.localPosition = Vector3.zero; 
+                newThought.transform.localPosition = Vector3.zero; 
                 
                 // Retrieve and configure the TextMeshPro component of the new thought object for display.
                 TextMeshProUGUI tmpText = newThought.GetComponent<TextMeshProUGUI>();
@@ -263,6 +283,43 @@ namespace Scripts.Game
                 
                 // Move onto the next thought
                 _currentThoughtIndex = (_currentThoughtIndex + 1) % _thoughts.Length;
+            }
+        }
+        
+        /// <summary>
+        /// Displays a specific thought message.
+        /// </summary>
+        /// <summary>
+        /// Displays a specific thought message with a typewriter effect.
+        /// </summary>
+        private void DisplaySpecificMessage(string message)
+        {
+            GameObject newThought = Instantiate(thoughtPrefab, thoughtContainer); 
+            newThought.transform.localPosition = Vector3.zero;
+            TextMeshProUGUI tmpText = newThought.GetComponent<TextMeshProUGUI>();
+            if (tmpText != null)
+            {
+                StartCoroutine(TypewriterEffect(tmpText, message, 0.05f)); // Adjust delay to suit your needs
+            }
+            // Optionally fade out and destroy the old thought if needed
+            if (_currentThought != null)
+            {
+                StartCoroutine(FadeAndDestroyThought(_currentThought));
+            }
+            _currentThought = newThought; // Update the current thought reference
+        }
+
+
+        /// <summary>
+        /// Coroutine that simulates a typewriter effect for displaying text.
+        /// </summary>
+        private IEnumerator TypewriterEffect(TextMeshProUGUI textComponent, string fullText, float delay)
+        {
+            textComponent.text = ""; // Start with an empty string
+            foreach (char c in fullText)
+            {
+                textComponent.text += c; // Add each character one at a time
+                yield return new WaitForSeconds(delay); // Wait before adding the next character
             }
         }
 
@@ -299,7 +356,6 @@ namespace Scripts.Game
             Destroy(thought);
         }
         #endregion
-
-        
+     
     }
 }
