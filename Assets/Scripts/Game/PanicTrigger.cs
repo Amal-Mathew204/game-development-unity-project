@@ -113,14 +113,14 @@ namespace Scripts.Game
             if (isActive)
             {
                 PlayerManager.Instance.DisablePlayerMovement();
-                Cursor.lockState = CursorLockMode.None;
+                Cursor.lockState = CursorLockMode.Locked;
                 PlayerManager.Instance.SwitchToFirstPerson();
                 gameState.PauseBatteryConsumption(); 
             }
             else
             {
                 PlayerManager.Instance.EnablePlayerMovement();
-                Cursor.lockState = CursorLockMode.Locked;
+                Cursor.lockState = CursorLockMode.None;
                 PlayerManager.Instance.SwitchToThirdPerson();
             }
         }
