@@ -9,6 +9,7 @@ using PlayerManager = Scripts.Player.Player;
 
 
 
+
 namespace Scripts.Game
 {
     public class GameManager : MonoBehaviour
@@ -113,11 +114,32 @@ namespace Scripts.Game
         #endregion
 
         #region Update Methods
+        /// <summary>
+        /// Calls the method required to start the panic attack
+        /// only calls method if all the missions have been completed
+        /// </summary>
         private void Update()
         {
-            if (CheckIfPlayerHasWon())
+            if (CheckIfPlayerHasWon() && !HasGameEnded && !HasPlayerWonGame) 
             {
-                SetPlayerHasWon();
+                TriggerPanic();
+                HasGameEnded = true;  
+            }
+        }
+
+        /// <summary>
+        /// Starts the panic attack sequence 
+        /// </summary>
+        public void TriggerPanic()
+        {
+            PanicTrigger panicTrigger = FindObjectOfType<PanicTrigger>(); // Ensure there's a PanicTrigger in the scene
+            if (panicTrigger != null)
+            {
+                panicTrigger.StartPanic();
+            }
+            else
+            {
+                Debug.LogError("No PanicTrigger found in the scene.");
             }
         }
 
@@ -128,7 +150,7 @@ namespace Scripts.Game
         {
             foreach (Mission mission in MissionList)
             {
-                if (mission.IsMissionCompleted() == false)
+                if (!mission.IsMissionCompleted())
                 {
                     return false;
                 }
@@ -136,10 +158,11 @@ namespace Scripts.Game
             return true;
         }
 
+
         /// <summary>
         /// Method Sets Game State to Player has won and displays a Won Game Message
         /// </summary>
-        private void SetPlayerHasWon()
+        public void SetPlayerHasWon()
         {
             EnablePannel("WinPannel");
             HasPlayerWonGame = true;
