@@ -45,13 +45,12 @@ namespace Scripts.Game
 
         #region Initialisation
         /// <summary>
-        /// Locates and assigns the PlayerInput component from the player GameObject tagged "Player"
         /// Retrieves the Image component from the assigned panicPanel
+        /// Retrieves the container to hold the thoughts of the robot
         /// </summary>
         void Start()
         {
             _panelImage = _panicPanel.GetComponent<Image>();
-
             
             if (_panelImage == null)
             {

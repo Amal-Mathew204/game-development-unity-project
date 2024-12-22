@@ -163,7 +163,6 @@ namespace Scripts.Player
         {
             _thirdPersonCamera.Priority = 5;
             _firstPersonCamera.Priority = 10;
-            Debug.Log("SwitchToFirstPerson");
         }
         
         /// <summary>
