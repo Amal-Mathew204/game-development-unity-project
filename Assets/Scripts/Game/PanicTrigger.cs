@@ -6,7 +6,7 @@ using Mission = Scripts.Quests.Mission;
 using UnityEngine.UI;
 using AudioManager = Scripts.Audio.AudioManager;
 using PlayerManager = Scripts.Player.Player;
-using GameManager = Scripts.Game.GameState;
+using GameManager = Scripts.Game.GameManager;
 using TMPro;
 using Cinemachine;
 
@@ -72,34 +72,13 @@ namespace Scripts.Game
                 thoughtContainer.localPosition = Vector3.zero;
             }
         }
-
+        
         /// <summary>
-        /// Subscribes to the OnMissionStatusUpdated event when the GameObject is enabled
+        /// Public method to start the panic attack from external calls
         /// </summary>
-        void OnEnable()
+        public void StartPanic()
         {
-            Mission.OnMissionStatusUpdated += CheckMissionCompletion;
-        }
-
-        /// <summary>
-        /// Unsubscribes from the OnMissionStatusUpdated event when the GameObject is disabled
-        /// </summary>
-        void OnDisable()
-        {
-            Mission.OnMissionStatusUpdated -= CheckMissionCompletion;
-        }
-
-        /// <summary>
-        /// Checks if a specific mission, identified by title, has been completed
-        /// Initiates panic sequence if the mission is found
-        /// </summary>
-        private void CheckMissionCompletion()
-        {
-            Mission specificMission = GameManager.Instance.MissionList.Find(m => m.MissionTitle == "Clean Up");
-            if (specificMission != null && specificMission.IsMissionCompleted())
-            {
-                StartCoroutine(TriggerPanic());
-            }
+            StartCoroutine(TriggerPanic()); // Assuming TriggerPanic is your coroutine for the panic logic
         }
         #endregion
 
@@ -175,6 +154,8 @@ namespace Scripts.Game
             
             yield return new WaitForSeconds(2); 
             TogglePanic(false);
+            // Notify GameManager to show the win panel
+            GameManager.Instance.SetPlayerHasWon();
         }
         #endregion
 
