@@ -32,7 +32,7 @@ namespace Scripts.Game
 
         // Timing configuration
         [SerializeField]
-        private float thoughtDisplayDuration = 0.5f;
+        private float thoughtDisplayDuration = 1.0f;
         [SerializeField]
         private float fadeInDuration = 0.2f;
         [SerializeField]
