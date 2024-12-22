@@ -39,6 +39,7 @@ Third Party Assests:
 * [Plasma Explosion SFX Sound](https://assetstore.unity.com/packages/audio/sound-fx/electric-shock-sfx-303475)
 * [Fuell Cell SFX Sound](https://assetstore.unity.com/packages/audio/sound-fx/electric-shock-sfx-303475)
 * [Barrel](https://www.cgtrader.com/free-3d-models/industrial/other/barrel-840717c0-68a3-4780-8c1d-bc32876ff980)
+* [Alarm Sound](https://mixkit.co/free-sound-effects/discover/warning/)
 
 Third Party Tools:
 * [WebGL Optimizer](https://assetstore.unity.com/packages/tools/utilities/webgl-optimizer-230446) (Used to Analyse Build Logs when creating WebGL Builds).
