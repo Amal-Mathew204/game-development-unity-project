@@ -115,7 +115,7 @@ namespace Scripts.Game
         }
 
         /// <summary>
-        /// Pauses bateery consumption via boolean variable
+        /// Pauses battery consumption via boolean variable
         /// </summary>
         public void PauseBatteryConsumption()
         {
