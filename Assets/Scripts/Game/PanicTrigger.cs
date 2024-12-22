@@ -16,17 +16,16 @@ namespace Scripts.Game
     public class PanicTrigger : MonoBehaviour
     {
         #region Varaibles   
-        private GameObject _panicPanel;
+        [SerializeField] private GameObject _panicPanel;
         private Image _panelImage;
         private bool _panicActive = false;
         private bool _isFlickering = false;
-        private static PlayerInput _playerInput;
-        private AudioClip _panicSoundClip;
-        private AudioClip _radioSoundClip;
+        [SerializeField] private AudioClip _panicSoundClip;
+        [SerializeField] private AudioClip _radioSoundClip;
         
         // Thought management
-        public GameObject thoughtPrefab;
-        public Transform thoughtContainer;
+        [SerializeField] private GameObject _thoughtPrefab;
+        [SerializeField] private Transform _thoughtContainer;
         private bool _isDisplayingThoughts = false;
         private int _currentThoughtIndex = 0;
         private GameObject _currentThought;
@@ -59,17 +58,17 @@ namespace Scripts.Game
                 Debug.LogError("No Image component found on the panic panel!");
             }
             
-            if (thoughtPrefab == null)
+            if (_thoughtPrefab == null)
             {
                 Debug.LogError("No thought prefab assigned!");
             }
 
-            if (thoughtContainer == null)
+            if (_thoughtContainer == null)
             {
                 // Create a container if none is assigned
-                thoughtContainer = new GameObject("ThoughtContainer").transform;
-                thoughtContainer.SetParent(_panicPanel.transform);
-                thoughtContainer.localPosition = Vector3.zero;
+                _thoughtContainer = new GameObject("ThoughtContainer").transform;
+                _thoughtContainer.SetParent(_panicPanel.transform);
+                _thoughtContainer.localPosition = Vector3.zero;
             }
         }
         
@@ -238,7 +237,7 @@ namespace Scripts.Game
             while (_isDisplayingThoughts)
             {
                 // Create new thought
-                GameObject newThought = Instantiate(thoughtPrefab, thoughtContainer); 
+                GameObject newThought = Instantiate(_thoughtPrefab, _thoughtContainer); 
                 newThought.transform.localPosition = Vector3.zero; 
                 newThought.transform.localPosition = Vector3.zero; 
                 
@@ -274,7 +273,7 @@ namespace Scripts.Game
         /// </summary>
         private void DisplaySpecificMessage(string message)
         {
-            GameObject newThought = Instantiate(thoughtPrefab, thoughtContainer); 
+            GameObject newThought = Instantiate(_thoughtPrefab, _thoughtContainer); 
             newThought.transform.localPosition = Vector3.zero;
             TextMeshProUGUI tmpText = newThought.GetComponent<TextMeshProUGUI>();
             if (tmpText != null)

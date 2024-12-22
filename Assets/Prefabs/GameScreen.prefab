@@ -1560,15 +1560,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23ec2f68127904663b6054b3a71c70b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  panicPanel: {fileID: 5289626006495601445}
-  panicSoundClip: {fileID: 8300000, guid: a7facbf54886e405aa920552fa14ab81, type: 3}
-  radioSoundClip: {fileID: 8300000, guid: 158b1d197a2d54e5491bcfae1442e44b, type: 3}
-  thoughtPrefab: {fileID: 3097648914689657616, guid: 713fc5d8e15514ca1af204ace3889330, type: 3}
-  thoughtContainer: {fileID: 5004936183849925211}
-  thoughtDisplayDuration: 0.5
-  fadeInDuration: 0.2
-  fadeOutDuration: 0.2
-  initialPanicDelay: 1
+  _panicPanel: {fileID: 5289626006495601445}
+  _panicSoundClip: {fileID: 8300000, guid: a7facbf54886e405aa920552fa14ab81, type: 3}
+  _radioSoundClip: {fileID: 8300000, guid: 158b1d197a2d54e5491bcfae1442e44b, type: 3}
+  _thoughtPrefab: {fileID: 3097648914689657616, guid: 713fc5d8e15514ca1af204ace3889330, type: 3}
+  _thoughtContainer: {fileID: 5004936183849925211}
+  _thoughtDisplayDuration: 0.5
+  _fadeInDuration: 0.2
+  _fadeOutDuration: 0.2
+  _initialPanicDelay: 1
 --- !u!114 &6911911674456870111
 MonoBehaviour:
   m_ObjectHideFlags: 0
