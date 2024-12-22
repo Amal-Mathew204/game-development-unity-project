@@ -12,6 +12,10 @@ namespace Scripts.Menu
         public GameObject MainMenu;
         public GameObject TutorialMenu;
 
+        /// <summary>
+        ///Method obtains button components from the canvas tutorial screen and assaigns it to a variable.
+        ///Calls the correct function when a button is pressed 
+        /// </summary>
         private void OnEnable()
         {
             VisualElement root = _tutorialMenuDocument.rootVisualElement;
@@ -21,6 +25,9 @@ namespace Scripts.Menu
             _backButton.clickable.clicked += BackToMenu;
         }
 
+        /// <summary>
+        /// Loads Main Menu
+        /// </summary>
         private void BackToMenu()
         {
             TutorialMenu.gameObject.SetActive(false);
