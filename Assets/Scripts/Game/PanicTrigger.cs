@@ -50,7 +50,6 @@ namespace Scripts.Game
         /// </summary>
         void Start()
         {
-            _playerInput = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInput>();
             _panelImage = panicPanel.GetComponent<Image>();
 
             
@@ -114,7 +113,6 @@ namespace Scripts.Game
             // Lock or unlock the game based on the panic state
             if (isActive)
             {
-                // Time.timeScale = 0; // Pause the game
                 PlayerManager.Instance.DisablePlayerMovement();
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;
@@ -123,12 +121,10 @@ namespace Scripts.Game
             }
             else
             {
-                // Time.timeScale = 1; // Resume the game
                 PlayerManager.Instance.EnablePlayerMovement();
                 Cursor.lockState = CursorLockMode.Locked;
                 Cursor.visible = false;
                 PlayerManager.Instance.SwitchToThirdPerson();
-                gameState.ResumeBatteryConsumption();
             }
         }
 

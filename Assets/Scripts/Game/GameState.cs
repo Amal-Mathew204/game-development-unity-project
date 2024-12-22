@@ -122,14 +122,5 @@ namespace Scripts.Game
             _pauseBatteryConsumption = true;
         }
 
-        /// <summary>
-        /// Resumes battery consumption via boolean variable
-        /// </summary>
-        public void ResumeBatteryConsumption()
-        {
-            _pauseBatteryConsumption = false;
-        }
-
-
     }
 }
