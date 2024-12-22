@@ -21,8 +21,8 @@ namespace Scripts.Game
         private bool _panicActive = false;
         private bool _isFlickering = false;
         private static PlayerInput _playerInput;
-        private AudioClip panicSoundClip;
-        private AudioClip radioSoundClip;
+        private AudioClip _panicSoundClip;
+        private AudioClip _radioSoundClip;
         
         // Thought management
         public GameObject thoughtPrefab;
@@ -91,7 +91,7 @@ namespace Scripts.Game
         {
             yield return new WaitForSeconds(3); // 3-second delay
             TogglePanic(true);
-            AudioManager.Instance.PlaySFXLoop(panicSoundClip);
+            AudioManager.Instance.PlaySFXLoop(_panicSoundClip);
             StartFlickering();
             StartDisplayingThoughts();
             
@@ -137,7 +137,7 @@ namespace Scripts.Game
             yield return new WaitForSeconds(7); // 7-second for recovery time
             AudioManager.Instance.StopSFXLoop();
             StopFlickering(); 
-            AudioManager.Instance.PlaySFX(radioSoundClip); 
+            AudioManager.Instance.PlaySFX(_radioSoundClip); 
             _panelImage.color = new Color(0.678f, 0.847f, 0.902f, 0.3f);
             
             _isDisplayingThoughts = false;
