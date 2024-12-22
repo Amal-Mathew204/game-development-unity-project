@@ -6,6 +6,7 @@ using Mission = Scripts.Quests.Mission;
 using UnityEngine.UI;
 using AudioManager = Scripts.Audio.AudioManager;
 using PlayerManager = Scripts.Player.Player;
+using GameManager = Scripts.Game.GameState;
 using TMPro;
 using Cinemachine;
 
@@ -133,6 +134,7 @@ namespace Scripts.Game
         {
             panicPanel.SetActive(isActive);
             _panicActive = isActive;
+            GameState gameState = GameManager.Instance.GetGameState(); 
 
             // Lock or unlock the game based on the panic state
             if (isActive)
@@ -142,6 +144,7 @@ namespace Scripts.Game
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;
                 PlayerManager.Instance.SwitchToFirstPerson();
+                gameState.PauseBatteryConsumption(); 
             }
             else
             {
@@ -150,6 +153,7 @@ namespace Scripts.Game
                 Cursor.lockState = CursorLockMode.Locked;
                 Cursor.visible = false;
                 PlayerManager.Instance.SwitchToThirdPerson();
+                gameState.ResumeBatteryConsumption();
             }
         }
 
@@ -200,7 +204,7 @@ namespace Scripts.Game
         }
 
         /// <summary>
-        /// Continuously adjusts the alpha transparency of the panic panel's image to create a flickering effect.
+        /// Continuously adjusts the alpha transparency of the panic panel's image to create a flickering effect
         /// </summary>
         private IEnumerator FlickerEffect()
         {
@@ -239,7 +243,7 @@ namespace Scripts.Game
 
         #region Thought Management
         /// <summary>
-        /// Initiates the display of thoughts if not already in progress.
+        /// Initiates the display of thoughts if not already in progress
         /// </summary>
         private void StartDisplayingThoughts()
         {
@@ -252,8 +256,8 @@ namespace Scripts.Game
         }
        
         /// <summary>
-        /// Manages the sequence of displaying thoughts in a loop as long as _isDisplayingThoughts is true.
-        /// This coroutine handles the instantiation and cycling of thought texts using a prefab.
+        /// Manages the sequence of displaying thoughts in a loop as long as _isDisplayingThoughts is true
+        /// This coroutine handles the instantiation and cycling of thought texts using a prefab
         /// </summary>
         private IEnumerator DisplayThoughtsSequence()
         {
@@ -292,7 +296,7 @@ namespace Scripts.Game
         }
         
         /// <summary>
-        /// Displays a specific thought message with a typewriter effect.
+        /// Displays a specific thought message with a typewriter effect
         /// </summary>
         private void DisplaySpecificMessage(string message)
         {
@@ -312,7 +316,7 @@ namespace Scripts.Game
         }
         
         /// <summary>
-        /// Coroutine that simulates a typewriter effect for displaying text.
+        /// Coroutine that simulates a typewriter effect for displaying text
         /// </summary>
         private IEnumerator TypewriterEffect(TextMeshProUGUI textComponent, string fullText, float delay)
         {
@@ -325,7 +329,7 @@ namespace Scripts.Game
         }
 
         /// <summary>
-        /// // Coroutine to fade a thought in or out.
+        /// // Coroutine to fade a thought in or out
         /// </summary>
         private IEnumerator FadeThought(GameObject thought, bool fadeIn)
         {
@@ -349,7 +353,7 @@ namespace Scripts.Game
         }
 
         /// <summary>
-        /// Coroutine that fades out a thought GameObject and then destroys it.
+        /// Coroutine that fades out a thought GameObject and then destroys it
         /// </summary>
         private IEnumerator FadeAndDestroyThought(GameObject thought)
         {

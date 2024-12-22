@@ -11,6 +11,7 @@ namespace Scripts.Game
         private float _totalGameTime;
         [SerializeField] private TMP_Text _batteryLevelTextField;
         private int _batteryLevel = 100;
+        private bool _pauseBatteryConsumption = false;  
         
         
         /// <summary>
@@ -50,7 +51,7 @@ namespace Scripts.Game
         /// </summary>
         private void Update()
         {
-            if (_batteryLevel > 0 && GameManager.Instance.HasPlayerWonGame == false)
+            if (_batteryLevel > 0 && !GameManager.Instance.HasPlayerWonGame && !_pauseBatteryConsumption)
             {
                 AdjustBatteryLevel();
                 if (_batteryLevel <= 0)
@@ -106,11 +107,27 @@ namespace Scripts.Game
             }
             float gameTimeToReduce = (batteryLevelIncreaseValue/100) * _totalGameTime;
             _gameElapsedTime -= gameTimeToReduce;
-            //make sure no above 100% percentage vvalues
+            //make sure no above 100% percentage values
             if (_gameElapsedTime < 0)
             {
                 _gameElapsedTime = 0;
             }
+        }
+
+        /// <summary>
+        /// Pauses bateery consumption via boolean variable
+        /// </summary>
+        public void PauseBatteryConsumption()
+        {
+            _pauseBatteryConsumption = true;
+        }
+
+        /// <summary>
+        /// Resumes battery consumption via boolean variable
+        /// </summary>
+        public void ResumeBatteryConsumption()
+        {
+            _pauseBatteryConsumption = false;
         }
 
 

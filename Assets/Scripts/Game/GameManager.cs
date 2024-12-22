@@ -245,6 +245,14 @@ namespace Scripts.Game
         {
             _gameState = state;
         }
+        
+        /// <summary>
+        /// Used to reference Game State in other scripts
+        /// </summary>
+        public GameState GetGameState()
+        {
+            return _gameState;
+        }
         #endregion
 
         #region Mission Methods
