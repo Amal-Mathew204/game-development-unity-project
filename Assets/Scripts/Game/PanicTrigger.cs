@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine.InputSystem;
 using Mission = Scripts.Quests.Mission;
 using UnityEngine.UI;
@@ -9,15 +10,41 @@ using TMPro;
 namespace Scripts.Game
 {
     public class PanicTrigger : MonoBehaviour
-    { 
+    {
         public GameObject panicPanel;
         private Image _panelImage;
         private bool _panicActive = false;
         private bool _isFlickering = false;
         private static PlayerInput _playerInput;
-        public AudioClip panicSoundClip; 
+        public AudioClip panicSoundClip;
+        
+        // Thought management
+        public GameObject thoughtPrefab;
+        public Transform thoughtContainer;
+        private bool _isDisplayingThoughts = false;
+        private int _currentThoughtIndex = 0;
+        private GameObject _currentThought;
+        
+        [SerializeField]
+        private Vector2 spawnAreaMin = new Vector2(-200f, -150f);
+        [SerializeField]
+        private Vector2 spawnAreaMax = new Vector2(200f, 150f);
 
-        private string[] _thoughts = new string[] { "This is too much work...", "How am i supposed to to this by myself", "I just can't.", "I'm going to fail!", "What do I do?"};
+        // Timing configuration
+        [SerializeField]
+        private float thoughtDisplayDuration = 0.5f;
+        [SerializeField]
+        private float fadeInDuration = 0.2f;
+        [SerializeField]
+        private float fadeOutDuration = 0.2f;
+        [SerializeField]
+        private float initialPanicDelay = 1f;
+
+        private string[] _thoughts = new string[]
+        {
+            "This is too much work...", "How am i supposed to to this by myself", "I just can't.", "I'm going to fail!",
+            "What do I do?"
+        };
 
         /// <summary>
         /// Locates and assigns the PlayerInput component from the player GameObject tagged "Player"
@@ -31,6 +58,19 @@ namespace Scripts.Game
             if (_panelImage == null)
             {
                 Debug.LogError("No Image component found on the panic panel!");
+            }
+            
+            if (thoughtPrefab == null)
+            {
+                Debug.LogError("No thought prefab assigned!");
+            }
+
+            if (thoughtContainer == null)
+            {
+                // Create a container if none is assigned
+                thoughtContainer = new GameObject("ThoughtContainer").transform;
+                thoughtContainer.SetParent(panicPanel.transform);
+                thoughtContainer.localPosition = Vector3.zero;
             }
         }
 
@@ -73,7 +113,9 @@ namespace Scripts.Game
             TogglePanic(true);
             AudioManager.Instance.PlaySFXLoop(panicSoundClip);
             StartFlickering();
+            StartDisplayingThoughts();
         }
+        
 
         /// <summary>
         /// Pauses the game, switches input controls to UI mode, and makes the cursor visible and unlocked,
@@ -89,16 +131,16 @@ namespace Scripts.Game
             if (isActive)
             {
                 Time.timeScale = 0; // Pause the game
-                _playerInput.SwitchCurrentActionMap("UI"); 
-                Cursor.lockState = CursorLockMode.None; 
-                Cursor.visible = true; 
+                _playerInput.SwitchCurrentActionMap("UI");
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
             }
             else
             {
                 Time.timeScale = 1; // Resume the game
-                _playerInput.SwitchCurrentActionMap("Player"); 
-                Cursor.lockState = CursorLockMode.Locked; 
-                Cursor.visible = false; 
+                _playerInput.SwitchCurrentActionMap("Player");
+                Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = false;
             }
         }
 
@@ -168,5 +210,79 @@ namespace Scripts.Game
                 yield return new WaitForSecondsRealtime(Random.Range(0.05f, 0.2f));
             }
         }
+    
+       private void StartDisplayingThoughts()
+        {
+            if (!_isDisplayingThoughts)
+            {
+                _isDisplayingThoughts = true;
+                _currentThoughtIndex = 0;
+                StartCoroutine(DisplayThoughtsSequence());
+            }
+        }
+       
+
+        private IEnumerator DisplayThoughtsSequence()
+        {
+            while (_isDisplayingThoughts)
+            {
+                // Create new thought
+                GameObject newThought = Instantiate(thoughtPrefab, thoughtContainer);
+                newThought.transform.localPosition = Vector3.zero; // Center position
+                
+                TextMeshProUGUI tmpText = newThought.GetComponent<TextMeshProUGUI>();
+                if (tmpText != null)
+                {
+                    tmpText.text = _thoughts[_currentThoughtIndex];
+                    tmpText.alpha = 0f;
+                    // Ensure text alignment is center
+                    tmpText.alignment = TextAlignmentOptions.Center;
+                }
+
+                // If there's an existing thought, fade it out
+                if (_currentThought != null)
+                {
+                    StartCoroutine(FadeAndDestroyThought(_currentThought));
+                }
+
+                _currentThought = newThought;
+
+                // Fade in new thought
+                yield return StartCoroutine(FadeThought(_currentThought, true));
+                
+                // Display duration
+                yield return new WaitForSecondsRealtime(thoughtDisplayDuration);
+                
+                // Move to next thought
+                _currentThoughtIndex = (_currentThoughtIndex + 1) % _thoughts.Length;
+            }
+        }
+
+        private IEnumerator FadeThought(GameObject thought, bool fadeIn)
+        {
+            TextMeshProUGUI tmpText = thought.GetComponent<TextMeshProUGUI>();
+            if (tmpText == null) yield break;
+
+            float duration = fadeIn ? fadeInDuration : fadeOutDuration;
+            float startAlpha = fadeIn ? 0f : 1f;
+            float endAlpha = fadeIn ? 1f : 0f;
+
+            for (float t = 0; t < duration; t += Time.unscaledDeltaTime)
+            {
+                float alpha = Mathf.Lerp(startAlpha, endAlpha, t / duration);
+                tmpText.alpha = alpha;
+                yield return null;
+            }
+            tmpText.alpha = endAlpha;
+        }
+
+        private IEnumerator FadeAndDestroyThought(GameObject thought)
+        {
+            yield return StartCoroutine(FadeThought(thought, false));
+            Destroy(thought);
+        }
+   
+
+   
     }
 }
