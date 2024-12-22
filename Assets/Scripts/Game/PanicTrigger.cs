@@ -115,7 +115,6 @@ namespace Scripts.Game
             {
                 PlayerManager.Instance.DisablePlayerMovement();
                 Cursor.lockState = CursorLockMode.None;
-                Cursor.visible = true;
                 PlayerManager.Instance.SwitchToFirstPerson();
                 gameState.PauseBatteryConsumption(); 
             }
@@ -123,7 +122,6 @@ namespace Scripts.Game
             {
                 PlayerManager.Instance.EnablePlayerMovement();
                 Cursor.lockState = CursorLockMode.Locked;
-                Cursor.visible = false;
                 PlayerManager.Instance.SwitchToThirdPerson();
             }
         }
