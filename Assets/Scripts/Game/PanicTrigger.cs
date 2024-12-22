@@ -41,10 +41,6 @@ namespace Scripts.Game
             "This is too much work...", "How am i supposed to to this by myself", "I just can't.", "I'm going to fail!",
             "What do I do?"
         };
-        
-
-
-
         #endregion
 
         #region Initialisation
@@ -135,7 +131,7 @@ namespace Scripts.Game
             panicPanel.SetActive(isActive);
             _panicActive = isActive;
             GameState gameState = GameManager.Instance.GetGameState(); 
-
+            
             // Lock or unlock the game based on the panic state
             if (isActive)
             {
