@@ -157,7 +157,7 @@ namespace Scripts.Player
         #region Toggle Player POV Methods
         
         /// <summary>
-        /// 
+        /// Switches camera to first person view
         /// </summary>
         public void SwitchToFirstPerson()
         {
@@ -167,7 +167,7 @@ namespace Scripts.Player
         }
         
         /// <summary>
-        /// 
+        /// Switches camera to third person view
         /// </summary>
         public void SwitchToThirdPerson()
         {
