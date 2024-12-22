@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 using Mission = Scripts.Quests.Mission;
 using UnityEngine.UI;
 using AudioManager = Scripts.Audio.AudioManager;
+using PlayerManager = Scripts.Player.Player;
 using TMPro;
 
 namespace Scripts.Game
@@ -48,6 +49,7 @@ namespace Scripts.Game
         {
             _playerInput = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInput>();
             _panelImage = panicPanel.GetComponent<Image>();
+            
 
             if (_panelImage == null)
             {
@@ -107,6 +109,7 @@ namespace Scripts.Game
         {
             yield return new WaitForSeconds(3); // 3-second delay
             TogglePanic(true);
+            PlayerManager.Instance.SwitchToFirstPerson();
             AudioManager.Instance.PlaySFXLoop(panicSoundClip);
             StartFlickering();
             StartDisplayingThoughts();
@@ -126,15 +129,15 @@ namespace Scripts.Game
             // Lock or unlock the game based on the panic state
             if (isActive)
             {
-                Time.timeScale = 0; // Pause the game
-                _playerInput.SwitchCurrentActionMap("UI");
+                // Time.timeScale = 0; // Pause the game
+                PlayerManager.Instance.DisablePlayerMovement();
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;
             }
             else
             {
-                Time.timeScale = 1; // Resume the game
-                _playerInput.SwitchCurrentActionMap("Player");
+                // Time.timeScale = 1; // Resume the game
+                PlayerManager.Instance.EnablePlayerMovement();
                 Cursor.lockState = CursorLockMode.Locked;
                 Cursor.visible = false;
             }
@@ -296,5 +299,7 @@ namespace Scripts.Game
             Destroy(thought);
         }
         #endregion
+
+        
     }
 }
