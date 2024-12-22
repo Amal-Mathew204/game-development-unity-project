@@ -16,13 +16,13 @@ namespace Scripts.Game
     public class PanicTrigger : MonoBehaviour
     {
         #region Varaibles   
-        public GameObject panicPanel;
+        private GameObject _panicPanel;
         private Image _panelImage;
         private bool _panicActive = false;
         private bool _isFlickering = false;
         private static PlayerInput _playerInput;
-        public AudioClip panicSoundClip;
-        public AudioClip radioSoundClip;
+        private AudioClip panicSoundClip;
+        private AudioClip radioSoundClip;
         
         // Thought management
         public GameObject thoughtPrefab;
@@ -51,7 +51,7 @@ namespace Scripts.Game
         /// </summary>
         void Start()
         {
-            _panelImage = panicPanel.GetComponent<Image>();
+            _panelImage = _panicPanel.GetComponent<Image>();
 
             
             if (_panelImage == null)
@@ -68,7 +68,7 @@ namespace Scripts.Game
             {
                 // Create a container if none is assigned
                 thoughtContainer = new GameObject("ThoughtContainer").transform;
-                thoughtContainer.SetParent(panicPanel.transform);
+                thoughtContainer.SetParent(_panicPanel.transform);
                 thoughtContainer.localPosition = Vector3.zero;
             }
         }
@@ -107,7 +107,7 @@ namespace Scripts.Game
         /// </summary>
         private void TogglePanic(bool isActive)
         {
-            panicPanel.SetActive(isActive);
+            _panicPanel.SetActive(isActive);
             _panicActive = isActive;
             GameState gameState = GameManager.Instance.GetGameState(); 
             
