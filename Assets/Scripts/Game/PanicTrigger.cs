@@ -15,7 +15,7 @@ namespace Scripts.Game
 {
     public class PanicTrigger : MonoBehaviour
     {
-        #region Varaibles   
+        #region Class Variables   
         [SerializeField] private GameObject _panicPanel;
         private Image _panelImage;
         private bool _panicActive = false;
