@@ -20,6 +20,7 @@ namespace Scripts.Game
         private bool _isFlickering = false;
         private static PlayerInput _playerInput;
         public AudioClip panicSoundClip;
+        public AudioClip radioSoundClip;
         
         // Thought management
         public GameObject thoughtPrefab;
@@ -160,6 +161,7 @@ namespace Scripts.Game
             yield return new WaitForSeconds(7); // 7-second for recovery time
             AudioManager.Instance.StopSFXLoop();
             StopFlickering(); 
+            AudioManager.Instance.PlaySFX(radioSoundClip); 
             _panelImage.color = new Color(0.678f, 0.847f, 0.902f, 0.3f);
             
             _isDisplayingThoughts = false;
@@ -169,7 +171,7 @@ namespace Scripts.Game
                 _currentThought = null; // Clear the reference to the current thought
             }
             
-            DisplaySpecificMessage("Reinforcements are on their way!");
+            DisplaySpecificMessage("Reinforcements are on their way...");
         }
         #endregion
 
