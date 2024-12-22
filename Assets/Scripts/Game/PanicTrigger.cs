@@ -9,6 +9,7 @@ using PlayerManager = Scripts.Player.Player;
 using GameManager = Scripts.Game.GameManager;
 using TMPro;
 using Cinemachine;
+using UnityEngine.Serialization;
 
 namespace Scripts.Game
 {
@@ -31,10 +32,10 @@ namespace Scripts.Game
         private GameObject _currentThought;
         
         // Timing configuration
-        [SerializeField] private float thoughtDisplayDuration = 0.5f;
-        [SerializeField] private float fadeInDuration = 0.2f;
-        [SerializeField] private float fadeOutDuration = 0.2f;
-        [SerializeField] private float initialPanicDelay = 1f;
+        [SerializeField] private float _thoughtDisplayDuration = 0.5f;
+        [SerializeField] private float _fadeInDuration = 0.2f;
+        [SerializeField] private float _fadeOutDuration = 0.2f;
+        [SerializeField] private float _initialPanicDelay = 1f;
 
         private string[] _thoughts = new string[]
         {
@@ -261,7 +262,7 @@ namespace Scripts.Game
                 // Fade in new thought
                 yield return StartCoroutine(FadeThought(_currentThought, true));
                 
-                yield return new WaitForSecondsRealtime(thoughtDisplayDuration);
+                yield return new WaitForSecondsRealtime(_thoughtDisplayDuration);
                 
                 // Move onto the next thought
                 _currentThoughtIndex = (_currentThoughtIndex + 1) % _thoughts.Length;
@@ -309,7 +310,7 @@ namespace Scripts.Game
             TextMeshProUGUI tmpText = thought.GetComponent<TextMeshProUGUI>();
             if (tmpText == null) yield break;
 
-            float duration = fadeIn ? fadeInDuration : fadeOutDuration;
+            float duration = fadeIn ? _fadeInDuration : _fadeOutDuration;
             float startAlpha = fadeIn ? 0f : 1f;
             float endAlpha = fadeIn ? 1f : 0f;
 
