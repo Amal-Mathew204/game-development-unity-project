@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Cinemachine;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -60,14 +61,18 @@ namespace Scripts.Player
         private GameObject _startNPC; // Reference to the startNPC prefab
         private StartNPC _npcTrigger;
         public bool startOfGame = true;
-
+        
+        [Header("Radar Component")]
         public Radar radar;
 
         [Header("Pause Menu Components")]
         [SerializeField] private GameObject pauseMenu;
         //cache values
         private bool _pauseMenuActive = false;
-
+        
+        [Header("Player Virtual Camera Components")]
+        [SerializeField] private CinemachineVirtualCamera _thirdPersonCamera;
+        [SerializeField] private CinemachineVirtualCamera _firstPersonCamera;
         #endregion
 
         #region Awake Methods
@@ -148,7 +153,28 @@ namespace Scripts.Player
             TogglePauseMenu();
         }
         #endregion
-
+        
+        #region Toggle Player POV Methods
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public void SwitchToFirstPerson()
+        {
+            _thirdPersonCamera.Priority = 5;
+            _firstPersonCamera.Priority = 10;
+            Debug.Log("SwitchToFirstPerson");
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public void SwitchToThirdPerson()
+        {
+            _thirdPersonCamera.Priority = 10;
+            _firstPersonCamera.Priority = 5;
+        }
+        #endregion
 
         #region Pause Methods
         /// <summary>
@@ -195,11 +221,7 @@ namespace Scripts.Player
             }
         }
         #endregion
-
-
         
-
-
         #region Player Inventory Methods
         /// <summary>
         /// This Method will turn on the Inventory Warning Message for three seconds if requested
@@ -467,6 +489,7 @@ namespace Scripts.Player
             }
         }
         #endregion
+        
         #region Action Methods
         /// <summary>
         /// Method for getting all tasks that accepted
