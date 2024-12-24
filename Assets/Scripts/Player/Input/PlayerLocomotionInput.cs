@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Scripts.Game;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -15,6 +17,20 @@ namespace Scripts.Player.Input
         public bool isSprinting = false;
         public bool isWalking = false;
         public bool JumpPressed { get; private set; }
+        #endregion
+        
+        #region Start Methods
+
+        private void Start()
+        {
+            if (GameSettings.Instance != null)
+            {
+             //Set holdToSprint and holdToWalk variables
+             holdToSprint = GameSettings.Instance.HoldToSprint;
+             holdToWalk = GameSettings.Instance.HoldToWalk;
+            }
+        }
+
         #endregion
 
         #region Action CallBack Methods
