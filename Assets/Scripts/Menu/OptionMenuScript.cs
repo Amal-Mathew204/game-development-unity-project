@@ -15,7 +15,7 @@ namespace Scripts.Menu
         [SerializeField] private UIDocument _optionMenuDocument;
         public GameObject MainMenu;
         public GameObject OptionsMenu;
-        private Button _backButton, _applyChangesButton, _revertChangesButton, _increaseNPCSubtitleSpeed, _decreaseNPCSubtitleSpeed;
+        private Button _backButton, _applyChangesButton, _revertChangesButton, _increaseNPCSubtitleSpeed, _decreaseNPCSubtitleSpeed, _HoldForSprintOff, _HoldForSprintOn;
         private SliderInt _musicSlider, _sfxSlider, _cameraSensitivitySlider;
         private Label _musicVolumeLabel, _sfxVolumeLabel, _cameraSensitivityLabel, _npcSubtitleSpeedLabel;
         #endregion
@@ -47,6 +47,9 @@ namespace Scripts.Menu
             _increaseNPCSubtitleSpeed = root.Q<Button>("IncreaseNPCSubtitleSpeed");
             _decreaseNPCSubtitleSpeed = root.Q<Button>("DecreaseNPCSubtitleSpeed");
 
+            _HoldForSprintOn = root.Q<Button>("HoldForSprintOn");
+            _HoldForSprintOff = root.Q<Button>("HoldForSprintOff");
+
             //Set slider fields
             _musicSlider = root.Q<SliderInt>("MusicSlider");
             _sfxSlider = root.Q<SliderInt>("SFXSlider");
@@ -71,6 +74,10 @@ namespace Scripts.Menu
 
             _increaseNPCSubtitleSpeed.clickable.clicked += IncreaseNPCSubtitleSpeed;
             _decreaseNPCSubtitleSpeed.clickable.clicked += DecreaseNPCSubtitleSpeed;
+
+            _HoldForSprintOn.clickable.clicked += TurnOnHold;
+            _HoldForSprintOff.clickable.clicked += TurnOffHold;
+
 
             //set slider methods
             _musicSlider.RegisterValueChangedCallback(value => UpdateSliderValue(value.newValue, _musicVolumeLabel));
@@ -190,6 +197,21 @@ namespace Scripts.Menu
                 _decreaseNPCSubtitleSpeed.SetEnabled(false);
             }
             EnableApplyRevertButtons();
+        }
+
+        /// <summary>
+        /// Method for toggle hold to sprint/walk
+        /// </summary>
+        private void TurnOffHold()
+        {
+            GameSettings.Instance.SetHoldToSprint(false);
+            GameSettings.Instance.SetHoldToWalk(false);
+        }
+
+        private void TurnOnHold()
+        {
+            GameSettings.Instance.SetHoldToSprint(true);
+            GameSettings.Instance.SetHoldToWalk(true);
         }
 
         /// <summary>
