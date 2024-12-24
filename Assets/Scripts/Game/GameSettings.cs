@@ -81,12 +81,14 @@ namespace Scripts.Game
             PlayerPrefs.SetFloat("NPCSubtitleSpeed", speed);
         }
 
+        /// <summary>
+        /// Sets hold to sprint / walk so user can either choose between holding the button or not
+        /// </summary>
         public void SetHoldToWalk(bool holdToWalk)
         {
             HoldToWalk = holdToWalk;
             PlayerPrefs.SetInt("HoldToWalk", holdToWalk ? 1 : 0);
         }
-
         public void SetHoldToSprint(bool holdToSprint)
         {
             HoldToSprint = holdToSprint;
