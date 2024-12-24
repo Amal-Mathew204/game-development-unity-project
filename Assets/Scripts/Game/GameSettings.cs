@@ -11,6 +11,8 @@ namespace Scripts.Game
         private static GameSettings _instance;
         public float CameraSensitivity { get; private set; }
         public float NPCSubtitleSpeed { get; private set; }
+        public bool HoldToSprint { get; private set; }
+        public bool HoldToWalk { get; private set; }
 
         public static GameSettings Instance
         {
@@ -78,6 +80,18 @@ namespace Scripts.Game
             NPCSubtitleSpeed = speed;
             PlayerPrefs.SetFloat("NPCSubtitleSpeed", speed);
         }
+
+        public void SetHoldToWalk(bool holdToWalk)
+        {
+            HoldToWalk = holdToWalk;
+            PlayerPrefs.SetInt("HoldToWalk", holdToWalk ? 1 : 0);
+        }
+
+        public void SetHoldToSprint(bool holdToSprint)
+        {
+            HoldToSprint = holdToSprint;
+            PlayerPrefs.SetInt("HoldToSprint", holdToSprint ? 1 : 0);
+        }
         #endregion
 
         #region PlayerPrefs Method
@@ -94,6 +108,15 @@ namespace Scripts.Game
             {
                 PlayerPrefs.SetFloat("NPCSubtitleSpeed", 0.05f);
             }
+            if (PlayerPrefs.HasKey("HoldToWalk") == false)
+            {
+                PlayerPrefs.SetInt("HoldToWalk", 1);
+            }
+            if (PlayerPrefs.HasKey("HoldToSprint") == false)
+            {
+                PlayerPrefs.SetInt("HoldToSprint", 1);
+            }
+            
         }
         /// <summary>
         /// Loads player preferences
@@ -102,7 +125,7 @@ namespace Scripts.Game
         {
             CameraSensitivity = PlayerPrefs.GetFloat("CameraSensitivity");
             NPCSubtitleSpeed = PlayerPrefs.GetFloat("NPCSubtitleSpeed");
-
+            HoldToWalk = PlayerPrefs.GetInt("HoldToWalk") == 1;
             //check NPCSubtitleSpeed
             if(NPCSubtitleSpeed > 0.1f)
             {
