@@ -35,7 +35,7 @@
                     </ui:VisualElement>
                 </ui:VisualElement>
                 <ui:VisualElement name="NPCSettings" style="flex-grow: 1;">
-                    <ui:Label tabindex="-1" text="Toggle to Sprint/Walk" display-tooltip-when-elided="true" name="Title" style="align-items: center; justify-content: center; font-size: 49px; -unity-font-style: bold; margin-left: 25px;" />
+                    <ui:Label tabindex="-1" text="Toggle Hold to Sprint/Walk" display-tooltip-when-elided="true" name="Title" style="align-items: center; justify-content: center; font-size: 49px; -unity-font-style: bold; margin-left: 25px;" />
                     <ui:VisualElement style="flex-grow: 1; flex-direction: row;">
                         <ui:Label tabindex="-1" text="Toggele" display-tooltip-when-elided="true" style="align-self: auto; font-size: 23px; -unity-font-style: bold; margin-left: 30px; margin-top: 23px;" />
                         <ui:VisualElement style="flex-grow: 1; flex-direction: row;">
