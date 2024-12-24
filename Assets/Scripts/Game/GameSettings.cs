@@ -126,6 +126,7 @@ namespace Scripts.Game
             CameraSensitivity = PlayerPrefs.GetFloat("CameraSensitivity");
             NPCSubtitleSpeed = PlayerPrefs.GetFloat("NPCSubtitleSpeed");
             HoldToWalk = PlayerPrefs.GetInt("HoldToWalk") == 1;
+            HoldToSprint = PlayerPrefs.GetInt("HoldToSprint") == 1;
             //check NPCSubtitleSpeed
             if(NPCSubtitleSpeed > 0.1f)
             {
