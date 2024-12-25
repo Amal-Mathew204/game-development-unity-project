@@ -15,7 +15,7 @@ namespace Scripts.Player
 		/// </summary>
         private void Start()
         {
-            target = GameObject.FindGameObjectWithTag("SlopeTrigger").transform;
+            target = GameObject.Find("Water_box").transform;
             Debug.Log(target);
         }
 

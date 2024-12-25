@@ -170,6 +170,16 @@ namespace Scripts.MiniMissionLog
                 UpdateMissionDetails(_dropdown.options[_dropdown.value].text);  
             }
         }
+        
+        public Mission GetCurrentMission()
+        {
+            if (_dropdown.value > 0 && _dropdown.value < _dropdown.options.Count)
+            {
+                string missionTitle = _dropdown.options[_dropdown.value].text;
+                return FindMissionByTitle(missionTitle);
+            }
+            return null; // Return null if no valid mission is selected
+        }
 
     }
 }
