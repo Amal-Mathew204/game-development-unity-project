@@ -2,6 +2,7 @@ using UnityEngine;
 using TMPro;
 using Scripts.Quests;
 using GameManager = Scripts.Game.GameManager;
+using PlayerManager = Scripts.Player.Player;
 
 namespace Scripts.MiniMissionLog
 {
@@ -14,6 +15,8 @@ namespace Scripts.MiniMissionLog
         [SerializeField] private TextMeshProUGUI _missionStatusText; 
         [SerializeField] private Transform _subMissionContainer; 
         [SerializeField] private string _defaultButtonText = "Select a Mission";
+
+        private Mission _activeParentMission;
 
 
         /// <summary>
@@ -52,9 +55,50 @@ namespace Scripts.MiniMissionLog
             if (_dropdown.options.Count > 0 && _dropdown.value > 0)
             {
                 UpdateMissionDetails(_dropdown.options[_dropdown.value].text);
+                SetActiveParentMission(_dropdown.options[_dropdown.value].text);
             }
+            UpdatePlayerQuestPointerArrow();
+        }
+        #region Quest Pointer Methods
+        private void SetActiveParentMission(string missionTitle)
+        {
+            _activeParentMission = FindMissionByTitle(missionTitle);
+        }
+        
+        private void UpdatePlayerQuestPointerArrow()
+        {
+            CollectMission nextCollectMission = GetNextCollectMission();
+            if (nextCollectMission == null)
+            {
+                PlayerManager.Instance.QuestPointer.DeactivateArrow();
+                return;
+            }
+            
+            PlayerManager.Instance.QuestPointer.ActivateArrow(nextCollectMission);
         }
 
+        private CollectMission GetNextCollectMission()
+        {
+            if (_activeParentMission == null || _activeParentMission.IsMissionCompleted())
+            {
+                return null;
+            }
+
+            if (_activeParentMission is CollectMission)
+            {
+                return _activeParentMission as CollectMission;
+            }
+            foreach (Mission submission in _activeParentMission.SubMissions)
+            {
+                if (submission is CollectMission && !submission.IsMissionCompleted())
+                {
+                    return submission as CollectMission;
+                }
+            }
+            return null;
+        }
+        #endregion
+        
         /// <summary>
         /// Updates the button text based on the selection of the dropdown
         /// </summary>
@@ -64,12 +108,15 @@ namespace Scripts.MiniMissionLog
             {
                 _buttonText.text = _dropdown.options[_dropdown.value].text;
                 UpdateMissionDetails(_dropdown.options[_dropdown.value].text);
+                SetActiveParentMission(_dropdown.options[_dropdown.value].text);
             }
             else
             {
+                _activeParentMission = null;
                 UpdateButtonWithPlaceholder();
                 ClearMissionDetails();
             }
+            UpdatePlayerQuestPointerArrow();
         }
 
         /// <summary>
@@ -167,7 +214,8 @@ namespace Scripts.MiniMissionLog
         {
             if (_dropdown.options.Count > 0 && _dropdown.value > 0)
             {
-                UpdateMissionDetails(_dropdown.options[_dropdown.value].text);  
+                UpdateMissionDetails(_dropdown.options[_dropdown.value].text);
+                UpdatePlayerQuestPointerArrow();
             }
         }
         

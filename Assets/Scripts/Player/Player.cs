@@ -24,6 +24,7 @@ namespace Scripts.Player
         #region Class Variables
         [Header("Player Components")]
         public static Player Instance;  // Singleton instance
+        public PlayerQuestPointer QuestPointer;
         private PlayerInventoryInput _playerInventoryInput;
         private PlayerUIInput _playerUIInput;
         private PlayerController _playerController;
@@ -43,7 +44,6 @@ namespace Scripts.Player
                 GameScreen.Instance.UpdateMicrochipsValue(_mircoChips);
             }
         }
-
         [Header("Inventory Components")]
         public List<ItemPickup> Inventory = new List<ItemPickup>();
         [SerializeField] private int _maximumInventorySize = 10;
@@ -66,7 +66,7 @@ namespace Scripts.Player
         public Radar radar;
 
         [Header("Pause Menu Components")]
-        [SerializeField] private GameObject pauseMenu;
+        [SerializeField] private GameObject _pauseMenu;
         //cache values
         private bool _pauseMenuActive = false;
         
@@ -103,7 +103,7 @@ namespace Scripts.Player
 
         #region Start Methods
         /// <summary>
-        /// Method Obtains References to Player GameObject Components and Initialises Player Properties
+        /// Initialise Player Components
         /// </summary>
         private void Start()
         {
@@ -117,8 +117,9 @@ namespace Scripts.Player
             //Initialise Microchips value from Game Settings
             MicroChips = GameSettings.Instance.GameDifficultySettings.InitialMicrochips;
             //reference menus
-            pauseMenu = GetPauseMenu();
-            //Set Microchips amount on screen
+            _pauseMenu = GetPauseMenu();
+            
+            //set Microchips ammount on screen
             GameScreen.Instance.UpdateMicrochipsValue(MicroChips);
         }
 
@@ -196,9 +197,9 @@ namespace Scripts.Player
             _pauseMenuActive = !_pauseMenuActive;
             
 
-            if (pauseMenu != null)
+            if (_pauseMenu != null)
             {
-                pauseMenu.SetActive(_pauseMenuActive);
+                _pauseMenu.SetActive(_pauseMenuActive);
                 if (_pauseMenuActive)
                 {
                     Time.timeScale = 0f;

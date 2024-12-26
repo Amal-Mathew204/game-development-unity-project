@@ -1,22 +1,38 @@
 using System.Collections;
 using System.Collections.Generic;
+using Scripts.Quests;
 using UnityEngine;
 
 namespace Scripts.Player
 {
     public class PlayerQuestPointer : MonoBehaviour
     {
-        [HideInInspector] public Transform target; //target location
+        private Transform _target; //target location
         [SerializeField] private float _rotationSpeed = 3.0f; //rotation speed of arrow
-
+        public CollectMission ActiveCollectMission { get; private set; }
 
         /// <summary>
-		/// This method sets an initial target for the PlayerQuestPointer
+		/// This method deactivates the Quest Pointer Arrow GameObject 
 		/// </summary>
         private void Start()
         {
-            target = GameObject.Find("Water_box").transform;
-            Debug.Log(target);
+            this.gameObject.SetActive(false);
+        }
+
+        public void ActivateArrow(CollectMission collectMission)
+        {
+            ActiveCollectMission = collectMission;
+            this.gameObject.SetActive(true);
+        }
+
+        public void DeactivateArrow()
+        {
+            this.gameObject.SetActive(false);
+        }
+
+        public bool IsArrowActive()
+        {
+            return this.gameObject.activeSelf;
         }
 
         /// <summary>
@@ -25,11 +41,15 @@ namespace Scripts.Player
         /// </summary>
         private void Update()
         {
-            if(target == null)
+            if (ActiveCollectMission != null)
+            {
+                _target = ActiveCollectMission.GetClosestItemTransform();
+            }
+            if(_target == null)
             {
                 return;
             }
-            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(target.position - transform.position),
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(_target.position - transform.position),
             _rotationSpeed * Time.deltaTime);
         }
     }
