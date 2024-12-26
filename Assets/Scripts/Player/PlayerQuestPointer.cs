@@ -30,11 +30,6 @@ namespace Scripts.Player
             this.gameObject.SetActive(false);
         }
 
-        public bool IsArrowActive()
-        {
-            return this.gameObject.activeSelf;
-        }
-
         /// <summary>
         /// Rotates the arrow to face the target position using spherical interpolation.
         /// It adjusts the rotation at the rate determined by the rotation speed and frame time.
