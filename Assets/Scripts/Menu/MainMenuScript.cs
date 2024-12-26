@@ -20,10 +20,11 @@ namespace Scripts.Menu
 
         /// <summary>
         ///Method obtains button components from the canvas main menu and assaigns it to a variable.
-        ///Calls the correct function when a button is pressed 
+        ///Sets each buttons on click methods
         /// </summary>
         private void OnEnable()
         {
+            //Obtain references to menu buttons
             VisualElement root = _mainMenuDocument.rootVisualElement;
             _playButton = root.Q<Button>("PlayButton");
             _loadGameButton = root.Q<Button>("LoadButton");
@@ -38,7 +39,7 @@ namespace Scripts.Menu
         }
 
         /// <summary>
-        ///Loads Game Scence
+        ///Loads Game Scene
         /// </summary>
         private void PlayGame()
         {
