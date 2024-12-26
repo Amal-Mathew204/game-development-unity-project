@@ -34,13 +34,21 @@
                         </ui:VisualElement>
                     </ui:VisualElement>
                 </ui:VisualElement>
-                <ui:VisualElement name="NPCSettings" style="flex-grow: 1;">
-                    <ui:Label tabindex="-1" text="Toggle Hold to Sprint/Walk" display-tooltip-when-elided="true" name="Title" style="align-items: center; justify-content: center; font-size: 49px; -unity-font-style: bold; margin-left: 25px;" />
+                <ui:VisualElement name="PlayerSprintControls" style="flex-grow: 1;">
+                    <ui:Label tabindex="-1" text="Player Sprint Controls" display-tooltip-when-elided="true" name="Title" style="align-items: center; justify-content: center; font-size: 49px; -unity-font-style: bold; margin-left: 25px;" />
                     <ui:VisualElement style="flex-grow: 1; flex-direction: row;">
-                        <ui:Label tabindex="-1" text="Toggele" display-tooltip-when-elided="true" style="align-self: auto; font-size: 23px; -unity-font-style: bold; margin-left: 30px; margin-top: 23px;" />
                         <ui:VisualElement style="flex-grow: 1; flex-direction: row;">
-                            <ui:Button text="OFF" display-tooltip-when-elided="true" name="HoldForSprintOff" class="button" style="width: 808px; margin-left: 25px; font-size: 32px; border-top-left-radius: 32px; border-top-right-radius: 32px; border-bottom-right-radius: 32px; border-bottom-left-radius: 32px; -unity-font-style: bold; height: 90px; border-top-width: 7px; border-right-width: 7px; border-bottom-width: 7px; border-left-width: 7px; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0);" />
-                            <ui:Button text="ON" display-tooltip-when-elided="true" name="HoldForSprintOn" class="button" style="width: 788px; font-size: 32px; border-top-left-radius: 32px; border-top-right-radius: 32px; border-bottom-right-radius: 32px; border-bottom-left-radius: 32px; -unity-font-style: bold; height: 90px; border-top-width: 7px; border-right-width: 7px; border-bottom-width: 7px; border-left-width: 7px; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0);" />
+                            <ui:Button text="Toggle" display-tooltip-when-elided="true" name="HoldForSprintOff" class="button" style="width: 888px; margin-left: 25px; font-size: 32px; border-top-left-radius: 32px; border-top-right-radius: 32px; border-bottom-right-radius: 32px; border-bottom-left-radius: 32px; -unity-font-style: bold; height: 90px; border-top-width: 7px; border-right-width: 7px; border-bottom-width: 7px; border-left-width: 7px; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0);" />
+                            <ui:Button text="On Hold" display-tooltip-when-elided="true" name="HoldForSprintOn" class="button" style="width: 888px; font-size: 32px; border-top-left-radius: 32px; border-top-right-radius: 32px; border-bottom-right-radius: 32px; border-bottom-left-radius: 32px; -unity-font-style: bold; height: 90px; border-top-width: 7px; border-right-width: 7px; border-bottom-width: 7px; border-left-width: 7px; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0);" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:VisualElement name="PlayerWalkControls" style="flex-grow: 1;">
+                    <ui:Label tabindex="-1" text="Player Walk Controls" display-tooltip-when-elided="true" name="Title" style="align-items: center; justify-content: center; font-size: 49px; -unity-font-style: bold; margin-left: 25px;" />
+                    <ui:VisualElement style="flex-grow: 1; flex-direction: row;">
+                        <ui:VisualElement style="flex-grow: 1; flex-direction: row;">
+                            <ui:Button text="Toggle" display-tooltip-when-elided="true" name="HoldForWalkOff" class="button" style="width: 888px; margin-left: 25px; font-size: 32px; border-top-left-radius: 32px; border-top-right-radius: 32px; border-bottom-right-radius: 32px; border-bottom-left-radius: 32px; -unity-font-style: bold; height: 90px; border-top-width: 7px; border-right-width: 7px; border-bottom-width: 7px; border-left-width: 7px; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0);" />
+                            <ui:Button text="On Hold" display-tooltip-when-elided="true" name="HoldForWalkOn" class="button" style="width: 888px; font-size: 32px; border-top-left-radius: 32px; border-top-right-radius: 32px; border-bottom-right-radius: 32px; border-bottom-left-radius: 32px; -unity-font-style: bold; height: 90px; border-top-width: 7px; border-right-width: 7px; border-bottom-width: 7px; border-left-width: 7px; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0);" />
                         </ui:VisualElement>
                     </ui:VisualElement>
                 </ui:VisualElement>

@@ -15,10 +15,11 @@ namespace Scripts.Menu
         [SerializeField] private UIDocument _optionMenuDocument;
         public GameObject MainMenu;
         public GameObject OptionsMenu;
-        private Button _backButton, _applyChangesButton, _revertChangesButton, _increaseNPCSubtitleSpeed, _decreaseNPCSubtitleSpeed, _HoldForSprintOff, _HoldForSprintOn;
+        private Button _backButton, _applyChangesButton, _revertChangesButton, _increaseNPCSubtitleSpeed, _decreaseNPCSubtitleSpeed, _HoldForSprintOff, _HoldForSprintOn, _HoldForWalkOn, _HoldForWalkOff;
         private SliderInt _musicSlider, _sfxSlider, _cameraSensitivitySlider;
         private Label _musicVolumeLabel, _sfxVolumeLabel, _cameraSensitivityLabel, _npcSubtitleSpeedLabel;
-        private bool _isHoldToSprintWalkOn; 
+        private bool _isHoldToSprintOn;
+        private bool _isHoldToWalkOn;
         #endregion
 
         #region Enable Methods
@@ -50,6 +51,8 @@ namespace Scripts.Menu
 
             _HoldForSprintOn = root.Q<Button>("HoldForSprintOn");
             _HoldForSprintOff = root.Q<Button>("HoldForSprintOff");
+            _HoldForWalkOn = root.Q<Button>("HoldForWalkOn");
+            _HoldForWalkOff = root.Q<Button>("HoldForWalkOff");
 
             //Set slider fields
             _musicSlider = root.Q<SliderInt>("MusicSlider");
@@ -76,8 +79,10 @@ namespace Scripts.Menu
             _increaseNPCSubtitleSpeed.clickable.clicked += IncreaseNPCSubtitleSpeed;
             _decreaseNPCSubtitleSpeed.clickable.clicked += DecreaseNPCSubtitleSpeed;
 
-            _HoldForSprintOn.clickable.clicked += TurnOnHold;
-            _HoldForSprintOff.clickable.clicked += TurnOffHold;
+            _HoldForSprintOn.clickable.clicked += TurnOnHoldSprint;
+            _HoldForSprintOff.clickable.clicked += TurnOffHoldSprint;
+            _HoldForWalkOn.clickable.clicked += TurnOnHoldWalk;
+            _HoldForWalkOff.clickable.clicked += TurnOffHoldWalk;
 
 
             //set slider methods
@@ -91,7 +96,7 @@ namespace Scripts.Menu
         /// </summary>
         private void SetInitialMenuComponentValues()
         {
-            _musicSlider.SetValueWithoutNotify(Mathf.RoundToInt((AudioManager.Instance.musicSource.volume)*100));
+            _musicSlider.SetValueWithoutNotify(Mathf.RoundToInt((AudioManager.Instance.musicSource.volume) * 100));
             _sfxSlider.SetValueWithoutNotify(Mathf.RoundToInt((AudioManager.Instance.sfxSource.volume) * 100));
             _cameraSensitivitySlider.SetValueWithoutNotify(Mathf.RoundToInt((GameSettings.Instance.CameraSensitivity) * 100));
 
@@ -100,10 +105,12 @@ namespace Scripts.Menu
             _cameraSensitivityLabel.text = _cameraSensitivitySlider.value.ToString();
             _npcSubtitleSpeedLabel.text = Math.Round((GameSettings.Instance.NPCSubtitleSpeed * 100), 1).ToString();
 
-            _isHoldToSprintWalkOn = GameSettings.Instance.HoldToSprint;
+            _isHoldToSprintOn = GameSettings.Instance.HoldToSprint;
+            _isHoldToWalkOn = GameSettings.Instance.HoldToWalk;
 
             CheckEnabledNPCSubtitleSpeedButtons();
-            CheckEnabledHoldToSprintWalk();
+            CheckEnabledHoldToSprint();
+            CheckEnabledHoldToWalk();
         }
 
         /// <summary>
@@ -133,14 +140,25 @@ namespace Scripts.Menu
         }
 
         /// <summary>
-        /// Method for checking current state of setting of hold to sprint/walk
+        /// Method for checking current state of setting of hold to sprint
         /// </summary>
-        private void CheckEnabledHoldToSprintWalk()
+        private void CheckEnabledHoldToSprint()
         {
-            bool isHoldToSprintEnabled = _isHoldToSprintWalkOn;
+            bool isHoldToSprintEnabled = _isHoldToSprintOn;
 
             _HoldForSprintOn.SetEnabled(isHoldToSprintEnabled);
             _HoldForSprintOff.SetEnabled(!isHoldToSprintEnabled);
+        }
+
+        /// <summary>
+        /// Method for checking current state of setting of hold to walk
+        /// </summary>
+        private void CheckEnabledHoldToWalk()
+        {
+            bool isHoldToWalkEnabled = _isHoldToWalkOn;
+
+            _HoldForWalkOn.SetEnabled(isHoldToWalkEnabled);
+            _HoldForWalkOff.SetEnabled(!isHoldToWalkEnabled);
         }
         #endregion
 
@@ -173,17 +191,17 @@ namespace Scripts.Menu
         {
             float speed = float.Parse(_npcSubtitleSpeedLabel.text);
 
-            if(speed == 10f)
+            if (speed == 10f)
             {
                 return;
             }
-            if(speed == 1f)
+            if (speed == 1f)
             {
                 _decreaseNPCSubtitleSpeed.SetEnabled(true);
             }
             speed += 0.5f;
             _npcSubtitleSpeedLabel.text = Math.Round(speed, 1).ToString();
-            if(speed == 10f)
+            if (speed == 10f)
             {
                 _increaseNPCSubtitleSpeed.SetEnabled(false);
             }
@@ -214,19 +232,40 @@ namespace Scripts.Menu
         }
 
         /// <summary>
-        /// Method for toggle hold to sprint/walk
+        /// Method for turning off hold to sprint
         /// </summary>
-        private void TurnOffHold()
+        private void TurnOffHoldSprint()
         {
-            _isHoldToSprintWalkOn = true;
-            CheckEnabledHoldToSprintWalk();
+            _isHoldToSprintOn = true;
+            CheckEnabledHoldToSprint();
+            EnableApplyRevertButtons();
+        }
+        /// <summary>
+        /// Method for turning on hold to sprint
+        /// </summary>
+        private void TurnOnHoldSprint()
+        {
+            _isHoldToSprintOn = false;
+            CheckEnabledHoldToSprint();
             EnableApplyRevertButtons();
         }
 
-        private void TurnOnHold()
+        /// <summary>
+        /// Method for turning off hold to walk
+        /// </summary>
+        private void TurnOffHoldWalk()
         {
-            _isHoldToSprintWalkOn = false;
-            CheckEnabledHoldToSprintWalk();
+            _isHoldToWalkOn = true;
+            CheckEnabledHoldToWalk();
+            EnableApplyRevertButtons();
+        }
+        /// <summary>
+        /// Method for turning on hold to walk
+        /// </summary>
+        private void TurnOnHoldWalk()
+        {
+            _isHoldToWalkOn = false;
+            CheckEnabledHoldToWalk();
             EnableApplyRevertButtons();
         }
 
@@ -239,7 +278,8 @@ namespace Scripts.Menu
             SetSFXValue(_sfxSlider.value);
             SetCameraSensitivity(_cameraSensitivitySlider.value);
             SetNPCSubtitleSpeed(float.Parse(_npcSubtitleSpeedLabel.text));
-            SetHoldToSprintWalk(_isHoldToSprintWalkOn);
+            SetHoldToSprint(_isHoldToSprintOn);
+            SetHoldToWalk(_isHoldToWalkOn);
             DisableApplyRevertButtons();
         }
 
@@ -301,17 +341,25 @@ namespace Scripts.Menu
         /// </summary>
         public void SetNPCSubtitleSpeed(float speed)
         {
-            GameSettings.Instance.SetNPCSubtitleSpeed(speed/100);
+            GameSettings.Instance.SetNPCSubtitleSpeed(speed / 100);
         }
 
         /// <summary>
-        /// Method for setting hold to sprint/walk
+        /// Method for setting hold to sprint
         /// </summary>
-        private void SetHoldToSprintWalk(bool mode)
+        private void SetHoldToSprint(bool mode)
         {
             GameSettings.Instance.SetHoldToSprint(mode);
+        }
+
+        /// <summary>
+        /// Method for setting hold to Walk
+        /// </summary>
+        private void SetHoldToWalk(bool mode)
+        {
             GameSettings.Instance.SetHoldToWalk(mode);
         }
+
         #endregion
     }
 }
