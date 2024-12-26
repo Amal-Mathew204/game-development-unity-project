@@ -41,14 +41,16 @@ namespace Scripts.Menu
         {
             VisualElement root = _optionMenuDocument.rootVisualElement;
 
-            //Set button fields
+            //Set menu button fields
             _backButton = root.Q<Button>("BackButton");
             _applyChangesButton = root.Q<Button>("ApplyChangesButton");
             _revertChangesButton = root.Q<Button>("RevertChangesButton");
 
+            //Set NPC Subtitle button fields
             _increaseNPCSubtitleSpeed = root.Q<Button>("IncreaseNPCSubtitleSpeed");
             _decreaseNPCSubtitleSpeed = root.Q<Button>("DecreaseNPCSubtitleSpeed");
 
+            //Set Player movement (Walk/Sprint) button fields
             _HoldForSprintOn = root.Q<Button>("HoldForSprintOn");
             _HoldForSprintOff = root.Q<Button>("HoldForSprintOff");
             _HoldForWalkOn = root.Q<Button>("HoldForWalkOn");
@@ -71,19 +73,20 @@ namespace Scripts.Menu
         /// </summary>
         private void SetMenuComponentEventMethods()
         {
-            //set button clicked methods
+            //set menu button clicked methods
             _backButton.clickable.clicked += GoBack;
             _applyChangesButton.clickable.clicked += UpdateSettings;
             _revertChangesButton.clickable.clicked += RevertSettingsChanges;
 
+            //set NPC Subtitle button clicked methods
             _increaseNPCSubtitleSpeed.clickable.clicked += IncreaseNPCSubtitleSpeed;
             _decreaseNPCSubtitleSpeed.clickable.clicked += DecreaseNPCSubtitleSpeed;
 
-            _HoldForSprintOn.clickable.clicked += TurnOnHoldSprint;
-            _HoldForSprintOff.clickable.clicked += TurnOffHoldSprint;
-            _HoldForWalkOn.clickable.clicked += TurnOnHoldWalk;
-            _HoldForWalkOff.clickable.clicked += TurnOffHoldWalk;
-
+            //set Player movement (Walk/Sprint) clicked methods
+            _HoldForSprintOn.clickable.clicked += ChangeModeToOnHoldSprint;
+            _HoldForSprintOff.clickable.clicked += ChangeModeToOnToggleSprint;
+            _HoldForWalkOn.clickable.clicked += ChangeModeToOnHoldWalk;
+            _HoldForWalkOff.clickable.clicked += ChangeModeToOnToggleWalk;
 
             //set slider methods
             _musicSlider.RegisterValueChangedCallback(value => UpdateSliderValue(value.newValue, _musicVolumeLabel));
@@ -140,7 +143,7 @@ namespace Scripts.Menu
         }
 
         /// <summary>
-        /// Method for checking current state of setting of hold to sprint
+        /// Method for checking current state of setting for hold to sprint
         /// </summary>
         private void CheckEnabledHoldToSprint()
         {
@@ -151,7 +154,7 @@ namespace Scripts.Menu
         }
 
         /// <summary>
-        /// Method for checking current state of setting of hold to walk
+        /// Method for checking current state of setting for hold to walk
         /// </summary>
         private void CheckEnabledHoldToWalk()
         {
@@ -234,7 +237,7 @@ namespace Scripts.Menu
         /// <summary>
         /// Method for turning off hold to sprint
         /// </summary>
-        private void TurnOffHoldSprint()
+        private void ChangeModeToOnToggleSprint()
         {
             _isHoldToSprintOn = true;
             CheckEnabledHoldToSprint();
@@ -243,7 +246,7 @@ namespace Scripts.Menu
         /// <summary>
         /// Method for turning on hold to sprint
         /// </summary>
-        private void TurnOnHoldSprint()
+        private void ChangeModeToOnHoldSprint()
         {
             _isHoldToSprintOn = false;
             CheckEnabledHoldToSprint();
@@ -253,7 +256,7 @@ namespace Scripts.Menu
         /// <summary>
         /// Method for turning off hold to walk
         /// </summary>
-        private void TurnOffHoldWalk()
+        private void ChangeModeToOnToggleWalk()
         {
             _isHoldToWalkOn = true;
             CheckEnabledHoldToWalk();
@@ -262,7 +265,7 @@ namespace Scripts.Menu
         /// <summary>
         /// Method for turning on hold to walk
         /// </summary>
-        private void TurnOnHoldWalk()
+        private void ChangeModeToOnHoldWalk()
         {
             _isHoldToWalkOn = false;
             CheckEnabledHoldToWalk();
