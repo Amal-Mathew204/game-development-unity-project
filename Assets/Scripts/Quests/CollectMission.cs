@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using System;
-
+using Scripts.Item;
+using UnityEngine;
+using PlayerManager = Scripts.Player.Player;
 namespace Scripts.Quests
 {
     public class CollectMission : Mission
@@ -66,6 +68,36 @@ namespace Scripts.Quests
         public string GetItemProgress()
         {
             return $"{_collectedItems}/{_totalNumberOfItems}";
+        }
+
+        public Transform GetClosestItemTransform()
+        {
+            Transform playerTransform = PlayerManager.Instance.transform;
+            Transform closestItemTransform = null;
+            float closestItemDistance = 0f;
+            ItemPickup[] items =  GameObject.FindObjectsByType(typeof(ItemPickup), sortMode: FindObjectsSortMode.None) as ItemPickup[];
+            foreach (ItemPickup item in items)
+            {
+                if (_typeOfItems.Contains(item.itemName))
+                {
+                    if (closestItemTransform == null)
+                    {
+                        closestItemTransform = item.transform;
+                        closestItemDistance = Vector3.Distance(playerTransform.position, item.transform.position);
+                    }
+                    else
+                    {
+                        float itemDistance = Vector3.Distance(playerTransform.position, item.transform.position);
+                        if (itemDistance < closestItemDistance)
+                        {
+                            closestItemTransform = item.transform;
+                            closestItemDistance = itemDistance;
+                        }
+                        
+                    }
+                }
+            }
+            return closestItemTransform;
         }
 
     }
