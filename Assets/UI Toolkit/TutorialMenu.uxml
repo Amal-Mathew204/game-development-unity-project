@@ -17,7 +17,8 @@
                 <ui:Label tabindex="-1" text="M: Open ActiveMission Log" display-tooltip-when-elided="true" style="margin-left: 100px; font-size: 29px; -unity-font-style: bold; margin-top: 20px;" />
                 <ui:Label tabindex="-1" text="MOUSE: Camera" display-tooltip-when-elided="true" style="margin-left: 100px; font-size: 29px; -unity-font-style: bold; margin-top: 20px;" />
                 <ui:Label tabindex="-1" text="ENTER: Interact with NPC" display-tooltip-when-elided="true" style="margin-left: 100px; font-size: 29px; -unity-font-style: bold; margin-top: 20px;" />
-                <ui:Label tabindex="-1" text="C: Walking" display-tooltip-when-elided="true" style="margin-left: 100px; font-size: 29px; -unity-font-style: bold; margin-top: 20px;" />
+                <ui:Label tabindex="-1" text="Ctrl: Walking" display-tooltip-when-elided="true" style="margin-left: 100px; font-size: 29px; -unity-font-style: bold; margin-top: 20px;" />
+                <ui:Label tabindex="-1" text="F: Accept Task" display-tooltip-when-elided="true" style="margin-left: 100px; font-size: 29px; -unity-font-style: bold; margin-top: 20px;" />
             </ui:ScrollView>
         </ui:VisualElement>
     </ui:VisualElement>
