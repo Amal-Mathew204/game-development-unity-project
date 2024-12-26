@@ -24,7 +24,7 @@ namespace Scripts.Menu
 
         #region Enable Methods
         /// <summary>
-        /// Calls all method when script is called upon
+        /// Sets All Option Menu Components: Event methods, state and values
         /// </summary>
         private void OnEnable()
         {
@@ -35,7 +35,7 @@ namespace Scripts.Menu
         }
 
         /// <summary>
-        /// Sets buttons and sliders from the option menu to a variable
+        /// Obtains a reference to all buttons and sliders from the option menu
         /// </summary>
         private void GetMenuComponents()
         {
@@ -69,7 +69,7 @@ namespace Scripts.Menu
         }
 
         /// <summary>
-        /// Sets each button and slider to the appropiate method
+        /// Method sets the "Event Methods" to each Menu Component
         /// </summary>
         private void SetMenuComponentEventMethods()
         {
@@ -95,7 +95,7 @@ namespace Scripts.Menu
         }
 
         /// <summary>
-        /// Method for resetting settings
+        /// Method sets the Initial Values for each Menu Component
         /// </summary>
         private void SetInitialMenuComponentValues()
         {
@@ -111,6 +111,7 @@ namespace Scripts.Menu
             _isHoldToSprintOn = GameSettings.Instance.HoldToSprint;
             _isHoldToWalkOn = GameSettings.Instance.HoldToWalk;
 
+            //check state of components
             CheckEnabledNPCSubtitleSpeedButtons();
             CheckEnabledHoldToSprint();
             CheckEnabledHoldToWalk();
@@ -273,7 +274,7 @@ namespace Scripts.Menu
         }
 
         /// <summary>
-        /// Method for saving setting
+        /// Method for saving game settings
         /// </summary>
         private void UpdateSettings()
         {
@@ -298,7 +299,7 @@ namespace Scripts.Menu
 
         #region Apply/Revert Changes Methods
         /// <summary>
-        /// Method for enabling refund button
+        /// Method for enabling revert button
         /// </summary>
         public void EnableApplyRevertButtons()
         {
@@ -307,7 +308,7 @@ namespace Scripts.Menu
         }
 
         /// <summary>
-        /// Method for disableing revert button
+        /// Method for disabling revert button
         /// </summary>
         public void DisableApplyRevertButtons()
         {

@@ -82,13 +82,18 @@ namespace Scripts.Game
         }
 
         /// <summary>
-        /// Sets hold to sprint / walk so user can either choose between holding the button or not
+        /// Sets hold to walk so user can either choose between holding the button to walk
+        /// or press the button to toggle walk
         /// </summary>
         public void SetHoldToWalk(bool holdToWalk)
         {
             HoldToWalk = holdToWalk;
             PlayerPrefs.SetInt("HoldToWalk", holdToWalk ? 1 : 0);
         }
+        /// <summary>
+        /// Sets hold to sprint so user can either choose between holding the button to sprint
+        /// or press the button to toggle sprint
+        /// </summary>
         public void SetHoldToSprint(bool holdToSprint)
         {
             HoldToSprint = holdToSprint;
@@ -98,7 +103,7 @@ namespace Scripts.Game
 
         #region PlayerPrefs Method
         /// <summary>
-        /// Checks player preferences
+        /// Ensure Settings are stored in Player Prefs (setting their key value pairs)
         /// </summary>
         public void CheckPlayerPrefs()
         {
@@ -121,7 +126,7 @@ namespace Scripts.Game
             
         }
         /// <summary>
-        /// Loads player preferences
+        /// Loads settings from Player Prefs
         /// </summary>
         public void LoadPlayerPrefs()
         {
