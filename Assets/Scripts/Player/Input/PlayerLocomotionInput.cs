@@ -20,7 +20,9 @@ namespace Scripts.Player.Input
         #endregion
         
         #region Start Methods
-
+        /// <summary>
+        /// This method applies the Player Locomotion Settings from the Game Settings Singleton
+        /// </summary>
         private void Start()
         {
             if (GameSettings.Instance != null)
