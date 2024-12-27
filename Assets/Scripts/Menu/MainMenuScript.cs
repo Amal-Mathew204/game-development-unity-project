@@ -17,6 +17,7 @@ namespace Scripts.Menu
         public GameObject MainMenu;
         public GameObject OptionsMenu;
         public GameObject TutorialMenu;
+        public GameObject DifficultyMenu;
 
         /// <summary>
         ///Method obtains button components from the canvas main menu and assaigns it to a variable.
@@ -32,19 +33,19 @@ namespace Scripts.Menu
             _tutorialButton = root.Q<Button>("TutorialButton");
 
             //set button clicked methods
-            _playButton.clickable.clicked += PlayGame;
+            _playButton.clickable.clicked += NewGamePress;
             _loadGameButton.clickable.clicked += LoadPress;
             _tutorialButton.clickable.clicked += TutorialPress;
             _settingButton.clickable.clicked += OptionPress;
         }
 
         /// <summary>
-        ///Loads Game Scene
+        ///Loads Difficulty Menu
         /// </summary>
-        private void PlayGame()
+        private void NewGamePress()
         {
-            SceneManager.LoadScene("GameScene");
-            GameManager.Instance.DisableMouseCursor();
+            DifficultyMenu.gameObject.SetActive(true);
+            MainMenu.gameObject.SetActive(false);
         }
 
         /// <summary>
