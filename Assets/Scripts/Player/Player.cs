@@ -66,7 +66,7 @@ namespace Scripts.Player
         public Radar radar;
 
         [Header("Pause Menu Components")]
-        [SerializeField] private GameObject _pauseMenu;
+        private GameObject _pauseMenu;
         //cache values
         private bool _pauseMenuActive = false;
         

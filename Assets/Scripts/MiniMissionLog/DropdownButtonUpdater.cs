@@ -48,7 +48,8 @@ namespace Scripts.MiniMissionLog
         }
 
         /// <summary>
-        /// Checks if there is a valid selection in the dropdown and then updates the mission details accordingly
+        /// Sets and updates the active mission displayed on the menu
+        /// updates the player quest pointer target
         /// </summary>
         private void RefreshMissionDisplay()
         {
@@ -60,11 +61,17 @@ namespace Scripts.MiniMissionLog
             UpdatePlayerQuestPointerArrow();
         }
         #region Quest Pointer Methods
+        /// <summary>
+        /// Retrieves active parent mission object
+        /// </summary>
         private void SetActiveParentMission(string missionTitle)
         {
             _activeParentMission = FindMissionByTitle(missionTitle);
         }
         
+        /// <summary>
+        /// Sets the next collect mission object to the quest pointer
+        /// </summary>
         private void UpdatePlayerQuestPointerArrow()
         {
             CollectMission nextCollectMission = GetNextCollectMission();
@@ -77,6 +84,10 @@ namespace Scripts.MiniMissionLog
             PlayerManager.Instance.QuestPointer.ActivateArrow(nextCollectMission);
         }
 
+        /// <summary>
+        /// From the parent mission object, it gets the next collect mission available
+        /// from its submissions
+        /// </summary>
         private CollectMission GetNextCollectMission()
         {
             if (_activeParentMission == null || _activeParentMission.IsMissionCompleted())
@@ -84,6 +95,7 @@ namespace Scripts.MiniMissionLog
                 return null;
             }
 
+            // Check if parent is collect mission
             if (_activeParentMission is CollectMission)
             {
                 return _activeParentMission as CollectMission;
@@ -101,6 +113,7 @@ namespace Scripts.MiniMissionLog
         
         /// <summary>
         /// Updates the button text based on the selection of the dropdown
+        /// Updates the player quest pointer target relative to mission progress
         /// </summary>
         private void UpdateButtonText()
         {
@@ -209,6 +222,7 @@ namespace Scripts.MiniMissionLog
 
         /// <summary>
         /// Updates the display of the mission's completion status based on the current selection in the dropdown menu
+        /// Updates the player quest pointer arrow target relative to mission progress
         /// </summary>
         private void UpdateCompletionStatus()
         {
