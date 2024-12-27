@@ -3,9 +3,9 @@ namespace Scripts.Game
     public static class GameDifficultyOptions
     {
 
-        public static DifficultySettings EASY = new DifficultySettings("Easy", 10f, 10);
-        public static DifficultySettings MEDIUM = new DifficultySettings("Medium", 5f, 5);
-        public static DifficultySettings HARD = new DifficultySettings("Hard", 3f, 0);
+        public static DifficultySettings EASY = new DifficultySettings("Easy", 600f, 10);
+        public static DifficultySettings MEDIUM = new DifficultySettings("Medium", 300f, 5);
+        public static DifficultySettings HARD = new DifficultySettings("Hard", 180f, 0);
         
         public static DifficultySettings GetDifficultyModeSettings(DifficultyModes difficulty = DifficultyModes.Medium)
         {
@@ -32,6 +32,7 @@ namespace Scripts.Game
             Difficulty = difficulty;
             GameTime = gameTime;
             InitialMicrochips = initialMicrochips;
+            
         }
     }
 }
