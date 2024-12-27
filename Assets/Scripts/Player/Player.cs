@@ -113,7 +113,7 @@ namespace Scripts.Player
             _npcTrigger = _startNPC.GetComponentInChildren<StartNPC>();
             _playerController = GetComponent<PlayerController>();
             _playerInput = GetComponent<PlayerInput>();
-
+            MicroChips = GameSettings.Instance.GameDifficultySettings.InitialMicrochips;
             //reference menus
             pauseMenu = GetPauseMenu();
             

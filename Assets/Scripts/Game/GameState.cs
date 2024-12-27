@@ -40,7 +40,7 @@ namespace Scripts.Game
         private void Start()
         {
             GameManager.Instance.GameStateCanvas = this.gameObject;
-            _totalGameTime = GameManager.Instance.GameTime;
+            _totalGameTime = GameSettings.Instance.GameDifficultySettings.GameTime;
             _gameElapsedTime = GameManager.Instance.GameTimeElapsed;
             GameManager.Instance.SetGameState(this);
         }

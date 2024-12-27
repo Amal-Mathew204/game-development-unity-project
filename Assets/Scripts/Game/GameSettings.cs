@@ -25,7 +25,8 @@ namespace Scripts.Game
                 return _instance;
             }
         }
-        public DifficultySettings GameDifficultySettings { get; private set; }
+
+        public DifficultySettings GameDifficultySettings { get; private set; } = GameDifficultyOptions.MEDIUM;
         #endregion
 
         #region Awake Methods
