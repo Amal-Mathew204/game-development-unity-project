@@ -5,6 +5,7 @@ using Scripts.Game;
 using Scripts.Quests;
 using UnityEngine.UI;
 using Scripts.Audio;
+using PlayerManager = Scripts.Player.Player;
 
 namespace Scripts.GarbageDisposal
 {
@@ -25,29 +26,24 @@ namespace Scripts.GarbageDisposal
 
         #region Start Methods
         /// <summary>
-        /// Start Method Gets a reference to the Garbage Detonate Button and if found it sets its on click method
-        /// The method also gets the audio source component
+        /// Start Method Gets a reference to the Garbage Detonate Button
         /// </summary>
         private void Start()
         {
             _garbageDetonateButton = GetGarbageDetonateButton();
-
-            if (_garbageDetonateButton != null)
-            {
-                _garbageDetonateButton.GetComponent<Button>().onClick.AddListener(HandleGarbageDisposal);
-            }
         }
         #endregion
-
-
+        
         #region Update
         /// <summary>
-        /// Update Methods handles either two conditons
+        /// Update Method handles Player Interaction with the Detonation Button
+        /// If the Button is pressed two conditions are handled
         /// Update method sets a timer for when the plasma is activated, after a certain time the player will lose the game
         /// Update method sets a timer for when the items have been launched. After 5s there are deleted from the game
         /// </summary>
         public void Update()
         {
+            //Handle Plasma Condition
             if (_plasmaActivated)
             {
                 _timer += Time.deltaTime;
@@ -57,6 +53,7 @@ namespace Scripts.GarbageDisposal
                     _plasmaActivated = false;
                 }
             }
+            //Handle Garbaged Launched
             else if (_itemsLaunched)
             {
                 _timer += Time.deltaTime;
@@ -64,6 +61,14 @@ namespace Scripts.GarbageDisposal
                 { 
                     _itemsLaunched = false;
                     DeleteGarbageItems();
+                }
+            }
+            //Handle Player Interaction With Detonation Button
+            else
+            {
+                if (_garbageDetonateButton.activeInHierarchy && PlayerManager.Instance.getTaskAccepted())
+                {
+                    HandleGarbageDisposal();
                 }
             }
         }
