@@ -43,7 +43,7 @@ namespace Scripts.GarbageDisposal
         /// </summary>
         public void Update()
         {
-            //Handle Plasma Condition
+            //Handle Plasma Explosion Condition
             if (_plasmaActivated)
             {
                 _timer += Time.deltaTime;
@@ -53,7 +53,7 @@ namespace Scripts.GarbageDisposal
                     _plasmaActivated = false;
                 }
             }
-            //Handle Garbaged Launched
+            //Handle Garbaged Launched Condition
             else if (_itemsLaunched)
             {
                 _timer += Time.deltaTime;
