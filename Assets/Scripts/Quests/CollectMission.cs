@@ -70,14 +70,21 @@ namespace Scripts.Quests
             return $"{_collectedItems}/{_totalNumberOfItems}";
         }
 
+        /// <summary>
+        /// Method Returns the Closest Transform Component of the items relative to the Mission
+        /// </summary>
         public Transform GetClosestItemTransform()
         {
+            //obtain player GameObject transform for distance comparision
             Transform playerTransform = PlayerManager.Instance.transform;
             Transform closestItemTransform = null;
             float closestItemDistance = 0f;
+            //Obtain All ItemPickUp Components available in the active scene
+            //Note: Only Item GameObjects consist of this type of component
             ItemPickup[] items =  GameObject.FindObjectsByType(typeof(ItemPickup), sortMode: FindObjectsSortMode.None) as ItemPickup[];
             foreach (ItemPickup item in items)
             {
+                //check if item is relative to mission
                 if (_typeOfItems.Contains(item.itemName))
                 {
                     if (closestItemTransform == null)
@@ -87,13 +94,13 @@ namespace Scripts.Quests
                     }
                     else
                     {
+                        //store transform component of item closest to player
                         float itemDistance = Vector3.Distance(playerTransform.position, item.transform.position);
                         if (itemDistance < closestItemDistance)
                         {
                             closestItemTransform = item.transform;
                             closestItemDistance = itemDistance;
                         }
-                        
                     }
                 }
             }
