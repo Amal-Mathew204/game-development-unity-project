@@ -32,9 +32,8 @@ namespace Scripts.Game
         public bool HasPlayerWonGame { get; private set; }
         public bool HasGameEnded { get; private set; } = false;
         private GameState _gameState;
-        [Header("Game Time Settings")]
+        [Header("Game Time Properties")]
         public float GameTimeElapsed;
-        [field: SerializeField] public float GameTime { get; private set; } = 60f;
         #endregion
 
         #region Awake Methods
