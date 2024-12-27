@@ -35,7 +35,7 @@ namespace Scripts.Game
 
         /// <summary>
         /// Method will set Canvas Game Object in the GameStateCanvas field inside GameManager
-        /// Method will also store the total /elapsed GameTimeFrom the Game Manager
+        /// Method will also store the total /elapsed GameTimeFrom the Game Manager & Game Settings
         /// </summary>
         private void Start()
         {

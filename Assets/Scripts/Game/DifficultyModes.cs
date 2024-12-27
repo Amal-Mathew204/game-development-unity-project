@@ -1,7 +1,7 @@
 namespace Scripts.Game
 {
     /// <summary>
-    /// predefined settings for each difficulty.
+    /// Static Class Containing All available difficulty settings available in game.
     /// </summary>
     public static class GameDifficultyOptions
     {
@@ -10,7 +10,10 @@ namespace Scripts.Game
         public static DifficultySettings MEDIUM = new DifficultySettings("Medium", 300f, 5, 10);
         public static DifficultySettings HARD = new DifficultySettings("Hard", 180f, 0, 5);
 
-        ///Returns Correct settings for appropiate difficulty mode
+
+        /// <summary>
+        ///Returns Difficulty Settings for the passed difficulty mode
+        /// </summary>
         public static DifficultySettings GetDifficultyModeSettings(DifficultyModes difficulty = DifficultyModes.Medium)
         {
             if(difficulty == DifficultyModes.Easy) return EASY;
@@ -30,7 +33,7 @@ namespace Scripts.Game
     }
 
     /// <summary>
-    /// represents settings for each difficulty level.
+    /// Struct Used to Represent Difficulty Settings for each Difficulty Mode
     /// </summary>
     public struct DifficultySettings
     {
