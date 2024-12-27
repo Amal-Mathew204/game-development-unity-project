@@ -25,6 +25,7 @@ namespace Scripts.Game
                 return _instance;
             }
         }
+        public DifficultySettings GameDifficultySettings { get; private set; }
         #endregion
 
         #region Awake Methods
@@ -153,6 +154,21 @@ namespace Scripts.Game
             if (CameraSensitivity > 1)
             {
                 CameraSensitivity = 1;
+            }
+        }
+        #endregion
+        
+        #region Difficulty Mode Methods
+
+        public void SetDifficultyMode(string mode)
+        {
+            if (Enum.IsDefined(typeof(DifficultyModes), mode))
+            { 
+                GameDifficultySettings = GameDifficultyOptions.GetDifficultyModeSettings(Enum.Parse<DifficultyModes>(mode));
+            }
+            else
+            {
+                Debug.LogError("Invalid Difficulty Mode");
             }
         }
         #endregion
