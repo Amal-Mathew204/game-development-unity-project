@@ -1,3 +1,4 @@
+using System;
 using Scripts.Game;
 using Scripts.Player;
 using Unity.VisualScripting;
@@ -11,6 +12,18 @@ namespace Scripts.RechargeStation
         [SerializeField] private int _costPerCharge = 5;
         private bool _playerInTriggerBox = false;
         private bool _canRecharge = false;
+        private int _rechargePercentage = 10;
+        
+        /// <summary>
+        /// Method Sets the Recharge Percentage for each transaction made in the recharge station
+        /// </summary>
+        private void OnEnable()
+        {
+            if (GameSettings.Instance != null)
+            {
+                _rechargePercentage = GameSettings.Instance.GameDifficultySettings.RechargePercentage;
+            }
+        }
 
         /// <summary>
         /// When Player Enters Trigger Box Give Option for Player to Buy Charge if they have
@@ -24,7 +37,7 @@ namespace Scripts.RechargeStation
                 if (PlayerManager.Instance.MicroChips >= _costPerCharge)
                 {
                     _canRecharge = true;
-                    GameScreen.Instance.ShowKeyPrompt("Press F to Buy Charge (5 credits for 10 percent)");
+                    GameScreen.Instance.ShowKeyPrompt($"Press F to Buy Charge (5 credits for {_rechargePercentage} percent)");
                 }
             }
         }
@@ -57,7 +70,7 @@ namespace Scripts.RechargeStation
 
             if (PlayerManager.Instance.getTaskAccepted())
             {
-                GameManager.Instance.SetBatteryLevelIncrease(10);
+                GameManager.Instance.SetBatteryLevelIncrease(_rechargePercentage);
                 PlayerManager.Instance.MicroChips -= _costPerCharge;
                 if (PlayerManager.Instance.MicroChips < _costPerCharge)
                 {

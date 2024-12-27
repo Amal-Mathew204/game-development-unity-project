@@ -3,9 +3,9 @@ namespace Scripts.Game
     public static class GameDifficultyOptions
     {
 
-        public static DifficultySettings EASY = new DifficultySettings("Easy", 600f, 10);
-        public static DifficultySettings MEDIUM = new DifficultySettings("Medium", 300f, 5);
-        public static DifficultySettings HARD = new DifficultySettings("Hard", 180f, 0);
+        public static DifficultySettings EASY = new DifficultySettings("Easy", 600f, 10, 20);
+        public static DifficultySettings MEDIUM = new DifficultySettings("Medium", 300f, 5, 10);
+        public static DifficultySettings HARD = new DifficultySettings("Hard", 180f, 0, 5);
         
         public static DifficultySettings GetDifficultyModeSettings(DifficultyModes difficulty = DifficultyModes.Medium)
         {
@@ -26,13 +26,14 @@ namespace Scripts.Game
         public string Difficulty { get; private set; }
         public float GameTime { get; private set; }
         public int InitialMicrochips { get; private set; }
+        public int RechargePercentage {get; private set;}
 
-        public DifficultySettings(string difficulty, float gameTime, int initialMicrochips)
+        public DifficultySettings(string difficulty, float gameTime, int initialMicrochips, int rechargePercentage)
         {
             Difficulty = difficulty;
             GameTime = gameTime;
             InitialMicrochips = initialMicrochips;
-            
+            RechargePercentage = rechargePercentage;
         }
     }
 }
