@@ -103,24 +103,23 @@ namespace Scripts.Player
 
         #region Start Methods
         /// <summary>
-        /// Initalise Player Inventory Input Private Field, the starter NPC and the NPCtrigger
+        /// Method Obtains References to Player GameObject Components and Initialises Player Properties
         /// </summary>
         private void Start()
         {
+            //Obtain Player Components
             _playerInventoryInput = GetComponent<PlayerInventoryInput>();
             _playerUIInput = GetComponent<PlayerUIInput>();
             _startNPC = GameObject.FindGameObjectWithTag("StartNPC");
             _npcTrigger = _startNPC.GetComponentInChildren<StartNPC>();
             _playerController = GetComponent<PlayerController>();
             _playerInput = GetComponent<PlayerInput>();
+            //Initialise Microchips value from Game Settings
             MicroChips = GameSettings.Instance.GameDifficultySettings.InitialMicrochips;
             //reference menus
             pauseMenu = GetPauseMenu();
-            
-            //set Microchips ammount on screen
+            //Set Microchips amount on screen
             GameScreen.Instance.UpdateMicrochipsValue(MicroChips);
-       
-
         }
 
         /// <summary>

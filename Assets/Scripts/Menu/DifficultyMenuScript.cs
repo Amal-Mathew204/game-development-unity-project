@@ -32,7 +32,7 @@ namespace Scripts.Menu
             _startButton = root.Q<Button>("StartButton");
 
 
-            //By defualt start button is disabled until user selected difficulty mode
+            //By default start button is disabled until user selected difficulty mode
             _startButton.SetEnabled(false);
 
             //set button clicked methods
@@ -97,9 +97,7 @@ namespace Scripts.Menu
         /// </summary>
         private void PlayGame()
         {
-            Debug.Log(_selectedDifficultyMode);
             GameSettings.Instance.SetDifficultyMode(_selectedDifficultyMode);
-
             SceneManager.LoadScene("GameScene");
             GameManager.Instance.DisableMouseCursor();
         }
