@@ -292,4 +292,4 @@ MonoBehaviour:
   MainMenu: {fileID: 8601946681685034030}
   OptionsMenu: {fileID: 4112357539481585123}
   TutorialMenu: {fileID: 2801620167422254427}
-  DifficultyMenu: {fileID: 0}
+  DifficultyMenu: {fileID: 3067835878959349614}
