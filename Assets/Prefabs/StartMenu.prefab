@@ -32,6 +32,7 @@ Transform:
   - {fileID: 5823013103553640661}
   - {fileID: 1977009192309483440}
   - {fileID: 7300099530002282587}
+  - {fileID: 8922515958825124143}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2801620167422254427
@@ -98,6 +99,70 @@ MonoBehaviour:
   _tutorialMenuDocument: {fileID: 7120419685804681790}
   MainMenu: {fileID: 8601946681685034030}
   TutorialMenu: {fileID: 2801620167422254427}
+--- !u!1 &3067835878959349614
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8922515958825124143}
+  - component: {fileID: 506042742077531696}
+  - component: {fileID: 4045381831781737605}
+  m_Layer: 0
+  m_Name: DifficultyMenu
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &8922515958825124143
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3067835878959349614}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3097645177964457963}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &506042742077531696
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3067835878959349614}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 19102, guid: 0000000000000000e000000000000000, type: 0}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_PanelSettings: {fileID: 11400000, guid: 57e35c19dbf10410da13dda416821acb, type: 2}
+  m_ParentUI: {fileID: 0}
+  sourceAsset: {fileID: 9197481963319205126, guid: 423a8a318122f400285bc4cffe072c2a, type: 3}
+  m_SortingOrder: 0
+--- !u!114 &4045381831781737605
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3067835878959349614}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33003263a4f0143ce9578821e99a8ed4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _difficultyMenuDocument: {fileID: 506042742077531696}
+  MainMenu: {fileID: 8601946681685034030}
+  DifficultyMenu: {fileID: 3067835878959349614}
 --- !u!1 &4112357539481585123
 GameObject:
   m_ObjectHideFlags: 0
@@ -227,3 +292,4 @@ MonoBehaviour:
   MainMenu: {fileID: 8601946681685034030}
   OptionsMenu: {fileID: 4112357539481585123}
   TutorialMenu: {fileID: 2801620167422254427}
+  DifficultyMenu: {fileID: 0}

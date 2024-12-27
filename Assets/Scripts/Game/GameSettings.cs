@@ -158,9 +158,12 @@ namespace Scripts.Game
             }
         }
         #endregion
-        
+
         #region Difficulty Mode Methods
 
+        /// <summary>
+        /// Method for setting difficulty mode
+        /// </summary>
         public void SetDifficultyMode(string mode)
         {
             if (Enum.IsDefined(typeof(DifficultyModes), mode))
