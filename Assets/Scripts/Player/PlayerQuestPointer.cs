@@ -19,12 +19,18 @@ namespace Scripts.Player
             this.gameObject.SetActive(false);
         }
 
+        /// <summary>
+        /// Sets arrow quest pointer game object as active
+        /// </summary>
         public void ActivateArrow(CollectMission collectMission)
         {
             ActiveCollectMission = collectMission;
             this.gameObject.SetActive(true);
         }
 
+        /// <summary>
+        /// Sets arrow quest pointer game object as inactive
+        /// </summary>
         public void DeactivateArrow()
         {
             this.gameObject.SetActive(false);
