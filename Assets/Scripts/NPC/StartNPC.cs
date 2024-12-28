@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using TMPro;
 using System.Collections;
@@ -21,13 +22,17 @@ namespace Scripts.NPC
         /// </summary>
         void Start()
         {
+            //Component should only be active onscreen if its the start of a new game
+            if (GameManager.Instance != null && GameManager.Instance.LoadedGame)
+            {
+                this.enabled = false;
+                return;
+            }
             if (bubbleText == null)
             {
                 Debug.LogError("BubbleText prefab is not assigned");
                 return;
             }
-
-
             bubbleText.SetActive(true);
             _textComponent = bubbleText.GetComponent<TextMeshPro>();
 
