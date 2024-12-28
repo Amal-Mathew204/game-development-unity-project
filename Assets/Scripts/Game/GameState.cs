@@ -31,6 +31,7 @@ namespace Scripts.Game
             {
                 GameScreen.Instance.SetTimeTextComponent(timeTextField.GetComponent<TextMeshProUGUI>());
             }
+            GameManager.Instance.SetGameState(this);
         }
 
         /// <summary>
@@ -42,7 +43,6 @@ namespace Scripts.Game
             GameManager.Instance.GameStateCanvas = this.gameObject;
             _totalGameTime = GameSettings.Instance.GameDifficultySettings.GameTime;
             _gameElapsedTime = GameManager.Instance.GameTimeElapsed;
-            GameManager.Instance.SetGameState(this);
         }
 
         /// <summary>

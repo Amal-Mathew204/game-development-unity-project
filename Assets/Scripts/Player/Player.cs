@@ -41,7 +41,10 @@ namespace Scripts.Player
             {
                 this._mircoChips = value;
                 //Update value on screen
-                GameScreen.Instance.UpdateMicrochipsValue(_mircoChips);
+                if (GameScreen.Instance != null)
+                {
+                    GameScreen.Instance.UpdateMicrochipsValue(_mircoChips);
+                }
             }
         }
         [Header("Inventory Components")]
@@ -77,14 +80,16 @@ namespace Scripts.Player
 
         #region Awake Methods
         /// <summary>
-        /// Call SetInstance on awake of this script
+        /// Call SetInstance on awake of this script and Set Initial Property Values
         /// </summary>
         private void Awake()
         {
             SetInstance();
+            //Initialise Microchips value from Game Settings
+            MicroChips = GameSettings.Instance.GameDifficultySettings.InitialMicrochips;
         }
         /// <summary>
-        /// Set Single Instance of Player
+        /// Set Single Instance of Player 
         /// </summary>
         private void SetInstance()
         {
@@ -114,11 +119,8 @@ namespace Scripts.Player
             _npcTrigger = _startNPC.GetComponentInChildren<StartNPC>();
             _playerController = GetComponent<PlayerController>();
             _playerInput = GetComponent<PlayerInput>();
-            //Initialise Microchips value from Game Settings
-            MicroChips = GameSettings.Instance.GameDifficultySettings.InitialMicrochips;
             //reference menus
             _pauseMenu = GetPauseMenu();
-            
             //set Microchips ammount on screen
             GameScreen.Instance.UpdateMicrochipsValue(MicroChips);
         }
