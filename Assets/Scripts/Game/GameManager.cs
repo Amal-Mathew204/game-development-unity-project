@@ -40,6 +40,7 @@ namespace Scripts.Game
         [Header("Game Time Properties")]
         public float GameTimeElapsed;
         private bool _usingController = false;
+        public bool LoadedGame { get; private set; } = false;
         #endregion
 
         #region Awake Methods
@@ -455,6 +456,8 @@ namespace Scripts.Game
         /// </summary>
         public void LoadGameData()
         {
+            //Set Loaded Game to True
+            LoadedGame = true;
             //Get Data from Player Prefs
             string playerPositionToLoad = PlayerPrefs.GetString("PlayerPosition");
             string playerInventoryToLoad = PlayerPrefs.GetString("PlayerInventory");
@@ -480,7 +483,7 @@ namespace Scripts.Game
             }
             //Set Game Current Time and Elapsed Time
             GameObject.Find("LightController").GetComponent<LightingController>().SetCurrentTime(currentTime);
-            _gameState.SetGameElapsedTime(gameElapsedTime);
+            GameTimeElapsed = gameElapsedTime;
             
             //set missions to state of loaded game
             foreach (Mission mission in MissionList)

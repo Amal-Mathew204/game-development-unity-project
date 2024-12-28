@@ -29,7 +29,7 @@ namespace Scripts.Lighting
         /// <summary>
         /// Method sets Initial Time for the Game, sunrise and sunset time
         /// </summary>
-        private void Start()
+        private void Awake()
         {
             _currentTime = DateTime.Now.Date + TimeSpan.FromHours(_startTimeHour);
             _sunriseTime = TimeSpan.FromHours(_sunriseHour);
