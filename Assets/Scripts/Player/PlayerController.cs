@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Scripts.Game;
 using UnityEngine;
 using PlayerLocomotionInput = Scripts.Player.Input.PlayerLocomotionInput;
 using PlayerActionInput = Scripts.Player.Input.PlayerActionInput;
@@ -78,7 +79,12 @@ namespace Scripts.Player
             {
                 Debug.LogError("GameSettings is null");
             }
-            this.enabled = false;
+            
+            //only disable this component if the Player is playing a new game
+            if (GameManager.Instance != null && !GameManager.Instance.LoadedGame)
+            {
+                this.enabled = false;
+            }
         }
         #endregion
 
