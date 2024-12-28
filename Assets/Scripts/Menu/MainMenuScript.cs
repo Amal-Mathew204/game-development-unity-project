@@ -57,11 +57,23 @@ namespace Scripts.Menu
             MainMenu.gameObject.SetActive(false);
         }
 
+        /// <summary>
+        /// The methods loads the Game Scene and
+        /// Calls the GameManager.cs method to load the games data
+        /// </summary>
         private void LoadPress()
         {
-            Debug.Log("LoadGame");
+            SceneManager.LoadScene("GameScene");
+            SceneManager.sceneLoaded += LoadGameData;
+
         }
 
+        private void LoadGameData(Scene scene, LoadSceneMode mode)
+        {
+            GameManager.Instance.LoadGameData();
+            SceneManager.sceneLoaded -= LoadGameData;
+        }
+        
         /// <summary>
         ///Loads Settings Menu
         /// </summary>
