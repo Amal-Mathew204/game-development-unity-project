@@ -19951,7 +19951,7 @@ GameObject:
   - component: {fileID: 180556123503665910}
   - component: {fileID: 2527798851044681728}
   - component: {fileID: 6390893056672411964}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Garbage Disposal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
