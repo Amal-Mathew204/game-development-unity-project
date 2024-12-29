@@ -434,6 +434,7 @@ namespace Scripts.Game
             }
             string missionsToSave = JsonConvert.SerializeObject(missionsListDictionary);
             string currentTimeToSave = GameObject.Find("LightController").GetComponent<LightingController>().GetCurrentTime().ToString();
+            string gameDifficulty = GameSettings.Instance.GameDifficultySettings.Difficulty;
             
             Debug.Log("Player Position: " + playerPositionToSave);
             Debug.Log("Player Inventory: " + playerInventoryToSave);
@@ -441,6 +442,7 @@ namespace Scripts.Game
             Debug.Log("Current Time: " + currentTimeToSave);
             Debug.Log("Game Elapsed Time: " + gameElapsedTimeToSave );
             Debug.Log("Missions: " + missionsToSave);
+            Debug.Log("Game Difficulty: " + gameDifficulty);
             
             //Save Data To Player Prefs
             PlayerPrefs.SetString("PlayerPosition", playerPositionToSave);
@@ -449,6 +451,8 @@ namespace Scripts.Game
             PlayerPrefs.SetString("CurrentTime", currentTimeToSave);
             PlayerPrefs.SetFloat("GameElapsedTime", gameElapsedTimeToSave);
             PlayerPrefs.SetString("Missions", missionsToSave);
+            PlayerPrefs.SetString("GameDifficulty", gameDifficulty);
+            PlayerPrefs.Save();
         }
         
         /// <summary>
@@ -465,15 +469,13 @@ namespace Scripts.Game
             string currentTimeToLoad = PlayerPrefs.GetString("CurrentTime");
             float gameElapsedTime = PlayerPrefs.GetFloat("GameElapsedTime");
             string missionsToLoad = PlayerPrefs.GetString("Missions");
+            string gameDifficultyToLoad = PlayerPrefs.GetString("GameDifficulty");
             
             //Obtain values from serialised fields
             Vector3 playerPosition = StringToVector3(playerPositionToLoad);
             List<string> playerInventory = JsonConvert.DeserializeObject<List<string>>(playerInventoryToLoad);
             DateTime currentTime = DateTime.Parse(currentTimeToLoad);
             Dictionary<string, Dictionary<string, string>> missionsDict = JsonConvert.DeserializeObject<Dictionary<string, Dictionary<string, string>>>(missionsToLoad);
-            
-            //Load Player Data
-            PlayerManager.Instance.SetLoadedPlayerData(playerPosition, playerMicrochips);
             
             //Load Player Inventory
             foreach (String itemGameObjectName in playerInventory)
@@ -484,7 +486,8 @@ namespace Scripts.Game
             //Set Game Current Time and Elapsed Time
             GameObject.Find("LightController").GetComponent<LightingController>().SetCurrentTime(currentTime);
             GameTimeElapsed = gameElapsedTime;
-            
+            //Load Game Difficulty Settings
+            GameSettings.Instance.SetDifficultyMode(gameDifficultyToLoad);
             //set missions to state of loaded game
             foreach (Mission mission in MissionList)
             {
@@ -498,7 +501,6 @@ namespace Scripts.Game
                     CollectMission collectMission = (CollectMission)mission;
                     collectMission.SetCollectedItems(Convert.ToInt32(missionsDict[mission.MissionTitle]["collectedItems"]));
                 }
-
                 if (mission.hasSubMissions())
                 {
                     foreach (Mission subMission in mission.SubMissions)
@@ -517,9 +519,11 @@ namespace Scripts.Game
                 }
             }
             
-
-            //TODO: Delete Objects from game
+            //Load Player Data
+            PlayerManager.Instance.SetLoadedPlayerData(playerPosition, playerMicrochips);
+            
             //TODO: Set the State of Mission Prefabs
+            //This requires missions to have save and load methods for each quest scripts
             
         }
         #endregion
