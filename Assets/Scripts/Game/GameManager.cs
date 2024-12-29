@@ -35,6 +35,7 @@ namespace Scripts.Game
         private GameState _gameState;
         [Header("Game Time Properties")]
         public float GameTimeElapsed;
+        private bool _usingController = false;
         #endregion
 
         #region Awake Methods
@@ -42,6 +43,7 @@ namespace Scripts.Game
         {
             SetInstance();
             CreateMissions();
+            TrackPlayerControls();
         }
 
         /// <summary>
@@ -110,6 +112,11 @@ namespace Scripts.Game
             MissionList = new List<Mission>() {farmMission, cleanUp, 
                                                plantSeed, wasteBarrel,
                                                findWater,restorePower};
+        }
+
+        private void TrackPlayerControls()
+        {
+            GameSettings.OnControlsChanged += SwitchPlayerInputDevice;
         }
         #endregion
 
@@ -210,20 +217,29 @@ namespace Scripts.Game
 
         #region Disable Methods
         /// <summary>
-        /// Method Disables visability of the mouse cursor
+        /// Method Disables visability of the cursor
         /// </summary>
         public void DisableMouseCursor()
         {
+            if (_usingController)
+            {
+                _virtualMouse.SetActive(false);
+                return;
+            }
             Cursor.visible = false;
-            _virtualMouse.SetActive(false);
+
         }
         /// <summary>
-        /// Method Enables visability of the mouse cursor
+        /// Method Enables visability of the cursor
         /// </summary>
         public void EnableMouseCursor()
         {
+            if (_usingController)
+            {
+                _virtualMouse.SetActive(true);
+                return;
+            }
             Cursor.visible = true;
-            _virtualMouse.SetActive(true);
         }
         #endregion
 
@@ -323,6 +339,24 @@ namespace Scripts.Game
                 }
             }
             return null;
+        }
+        #endregion
+        
+        #region Switch Player Input Device Methods
+
+        private void SwitchPlayerInputDevice()
+        {
+            _usingController = GameSettings.Instance.UsingController;
+            if (_usingController)
+            {
+                Cursor.visible = false;
+                _virtualMouse.SetActive(true);
+            }
+            else
+            {
+                Cursor.visible = true;
+                _virtualMouse.SetActive(false);
+            }
         }
         #endregion
     }
