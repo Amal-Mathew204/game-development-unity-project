@@ -391,7 +391,9 @@ namespace Scripts.Player
         }
 
         /// <summary>
-        /// This is the function called to instantiate items from the inventory back into the world
+        /// This is the function called to instantiate items from the inventory back into the world, it also
+        /// checks for if the item is a GPS Scanner, and if such deactivates the Radar UI.
+        /// Checks for obstacles infront of the player, placing items behind the player if there is an object in the way
         /// </summary>
         public void DropItem(ItemPickup item)
         {
@@ -403,9 +405,14 @@ namespace Scripts.Player
             }
 
             RemoveItem(item);
-            
 
             Vector3 dropPosition = transform.position + transform.forward * 2f;
+
+            if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, 1f))
+            {
+                dropPosition = transform.position - transform.forward * 2f;
+            }
+
             item.gameObject.transform.position = dropPosition;
             item.gameObject.SetActive(true);
         }
