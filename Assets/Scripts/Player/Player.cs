@@ -148,9 +148,15 @@ namespace Scripts.Player
         /// </summary>
         private void Update()
         {
-            ToggleInventoryUI();
-            ToggleInventoryWarningMessage();
+            if (!_pauseMenuActive)
+            {
+                ToggleInventoryUI();
+                ToggleInventoryWarningMessage();
+            }
+            
             TogglePauseMenu();
+
+
         }
         #endregion
         
@@ -187,6 +193,13 @@ namespace Scripts.Player
             }
             
         }
+        /// <summary>
+        /// Method returns bool value based on if the pause menu is active on screen
+        /// </summary>
+        public bool IsPauseMenuActive()
+        {
+            return _pauseMenuActive;
+        }
 
         /// <summary>
         /// Toggles the visibility of the pause menu, pauses/unpauses the game,
@@ -219,6 +232,7 @@ namespace Scripts.Player
                 Debug.LogError("Player Menu Is Not Found");
             }
         }
+
         #endregion
         
         #region Player Inventory Methods
@@ -263,6 +277,7 @@ namespace Scripts.Player
             {
                 _playerInput.SwitchCurrentActionMap("UI");
                 _inventoryWarningText.SetActive(false);
+                
             }
             else
             {
@@ -272,6 +287,7 @@ namespace Scripts.Player
                     _inventoryWarningText.SetActive(true);
                 }
             }
+            SetCursorVisibility();
         }
 
         /// <summary>
@@ -329,7 +345,7 @@ namespace Scripts.Player
         /// </summary>
         public void ContinueGame(InputAction.CallbackContext context)
         {
-            if (!context.performed && startOfGame == false)
+            if (!context.performed || startOfGame == false)
             {
                 return;
             }
