@@ -15,6 +15,7 @@ namespace Scripts.Game
     public class GameManager : MonoBehaviour
     {
         #region Class Variables
+        [SerializeField] private GameObject _virtualMouse;
         private static GameManager _instance;
         public static GameManager Instance
         {
@@ -214,6 +215,7 @@ namespace Scripts.Game
         public void DisableMouseCursor()
         {
             Cursor.visible = false;
+            _virtualMouse.SetActive(false);
         }
         /// <summary>
         /// Method Enables visability of the mouse cursor
@@ -221,6 +223,7 @@ namespace Scripts.Game
         public void EnableMouseCursor()
         {
             Cursor.visible = true;
+            _virtualMouse.SetActive(true);
         }
         #endregion
 

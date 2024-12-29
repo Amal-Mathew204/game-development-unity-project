@@ -4516,8 +4516,8 @@ MonoBehaviour:
         m_CallState: 1
     m_ActionId: bdaa4d45-6f76-4465-b854-2642f88c7d01
     m_ActionName: 'UI/ScrollMissions[/Mouse/leftButton]'
-  m_NeverAutoSwitchControlSchemes: 1
-  m_DefaultControlScheme: Keyboard&Mouse
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
   m_DefaultActionMap: UI
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}

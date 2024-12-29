@@ -16,6 +16,7 @@ TagManager:
   - Radar
   - Barrel
   - FuelCell
+  - VirtualMouse
   layers:
   - Default
   - TransparentFX
