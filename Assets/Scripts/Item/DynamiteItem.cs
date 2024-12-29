@@ -45,7 +45,7 @@ namespace Scripts.Item
         /// </summary>
         public void OnDisable()
         {
-            GameScreen.Instance.HideKeyPrompt();
+            GameScreen.Instance?.HideKeyPrompt();
         }
         #endregion
 
