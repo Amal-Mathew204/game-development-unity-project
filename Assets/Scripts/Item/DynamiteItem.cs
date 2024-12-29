@@ -45,10 +45,7 @@ namespace Scripts.Item
         /// </summary>
         public void OnDisable()
         {
-            if (GameManager.Instance.HasGameEnded == false)
-            {
-                GameScreen.Instance.HideKeyPrompt();
-            }
+            GameScreen.Instance.HideKeyPrompt();
         }
         #endregion
 
