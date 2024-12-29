@@ -41,10 +41,7 @@ namespace Scripts.Player
             {
                 this._mircoChips = value;
                 //Update value on screen
-                if (GameScreen.Instance != null)
-                {
-                    GameScreen.Instance.UpdateMicrochipsValue(_mircoChips);
-                }
+                GameScreen.Instance?.UpdateMicrochipsValue(_mircoChips);
             }
         }
         [Header("Inventory Components")]
