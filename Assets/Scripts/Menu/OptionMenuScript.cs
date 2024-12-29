@@ -15,11 +15,12 @@ namespace Scripts.Menu
         [SerializeField] private UIDocument _optionMenuDocument;
         public GameObject MainMenu;
         public GameObject OptionsMenu;
-        private Button _backButton, _applyChangesButton, _revertChangesButton, _increaseNPCSubtitleSpeed, _decreaseNPCSubtitleSpeed, _HoldForSprintOff, _HoldForSprintOn, _HoldForWalkOn, _HoldForWalkOff;
+        private Button _backButton, _applyChangesButton, _revertChangesButton, _increaseNPCSubtitleSpeed,
+            _decreaseNPCSubtitleSpeed, _HoldForSprintOff, _HoldForSprintOn, _HoldForWalkOn, _HoldForWalkOff,
+            _controllerChoiceButton, _keyboardChoiceButton;
         private SliderInt _musicSlider, _sfxSlider, _cameraSensitivitySlider;
         private Label _musicVolumeLabel, _sfxVolumeLabel, _cameraSensitivityLabel, _npcSubtitleSpeedLabel;
-        private bool _isHoldToSprintOn;
-        private bool _isHoldToWalkOn;
+        private bool _isHoldToSprintOn, _isHoldToWalkOn, _isUsingController;
         #endregion
 
         #region Enable Methods
@@ -55,7 +56,11 @@ namespace Scripts.Menu
             _HoldForSprintOff = root.Q<Button>("HoldForSprintOff");
             _HoldForWalkOn = root.Q<Button>("HoldForWalkOn");
             _HoldForWalkOff = root.Q<Button>("HoldForWalkOff");
-
+            
+            //Set Player Input Control Buttons
+            _controllerChoiceButton = root.Q<Button>("ControllerChoice");
+            _keyboardChoiceButton = root.Q<Button>("KeyboardChoice");
+            
             //Set slider fields
             _musicSlider = root.Q<SliderInt>("MusicSlider");
             _sfxSlider = root.Q<SliderInt>("SFXSlider");
@@ -87,6 +92,10 @@ namespace Scripts.Menu
             _HoldForSprintOff.clickable.clicked += ChangeModeToOnToggleSprint;
             _HoldForWalkOn.clickable.clicked += ChangeModeToOnHoldWalk;
             _HoldForWalkOff.clickable.clicked += ChangeModeToOnToggleWalk;
+            
+            //set Player Input Control clicked methods
+            _keyboardChoiceButton.clicked += ChangeToUsingKeyboard;
+            _controllerChoiceButton.clicked += ChangeToUsingController;
 
             //set slider methods
             _musicSlider.RegisterValueChangedCallback(value => UpdateSliderValue(value.newValue, _musicVolumeLabel));
@@ -110,11 +119,14 @@ namespace Scripts.Menu
 
             _isHoldToSprintOn = GameSettings.Instance.HoldToSprint;
             _isHoldToWalkOn = GameSettings.Instance.HoldToWalk;
+            
+            _isUsingController = GameSettings.Instance.UsingController;
 
             //check state of components
             CheckEnabledNPCSubtitleSpeedButtons();
             CheckEnabledHoldToSprint();
             CheckEnabledHoldToWalk();
+            CheckEnabledUsingController();
         }
 
         /// <summary>
@@ -163,6 +175,15 @@ namespace Scripts.Menu
 
             _HoldForWalkOn.SetEnabled(isHoldToWalkEnabled);
             _HoldForWalkOff.SetEnabled(!isHoldToWalkEnabled);
+        }
+        
+        /// <summary>
+        /// Method for checking current state of if the Player is Using a Controller
+        /// </summary>
+        private void CheckEnabledUsingController()
+        {
+            _keyboardChoiceButton.SetEnabled(_isUsingController);
+            _controllerChoiceButton.SetEnabled(!_isUsingController);
         }
         #endregion
 
@@ -274,6 +295,26 @@ namespace Scripts.Menu
         }
 
         /// <summary>
+        /// Method for changing Player Input Device to controller
+        /// </summary>
+        public void ChangeToUsingController()
+        {
+            _isUsingController = true;
+            CheckEnabledUsingController();
+            EnableApplyRevertButtons();
+        }
+        
+        /// <summary>
+        /// Method for changing Player Input Device to Keyboard and Mouse
+        /// </summary>
+        public void ChangeToUsingKeyboard()
+        {
+            _isUsingController = false;
+            CheckEnabledUsingController();
+            EnableApplyRevertButtons();
+        }
+        
+        /// <summary>
         /// Method for saving game settings
         /// </summary>
         private void UpdateSettings()
@@ -284,9 +325,10 @@ namespace Scripts.Menu
             SetNPCSubtitleSpeed(float.Parse(_npcSubtitleSpeedLabel.text));
             SetHoldToSprint(_isHoldToSprintOn);
             SetHoldToWalk(_isHoldToWalkOn);
+            SetPlayerUsingController(_isUsingController);
             DisableApplyRevertButtons();
         }
-
+        
         /// <summary>
         /// Method for revert button
         /// </summary>
@@ -362,6 +404,14 @@ namespace Scripts.Menu
         private void SetHoldToWalk(bool mode)
         {
             GameSettings.Instance.SetHoldToWalk(mode);
+        }
+        
+        /// <summary>
+        /// Method for setting if the Player is using Controller
+        /// </summary>
+        private void SetPlayerUsingController(bool isUsingController)
+        {
+            GameSettings.Instance.SetUsingController(isUsingController);
         }
 
         #endregion

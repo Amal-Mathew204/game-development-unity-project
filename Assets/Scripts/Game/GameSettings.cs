@@ -13,6 +13,25 @@ namespace Scripts.Game
         public float NPCSubtitleSpeed { get; private set; }
         public bool HoldToSprint { get; private set; }
         public bool HoldToWalk { get; private set; }
+        /// <summary>
+        /// Event for when Player Controlls are changed
+        /// </summary>
+        public static event Action OnControlsChanged = delegate { };
+
+        private bool _usingController;
+        public bool UsingController
+        {
+            get
+            {
+                return _usingController;
+            }
+            private set
+            {
+                _usingController = value;
+                OnControlsChanged.Invoke();
+            }
+        }
+
 
         public static GameSettings Instance
         {
@@ -101,6 +120,12 @@ namespace Scripts.Game
             HoldToSprint = holdToSprint;
             PlayerPrefs.SetInt("HoldToSprint", holdToSprint ? 1 : 0);
         }
+
+        public void SetUsingController(bool usingController)
+        {
+            UsingController = usingController;
+            PlayerPrefs.SetInt("UsingController", usingController ? 1 : 0);
+        }
         #endregion
 
         #region PlayerPrefs Method
@@ -125,6 +150,10 @@ namespace Scripts.Game
             {
                 PlayerPrefs.SetInt("HoldToSprint", 1);
             }
+            if (PlayerPrefs.HasKey("UsingController") == false)
+            {
+                PlayerPrefs.SetInt("UsingController", 0);
+            }
             
         }
         /// <summary>
@@ -136,6 +165,7 @@ namespace Scripts.Game
             NPCSubtitleSpeed = PlayerPrefs.GetFloat("NPCSubtitleSpeed");
             HoldToWalk = PlayerPrefs.GetInt("HoldToWalk") == 1;
             HoldToSprint = PlayerPrefs.GetInt("HoldToSprint") == 1;
+            UsingController = PlayerPrefs.GetInt("UsingController") == 1;
             //check NPCSubtitleSpeed
             if(NPCSubtitleSpeed > 0.1f)
             {
