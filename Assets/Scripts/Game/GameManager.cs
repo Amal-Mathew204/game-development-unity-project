@@ -221,6 +221,7 @@ namespace Scripts.Game
             GameScreen.DestroyGameObject();
             SceneManager.LoadScene("StartScene");
             HasGameEnded = false;
+            LoadedGame = false;
         }
         #endregion
 
@@ -445,6 +446,7 @@ namespace Scripts.Game
             Debug.Log("Game Difficulty: " + gameDifficulty);
             
             //Save Data To Player Prefs
+            PlayerPrefs.SetString("LoadedGame", "LoadedGame");
             PlayerPrefs.SetString("PlayerPosition", playerPositionToSave);
             PlayerPrefs.SetString("PlayerInventory", playerInventoryToSave);
             PlayerPrefs.SetInt("PlayerMicrochips", microChipsToSave);
@@ -453,6 +455,18 @@ namespace Scripts.Game
             PlayerPrefs.SetString("Missions", missionsToSave);
             PlayerPrefs.SetString("GameDifficulty", gameDifficulty);
             PlayerPrefs.Save();
+        }
+
+        /// <summary>
+        /// Method checks if there is a Loaded Game Stored In Player Prefs
+        /// </summary>
+        public bool CheckLoadedGameAvailable()
+        {
+            if (PlayerPrefs.HasKey("LoadedGame") == false)
+            {
+                return false;
+            }
+            return true;
         }
         
         /// <summary>
