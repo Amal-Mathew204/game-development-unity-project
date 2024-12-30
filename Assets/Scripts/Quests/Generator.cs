@@ -45,8 +45,6 @@ namespace Scripts.Quests
             {
                 _rechargePoint.SetActive(true);
             }
-
-            
         }
         #endregion
 
