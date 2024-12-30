@@ -53,7 +53,7 @@ Assets installed from the Unity Registry:
 * Terrian Tools 5.1.2
 
 ## Tutorial
-### Controls Overview
+### Controls Overview (Keyboard & Mouse]
 
 __Movement:__
 
@@ -89,6 +89,27 @@ __Mission Logs__:
 * Use your mouse or trackpad to navigate through the mission logs.
 * Hover over different logs to highlight them.
 * Click on a log to select it and view details about your current missions or objectives.
+
+### Controls Overview (Controller/ Gamepad]
+
+__Movement:__
+
+* __Left Joystick__: Move Forward, Move Left, Move Backward, Move Right
+* __Right Joystick__: Move Camera
+* __Button South__: Jump
+* __Button East__: Accept Task
+* __Button West__: Equip Item
+
+* __Left D Pad__: Open Inventory
+* __Down D Pad__: Open Active Mission Log
+* __START (Options)__: Pause Menu
+
+__UI:__
+
+* __Left Joystick__: Cursor
+* __Button South__: Click
+* __Hold Button South & Use Left Joystick__: Scroll Mission Log
+
 
 ## Group Info:
 __Group:__ Group E (2.1)
