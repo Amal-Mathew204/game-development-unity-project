@@ -1,4 +1,5 @@
 using UnityEngine;
+using System;
 using System.Collections;
 using PlayerManager = Scripts.Player.Player;
 using Scripts.Item;
@@ -7,17 +8,48 @@ using Scripts.Game;
 using Scripts.GarbageDisposal;
 using Scripts.Quests;
 using Scripts.Audio ;
+using Newtonsoft.Json;
 
 namespace Scripts.Quests
 {
     public class Generator : MonoBehaviour
     {
-        private int _count = 0;
         private int _fuelCellDropped = 0;
         private bool _missionComplete = false;
-        public List<GameObject> ItemsInDisposal = new List<GameObject>();
         [SerializeField] private AudioClip _source;
         [SerializeField] private GameObject _rechargePoint;
+
+        #region Save/Load Methods
+
+        public void Save()
+        {
+            Dictionary<string,object> generatorData = new Dictionary<string, object>();
+            generatorData.Add("_missionComplete", _missionComplete);
+            generatorData.Add("_fuelCellDropped", _fuelCellDropped);
+            PlayerPrefs.SetString("Generator", JsonConvert.SerializeObject(generatorData));
+        }
+
+        public void Load()
+        {
+            string dictionary = PlayerPrefs.GetString("Generator");
+            Dictionary<string, object> generatorData = JsonConvert.DeserializeObject<Dictionary<string, object>>(dictionary);
+            _missionComplete = (bool)generatorData["_missionComplete"];
+            _fuelCellDropped = Convert.ToInt32(generatorData["_fuelCellDropped"]);
+            GameObject[] fuelCells = GameObject.FindGameObjectsWithTag("FuelCell");
+            Debug.Log(fuelCells.Length);
+            for (int i = 0; i < _fuelCellDropped; i++)
+            {
+                Destroy(fuelCells[i]);
+            }
+            if (_missionComplete)
+            {
+                _rechargePoint.SetActive(true);
+            }
+
+            
+        }
+        #endregion
+
 
         /// <summary>
         /// Updates the Turn on Generator Misison in Container Mission
@@ -46,26 +78,6 @@ namespace Scripts.Quests
                 AudioManager.Instance.PlaySFX(_source);
                 Destroy(other.gameObject);
             }
-        }
-
-        /// <summary>
-        /// Method checks for checking if Fuel Cell is in Inventory 
-        /// </summary>
-        public bool CheckFuellCellInventory()
-        {
-            List<ItemPickup> inventory = PlayerManager.Instance.Inventory;
-            foreach (ItemPickup item in inventory)
-            {
-                if (item.itemName == "Fuel Cell")
-                {
-                    _count = _count + 1;
-                }
-                if (_count == 3)
-                {
-                    return true;
-                }
-            }
-            return false;
         }
     }
 }
