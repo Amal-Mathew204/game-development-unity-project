@@ -41,6 +41,7 @@ Third Party Assests:
 * [Barrel](https://www.cgtrader.com/free-3d-models/industrial/other/barrel-840717c0-68a3-4780-8c1d-bc32876ff980)
 * [Alarm Sound](https://mixkit.co/free-sound-effects/discover/warning/)
 * [Radio Sound](https://mixkit.co/free-sound-effects/static/)
+* [Virtual Mouse UI](https://www.flaticon.com/free-icon/cursor_3771677?term=cursor&page=1&position=36&origin=tag&related_id=3771677)
 
 Third Party Tools:
 * [WebGL Optimizer](https://assetstore.unity.com/packages/tools/utilities/webgl-optimizer-230446) (Used to Analyse Build Logs when creating WebGL Builds).
