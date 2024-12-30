@@ -6,7 +6,6 @@ using UnityEngine.InputSystem.UI;
 
 public class VirtualMouseUi : MonoBehaviour
 {
-
     [SerializeField] private RectTransform _canvasRectTransform;
     private VirtualMouseInput _virtualMouseInput;
 
@@ -15,11 +14,18 @@ public class VirtualMouseUi : MonoBehaviour
         _virtualMouseInput = GetComponent<VirtualMouseInput>();
     }
 
+    /// <summary>
+    /// Updates the scale of the virtual mouse to match the canvas scale and ensures it is rendered on top.
+    /// </summary>
     private void Update()
     {
         transform.localScale = Vector3.one * (1f / _canvasRectTransform.localScale.x);
         transform.SetAsLastSibling();
     }
+
+    /// <summary>
+    /// Clamps the virtual mouse position within the screen bounds and updates its state.
+    /// </summary>
     private void LateUpdate()
     {
         Vector2 virtualMousePosition = _virtualMouseInput.virtualMouse.position.value;
