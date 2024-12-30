@@ -83,7 +83,7 @@ namespace Scripts.Menu
         /// <summary>
         /// Quits game by loading back to startscene
         /// </summary>
-        public void LoadGame()
+        public void QuitGame()
         {
             SceneManager.LoadScene("StartScene");
         }
