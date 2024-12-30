@@ -96,19 +96,21 @@ __Movement:__
 
 * __Left Joystick__: Move Forward, Move Left, Move Backward, Move Right
 * __Right Joystick__: Move Camera
+  
 * __Button South__: Jump
-* __Button East__: Accept Task
+* __Button East__: Accept Task: To accept tasks and interactions during gameplay
 * __Button West__: Equip Item
 
 * __Left D Pad__: Open Inventory
-* __Down D Pad__: Open Active Mission Log
+* __Down D Pad__: Open Mission Log Menu
+  
 * __START (Options)__: Pause Menu
 
 __UI:__
 
 * __Left Joystick__: Cursor
 * __Button South__: Click
-* __Hold Button South & Use Left Joystick__: Scroll Mission Log
+* __Hold Button South & Use Left Joystick__: Scroll across Mission Log
 
 
 ## Group Info:
