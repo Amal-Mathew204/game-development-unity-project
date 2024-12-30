@@ -424,7 +424,7 @@ namespace Scripts.Player
 
             Vector3 dropPosition = transform.position + transform.forward * 2f;
 
-            int layerMask = ~LayerMask.GetMask("GarbageDisposal");
+            int layerMask = ~LayerMask.GetMask("GarbageDisposal", "Item");
 
             if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, 1f, layerMask))
             {
