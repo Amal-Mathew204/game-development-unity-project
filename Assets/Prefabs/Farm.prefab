@@ -116,7 +116,7 @@ GameObject:
   - component: {fileID: 1212680720139858711}
   - component: {fileID: 7769979031130758789}
   m_Layer: 0
-  m_Name: FarmLandTriggerBox
+  m_Name: BuildFarmTriggerBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -531,7 +531,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 1948
+  m_VersionIndex: 1951
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -1858,7 +1858,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3401733186042920740, guid: ec9a79e4b44444feea9762b947241329, type: 3}
       propertyPath: m_VersionIndex
-      value: 1298
+      value: 1301
       objectReference: {fileID: 0}
     - target: {fileID: 4624249815226196413, guid: ec9a79e4b44444feea9762b947241329, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1906,7 +1906,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7010514632833985901, guid: ec9a79e4b44444feea9762b947241329, type: 3}
       propertyPath: m_VersionIndex
-      value: 1279
+      value: 1282
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2011,7 +2011,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3401733186042920740, guid: ec9a79e4b44444feea9762b947241329, type: 3}
       propertyPath: m_VersionIndex
-      value: 1298
+      value: 1301
       objectReference: {fileID: 0}
     - target: {fileID: 4624249815226196413, guid: ec9a79e4b44444feea9762b947241329, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2059,7 +2059,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7010514632833985901, guid: ec9a79e4b44444feea9762b947241329, type: 3}
       propertyPath: m_VersionIndex
-      value: 1279
+      value: 1282
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2300,7 +2300,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3401733186042920740, guid: ec9a79e4b44444feea9762b947241329, type: 3}
       propertyPath: m_VersionIndex
-      value: 1298
+      value: 1301
       objectReference: {fileID: 0}
     - target: {fileID: 4624249815226196413, guid: ec9a79e4b44444feea9762b947241329, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2344,7 +2344,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7010514632833985901, guid: ec9a79e4b44444feea9762b947241329, type: 3}
       propertyPath: m_VersionIndex
-      value: 1279
+      value: 1282
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2515,7 +2515,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3401733186042920740, guid: ec9a79e4b44444feea9762b947241329, type: 3}
       propertyPath: m_VersionIndex
-      value: 1298
+      value: 1301
       objectReference: {fileID: 0}
     - target: {fileID: 4624249815226196413, guid: ec9a79e4b44444feea9762b947241329, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2563,7 +2563,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7010514632833985901, guid: ec9a79e4b44444feea9762b947241329, type: 3}
       propertyPath: m_VersionIndex
-      value: 1279
+      value: 1282
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
