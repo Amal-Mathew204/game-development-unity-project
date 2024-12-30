@@ -155,8 +155,6 @@ namespace Scripts.Player
             }
             
             TogglePauseMenu();
-
-
         }
         #endregion
         
@@ -189,7 +187,7 @@ namespace Scripts.Player
         {
             if (_playerUIInput.TogglePauseMenu)
             {
-               ChangePauseMenuVisibility();
+                ChangePauseMenuVisibility();
             }
             
         }
@@ -413,20 +411,24 @@ namespace Scripts.Player
         /// </summary>
         public void DropItem(ItemPickup item)
         {
-            
             if (item.itemName == "GPS Scanner")
             {
-                
                 radar.DeactivateRadar();
             }
-
             RemoveItem(item);
 
             Vector3 dropPosition = transform.position + transform.forward * 2f;
 
             int layerMask = ~LayerMask.GetMask("GarbageDisposal", "Item");
 
-            if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, 1f, layerMask))
+            float distance = 1.5f;
+            if (item.itemName == "Dynamite")
+            {
+                distance = 1f;
+            }
+            Vector3 position = new Vector3(transform.position.x, transform.position.y + 1f, transform.position.z);
+
+            if (Physics.Raycast(position, transform.forward, out RaycastHit hit, distance, layerMask))
             {
                 dropPosition = transform.position - transform.forward * 2f;
             }

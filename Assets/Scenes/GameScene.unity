@@ -3897,10 +3897,6 @@ PrefabInstance:
       value: Dynamite
       objectReference: {fileID: 0}
     - target: {fileID: 5758673382554163039, guid: 4d3bd8cafc4d09a40b8625a4834c2dc2, type: 3}
-      propertyPath: _explosionRadius
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 5758673382554163039, guid: 4d3bd8cafc4d09a40b8625a4834c2dc2, type: 3}
       propertyPath: _destroyableObject
       value: 
       objectReference: {fileID: 566636163}
@@ -4046,10 +4042,6 @@ PrefabInstance:
     - target: {fileID: 3896557575308484956, guid: 4c759055e2c63b54bb60680e5a2b1f73, type: 3}
       propertyPath: m_Name
       value: GameScreen
-      objectReference: {fileID: 0}
-    - target: {fileID: 5004936183849925211, guid: 4c759055e2c63b54bb60680e5a2b1f73, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -23.944092
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

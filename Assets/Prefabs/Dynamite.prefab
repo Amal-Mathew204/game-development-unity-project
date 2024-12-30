@@ -258,13 +258,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _explosionEffect: {fileID: 1000011797152326, guid: acf39d9f4addf294d93fa56fa373961b, type: 3}
   _miniBlockPrefab: {fileID: 7181025614434640457, guid: a0519d813764df742b0c07faaaad3ab9, type: 3}
-  _bubbleText: {fileID: 7105801760040741462}
   _destroyableObject: {fileID: 0}
   _explosionDelay: 3
-  _explosionRadius: 5
+  _explosionRadius: 10
   _explosionForce: 200
   _blockSpawnRadius: 5
   _blockCount: 200
+  _bubbleText: {fileID: 7105801760040741462}
   _explosionAudioClip: {fileID: 8300000, guid: 80a60ab82c8094eadbcac26d02f4ea20, type: 3}
 --- !u!54 &3576690237895066311
 Rigidbody:
