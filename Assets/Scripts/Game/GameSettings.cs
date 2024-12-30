@@ -14,7 +14,7 @@ namespace Scripts.Game
         public bool HoldToSprint { get; private set; }
         public bool HoldToWalk { get; private set; }
         /// <summary>
-        /// Event for when Player Controlls are changed
+        /// Event for when Player Controls are changed
         /// </summary>
         public static event Action OnControlsChanged = delegate { };
 
@@ -120,7 +120,9 @@ namespace Scripts.Game
             HoldToSprint = holdToSprint;
             PlayerPrefs.SetInt("HoldToSprint", holdToSprint ? 1 : 0);
         }
-
+        /// <summary>
+        /// Sets whether the player is using a controller and updates the PlayerPreferences accordingly.
+        /// </summary>
         public void SetUsingController(bool usingController)
         {
             UsingController = usingController;

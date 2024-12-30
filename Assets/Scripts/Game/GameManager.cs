@@ -114,6 +114,9 @@ namespace Scripts.Game
                                                findWater,restorePower};
         }
 
+        /// <summary>
+        /// Tracks changes in player controls and switches the input device accordingly
+        /// </summary>
         private void TrackPlayerControls()
         {
             GameSettings.OnControlsChanged += SwitchPlayerInputDevice;
@@ -341,9 +344,11 @@ namespace Scripts.Game
             return null;
         }
         #endregion
-        
-        #region Switch Player Input Device Methods
 
+        #region Switch Player Input Device Methods
+        /// <summary>
+        /// Switches the player's input device based on the current settings.
+        /// </summary>
         private void SwitchPlayerInputDevice()
         {
             _usingController = GameSettings.Instance.UsingController;
