@@ -90,7 +90,7 @@ __Mission Logs__:
 * Hover over different logs to highlight them.
 * Click on a log to select it and view details about your current missions or objectives.
 
-### Controls Overview (Controller/ Gamepad]
+### Controls Overview (Controller/ Gamepad)
 
 __Movement:__
 
