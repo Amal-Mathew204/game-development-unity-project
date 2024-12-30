@@ -52,8 +52,6 @@ namespace Scripts.Game
         private void Awake()
         {
             SetInstance();
-            CheckPlayerPrefs();
-            LoadPlayerPrefs();
         }
         /// <summary>
         /// Checks duplication
@@ -71,6 +69,17 @@ namespace Scripts.Game
             }
         }
 
+        #endregion
+
+        #region Start Methods
+        /// <summary>
+        /// Method loads the player preferences
+        /// </summary>
+        private void Start()
+        {
+            CheckPlayerPrefs();
+            LoadPlayerPrefs();
+        }
         #endregion
 
         #region GameSettings Methods
