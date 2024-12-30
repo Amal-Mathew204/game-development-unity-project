@@ -348,6 +348,7 @@ namespace Scripts.Game
         #region Switch Player Input Device Methods
         /// <summary>
         /// Switches the player's input device based on the current settings.
+        /// Switches the cursors depending on the input device.
         /// </summary>
         private void SwitchPlayerInputDevice()
         {
