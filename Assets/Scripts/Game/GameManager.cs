@@ -215,6 +215,7 @@ namespace Scripts.Game
             PlayerManager.DestroyGameObject();
             GameScreen.DestroyGameObject();
             SceneManager.LoadScene("StartScene");
+            HasGameEnded = false;
         }
         #endregion
 
