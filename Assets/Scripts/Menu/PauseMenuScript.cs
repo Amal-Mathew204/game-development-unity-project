@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Scripts.Game;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using PlayerManager = Scripts.Player.Player;
 
 namespace Scripts.Menu
@@ -80,11 +81,11 @@ namespace Scripts.Menu
         }
         
         /// <summary>
-        /// Calls the GameManager.cs method to load the games data
+        /// Quits game by loading back to startscene
         /// </summary>
         public void LoadGame()
         {
-            GameManager.Instance.LoadGameData();
+            SceneManager.LoadScene("StartScene");
         }
 
     }
