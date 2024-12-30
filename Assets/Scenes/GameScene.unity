@@ -3897,6 +3897,10 @@ PrefabInstance:
       value: Dynamite
       objectReference: {fileID: 0}
     - target: {fileID: 5758673382554163039, guid: 4d3bd8cafc4d09a40b8625a4834c2dc2, type: 3}
+      propertyPath: _explosionRadius
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5758673382554163039, guid: 4d3bd8cafc4d09a40b8625a4834c2dc2, type: 3}
       propertyPath: _destroyableObject
       value: 
       objectReference: {fileID: 566636163}
