@@ -444,6 +444,8 @@ namespace Scripts.Game
             Debug.Log("Game Elapsed Time: " + gameElapsedTimeToSave );
             Debug.Log("Missions: " + missionsToSave);
             Debug.Log("Game Difficulty: " + gameDifficulty);
+
+            SaveQuestGameObjectComponentScripts();
             
             //Save Data To Player Prefs
             PlayerPrefs.SetString("LoadedGame", "LoadedGame");
@@ -467,6 +469,15 @@ namespace Scripts.Game
                 return false;
             }
             return true;
+        }
+        
+        /// <summary>
+        /// This method saves all the Data for each QuestGameobject script component
+        /// </summary>
+        private void SaveQuestGameObjectComponentScripts()
+        {
+            //Save Data for farm quests
+            GameObject.Find("BuildFarmTriggerBox").GetComponent<BuildFarm>().Save();
         }
         
         /// <summary>
@@ -538,7 +549,17 @@ namespace Scripts.Game
             
             //TODO: Set the State of Mission Prefabs
             //This requires missions to have save and load methods for each quest scripts
-            
+            LoadQuestGameObjectComponentScripts();
+
+        }
+        
+        /// <summary>
+        /// This method Load all the Data for each Quest Gameobject script component
+        /// </summary>
+        private void LoadQuestGameObjectComponentScripts()
+        {
+            //Save Data for farm quests
+            GameObject.Find("BuildFarmTriggerBox").GetComponent<BuildFarm>().Load();
         }
         #endregion
         

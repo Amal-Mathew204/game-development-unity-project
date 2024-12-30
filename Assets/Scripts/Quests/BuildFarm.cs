@@ -1,7 +1,9 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using PlayerManager = Scripts.Player.Player;
 using Scripts.Item;
 using System.Collections.Generic;
+using Newtonsoft.Json;
 using GameManager = Scripts.Game.GameManager;
 
 namespace Scripts.Quests
@@ -11,7 +13,29 @@ namespace Scripts.Quests
         private bool _farmBuilt = false;
         private bool _playerInTriggerBox = false;
         [SerializeField] private GameObject _farmLand;
+        
+        #region Save/Load Methods
 
+        public void Save()
+        {
+            Dictionary<String, bool> buildFarmData = new Dictionary<String, bool>();
+            buildFarmData.Add("_farmBuilt", _farmBuilt);
+            PlayerPrefs.SetString("BuildFarm", JsonConvert.SerializeObject(buildFarmData));
+        }
+
+        public void Load()
+        {
+            string dictionary = PlayerPrefs.GetString("BuildFarm");
+            Dictionary<String, bool> buildFarmData = JsonConvert.DeserializeObject<Dictionary<String, bool>>(dictionary);
+            _farmBuilt = buildFarmData["_farmBuilt"];
+            //If farm built was set to true reactivate farm land
+            if (_farmBuilt)
+            {
+                _farmLand.SetActive(true);
+            }
+        }
+        #endregion
+        
         /// <summary>
         /// Method for checking if the user has entered the trigger box
         /// </summary>
@@ -45,6 +69,7 @@ namespace Scripts.Quests
             {
                 _farmLand.SetActive(true);
                 GameManager.Instance.SetMissionComplete("Build Farm");
+                _farmBuilt = true;
             }
         }
 
@@ -53,6 +78,10 @@ namespace Scripts.Quests
         /// </summary>
         public bool CheckShovelInInventory()
         {
+            if (PlayerManager.Instance == null)
+            {
+                return false;
+            }
             List<ItemPickup> inventory = PlayerManager.Instance.Inventory;
             foreach (ItemPickup item in inventory)
             {
