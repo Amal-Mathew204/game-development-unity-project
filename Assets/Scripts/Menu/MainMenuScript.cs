@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
@@ -14,6 +15,7 @@ namespace Scripts.Menu
         private Button _loadGameButton;
         private Button _settingButton;
         private Button _tutorialButton;
+        private Label _errorBox;
         public GameObject MainMenu;
         public GameObject OptionsMenu;
         public GameObject TutorialMenu;
@@ -31,6 +33,12 @@ namespace Scripts.Menu
             _loadGameButton = root.Q<Button>("LoadButton");
             _settingButton = root.Q<Button>("SettingButton");
             _tutorialButton = root.Q<Button>("TutorialButton");
+            
+            //obtain reference to errorbox
+            _errorBox = root.Q<Label>("ErrorBox");
+            
+            //Set ErrorBox to inactive
+            _errorBox.visible = false;
 
             //set button clicked methods
             _playButton.clickable.clicked += NewGamePress;
@@ -63,11 +71,19 @@ namespace Scripts.Menu
         /// </summary>
         private void LoadPress()
         {
-            SceneManager.LoadScene("GameScene");
-            SceneManager.sceneLoaded += LoadGameData;
-
+            if (GameManager.Instance.CheckLoadedGameAvailable())
+            {
+                SceneManager.LoadScene("GameScene");
+                SceneManager.sceneLoaded += LoadGameData;
+            }
+            else
+            {
+                _errorBox.visible = true;
+            }
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
         private void LoadGameData(Scene scene, LoadSceneMode mode)
         {
             GameManager.Instance.LoadGameData();
