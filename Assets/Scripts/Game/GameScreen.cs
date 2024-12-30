@@ -14,10 +14,6 @@ namespace Scripts.Game
         {
             get
             {
-                if (_instance == null)
-                {
-                    Debug.LogError("GameScreen is Null");
-                }
                 return _instance;
             }
         }

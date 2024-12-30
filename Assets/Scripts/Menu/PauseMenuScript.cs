@@ -85,6 +85,7 @@ namespace Scripts.Menu
         /// </summary>
         public void QuitGame()
         {
+            ContinueGame();
             GameManager.Instance.ReturnToStartMenu();
         }
     }
