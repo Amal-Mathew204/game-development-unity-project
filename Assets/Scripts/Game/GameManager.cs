@@ -478,6 +478,7 @@ namespace Scripts.Game
         {
             //Save Data for farm quests
             GameObject.Find("BuildFarmTriggerBox").GetComponent<BuildFarm>().Save();
+            GameObject.Find("GeneratorTriggerBox").GetComponent<Generator>().Save();
         }
         
         /// <summary>
@@ -560,6 +561,7 @@ namespace Scripts.Game
         {
             //Save Data for farm quests
             GameObject.Find("BuildFarmTriggerBox").GetComponent<BuildFarm>().Load();
+            GameObject.Find("GeneratorTriggerBox").GetComponent<Generator>().Load();
         }
         #endregion
         

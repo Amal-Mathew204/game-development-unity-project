@@ -183,7 +183,7 @@ GameObject:
   - component: {fileID: 347656201464366676}
   - component: {fileID: 8083916737201774754}
   m_Layer: 0
-  m_Name: TriggerBox
+  m_Name: GeneratorTriggerBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -237,7 +237,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2cbd749c6a2e489090cf4bdd5d88926, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ItemsInDisposal: []
   _source: {fileID: 8300000, guid: 6eb54b596d5397146be18314abb53961, type: 3}
   _rechargePoint: {fileID: 7620722301321505527}
 --- !u!1 &7620722301321505527
