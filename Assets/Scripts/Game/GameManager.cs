@@ -326,7 +326,7 @@ namespace Scripts.Game
         /// Retrieves a mission by its title from the list of missions
         /// Searches both main missions and their sub-missions
         /// </summary>
-        private Mission GetMission(string MissionTitle)
+        public Mission GetMission(string MissionTitle)
         {
             foreach (Mission mission in MissionList)
             {
