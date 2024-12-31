@@ -361,7 +361,8 @@ namespace Scripts.Game
         /// <summary>
         /// This method saves all game data inside the game
         /// This includes the following properties:
-        /// battery level, player position, time of day, microchips held, mission list, items in inventory
+        /// battery level, player position, time of day, microchips held, mission list, items in inventory, difficulty, quest script components
+        /// ,game elapsed time and save/load key indicator 
         /// </summary>
         public void SaveGame()
         {
@@ -537,7 +538,6 @@ namespace Scripts.Game
         /// </summary>
         private void LoadQuestGameObjectComponentScripts()
         {
-            //Save Data for farm quests
             GameObject.Find("BuildFarmTriggerBox").GetComponent<BuildFarm>().Load();
             GameObject.Find("GeneratorTriggerBox").GetComponent<Generator>().Load();
             GameObject.Find("GarbageTriggerBox").GetComponent<Container>().Load();
