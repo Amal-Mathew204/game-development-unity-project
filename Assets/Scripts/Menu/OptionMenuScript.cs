@@ -16,11 +16,11 @@ namespace Scripts.Menu
         public GameObject MainMenu;
         public GameObject OptionsMenu;
         private Button _backButton, _applyChangesButton, _revertChangesButton, _increaseNPCSubtitleSpeed,
-            _decreaseNPCSubtitleSpeed, _HoldForSprintOff, _HoldForSprintOn, _HoldForWalkOn, _HoldForWalkOff,
-            _controllerChoiceButton, _keyboardChoiceButton;
+            _decreaseNPCSubtitleSpeed, _holdForSprintOff, _holdForSprintOn, _holdForWalkOn, _holdForWalkOff,
+            _controllerChoiceButton, _keyboardChoiceButton, _turnOffQuestPointer, _turnOnQuestPointer;
         private SliderInt _musicSlider, _sfxSlider, _cameraSensitivitySlider;
         private Label _musicVolumeLabel, _sfxVolumeLabel, _cameraSensitivityLabel, _npcSubtitleSpeedLabel;
-        private bool _isHoldToSprintOn, _isHoldToWalkOn, _isUsingController;
+        private bool _isHoldToSprintOn, _isHoldToWalkOn, _isUsingController , _isQuestPointerOn;
         #endregion
 
         #region Enable Methods
@@ -52,15 +52,19 @@ namespace Scripts.Menu
             _decreaseNPCSubtitleSpeed = root.Q<Button>("DecreaseNPCSubtitleSpeed");
 
             //Set Player movement (Walk/Sprint) button fields
-            _HoldForSprintOn = root.Q<Button>("HoldForSprintOn");
-            _HoldForSprintOff = root.Q<Button>("HoldForSprintOff");
-            _HoldForWalkOn = root.Q<Button>("HoldForWalkOn");
-            _HoldForWalkOff = root.Q<Button>("HoldForWalkOff");
+            _holdForSprintOn = root.Q<Button>("HoldForSprintOn");
+            _holdForSprintOff = root.Q<Button>("HoldForSprintOff");
+            _holdForWalkOn = root.Q<Button>("HoldForWalkOn");
+            _holdForWalkOff = root.Q<Button>("HoldForWalkOff");
             
             //Set Player Input Control Buttons
             _controllerChoiceButton = root.Q<Button>("ControllerChoice");
             _keyboardChoiceButton = root.Q<Button>("KeyboardChoice");
-            
+
+            //Set Quest Pointer Settings Buttons
+            _turnOffQuestPointer = root.Q<Button>("TurnOffQuestPointer");
+            _turnOnQuestPointer = root.Q<Button>("TurnOnQuestPointer");
+
             //Set slider fields
             _musicSlider = root.Q<SliderInt>("MusicSlider");
             _sfxSlider = root.Q<SliderInt>("SFXSlider");
@@ -88,14 +92,18 @@ namespace Scripts.Menu
             _decreaseNPCSubtitleSpeed.clickable.clicked += DecreaseNPCSubtitleSpeed;
 
             //set Player movement (Walk/Sprint) clicked methods
-            _HoldForSprintOn.clickable.clicked += ChangeModeToOnHoldSprint;
-            _HoldForSprintOff.clickable.clicked += ChangeModeToOnToggleSprint;
-            _HoldForWalkOn.clickable.clicked += ChangeModeToOnHoldWalk;
-            _HoldForWalkOff.clickable.clicked += ChangeModeToOnToggleWalk;
+            _holdForSprintOn.clickable.clicked += ChangeModeToOnHoldSprint;
+            _holdForSprintOff.clickable.clicked += ChangeModeToOnToggleSprint;
+            _holdForWalkOn.clickable.clicked += ChangeModeToOnHoldWalk;
+            _holdForWalkOff.clickable.clicked += ChangeModeToOnToggleWalk;
             
             //set Player Input Control clicked methods
             _keyboardChoiceButton.clicked += ChangeToUsingKeyboard;
             _controllerChoiceButton.clicked += ChangeToUsingController;
+
+            //set quest pointer settings clicked methods
+            _turnOffQuestPointer.clicked += TurnOffQuestPointer;
+            _turnOnQuestPointer.clicked += TurnOnQuestPointer;
 
             //set slider methods
             _musicSlider.RegisterValueChangedCallback(value => UpdateSliderValue(value.newValue, _musicVolumeLabel));
@@ -122,11 +130,14 @@ namespace Scripts.Menu
             
             _isUsingController = GameSettings.Instance.UsingController;
 
+            _isQuestPointerOn = GameSettings.Instance.ShowQuestPointer;
+            
             //check state of components
             CheckEnabledNPCSubtitleSpeedButtons();
             CheckEnabledHoldToSprint();
             CheckEnabledHoldToWalk();
             CheckEnabledUsingController();
+            CheckEnabledQuestPointer();
         }
 
         /// <summary>
@@ -162,8 +173,8 @@ namespace Scripts.Menu
         {
             bool isHoldToSprintEnabled = _isHoldToSprintOn;
 
-            _HoldForSprintOn.SetEnabled(isHoldToSprintEnabled);
-            _HoldForSprintOff.SetEnabled(!isHoldToSprintEnabled);
+            _holdForSprintOn.SetEnabled(isHoldToSprintEnabled);
+            _holdForSprintOff.SetEnabled(!isHoldToSprintEnabled);
         }
 
         /// <summary>
@@ -173,8 +184,8 @@ namespace Scripts.Menu
         {
             bool isHoldToWalkEnabled = _isHoldToWalkOn;
 
-            _HoldForWalkOn.SetEnabled(isHoldToWalkEnabled);
-            _HoldForWalkOff.SetEnabled(!isHoldToWalkEnabled);
+            _holdForWalkOn.SetEnabled(isHoldToWalkEnabled);
+            _holdForWalkOff.SetEnabled(!isHoldToWalkEnabled);
         }
         
         /// <summary>
@@ -186,6 +197,16 @@ namespace Scripts.Menu
             _controllerChoiceButton.SetEnabled(!_isUsingController);
         }
         #endregion
+
+        /// <summary>
+        /// Method for checking current state of setting for quest pointer
+        /// </summary>
+        private void CheckEnabledQuestPointer()
+        {
+            bool isQuestPointerEnabled = _isQuestPointerOn;
+            _turnOffQuestPointer.SetEnabled(isQuestPointerEnabled);
+            _turnOnQuestPointer.SetEnabled(!isQuestPointerEnabled);
+        }
 
         #region UI Component Methods
         /// <summary>
@@ -313,7 +334,27 @@ namespace Scripts.Menu
             CheckEnabledUsingController();
             EnableApplyRevertButtons();
         }
-        
+
+        /// <summary>
+        /// Method for turning on quest pointer
+        /// </summary>
+        public void TurnOnQuestPointer()
+        {
+            _isQuestPointerOn = true;
+            CheckEnabledQuestPointer();
+            EnableApplyRevertButtons();
+        }
+
+        /// <summary>
+        /// Method for turning off quest pointer
+        /// </summary>
+        public void TurnOffQuestPointer()
+        {
+            _isQuestPointerOn = false;
+            CheckEnabledQuestPointer();
+            EnableApplyRevertButtons();
+        }
+
         /// <summary>
         /// Method for saving game settings
         /// </summary>
@@ -326,6 +367,7 @@ namespace Scripts.Menu
             SetHoldToSprint(_isHoldToSprintOn);
             SetHoldToWalk(_isHoldToWalkOn);
             SetPlayerUsingController(_isUsingController);
+            SetShowQuestPointer(_isQuestPointerOn);
             DisableApplyRevertButtons();
         }
         
@@ -412,6 +454,14 @@ namespace Scripts.Menu
         private void SetPlayerUsingController(bool isUsingController)
         {
             GameSettings.Instance.SetUsingController(isUsingController);
+        }
+        
+        /// <summary>
+        /// Method for toggle quest pointer
+        /// </summary>
+        private void SetShowQuestPointer(bool isQuestPointerOn)
+        {
+            GameSettings.Instance.SetShowQuestPointer(isQuestPointerOn);
         }
 
         #endregion
