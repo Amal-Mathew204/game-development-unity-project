@@ -24,6 +24,9 @@ namespace Scripts.Quests
             }
         }
 
+        /// <summary>
+        /// Method for activating plant visuals( activate plant deactivate arrow )
+        /// </summary>
         public void ActivatePlantVisuals(GameObject seedBag)
         {
             ///Destroys seed bag and actived dirtpile object
@@ -36,7 +39,7 @@ namespace Scripts.Quests
         }
 
         /// <summary>
-        /// 
+        /// returns state of _isSeedBagInside
         /// </summary>
         public bool IsSeedBagInside()
         {

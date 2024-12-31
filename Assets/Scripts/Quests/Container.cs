@@ -18,7 +18,9 @@ namespace Scripts.Quests
 
 
         #region Save/Load Methods
-
+        /// <summary>
+        /// Method saves names and position of ItemsInDisposal as serialized JSON string in PlayerPrefs.
+        /// </summary>
         public void Save()
         {
             Dictionary<string, object> containerData = new Dictionary<string, object>();
@@ -33,6 +35,10 @@ namespace Scripts.Quests
             PlayerPrefs.SetString("Container", JsonConvert.SerializeObject(containerData));
         }
 
+        /// <summary>
+        /// method for loading the state of the quest including repositiing items
+        /// and reactivates garbagedisposal controller if mission complete is true 
+        /// </summary>
         public void Load()
         {
             string dictionary = PlayerPrefs.GetString("Container");

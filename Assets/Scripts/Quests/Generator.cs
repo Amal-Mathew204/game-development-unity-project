@@ -21,6 +21,9 @@ namespace Scripts.Quests
 
         #region Save/Load Methods
 
+        /// <summary>
+        /// method saves missionComplete and fuelCellDropped as serialized JSON string in PlayerPrefs
+        /// </summary>
         public void Save()
         {
             Dictionary<string,object> generatorData = new Dictionary<string, object>();
@@ -29,6 +32,10 @@ namespace Scripts.Quests
             PlayerPrefs.SetString("Generator", JsonConvert.SerializeObject(generatorData));
         }
 
+        /// <summary>
+        /// method loads data from player prefs which updates mission complete and fuel cells dropped
+        /// it also destroys corresponding amount of fuel cells and reactivates charging station if mission has been completed 
+        /// </summary>
         public void Load()
         {
             string dictionary = PlayerPrefs.GetString("Generator");
