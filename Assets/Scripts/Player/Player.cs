@@ -243,7 +243,11 @@ namespace Scripts.Player
                 else
                 {
                     Time.timeScale = 1f;
-                    _playerInput.SwitchCurrentActionMap("Player");
+                    //If the Player is still at the Start NPC start of game dialouge the ActionMap must be kept at "UI"
+                    if (startOfGame == false)
+                    {
+                        _playerInput.SwitchCurrentActionMap("Player");
+                    }
                     GameManager.Instance.DisableMouseCursor();
                 }
             }
