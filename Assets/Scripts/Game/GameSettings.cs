@@ -13,6 +13,7 @@ namespace Scripts.Game
         public float NPCSubtitleSpeed { get; private set; }
         public bool HoldToSprint { get; private set; }
         public bool HoldToWalk { get; private set; }
+        public bool ShowQuestPointer {get; private set;}
         /// <summary>
         /// Event for when Player Controls are changed
         /// </summary>
@@ -137,6 +138,15 @@ namespace Scripts.Game
             UsingController = usingController;
             PlayerPrefs.SetInt("UsingController", usingController ? 1 : 0);
         }
+        
+        /// <summary>
+        /// Sets whether the Player would like to use the Quest Pointer as a visual aid in game
+        /// </summary>
+        public void SetShowQuestPointer(bool showQuestPointer)
+        {
+            ShowQuestPointer = showQuestPointer;
+            PlayerPrefs.SetInt("ShowQuestPointer", showQuestPointer ? 1 : 0);
+        }
         #endregion
 
         #region PlayerPrefs Method
@@ -165,7 +175,10 @@ namespace Scripts.Game
             {
                 PlayerPrefs.SetInt("UsingController", 0);
             }
-            
+            if (PlayerPrefs.HasKey("ShowQuestPointer") == false)
+            {
+                PlayerPrefs.SetInt("ShowQuestPointer", 1);
+            }
         }
         /// <summary>
         /// Loads settings from Player Prefs
@@ -177,6 +190,7 @@ namespace Scripts.Game
             HoldToWalk = PlayerPrefs.GetInt("HoldToWalk") == 1;
             HoldToSprint = PlayerPrefs.GetInt("HoldToSprint") == 1;
             UsingController = PlayerPrefs.GetInt("UsingController") == 1;
+            ShowQuestPointer = PlayerPrefs.GetInt("ShowQuestPointer") == 1;
             //check NPCSubtitleSpeed
             if(NPCSubtitleSpeed > 0.1f)
             {
