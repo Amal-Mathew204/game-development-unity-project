@@ -17,7 +17,6 @@ namespace Scripts.Game
         /// <summary>
         /// Event for when Player Controls are changed
         /// </summary>
-        public static event Action OnControlsChanged = delegate { };
 
         private bool _usingController;
         public bool UsingController
@@ -29,7 +28,7 @@ namespace Scripts.Game
             private set
             {
                 _usingController = value;
-                OnControlsChanged.Invoke();
+                GameManager.Instance?.SwitchPlayerInputDevice();
             }
         }
 
