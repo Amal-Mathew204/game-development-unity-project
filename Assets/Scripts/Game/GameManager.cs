@@ -48,7 +48,6 @@ namespace Scripts.Game
         {
             SetInstance();
             CreateMissions();
-            TrackPlayerControls();
         }
 
         /// <summary>
@@ -117,14 +116,6 @@ namespace Scripts.Game
             MissionList = new List<Mission>() {farmMission, cleanUp, 
                                                plantSeed, wasteBarrel,
                                                findWater,restorePower};
-        }
-
-        /// <summary>
-        /// Tracks changes in player controls and switches the input device accordingly
-        /// </summary>
-        private void TrackPlayerControls()
-        {
-            GameSettings.OnControlsChanged += SwitchPlayerInputDevice;
         }
         #endregion
 
@@ -222,6 +213,7 @@ namespace Scripts.Game
             SceneManager.LoadScene("StartScene");
             HasGameEnded = false;
             LoadedGame = false;
+            EnableMouseCursor();
         }
         #endregion
 
@@ -357,7 +349,7 @@ namespace Scripts.Game
         /// Switches the player's input device based on the current settings.
         /// Switches the cursors depending on the input device.
         /// </summary>
-        private void SwitchPlayerInputDevice()
+        public void SwitchPlayerInputDevice()
         {
             _usingController = GameSettings.Instance.UsingController;
             if (_usingController)
@@ -436,15 +428,8 @@ namespace Scripts.Game
             string missionsToSave = JsonConvert.SerializeObject(missionsListDictionary);
             string currentTimeToSave = GameObject.Find("LightController").GetComponent<LightingController>().GetCurrentTime().ToString();
             string gameDifficulty = GameSettings.Instance.GameDifficultySettings.Difficulty;
-            
-            Debug.Log("Player Position: " + playerPositionToSave);
-            Debug.Log("Player Inventory: " + playerInventoryToSave);
-            Debug.Log("Player Microchips: " + microChipsToSave);
-            Debug.Log("Current Time: " + currentTimeToSave);
-            Debug.Log("Game Elapsed Time: " + gameElapsedTimeToSave );
-            Debug.Log("Missions: " + missionsToSave);
-            Debug.Log("Game Difficulty: " + gameDifficulty);
 
+            //Save Quest GameObject Quest Script Components
             SaveQuestGameObjectComponentScripts();
             
             //Save Data To Player Prefs
@@ -480,7 +465,7 @@ namespace Scripts.Game
             GameObject.Find("BuildFarmTriggerBox").GetComponent<BuildFarm>().Save();
             GameObject.Find("GeneratorTriggerBox").GetComponent<Generator>().Save();
             GameObject.Find("GarbageTriggerBox").GetComponent<Container>().Save();
-            GameObject.Find("Farm").GetComponentInChildren<SeedPlantingQuest>().Save();
+            GameObject.Find("Farm").GetComponentInChildren<SeedPlantingQuest>()?.Save();
         }
         
         /// <summary>
@@ -550,8 +535,7 @@ namespace Scripts.Game
             //Load Player Data
             PlayerManager.Instance.SetLoadedPlayerData(playerPosition, playerMicrochips);
             
-            //TODO: Set the State of Mission Prefabs
-            //This requires missions to have save and load methods for each quest scripts
+            //Load Quest GameObject Quest Script Components
             LoadQuestGameObjectComponentScripts();
 
         }
@@ -565,7 +549,7 @@ namespace Scripts.Game
             GameObject.Find("BuildFarmTriggerBox").GetComponent<BuildFarm>().Load();
             GameObject.Find("GeneratorTriggerBox").GetComponent<Generator>().Load();
             GameObject.Find("GarbageTriggerBox").GetComponent<Container>().Load();
-            GameObject.Find("Farm").GetComponentInChildren<SeedPlantingQuest>().Load();
+            GameObject.Find("Farm").GetComponentInChildren<SeedPlantingQuest>()?.Load();
         }
         #endregion
         
