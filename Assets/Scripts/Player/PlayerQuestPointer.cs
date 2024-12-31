@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Scripts.Game;
 using Scripts.Quests;
 using UnityEngine;
 
@@ -10,12 +11,14 @@ namespace Scripts.Player
         private Transform _target; //target location
         [SerializeField] private float _rotationSpeed = 3.0f; //rotation speed of arrow
         public CollectMission ActiveCollectMission { get; private set; }
+        private bool _showQuestPointer = false;
 
         /// <summary>
 		/// This method deactivates the Quest Pointer Arrow GameObject 
 		/// </summary>
         private void Start()
         {
+            _showQuestPointer = GameSettings.Instance.ShowQuestPointer;
             this.gameObject.SetActive(false);
         }
 
@@ -25,7 +28,10 @@ namespace Scripts.Player
         public void ActivateArrow(CollectMission collectMission)
         {
             ActiveCollectMission = collectMission;
-            this.gameObject.SetActive(true);
+            if (_showQuestPointer)
+            {
+                this.gameObject.SetActive(true);
+            }
         }
 
         /// <summary>
