@@ -36,7 +36,6 @@ namespace Scripts.Quests
             _missionComplete = (bool)generatorData["_missionComplete"];
             _fuelCellDropped = Convert.ToInt32(generatorData["_fuelCellDropped"]);
             GameObject[] fuelCells = GameObject.FindGameObjectsWithTag("FuelCell");
-            Debug.Log(fuelCells.Length);
             for (int i = 0; i < _fuelCellDropped; i++)
             {
                 Destroy(fuelCells[i]);
