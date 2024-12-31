@@ -32,7 +32,9 @@ namespace Scripts.Game
             }
         }
 
-
+        /// <summary>
+        /// Gives a debug error if the game settings instance is null
+        /// </summary>
         public static GameSettings Instance
         {
             get
