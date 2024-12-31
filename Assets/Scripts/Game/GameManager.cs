@@ -571,7 +571,7 @@ namespace Scripts.Game
         /// <summary>
         /// Takes a string in format (x,y,z) and returns a vector 3 value
         /// </summary>
-        public Vector3 StringToVector3(string value)
+        public static Vector3 StringToVector3(string value)
         {
             value = value.Replace("(", "");
             value = value.Replace(")", "");

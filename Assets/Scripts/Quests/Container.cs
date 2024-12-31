@@ -23,7 +23,13 @@ namespace Scripts.Quests
         {
             Dictionary<string, object> containerData = new Dictionary<string, object>();
             containerData.Add("_missionComplete", _missionComplete);
-            containerData.Add("_oilDropped", _oilDropped);
+            Dictionary<string, string> itemsNamesInDisposal = new Dictionary<string, string>();
+            foreach (GameObject item in ItemsInDisposal)
+            {
+                itemsNamesInDisposal[item.name] = item.transform.position.ToString();
+            }
+            containerData.Add("ItemsInDisposal", JsonConvert.SerializeObject(itemsNamesInDisposal));
+            
             PlayerPrefs.SetString("Container", JsonConvert.SerializeObject(containerData));
         }
 
@@ -32,12 +38,12 @@ namespace Scripts.Quests
             string dictionary = PlayerPrefs.GetString("Container");
             Dictionary<string, object> containerData = JsonConvert.DeserializeObject<Dictionary<string, object>>(dictionary);
             _missionComplete = (bool)containerData["_missionComplete"];
-            _oilDropped = Convert.ToInt32(containerData["_oilDropped"]);
-            GameObject[] oilBarrels = GameObject.FindGameObjectsWithTag("Barrel");
-            Debug.Log(oilBarrels.Length);
-            for (int i = 0; i < _oilDropped; i++)
+            Dictionary<string, string> itemsNamesInDisposal = JsonConvert.DeserializeObject<Dictionary<string, string>>((string)containerData["ItemsInDisposal"]);
+            foreach (string itemName in itemsNamesInDisposal.Keys)
             {
-                Destroy(oilBarrels[i]);
+                GameObject item = GameObject.Find(itemName);
+                ItemsInDisposal.Add(item);
+                item.transform.position = GameManager.StringToVector3(itemsNamesInDisposal[itemName]);
             }
             if (_missionComplete)
             {
@@ -51,13 +57,22 @@ namespace Scripts.Quests
         /// </summary>
         private void Update()
         {
-            if (_oilDropped == 5 && _missionComplete==false)
+            if (!_missionComplete)
             {
-                 GameManager.Instance.SetMissionComplete("Place Barrels in Container");
-                //set GarbageDisposalController Active
-                _garbageDisposalController.isActive = true;
-                _missionComplete = true;
+                if (_oilDropped == 5)
+                {
+                    GameManager.Instance.SetMissionComplete("Place Barrels in Container");
+                    //set GarbageDisposalController Active
+                    DisablePickUpForOilBarrels();
+                    _garbageDisposalController.isActive = true;
+                    _missionComplete = true;
+                }
+                else
+                {
+                    CheckOilBarrelHaveLeftContainer();
+                }
             }
+
         }
 
         /// <summary>
@@ -65,12 +80,75 @@ namespace Scripts.Quests
         /// </summary>
         private void OnTriggerEnter(Collider other)
         {
-            ///Destroys barrel object when dropped 
-            if (other.CompareTag("Barrel"))
+            ///register barrel object when dropped 
+            if (other.CompareTag("Barrel") && _missionComplete == false)
             {
-                _oilDropped = _oilDropped + 1;
-                ItemsInDisposal.Add(other.gameObject);
+                RegisterOilBarrelInContainer(other.gameObject);
+                Debug.Log("Oil Dropped: " + _oilDropped);
             }
+        }
+        private void OnTriggerExit(Collider other)
+        {
+            ///deregister barrel object when dropped 
+            if (other.CompareTag("Barrel") && _missionComplete == false)
+            {
+               DeregisterOilBarrelInContainer(other.gameObject);
+            }
+        }
+
+        /// <summary>
+        /// This method disables the item pickup component for each barrel inside of the container
+        /// </summary>
+        private void DisablePickUpForOilBarrels()
+        {
+            foreach (GameObject item in ItemsInDisposal)
+            {
+                item.GetComponent<ItemPickup>().enabled = false;
+            }
+        }
+
+        /// <summary>
+        /// This method checks if all oil barrels are active inside of the Garbage Container
+        /// The check is used in the update method to see if the user has placed a oil barrel back into its inventory
+        /// </summary>
+        private void CheckOilBarrelHaveLeftContainer()
+        {
+            List<GameObject> itemsToDeregister = new List<GameObject>();
+            foreach (GameObject item in ItemsInDisposal)
+            {
+                if (!item.activeInHierarchy)
+                {
+                    itemsToDeregister.Add(item);
+                }
+            }
+
+            foreach (GameObject item in itemsToDeregister)
+            {
+                DeregisterOilBarrelInContainer(item);
+            }
+            
+        }
+
+        /// <summary>
+        /// This method registers an oil barrel game object inside the Garbage Container
+        /// </summary>
+        public void RegisterOilBarrelInContainer(GameObject item)
+        {
+            _oilDropped = _oilDropped + 1;
+            ItemsInDisposal.Add(item);
+        }
+
+        /// <summary>
+        /// This method deregisters an oil barrel game object inside the Garbage Container
+        /// </summary>
+        public void DeregisterOilBarrelInContainer(GameObject item)
+        {
+            _oilDropped = _oilDropped - 1;
+            if (_oilDropped < 0)
+            {
+                _oilDropped = 0;
+            }
+            ItemsInDisposal.Remove(item);
         }
     }
 }
