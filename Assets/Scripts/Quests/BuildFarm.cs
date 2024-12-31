@@ -4,6 +4,7 @@ using PlayerManager = Scripts.Player.Player;
 using Scripts.Item;
 using System.Collections.Generic;
 using Newtonsoft.Json;
+using Scripts.Game;
 using GameManager = Scripts.Game.GameManager;
 
 namespace Scripts.Quests
@@ -45,6 +46,11 @@ namespace Scripts.Quests
             if (other.CompareTag("Player"))
             {
                 _playerInTriggerBox = true;
+                if (_farmBuilt == false && CheckShovelInInventory())
+                {
+                    string controls = GameSettings.Instance.UsingController ? "Button East" : "F";
+                    GameScreen.Instance.ShowKeyPrompt($"Press {controls} to build the Farm");
+                }
             }
         }
 
@@ -57,6 +63,10 @@ namespace Scripts.Quests
             if (other.CompareTag("Player"))
             {
                 _playerInTriggerBox = false;
+                if (_farmBuilt == false)
+                {
+                    GameScreen.Instance.HideKeyPrompt();
+                }
             }
         }
 
@@ -70,6 +80,7 @@ namespace Scripts.Quests
                 _farmLand.SetActive(true);
                 GameManager.Instance.SetMissionComplete("Build Farm");
                 _farmBuilt = true;
+                GameScreen.Instance.HideKeyPrompt();
             }
         }
 
