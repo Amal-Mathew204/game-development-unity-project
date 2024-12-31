@@ -65,7 +65,8 @@ namespace Scripts.Item
         /// </summary>
         public virtual void TryPickUp()
         {
-            if (_isInRange && _playerActionInput.IsGathering && _playerState.CanGather())
+            //make sure ItemPickUp script component is enabled when trying to pickup items
+            if (_isInRange && _playerActionInput.IsGathering && _playerState.CanGather() && this.enabled)
             {
                 _playerState.CurrentActionState = PlayerActionState.Gathering;
                 ProcessPickUp();
