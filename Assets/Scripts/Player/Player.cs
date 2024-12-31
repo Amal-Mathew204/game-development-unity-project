@@ -447,21 +447,20 @@ namespace Scripts.Player
                 radar.DeactivateRadar();
             }
             RemoveItem(item);
+            Vector3 position = new Vector3(transform.position.x, transform.position.y + 1f, transform.position.z);
+            Vector3 dropPosition = position + transform.forward * 2f;
 
-            Vector3 dropPosition = transform.position + transform.forward * 2f;
+            int layerMask = LayerMask.GetMask("Default");
 
-            int layerMask = ~LayerMask.GetMask("GarbageDisposal", "Item");
-
-            float distance = 1.5f;
+            float distance = 2f;
             if (item.itemName == "Dynamite")
             {
                 distance = 1f;
             }
-            Vector3 position = new Vector3(transform.position.x, transform.position.y + 1f, transform.position.z);
 
             if (Physics.Raycast(position, transform.forward, out RaycastHit hit, distance, layerMask))
             {
-                dropPosition = transform.position - transform.forward * 2f;
+                dropPosition = position - transform.forward * 2f;
             }
 
             item.gameObject.transform.position = dropPosition;
