@@ -12,14 +12,15 @@ namespace Scripts.Quests
         private bool _missionCompleted = false;
         [SerializeField] private FarmTrigger[] _farmTriggers;
 
-        
-        #region Save and Load Methods
 
+        #region Save and Load Methods
+        /// <summary>
+        /// method for saving seedplanting quest
+        /// by storing state of farmtriggers indicating if seed bag is inside as a serialized JSON array in PlayerPrefs
+        /// </summary>
         public void Save()
         {
             Dictionary<string, object> seedQuestData = new Dictionary<string, object>();
-            // seedQuestData.Add("_seedsPlanted", _seedsPlanted);
-            // seedQuestData.Add("_missionCompleted", _missionCompleted);
             bool[] farmTriggersActive = new bool[_farmTriggers.Length];
             for (int i = 0; i < _farmTriggers.Length; i++)
             {
@@ -29,6 +30,10 @@ namespace Scripts.Quests
             PlayerPrefs.SetString("SeedPlantingQuest", JsonConvert.SerializeObject(seedQuestData));
         }
 
+        /// <summary>
+        /// method loads state of farmtriggers and activate plant visuals on corresponding farm triggers
+        /// also removes seed bags based on stored data.
+        /// </summary>
         public void Load()
         {
             Dictionary<string, object> seedQuestData = JsonConvert.DeserializeObject<Dictionary<string, object>>(PlayerPrefs.GetString("SeedPlantingQuest"));
@@ -66,5 +71,4 @@ namespace Scripts.Quests
             _seedsPlanted += 1;
         }
     }
-
 }

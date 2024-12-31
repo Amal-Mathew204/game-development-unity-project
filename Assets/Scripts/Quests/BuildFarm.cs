@@ -14,9 +14,12 @@ namespace Scripts.Quests
         private bool _farmBuilt = false;
         private bool _playerInTriggerBox = false;
         [SerializeField] private GameObject _farmLand;
-        
+
         #region Save/Load Methods
 
+        /// <summary>
+        /// Method for saving the farmBuilt state into playerprefs as a JSON string.
+        /// </summary>
         public void Save()
         {
             Dictionary<String, bool> buildFarmData = new Dictionary<String, bool>();
@@ -24,6 +27,10 @@ namespace Scripts.Quests
             PlayerPrefs.SetString("BuildFarm", JsonConvert.SerializeObject(buildFarmData));
         }
 
+        /// <summary>
+        /// Method for retrieving and deserialize farmbuild updates farmBuilt
+        /// method also reactivates farmland if farm build is true
+        /// </summary>
         public void Load()
         {
             string dictionary = PlayerPrefs.GetString("BuildFarm");
