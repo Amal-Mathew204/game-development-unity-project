@@ -480,6 +480,7 @@ namespace Scripts.Game
             GameObject.Find("BuildFarmTriggerBox").GetComponent<BuildFarm>().Save();
             GameObject.Find("GeneratorTriggerBox").GetComponent<Generator>().Save();
             GameObject.Find("GarbageTriggerBox").GetComponent<Container>().Save();
+            GameObject.Find("Farm").GetComponentInChildren<SeedPlantingQuest>().Save();
         }
         
         /// <summary>
@@ -564,6 +565,7 @@ namespace Scripts.Game
             GameObject.Find("BuildFarmTriggerBox").GetComponent<BuildFarm>().Load();
             GameObject.Find("GeneratorTriggerBox").GetComponent<Generator>().Load();
             GameObject.Find("GarbageTriggerBox").GetComponent<Container>().Load();
+            GameObject.Find("Farm").GetComponentInChildren<SeedPlantingQuest>().Load();
         }
         #endregion
         

@@ -648,6 +648,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0adf115634d834b1a8fd2911658b6bee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _farmTriggers:
+  - {fileID: 4257349424285941767}
+  - {fileID: 6079323275845298237}
+  - {fileID: 6666985895634205577}
+  - {fileID: 450849911677378049}
 --- !u!1 &6401103693479051375
 GameObject:
   m_ObjectHideFlags: 0
