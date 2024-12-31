@@ -82,7 +82,7 @@ namespace Scripts.Menu
             }
         }
         /// <summary>
-        /// 
+        /// This method loads game data and unsubscribes from the scene-loaded event
         /// </summary>
         private void LoadGameData(Scene scene, LoadSceneMode mode)
         {
