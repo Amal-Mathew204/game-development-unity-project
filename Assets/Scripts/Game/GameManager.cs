@@ -71,14 +71,6 @@ namespace Scripts.Game
         /// </summary>
         public void CreateMissions()
         {
-            //TODO: The trigger box missions will no longer work. To utlilise these please consult the BuildFarm Quest to change the Quest Script Logic.
-            //MissionList = new List<Mission>() {new Mission("Mini Everest", "Explore the terrain and locate a short hill. Reach the top of the hill."),
-            //                               new Mission("Find Trigger Box", "Explore the terrain and locate the trigger box. Pass under it and listen for the sound effect."),
-            //                               new CollectMission("Collect Item", "Explore the terrain. There are three items you need to collect", 3),
-            //                               new Mission("Fallen Hero", "Explore the terrain. There is a robot who failed its mission. Talk to it."),
-            //                               new Mission("Stairway", "Explore the terrain. There are some steps. Reach the top."),
-            //                               new Mission("Create Farm", "Find the tools and land to greenify the world ")};
-
             HasPlayerWonGame = false; //reset condition
 
             // Creates new mission called create Farm and collect/sub missions associated with it 
