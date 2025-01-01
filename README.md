@@ -45,6 +45,7 @@ Third Party Assests:
 
 Third Party Tools:
 * [WebGL Optimizer](https://assetstore.unity.com/packages/tools/utilities/webgl-optimizer-230446) (Used to Analyse Build Logs when creating WebGL Builds).
+* [Newtonsoft](https://www.newtonsoft.com/json) (Used for serialisation and deserialisation for saving and loading of data)
 
 Assets installed from the Unity Registry: 
 * Input System 1.7.0
