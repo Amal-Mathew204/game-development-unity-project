@@ -24,6 +24,7 @@ namespace Scripts.Player
 
         /// <summary>
         /// Sets arrow quest pointer game object as active
+        /// Dependent on settings
         /// </summary>
         public void ActivateArrow(CollectMission collectMission)
         {
@@ -36,6 +37,7 @@ namespace Scripts.Player
 
         /// <summary>
         /// Sets arrow quest pointer game object as inactive
+        /// Dependent on settings
         /// </summary>
         public void DeactivateArrow()
         {

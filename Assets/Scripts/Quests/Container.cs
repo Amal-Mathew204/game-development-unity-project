@@ -19,13 +19,14 @@ namespace Scripts.Quests
 
         #region Save/Load Methods
         /// <summary>
-        /// Method saves names and position of ItemsInDisposal as serialized JSON string in PlayerPrefs.
+        /// Method saves names,position and mission complete status of ItemsInDisposal as serialized JSON string in PlayerPrefs.
         /// </summary>
         public void Save()
         {
             Dictionary<string, object> containerData = new Dictionary<string, object>();
             containerData.Add("_missionComplete", _missionComplete);
             Dictionary<string, string> itemsNamesInDisposal = new Dictionary<string, string>();
+            // Adds each items name and position to dictionary
             foreach (GameObject item in ItemsInDisposal)
             {
                 itemsNamesInDisposal[item.name] = item.transform.position.ToString();
@@ -45,6 +46,7 @@ namespace Scripts.Quests
             Dictionary<string, object> containerData = JsonConvert.DeserializeObject<Dictionary<string, object>>(dictionary);
             _missionComplete = (bool)containerData["_missionComplete"];
             Dictionary<string, string> itemsNamesInDisposal = JsonConvert.DeserializeObject<Dictionary<string, string>>((string)containerData["ItemsInDisposal"]);
+            // finds and reposition each item listed in saved data
             foreach (string itemName in itemsNamesInDisposal.Keys)
             {
                 GameObject item = GameObject.Find(itemName);
@@ -68,8 +70,8 @@ namespace Scripts.Quests
                 if (_oilDropped == 5)
                 {
                     GameManager.Instance.SetMissionComplete("Place Barrels in Container");
-                    //set GarbageDisposalController Active
                     DisablePickUpForOilBarrels();
+                    //set GarbageDisposalController Active
                     _garbageDisposalController.isActive = true;
                     _missionComplete = true;
                 }
@@ -90,7 +92,6 @@ namespace Scripts.Quests
             if (other.CompareTag("Barrel") && _missionComplete == false)
             {
                 RegisterOilBarrelInContainer(other.gameObject);
-                Debug.Log("Oil Dropped: " + _oilDropped);
             }
         }
         private void OnTriggerExit(Collider other)
