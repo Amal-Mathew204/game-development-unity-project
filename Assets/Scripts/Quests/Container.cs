@@ -56,6 +56,7 @@ namespace Scripts.Quests
             if (_missionComplete)
             {
                 _garbageDisposalController.isActive = true;
+                DisablePickUpForOilBarrels();
             }
         }
         #endregion
