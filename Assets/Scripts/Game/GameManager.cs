@@ -489,7 +489,14 @@ namespace Scripts.Game
             foreach (String itemGameObjectName in playerInventory)
             {
                 GameObject itemGameObject = GameObject.Find(itemGameObjectName);
-                itemGameObject.GetComponent<ItemPickup>().ProcessPickUp();
+                if (itemGameObjectName == "GPS Scanner")
+                {
+                    itemGameObject.GetComponent<GPSScannerPickup>().ProcessPickUp();
+                }
+                else
+                {
+                    itemGameObject.GetComponent<ItemPickup>().ProcessPickUp();
+                }
             }
             //Set Game Current Time and Elapsed Time
             GameObject.Find("LightController").GetComponent<LightingController>().SetCurrentTime(currentTime);
