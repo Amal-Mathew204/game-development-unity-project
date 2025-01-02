@@ -12,7 +12,8 @@ using Scripts.Item;
 using Scripts.Player.Input;
 using Scripts.Quests;
 using Scripts.NPC;
-using Ilumisoft.RadarSystem;   //this is a third party class
+using Ilumisoft.RadarSystem; //this is a third party class
+using Scripts.Menu;
 using UnityEditor.Rendering;
 
 
@@ -175,7 +176,6 @@ namespace Scripts.Player
                 ToggleInventoryUI();
                 ToggleInventoryWarningMessage();
             }
-            
             TogglePauseMenu();
         }
         #endregion
@@ -233,6 +233,7 @@ namespace Scripts.Player
             if (_pauseMenu != null)
             {
                 _pauseMenu.SetActive(_pauseMenuActive);
+                _pauseMenu.GetComponent<PauseMenuScript>().ResetMenu();
                 if (_pauseMenuActive)
                 {
                     Time.timeScale = 0f;

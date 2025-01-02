@@ -22,8 +22,17 @@ namespace Scripts.Menu
                 Debug.LogError("Mission Log Menu is null");
             }
             _missionLogMenuController = _missionLogMenu.GetComponent<MissionLogMenu>();
+            ResetMenu();
         }
 
+        /// <summary>
+        /// The Method Ensures all "pages" of the Pause Menu are inactive except for its main menu
+        /// </summary>
+        public void ResetMenu()
+        {
+            CloseMissionLogMenu();
+        }
+        
         /// <summary>
         /// Calls the Player's method to toggle the visibility of the pause menu and resume the game.
         /// </summary>
@@ -38,7 +47,7 @@ namespace Scripts.Menu
         /// </summary>
         public GameObject GetMissionLogMenu()
         {
-            GameObject gameScreen = GameObject.Find("GameScreen");
+            GameObject gameScreen = GameObject.Find("Pause Menu");
             Transform[] children = gameScreen.GetComponentsInChildren<Transform>(true);
             foreach (Transform child in children)
             {
