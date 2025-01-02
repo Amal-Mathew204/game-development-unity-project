@@ -4617,7 +4617,7 @@ MonoBehaviour:
   sprintAcceleration: 50
   drag: 20
   gravity: 25
-  jumpSpeed: 1
+  jumpSpeed: 1.5
   inAirAcceleration: 25
   terminalVelocity: 50
   lookSensitivityH: 0.5
