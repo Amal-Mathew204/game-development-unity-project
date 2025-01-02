@@ -546,7 +546,7 @@ namespace Scripts.Player
         public bool getTaskAccepted()
         {
             PlayerActionInput playerActionInput = GetComponent<PlayerActionInput>();
-            return playerActionInput.IsPressingAcceptKey;
+            return playerActionInput.IsPressingAcceptKey && !GameManager.Instance.HasGameEnded;
         }
 
         /// <summary>

@@ -4067,10 +4067,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 7289651335760097305, guid: 07e4d7e133b3d45ebbba89ebbdf177dc, type: 3}
-      propertyPath: m_text
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 8467719040010495093, guid: 07e4d7e133b3d45ebbba89ebbdf177dc, type: 3}
       propertyPath: m_Name
       value: StartNPC
