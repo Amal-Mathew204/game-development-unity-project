@@ -458,7 +458,7 @@ namespace Scripts.Player
             int layerMask = LayerMask.GetMask("Default");
 
             float distance = 2f;
-            if (item.itemName == "Dynamite")
+            if (item.itemName == "Dynamite" || item.itemName == "Fuel Cell")
             {
                 distance = 1f;
             }

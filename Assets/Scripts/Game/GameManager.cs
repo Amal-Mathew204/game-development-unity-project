@@ -41,6 +41,7 @@ namespace Scripts.Game
         public float GameTimeElapsed;
         private bool _usingController = false;
         public bool LoadedGame { get; private set; } = false;
+        public bool isGameLoading = false;
         #endregion
 
         #region Awake Methods
@@ -466,6 +467,7 @@ namespace Scripts.Game
         /// </summary>
         public void LoadGameData()
         {
+            isGameLoading = true;
             //Set Loaded Game to True
             LoadedGame = true;
             //Get Data from Player Prefs
@@ -530,7 +532,7 @@ namespace Scripts.Game
             
             //Load Quest GameObject Quest Script Components
             LoadQuestGameObjectComponentScripts();
-
+            isGameLoading = false;
         }
         
         /// <summary>

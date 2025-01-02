@@ -73,8 +73,12 @@ namespace Scripts.Quests
             else
             {
                 PlayerManager.Instance.MicroChips += 10;
-                //When a parent mission is completed save the game
-                GameManager.Instance?.SaveGame();
+                //Game Should not be saved when loading game
+                if (GameManager.Instance.isGameLoading == false)
+                {
+                    //When a parent mission is completed save the game
+                    GameManager.Instance?.SaveGame();
+                }
             }
 
         }
