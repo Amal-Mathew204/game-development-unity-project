@@ -93497,7 +93497,7 @@ GameObject:
   - component: {fileID: 7852370969958812946}
   - component: {fileID: 4105398698429084297}
   m_Layer: 0
-  m_Name: TriggerBox
+  m_Name: GarbageTriggerBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -55,9 +55,11 @@ namespace Scripts.NPC
             // Populate text sections for cycling
             _textSections = new List<string>
             {
-                "Hello there! This is the first section of the dialogue.",
-                "Here's some more information for you to read.",
-                "And here is the final part of the conversation."
+                "Hello there! Welcome to what is now left of earth",
+                "After the great apocalypse, earth has just been a massive wastland",
+                "Our mission is to restore planet earth to its former glory.",
+                "Gather your strength, analyze the ruins, and prepare for what lies ahead.",
+                "Good luck on your mission. May your circuits remain unbroken!"
             };
             DisplayCurrentText();
         }
