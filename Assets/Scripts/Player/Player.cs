@@ -233,7 +233,6 @@ namespace Scripts.Player
             if (_pauseMenu != null)
             {
                 _pauseMenu.SetActive(_pauseMenuActive);
-                _pauseMenu.GetComponent<PauseMenuScript>().ResetMenu();
                 if (_pauseMenuActive)
                 {
                     Time.timeScale = 0f;
@@ -243,6 +242,7 @@ namespace Scripts.Player
                 }
                 else
                 {
+                    _pauseMenu.GetComponent<PauseMenuScript>().ResetMenu();
                     Time.timeScale = 1f;
                     //If the Player is still at the Start NPC start of game dialouge the ActionMap must be kept at "UI"
                     if (startOfGame == false)
