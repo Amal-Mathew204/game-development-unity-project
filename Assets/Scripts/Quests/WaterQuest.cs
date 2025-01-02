@@ -11,7 +11,7 @@ namespace Scripts.Quests
         /// </summary>
         private void OnTriggerEnter(Collider other)
         {
-            if (other.CompareTag("Player"))
+            if (other.CompareTag("Player") && GameManager.Instance.GetMission("Water Source Location").IsMissionCompleted() == false)
             {
                 GameManager.Instance.SetMissionComplete("Water Source Location");
             }
