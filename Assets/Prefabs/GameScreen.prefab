@@ -1944,7 +1944,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_TargetDisplay: 0
 --- !u!114 &6737803530825240059
 MonoBehaviour:
@@ -3389,7 +3389,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 39.446045, y: -23.944122}
+  m_AnchoredPosition: {x: 39.446045, y: -23.944153}
   m_SizeDelta: {x: -240.28, y: -195.425}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7867619047886058790
