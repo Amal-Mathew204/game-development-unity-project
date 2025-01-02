@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System;
+using Scripts.Game;
 using PlayerManager = Scripts.Player.Player;
 namespace Scripts.Quests
 {
@@ -58,6 +59,7 @@ namespace Scripts.Quests
 
         /// <summary>
         /// Method sets the status of the Mission object to completed
+        /// Completing parent missions save the game as a form of check points
         /// </summary>
         public void SetMissionCompleted()
         {
@@ -71,6 +73,8 @@ namespace Scripts.Quests
             else
             {
                 PlayerManager.Instance.MicroChips += 10;
+                //When a parent mission is completed save the game
+                GameManager.Instance?.SaveGame();
             }
 
         }
