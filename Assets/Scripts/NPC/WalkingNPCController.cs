@@ -15,7 +15,7 @@ namespace Scripts.NPC
     {
         #region Class Variables
         [HideInInspector] public bool istalkingToPlayer = false;
-        public List<string> NPCScript { get; set; } = new List<string>() { "Hello", "How Is Your Day", "Good Bye" };
+        [SerializeField] public List<string> NPCScript { get; set; } = new List<string>() { "Greetings, unit.", "It is advisable to ensure your power reserves are maintained at optimal levels.", "To recharge, you must locate and restore the nearby generator", "Once restored, it will provide a steady energy output to recharge your systems", "Remember: without energy, your mission and existence will terminate.", "Go now, unit. Restore the generator and secure your survival." };
         private int _scriptIndex = 0;
         private bool _coroutineActive = false;
         [SerializeField] private float _rotationSpeed = 3f;
