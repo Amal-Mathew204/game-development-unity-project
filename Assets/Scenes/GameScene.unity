@@ -279,6 +279,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1426665236}
     m_Modifications:
+    - target: {fileID: 1158203852120514272, guid: cdf71a86e257f4461b8b5818e16be6e6, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 1e96e4cdb5591b3479960f223ebbb161, type: 2}
     - target: {fileID: 1622883871261011989, guid: cdf71a86e257f4461b8b5818e16be6e6, type: 3}
       propertyPath: m_LocalScale.y
       value: 1.2499998
@@ -413,6 +417,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7202883759799513081, guid: 4d3bd8cafc4d09a40b8625a4834c2dc2, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 6eaf126b96fe1634fbcf13e8845216e1, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -560,17 +568,13 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1426665236}
     m_Modifications:
+    - target: {fileID: 3441879919507077382, guid: 9419c91ef0f704b4682cb4a89a5a5726, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
     - target: {fileID: 6808894598808691554, guid: 9419c91ef0f704b4682cb4a89a5a5726, type: 3}
       propertyPath: m_Name
       value: Rusty Shovel
-      objectReference: {fileID: 0}
-    - target: {fileID: 9201566629609831956, guid: 9419c91ef0f704b4682cb4a89a5a5726, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1.2499998
-      objectReference: {fileID: 0}
-    - target: {fileID: 9201566629609831956, guid: 9419c91ef0f704b4682cb4a89a5a5726, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1.2499998
       objectReference: {fileID: 0}
     - target: {fileID: 9201566629609831956, guid: 9419c91ef0f704b4682cb4a89a5a5726, type: 3}
       propertyPath: m_LocalPosition.x
@@ -824,6 +828,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1426665236}
     m_Modifications:
+    - target: {fileID: 1158203852120514272, guid: cdf71a86e257f4461b8b5818e16be6e6, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 1e96e4cdb5591b3479960f223ebbb161, type: 2}
     - target: {fileID: 1622883871261011989, guid: cdf71a86e257f4461b8b5818e16be6e6, type: 3}
       propertyPath: m_LocalScale.y
       value: 1.2499998
@@ -1378,14 +1386,6 @@ PrefabInstance:
       value: Barrel
       objectReference: {fileID: 0}
     - target: {fileID: 5527708292563868318, guid: cebe53f8b18934e309ca42fabc6eb985, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1.2499998
-      objectReference: {fileID: 0}
-    - target: {fileID: 5527708292563868318, guid: cebe53f8b18934e309ca42fabc6eb985, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1.2499998
-      objectReference: {fileID: 0}
-    - target: {fileID: 5527708292563868318, guid: cebe53f8b18934e309ca42fabc6eb985, type: 3}
       propertyPath: m_LocalPosition.x
       value: -12.73
       objectReference: {fileID: 0}
@@ -1446,14 +1446,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1426665236}
     m_Modifications:
-    - target: {fileID: 1622883871261011989, guid: cdf71a86e257f4461b8b5818e16be6e6, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1.2499998
-      objectReference: {fileID: 0}
-    - target: {fileID: 1622883871261011989, guid: cdf71a86e257f4461b8b5818e16be6e6, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1.2499998
-      objectReference: {fileID: 0}
     - target: {fileID: 1622883871261011989, guid: cdf71a86e257f4461b8b5818e16be6e6, type: 3}
       propertyPath: m_LocalPosition.x
       value: 21.73
@@ -1700,21 +1692,13 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1426665236}
     m_Modifications:
+    - target: {fileID: 1284548681178302481, guid: b78f250f578026f408e93c6a6bdd5276, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
     - target: {fileID: 5323071357151596819, guid: b78f250f578026f408e93c6a6bdd5276, type: 3}
       propertyPath: m_Name
       value: GPS Scanner
-      objectReference: {fileID: 0}
-    - target: {fileID: 6064332977179634989, guid: b78f250f578026f408e93c6a6bdd5276, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1.2499998
-      objectReference: {fileID: 0}
-    - target: {fileID: 6064332977179634989, guid: b78f250f578026f408e93c6a6bdd5276, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1.2499998
-      objectReference: {fileID: 0}
-    - target: {fileID: 6064332977179634989, guid: b78f250f578026f408e93c6a6bdd5276, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1.2499998
       objectReference: {fileID: 0}
     - target: {fileID: 6064332977179634989, guid: b78f250f578026f408e93c6a6bdd5276, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1842,14 +1826,6 @@ PrefabInstance:
     m_TransformParent: {fileID: 1426665236}
     m_Modifications:
     - target: {fileID: 6598307509454318507, guid: 4db2c805d0ec74d01b34bd7799668a16, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1.2499998
-      objectReference: {fileID: 0}
-    - target: {fileID: 6598307509454318507, guid: 4db2c805d0ec74d01b34bd7799668a16, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1.2499998
-      objectReference: {fileID: 0}
-    - target: {fileID: 6598307509454318507, guid: 4db2c805d0ec74d01b34bd7799668a16, type: 3}
       propertyPath: m_LocalPosition.x
       value: -36.26
       objectReference: {fileID: 0}
@@ -1974,6 +1950,8 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 0.7000002
       objectReference: {fileID: 0}
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
     - target: {fileID: 1306482579931369582, guid: 57514944730c44fdd82c2a8725b73368, type: 3}
       propertyPath: m_fontAsset
       value: 
@@ -2005,6 +1983,28 @@ PrefabInstance:
     - target: {fileID: 1306482579931369582, guid: 57514944730c44fdd82c2a8725b73368, type: 3}
       propertyPath: m_hasFontAssetChanged
       value: 0
+=======
+=======
+>>>>>>> Stashed changes
+    - target: {fileID: 1389507224700626362, guid: 57514944730c44fdd82c2a8725b73368, type: 3}
+      propertyPath: m_Color.a
+      value: 0.29803923
+      objectReference: {fileID: 0}
+    - target: {fileID: 1389507224700626362, guid: 57514944730c44fdd82c2a8725b73368, type: 3}
+      propertyPath: m_Color.b
+      value: 0.32922745
+      objectReference: {fileID: 0}
+    - target: {fileID: 1389507224700626362, guid: 57514944730c44fdd82c2a8725b73368, type: 3}
+      propertyPath: m_Color.g
+      value: 0.5507298
+      objectReference: {fileID: 0}
+    - target: {fileID: 1389507224700626362, guid: 57514944730c44fdd82c2a8725b73368, type: 3}
+      propertyPath: m_Color.r
+      value: 0.6415094
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
       objectReference: {fileID: 0}
     - target: {fileID: 2761707239921525765, guid: 57514944730c44fdd82c2a8725b73368, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2241,14 +2241,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 566636163}
     - target: {fileID: 5798545206830372234, guid: 4d3bd8cafc4d09a40b8625a4834c2dc2, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1.2499998
-      objectReference: {fileID: 0}
-    - target: {fileID: 5798545206830372234, guid: 4d3bd8cafc4d09a40b8625a4834c2dc2, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1.2499998
-      objectReference: {fileID: 0}
-    - target: {fileID: 5798545206830372234, guid: 4d3bd8cafc4d09a40b8625a4834c2dc2, type: 3}
       propertyPath: m_LocalPosition.x
       value: -104
       objectReference: {fileID: 0}
@@ -2307,6 +2299,8 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
     - target: {fileID: 118463103499883091, guid: 4c759055e2c63b54bb60680e5a2b1f73, type: 3}
       propertyPath: m_Color.b
       value: 0.23137257
@@ -2358,6 +2352,24 @@ PrefabInstance:
     - target: {fileID: 1143374760323372459, guid: 4c759055e2c63b54bb60680e5a2b1f73, type: 3}
       propertyPath: m_IsActive
       value: 1
+=======
+=======
+>>>>>>> Stashed changes
+    - target: {fileID: 695093742464295609, guid: 4c759055e2c63b54bb60680e5a2b1f73, type: 3}
+      propertyPath: m_Color.b
+      value: 0.44313726
+      objectReference: {fileID: 0}
+    - target: {fileID: 695093742464295609, guid: 4c759055e2c63b54bb60680e5a2b1f73, type: 3}
+      propertyPath: m_Color.g
+      value: 0.6887509
+      objectReference: {fileID: 0}
+    - target: {fileID: 695093742464295609, guid: 4c759055e2c63b54bb60680e5a2b1f73, type: 3}
+      propertyPath: m_Color.r
+      value: 0.77254903
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
       objectReference: {fileID: 0}
     - target: {fileID: 1256150140199265698, guid: 4c759055e2c63b54bb60680e5a2b1f73, type: 3}
       propertyPath: m_Pivot.x
@@ -2511,6 +2523,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameScreen
       objectReference: {fileID: 0}
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
     - target: {fileID: 4129294167159123272, guid: 4c759055e2c63b54bb60680e5a2b1f73, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -2574,6 +2588,16 @@ PrefabInstance:
     - target: {fileID: 8826153324559783788, guid: 4c759055e2c63b54bb60680e5a2b1f73, type: 3}
       propertyPath: m_IsActive
       value: 1
+=======
+    - target: {fileID: 5004936183849925211, guid: 4c759055e2c63b54bb60680e5a2b1f73, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -23.944092
+>>>>>>> Stashed changes
+=======
+    - target: {fileID: 5004936183849925211, guid: 4c759055e2c63b54bb60680e5a2b1f73, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -23.944092
+>>>>>>> Stashed changes
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
