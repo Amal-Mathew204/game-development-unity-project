@@ -11,7 +11,7 @@
                         <ui:SliderInt label="Music" value="42" high-value="100" name="MusicSlider" style="width: 1400px; margin-left: 0; font-size: 23px; -unity-font-style: bold; justify-content: flex-start; align-self: auto; margin-top: 10px;" />
                         <ui:Label tabindex="-1" text="Label" display-tooltip-when-elided="true" name="MusicVolumeLabel" style="font-size: 23px; margin-top: 10px; margin-left: 5px; -unity-font-style: bold;" />
                     </ui:VisualElement>
-                    <ui:VisualElement style="flex-grow: 1; flex-direction: row; font-size: 23px; -unity-font-style: bold; margin-top: 10px; -unity-text-align: upper-left; margin-left: 200px;">
+                    <ui:VisualElement style="flex-grow: 1; flex-direction: row; font-size: 23px; -unity-font-style: bold; margin-top: 10px; -unity-text-align: upper-center; margin-left: 200px;">
                         <ui:SliderInt label="SFX" value="42" high-value="100" name="SFXSlider" style="width: 1400px;" />
                         <ui:Label tabindex="-1" text="Label" display-tooltip-when-elided="true" name="SFXVolumeLabel" style="font-size: 23px;" />
                     </ui:VisualElement>
@@ -19,7 +19,7 @@
                 <ui:VisualElement name="CameraSettings" style="flex-grow: 1;">
                     <ui:Label tabindex="-1" text="Camera Settings" display-tooltip-when-elided="true" name="Title" style="align-items: center; justify-content: center; font-size: 49px; -unity-font-style: bold; margin-left: 25px;" />
                     <ui:VisualElement name="VisualElement" style="flex-grow: 1; flex-direction: row; margin-left: 200px; margin-top: 10px;">
-                        <ui:SliderInt label="Camera" value="42" high-value="100" name="CameraSensitivitySlider" style="width: 1400px; -unity-font-style: bold; font-size: 23px;" />
+                        <ui:SliderInt label="Camera Sensitivity" value="42" high-value="100" name="CameraSensitivitySlider" style="width: 1400px; -unity-font-style: bold; font-size: 23px;" />
                         <ui:Label tabindex="-1" text="Label" display-tooltip-when-elided="true" name="CameraSensitivityLabel" style="font-size: 23px; -unity-font-style: bold;" />
                     </ui:VisualElement>
                 </ui:VisualElement>

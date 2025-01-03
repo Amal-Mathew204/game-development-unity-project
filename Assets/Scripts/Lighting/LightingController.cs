@@ -68,7 +68,7 @@ namespace Scripts.Lighting
         private void UpdateTime()
         {
             _currentTime = _currentTime.AddSeconds(Time.deltaTime * _timeMultiplier);
-            GameScreen.Instance?.UpdateTimeValue(_currentTime.ToString("HH:mm"));
+            GameScreen.Instance?.UpdateTimeValue("Clock: " + _currentTime.ToString("HH:mm"));
         }
 
         /// <summary>
