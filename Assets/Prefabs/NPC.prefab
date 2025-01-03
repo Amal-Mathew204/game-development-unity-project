@@ -378,4 +378,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bubbleText: {fileID: 2731616956858951517}
   typeWritingSpeed: 0.05
-  message: 'Last Recorded Message: Reach...trigger box...on my left'
+  message: You have located the farm; plant your seeds here to grow the crops that
+    will fuel survival.
