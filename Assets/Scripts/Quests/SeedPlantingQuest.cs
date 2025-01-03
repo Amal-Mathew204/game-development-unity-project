@@ -58,8 +58,8 @@ namespace Scripts.Quests
         {
             if (_seedsPlanted == _totalSeeds && !_missionCompleted)
             {
-                GameManager.Instance.SetMissionComplete("Plant Seed");
                 _missionCompleted = true;
+                GameManager.Instance.SetMissionComplete("Plant Seed");
             }
         }
 

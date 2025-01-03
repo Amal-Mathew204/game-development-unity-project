@@ -85,8 +85,8 @@ namespace Scripts.Quests
             if (_playerInTriggerBox && CheckShovelInInventory() && PlayerManager.Instance.getTaskAccepted() && _farmBuilt == false)
             {
                 _farmLand.SetActive(true);
-                GameManager.Instance.SetMissionComplete("Build Farm");
                 _farmBuilt = true;
+                GameManager.Instance.SetMissionComplete("Build Farm");
                 GameScreen.Instance.HideKeyPrompt();
             }
         }

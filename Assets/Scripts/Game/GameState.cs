@@ -92,7 +92,7 @@ namespace Scripts.Game
         private void SetBatteryLevel(int level)
         {
             _batteryLevel = level;
-            _batteryLevelTextField.text = $"Battery Level: {_batteryLevel}%";
+            _batteryLevelTextField.text = $"Battery: {_batteryLevel}%";
         }
 
         /// <summary>

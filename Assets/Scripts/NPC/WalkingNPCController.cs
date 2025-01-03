@@ -15,7 +15,7 @@ namespace Scripts.NPC
     {
         #region Class Variables
         [HideInInspector] public bool istalkingToPlayer = false;
-        public List<string> NPCScript { get; set; } = new List<string>() { "Hello", "How Is Your Day", "Good Bye" };
+        [SerializeField] public List<string> NPCScript { get; set; } = new List<string>() { "Greetings, unit.", "Make sure your power reserves are maintained at optimal levels.", "To recharge, you must locate and restore the nearby generator", "Once restored, it will allow you to recharge your systems at a cost", "Remember: without energy, your mission will terminate." };
         private int _scriptIndex = 0;
         private bool _coroutineActive = false;
         [SerializeField] private float _rotationSpeed = 3f;
@@ -68,7 +68,7 @@ namespace Scripts.NPC
                 //Disable Player Movement
                 _scriptIndex = 0;
                 _inTriggerBox = true;
-                GameScreen.Instance.ShowKeyPrompt("Press F Key To Talk To NPC");
+                GameScreen.Instance.ShowKeyPrompt("Press F Key To Talk To Robot");
             }
         }
 
@@ -87,6 +87,7 @@ namespace Scripts.NPC
                 istalkingToPlayer = false;
                 _inTriggerBox = false;
                 GameScreen.Instance.HideKeyPrompt();
+                textComponent.text = "";
             }
         }
         #endregion
@@ -111,7 +112,7 @@ namespace Scripts.NPC
             }
             HandleNPCMovement();
             //Conditions (including pressing F Key) to start interaction with NPC
-            if (_inTriggerBox && PlayerManager.Instance.CheckPlayerIsFacingTarget(_npcLayerMask) && PlayerManager.Instance.getTaskAccepted() && _scriptIndex == 0)
+            if (_inTriggerBox && PlayerManager.Instance != null && PlayerManager.Instance.CheckPlayerIsFacingTarget(_npcLayerMask) && PlayerManager.Instance.getTaskAccepted() && _scriptIndex == 0)
             {
                 GameScreen.Instance.HideKeyPrompt();
                 istalkingToPlayer = true;

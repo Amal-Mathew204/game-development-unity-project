@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Scripts.MiniMissionLog;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -33,19 +34,16 @@ namespace Scripts.Player.Input
                 Debug.LogError("Mission UI Does Not Exist");
                 return;
             }
-
-            Transform canvas = missionUI.transform.GetChild(0);
-            Button openMissionLogButton = canvas.GetChild(1).GetChild(0).gameObject.GetComponent<Button>();
-            Button closeMissionLogButton = canvas.GetChild(0).GetChild(0).gameObject.GetComponent<Button>();
-            
+            MiniMissionLogController controller = missionUI.GetComponent<MiniMissionLogController>();
             ToggleMissionLogMenu = !ToggleMissionLogMenu;
+            
             if (ToggleMissionLogMenu)
             {
-                openMissionLogButton.onClick.Invoke();
+                controller.OpenMissionLog();
             }
             else
             {
-                closeMissionLogButton.onClick.Invoke();
+                controller.CloseMissionLog();
             }
 
         }

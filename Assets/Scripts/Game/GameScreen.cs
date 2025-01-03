@@ -20,7 +20,8 @@ namespace Scripts.Game
         [SerializeField] private GameObject _keyPromptTextField;
         private TextMeshProUGUI _microchipsTextField;
         private TextMeshProUGUI _timeTextField;
-
+        [SerializeField] private GameObject _saveMessagePromptField;
+        private bool _isSaveMessageDisplayed = false;
         #endregion
 
         #region Microchips Methods
@@ -91,6 +92,31 @@ namespace Scripts.Game
         }
         #endregion
         
+        #region Save Game Prompt Methods
+        /// <summary>
+        /// This method will display a message on screen indicating the game has been saved
+        /// After 5 seconds the message will disappear
+        /// </summary>
+        public void DisplaySaveGamePrompt()
+        {
+            if (!_isSaveMessageDisplayed)
+            {
+                StartCoroutine(DisplaySaveGamePromptCoroutine());
+            }
+        }
+        
+        /// <summary>
+        /// This is a coroutine method to display the Save Game Message Prompt Game Object for 3 seconds
+        /// </summary>
+        private IEnumerator DisplaySaveGamePromptCoroutine()
+        {
+            _isSaveMessageDisplayed = true;
+            _saveMessagePromptField.SetActive(true);
+            yield return new WaitForSecondsRealtime(3f);
+            _saveMessagePromptField.SetActive(false);
+            _isSaveMessageDisplayed = false;
+        }
+        #endregion
         #region Time Methods
         /// <summary>
         /// The setter method to set the `_timeTextField` class field

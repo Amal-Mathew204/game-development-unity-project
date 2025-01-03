@@ -68,7 +68,7 @@ namespace Scripts.RechargeStation
                 return;
             }
 
-            if (PlayerManager.Instance.getTaskAccepted())
+            if (PlayerManager.Instance != null && PlayerManager.Instance.getTaskAccepted())
             {
                 GameManager.Instance.SetBatteryLevelIncrease(_rechargePercentage);
                 PlayerManager.Instance.MicroChips -= _costPerCharge;

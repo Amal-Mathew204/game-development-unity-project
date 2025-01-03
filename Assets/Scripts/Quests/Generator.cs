@@ -63,9 +63,9 @@ namespace Scripts.Quests
         {
             if (_fuelCellDropped == 3 && _missionComplete == false)
             {
+                _missionComplete = true;
                 GameManager.Instance.SetMissionComplete("Turn on Generator");
                 _rechargePoint.SetActive(true);
-                _missionComplete = true;
             }
         }
 

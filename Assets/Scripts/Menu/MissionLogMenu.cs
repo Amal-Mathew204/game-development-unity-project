@@ -21,7 +21,6 @@ namespace Scripts.Menu
         {
             MissionList = GameManager.Instance.MissionList;
             PopulateDropdown();
-            _dropdown.onValueChanged.AddListener(OnDropdownValueChanged); 
         }
 
         /// <summary>
@@ -43,22 +42,6 @@ namespace Scripts.Menu
             _dropdown.AddOptions(options);
             _dropdown.value = 0; 
             _dropdown.RefreshShownValue();
-        }
-
-        /// <summary>
-        /// Event handler for dropdown value changes
-        /// </summary>
-        private void OnDropdownValueChanged(int index)
-        {
-            if (index == 0)
-            {
-                // If placeholder "Select Mission" is still selected, do nothing or display default info
-            }
-            else
-            {
-                // Update the display or other elements as necessary
-                Debug.Log("Mission Selected: " + _dropdown.options[index].text);
-            }
         }
 
         /// <summary>

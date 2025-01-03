@@ -12,7 +12,8 @@ using Scripts.Item;
 using Scripts.Player.Input;
 using Scripts.Quests;
 using Scripts.NPC;
-using Ilumisoft.RadarSystem;   //this is a third party class
+using Ilumisoft.RadarSystem; //this is a third party class
+using Scripts.Menu;
 using UnityEditor.Rendering;
 
 
@@ -175,7 +176,6 @@ namespace Scripts.Player
                 ToggleInventoryUI();
                 ToggleInventoryWarningMessage();
             }
-            
             TogglePauseMenu();
         }
         #endregion
@@ -242,6 +242,7 @@ namespace Scripts.Player
                 }
                 else
                 {
+                    _pauseMenu.GetComponent<PauseMenuScript>().ResetMenu();
                     Time.timeScale = 1f;
                     //If the Player is still at the Start NPC start of game dialouge the ActionMap must be kept at "UI"
                     if (startOfGame == false)
@@ -457,7 +458,7 @@ namespace Scripts.Player
             int layerMask = LayerMask.GetMask("Default");
 
             float distance = 2f;
-            if (item.itemName == "Dynamite")
+            if (item.itemName == "Dynamite" || item.itemName == "Fuel Cell")
             {
                 distance = 1f;
             }
@@ -520,18 +521,6 @@ namespace Scripts.Player
         }
         #endregion
 
-        #region MissionLog Methods
-        /// <summary>
-        /// Method Sets a boolean value for the class property ToggleMissionLogMenu
-        /// inside the activate instance of the PlayerUIInput Class
-        /// </summary>
-        public void SetMissionLogUIToggle(bool isMissionLogOpen)
-        {
-            _playerUIInput.ToggleMissionLogMenu = isMissionLogOpen;
-            SetCursorVisibility();
-        }
-        #endregion
-
         #region Cursor Methods
         /// <summary>
         /// Method Sets a boolean value for the class property ToggleMissionLogMenu
@@ -557,7 +546,7 @@ namespace Scripts.Player
         public bool getTaskAccepted()
         {
             PlayerActionInput playerActionInput = GetComponent<PlayerActionInput>();
-            return playerActionInput.IsPressingAcceptKey;
+            return playerActionInput.IsPressingAcceptKey && !GameManager.Instance.HasGameEnded;
         }
 
         /// <summary>

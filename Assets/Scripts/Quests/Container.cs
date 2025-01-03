@@ -56,6 +56,7 @@ namespace Scripts.Quests
             if (_missionComplete)
             {
                 _garbageDisposalController.isActive = true;
+                DisablePickUpForOilBarrels();
             }
         }
         #endregion
@@ -69,11 +70,11 @@ namespace Scripts.Quests
             {
                 if (_oilDropped == 5)
                 {
+                    _missionComplete = true;
                     GameManager.Instance.SetMissionComplete("Place Barrels in Container");
                     DisablePickUpForOilBarrels();
                     //set GarbageDisposalController Active
                     _garbageDisposalController.isActive = true;
-                    _missionComplete = true;
                 }
                 else
                 {
