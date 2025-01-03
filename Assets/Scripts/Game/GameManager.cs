@@ -436,6 +436,7 @@ namespace Scripts.Game
             PlayerPrefs.SetString("Missions", missionsToSave);
             PlayerPrefs.SetString("GameDifficulty", gameDifficulty);
             PlayerPrefs.Save();
+            GameScreen.Instance?.DisplaySaveGamePrompt();
         }
 
         /// <summary>
