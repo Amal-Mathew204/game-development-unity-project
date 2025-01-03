@@ -68,7 +68,7 @@ namespace Scripts.NPC
                 //Disable Player Movement
                 _scriptIndex = 0;
                 _inTriggerBox = true;
-                GameScreen.Instance.ShowKeyPrompt("Press F Key To Talk To NPC");
+                GameScreen.Instance.ShowKeyPrompt("Press F Key To Talk To Robot");
             }
         }
 
