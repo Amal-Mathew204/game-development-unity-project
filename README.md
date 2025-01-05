@@ -14,6 +14,10 @@ __GitHub Pages Link:__ https://amal-mathew204.github.io/The-Wasteland-Gardener/b
 
 __Game Build Repo:__ https://github.com/Amal-Mathew204/The-Wasteland-Gardener
 
+**Advisory:** 
+
+_When pressing the quit button or return to start menu button, the Web GL Build can potentially freeze, when encountering this errors refresh the tab and the game will proceed to function as normal (Preserving saved data from previous gameplay)_
+
 ## Game Asset:
 Third Party Assests:
 * [Jammo Character | Mix and Jam 1.1](https://assetstore.unity.com/packages/3d/characters/jammo-character-mix-and-jam-158456?srsltid=AfmBOooTRYysbq1T2GOEt7QOrpRF8EXbNHmFyoquy1aLwUDVvBmj96DS)
