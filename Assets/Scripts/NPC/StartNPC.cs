@@ -56,7 +56,7 @@ namespace Scripts.NPC
             _textSections = new List<string>
             {
                 "Hello there! Welcome to what is now left of earth",
-                "After the great apocalypse, earth has just been a massive wastland",
+                "After the great apocalypse, earth has been diminished to a barren wasteland",
                 "Our mission is to restore planet earth to its former glory.",
                 "Gather your strength, analyze the ruins, and prepare for what lies ahead.",
                 "Good luck on your mission. May your circuits remain unbroken!"
